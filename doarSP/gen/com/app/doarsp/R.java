@@ -95,11 +95,12 @@ public final class R {
         public static final int app_name=0x7f060000;
         public static final int configuracao=0x7f060005;
         public static final int dataNascimento=0x7f06000a;
+        public static final int dedicatoria=0x7f06000e;
         /**  Content Description 
          */
-        public static final int desc_list_item_icon=0x7f060010;
-        public static final int drawer_close=0x7f06000f;
-        public static final int drawer_open=0x7f06000e;
+        public static final int desc_list_item_icon=0x7f060011;
+        public static final int drawer_close=0x7f060010;
+        public static final int drawer_open=0x7f06000f;
         public static final int email=0x7f060009;
         public static final int nome=0x7f060007;
         public static final int notificacoesPush=0x7f06000b;
