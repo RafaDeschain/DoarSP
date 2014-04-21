@@ -1,0 +1,20 @@
+package com.app.DAO;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+public class ApapterDAO {
+	private SQLiteDatabase database;
+	private UtilsDAO Utils;
+	private String[] allColumns = { Utils.ID, Utils.TPSANGUINEO, Utils.NOME, Utils.EMAIL, Utils.NOTIFICAOPUSH, Utils.NOTIFICACAOEMAIL, 
+									Utils.STATUSAPTO, Utils.DTDULTIMADOACAO, Utils.DTDNASCIMENTO, Utils.ARQFOTO};
+
+}

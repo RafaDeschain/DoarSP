@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+D:\doarSP\.metadata\.plugins\org.eclipse.jdt.core
+4172594857.index
+3742138966.index
+1679606628.index

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.app.adapter.NavDrawerListAdapter"/>
+<fullyQualifiedTypeName name="com.app.model.NavDrawerItem"/>
+<fullyQualifiedTypeName name="com.app.doarsp.Principal"/>
+<fullyQualifiedTypeName name="com.app.doarsp.R"/>
+<fullyQualifiedTypeName name="android.webkit.WebView.FindListener"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.app.doarsp.R.id"/>
+<fullyQualifiedTypeName name="android.content.pm.PackageInfo"/>
+<fullyQualifiedTypeName name="android.content.ContextWrapper"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.content.pm.PackageManager"/>
+<fullyQualifiedTypeName name="android.content.pm.PackageManager.NameNotFoundException"/>
+<fullyQualifiedTypeName name="com.app.doarsp.Informacoes"/>
+</qualifiedTypeNameHistroy>

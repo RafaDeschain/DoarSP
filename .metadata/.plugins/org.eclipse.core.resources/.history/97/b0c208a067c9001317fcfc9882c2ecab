@@ -1,0 +1,50 @@
+package DAO;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+public class UtilsDAO extends SQLiteOpenHelper{
+	private static final String DATABASE_NAME = "doarSP.db";
+	private static final int DATABASE_VERSION 	= 1;
+	public static final String ID 			  	= "USU_CodUsuario";
+	public static final String TPSANGUINEO    	= "USU_TpSanguineo";
+	public static final String NOME           	= "USU_Nome";
+	public static final String EMAIL          	= "USU_EndEmail";
+	public static final String NOTIFICAOPUSH    = "USU_NotificacaoPush";
+	public static final String NOTIFICACAOEMAIL = "USU_NotificacaoEmail";
+	public static final String STATUSAPTO       = "USU_StatusApto";
+	public static final String DTDULTIMADOACAO  = "USU_DtdUltimaDoacao";
+	public static final String DTDNASCIMENTO    = "USU_DtdNascimento";
+	public static final String ARQFOTO          = "USU_ArqFoto";
+	public static final String TABLE_NAME		= "TB_Usuario";
+	private static final String DATABASE_CREATE = "create table "
+	+ "TB_Usuario ( USU_CodUsuario integer not null primary key "  
+	+ "				USU_TpSanguineo integer not null"
+	+ "             USU_Nome text not null"
+	+ "				USU_EndEmail text not null"
+	+ " 			USU_NotificacaoPush integer not null"
+	+ "				USU_NotificacaoEmail integer not null"
+	+ "				USU_StatusApto integer not null"
+	+ "				USU_DtdUltimaDoacao real"
+	+ "				USU_DtdNascimento real"
+	+ "				USU_ArqFoto blob"	
+	+ ");";
+	
+	public UtilsDAO(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	}	
+	
+	@Override 
+	public void onCreate(SQLiteDatabase db) { 
+	    db.execSQL(DATABASE_CREATE); 
+	} 
+	@Override 
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		Log.w(UtilsDAO.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data"); 
+	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME); 
+	    onCreate(db); 
+	}	
+	
+}

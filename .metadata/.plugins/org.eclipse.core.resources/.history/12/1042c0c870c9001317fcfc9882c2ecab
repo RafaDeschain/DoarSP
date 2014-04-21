@@ -1,0 +1,17 @@
+package com.app.model;
+
+import java.util.Date;
+
+public class UserModel {
+	private int codUsuario, tpSanguineo, NotificacaoPush, NotificacaoEmail, StatusApto; 
+	private String nome, eMail;
+	private Date dtdUltimaDoacao, dtdNascimento;
+	
+	public int getCodUsuario() {
+		return codUsuario;
+	}
+	public void setCodUsuario(int codUsuario) {
+		this.codUsuario = codUsuario;
+	}	
+
+}
