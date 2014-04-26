@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ToggleButton;
 
 import com.app.model.UserModel;
 
@@ -30,22 +30,22 @@ public class AlterarDados extends Fragment {
 		UserData.setDtdNascimento("01/01/1990");
 		
 		
-		EditText nameEdit = (EditText)rootView.findViewById(R.id.editText1);
+		EditText nameEdit = (EditText)rootView.findViewById(R.id.AlterarDadosNome);
 		nameEdit.setText(UserData.getNome());
 		
-		Spinner tpSanguineo = (Spinner)rootView.findViewById(R.id.spinner1);
+		Spinner tpSanguineo = (Spinner)rootView.findViewById(R.id.AlterarDadosTipo);
 		tpSanguineo.setSelection(2);
 		
-		EditText eMailEdit = (EditText)rootView.findViewById(R.id.editText2);
+		EditText eMailEdit = (EditText)rootView.findViewById(R.id.AlterarDadosEmail);
 		eMailEdit.setText(UserData.geteMail());
 		
-		EditText dataNasEdit = (EditText)rootView.findViewById(R.id.editText3);
+		EditText dataNasEdit = (EditText)rootView.findViewById(R.id.AlterarDadosNascimento);
 		dataNasEdit.setText(UserData.getDtdNascimento());
 		
-		ToggleButton notificaoPush = (ToggleButton)rootView.findViewById(R.id.toggleButton1);
+		CheckBox notificaoPush = (CheckBox)rootView.findViewById(R.id.AlterarDadosPush);
 		notificaoPush.setActivated(true);
 		
-		ToggleButton notificaoEmail = (ToggleButton)rootView.findViewById(R.id.toggleButton2);
+		CheckBox notificaoEmail = (CheckBox)rootView.findViewById(R.id.AlterarDadosEmailNot);
 		notificaoEmail.setActivated(false);
 		
 		return rootView;

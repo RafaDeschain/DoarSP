@@ -1,143 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:scrollbarAlwaysDrawHorizontalTrack="true">
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/AlterarDadosTitulo"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:text="@string/configuracao" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/alterardadostitulo" />
+
+    <TextView
+        android:id="@+id/AlterarDadosNomeTV"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/AlterarDadosTitulo"
         android:text="@string/nome" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1" />
-
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText1"
-        android:layout_toRightOf="@+id/textView1"
-        android:entries="@array/tipos_Sanguineos"
-        android:prompt="@string/sangue_prompt" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spinner1"
-        android:layout_alignParentLeft="true"
-        android:text="@string/tpSanguineo" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:text="@string/email" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignParentLeft="true"
-        android:text="@string/dataNascimento" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="17dp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleButton1"
-        android:layout_alignBottom="@+id/toggleButton1"
-        android:layout_alignParentLeft="true"
-        android:text="@string/notificacoesPush" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/toggleButton1"
-        android:layout_below="@+id/toggleButton1"
-        android:layout_marginTop="16dp"/>
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleButton2"
-        android:layout_alignBottom="@+id/toggleButton2"
-        android:layout_alignParentLeft="true"
-        android:text="@string/NotificaoesEmail" />
-
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/AlterarDadosNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/spinner1"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spinner1"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="date" >
+        android:layout_below="@id/AlterarDadosNomeTV"
+        android:inputType="textPersonName"
+        android:background="@drawable/styles_edit_text"
+        android:textSize="16sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="10dp"
+        android:padding="8dp"
+        >
 
         <requestFocus />
     </EditText>
 
-    <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
+    <TextView
+        android:id="@+id/AlterarDadosEmailTV"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/AlterarDadosNome"
+        android:text="@string/email" />
+
+    <EditText
+        android:id="@+id/AlterarDadosEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/toggleButton2"
-        android:layout_marginTop="16dp"
-        android:layout_toRightOf="@+id/textView1"
-        android:onClick="onClickPostButton"
+        android:layout_below="@id/AlterarDadosEmailTV"
+        android:inputType="textEmailAddress" 
+        android:background="@drawable/styles_edit_text"
+        android:textSize="16sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="10dp"
+        android:padding="8dp" />
+
+    <Spinner
+        android:id="@+id/AlterarDadosTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/AlterarDadosEmail"
+        android:layout_below="@+id/AlterarDadosEmail"
+        android:layout_toRightOf="@+id/AlterarDadosNascimentoTV"
+        android:entries="@array/tipos_Sanguineos" />
+
+    <EditText
+        android:id="@+id/AlterarDadosNascimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AlterarDadosTipo"
+        android:layout_below="@+id/AlterarDadosTipo"
+        android:background="@drawable/styles_edit_text"
+        android:ems="10"
+        android:inputType="date"
+        android:padding="8dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/AlterarDadosNascimentoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AlterarDadosTipoTV"
+        android:layout_below="@+id/AlterarDadosTipo"
+        android:text="@string/data_nascimento"
+        android:textSize="16sp" 
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:id="@+id/AlterarDadosTipoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AlterarDadosEmail"
+        android:layout_alignTop="@+id/AlterarDadosTipo"
+        android:text="@string/tipo_sanguineo"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"/>
+
+    <CheckBox
+        android:id="@+id/AlterarDadosPush"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/AlterarDadosNascimento"
+        android:checked="true"
+        android:text="@string/notificacoes_push"
+        android:textSize="15sp" 
+        android:layout_marginTop="20dp"/>
+
+    <CheckBox
+        android:id="@+id/AlterarDadosEmailNot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AlterarDadosPush"
+        android:layout_below="@+id/AlterarDadosPush"
+        android:checked="true"
+        android:text="@string/notificacoes_email"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/AlterarDadosSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/AlterarDadosCancelar"
         android:text="@string/salvar" />
+
+    <Button
+        android:id="@+id/AlterarDadosCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/cancelar" />
  
 </RelativeLayout>
