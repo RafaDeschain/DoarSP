@@ -43,16 +43,16 @@ public final class R {
         public static final int counter_bg=0x7f020000;
         public static final int ic_communities=0x7f020001;
         public static final int ic_drawer=0x7f020002;
-        public static final int ic_home=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int ic_pages=0x7f020005;
-        public static final int ic_people=0x7f020006;
-        public static final int ic_photos=0x7f020007;
-        public static final int ic_whats_hot=0x7f020008;
-        public static final int list_item_bg_normal=0x7f020009;
-        public static final int list_item_bg_pressed=0x7f02000a;
-        public static final int list_selector=0x7f02000b;
-        public static final int styles_edit_text=0x7f02000c;
+        public static final int ic_firstachivement=0x7f020003;
+        public static final int ic_home=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int ic_pages=0x7f020006;
+        public static final int ic_people=0x7f020007;
+        public static final int ic_photos=0x7f020008;
+        public static final int ic_whats_hot=0x7f020009;
+        public static final int list_item_bg_normal=0x7f02000a;
+        public static final int list_item_bg_pressed=0x7f02000b;
+        public static final int list_selector=0x7f02000c;
     }
     public static final class id {
         public static final int AlterarDadosCancelar=0x7f0a0012;
@@ -68,16 +68,19 @@ public final class R {
         public static final int AlterarDadosTipo=0x7f0a000b;
         public static final int AlterarDadosTipoTV=0x7f0a000e;
         public static final int AlterarDadosTitulo=0x7f0a0006;
-        public static final int action_settings=0x7f0a0016;
+        public static final int PrincipalAptoDoar=0x7f0a0018;
+        public static final int PrincipalImageView=0x7f0a0015;
+        public static final int PrincipalNome=0x7f0a0014;
+        public static final int PrincipalTIpoSanguineo=0x7f0a0016;
+        public static final int PrincipalUltimaDoacao=0x7f0a0017;
+        public static final int action_settings=0x7f0a0019;
         public static final int counter=0x7f0a0005;
         public static final int drawer_layout=0x7f0a0000;
         public static final int frame_container=0x7f0a0001;
         public static final int icon=0x7f0a0003;
         public static final int list_slidermenu=0x7f0a0002;
-        public static final int textView1=0x7f0a0014;
         public static final int textView2=0x7f0a0013;
         public static final int title=0x7f0a0004;
-        public static final int txtLabel=0x7f0a0015;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -92,7 +95,7 @@ public final class R {
     public static final class string {
         public static final int aboutMe=0x7f060003;
         public static final int action_settings=0x7f060001;
-        public static final int alterardadostitulo=0x7f060013;
+        public static final int alterardadostitulo=0x7f060014;
         public static final int app_name=0x7f060000;
         public static final int cancelar=0x7f06000d;
         public static final int configuracao=0x7f060005;
@@ -100,13 +103,14 @@ public final class R {
         public static final int dedicatoria=0x7f06000f;
         /**  Content Description 
          */
-        public static final int desc_list_item_icon=0x7f060012;
-        public static final int drawer_close=0x7f060011;
-        public static final int drawer_open=0x7f060010;
+        public static final int desc_list_item_icon=0x7f060013;
+        public static final int drawer_close=0x7f060012;
+        public static final int drawer_open=0x7f060011;
         public static final int email=0x7f060009;
         public static final int nome=0x7f060007;
         public static final int notificacoes_email=0x7f06000c;
         public static final int notificacoes_push=0x7f06000b;
+        public static final int principalapto=0x7f060010;
         public static final int salvar=0x7f06000e;
         public static final int signature=0x7f060004;
         public static final int tipo_sanguineo=0x7f060006;

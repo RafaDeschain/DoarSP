@@ -2,6 +2,7 @@ package com.app.doarsp;
 
 import com.app.adapter.NavDrawerListAdapter;
 import com.app.model.NavDrawerItem;
+import com.app.model.UserModel;
 
 import java.util.ArrayList;
 
@@ -44,15 +45,11 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		mTitle = mDrawerTitle = getTitle();
-		
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);		
-		navMenuIcons = getResources()
-				.obtainTypedArray(R.array.nav_drawer_icons);
-
+		navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-
-		navDrawerItems = new ArrayList<NavDrawerItem>();
+		navDrawerItems = new ArrayList<NavDrawerItem>();		
 
 		// Principal
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
@@ -95,9 +92,14 @@ public class MainActivity extends Activity {
 				invalidateOptionsMenu();
 			}
 		};
-		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-		if (savedInstanceState == null) {
+		mDrawerLayout.setDrawerListener(mDrawerToggle);				
+		
+		UserModel UserData = new UserModel(getApplicationContext());
+		
+		if (!UserData.CheckIfExistsUser())
+		{			
+			displayView(6);
+		} else if (savedInstanceState == null) {
 			displayView(0);
 		}
 	}
@@ -109,8 +111,7 @@ public class MainActivity extends Activity {
 			ListView.OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			// display view for selected nav drawer item
+				long id) { 
 			displayView(position);
 		}
 	}
@@ -215,10 +216,5 @@ public class MainActivity extends Activity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
-	}
-	
-	public void onClickPostButton(View view)
-	{
-		
-	}
+	}	
 }

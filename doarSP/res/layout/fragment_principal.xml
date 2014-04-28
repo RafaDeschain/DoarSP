@@ -2,21 +2,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-     
+
+    <ImageView
+        android:id="@+id/PrincipalImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="46dp"
+        android:layout_marginTop="38dp"        
+        android:src="@android:drawable/gallery_thumb" />
+
     <TextView
-        android:id="@+id/txtLabel"
-         android:layout_width="wrap_content"
+        android:id="@+id/PrincipalTIpoSanguineo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="16dp"
-        android:text="Home View"/>
-     
-    <ImageView android:layout_width="wrap_content"
+        android:layout_alignRight="@+id/PrincipalNome"
+        android:layout_below="@+id/PrincipalNome"
+        android:layout_marginTop="20dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/PrincipalNome"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtLabel"
-        android:src="@drawable/ic_home"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
-     
+        android:layout_alignTop="@+id/PrincipalImageView"
+        android:layout_marginLeft="22dp"
+        android:layout_toRightOf="@+id/PrincipalImageView"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/PrincipalUltimaDoacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/PrincipalImageView"
+        android:layout_alignRight="@+id/PrincipalTIpoSanguineo"
+        android:text="TextView" />
+
+    <CheckBox
+        android:id="@+id/PrincipalAptoDoar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/PrincipalUltimaDoacao"
+        android:layout_below="@+id/PrincipalUltimaDoacao"
+        android:text="@string/principalapto" />
  
 </RelativeLayout>

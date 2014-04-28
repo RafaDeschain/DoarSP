@@ -1,17 +1,23 @@
 package com.app.model;
 
-import java.util.Date;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.app.DAO.ApapterDAO;
 
 public class UserModel {
 	private int codUsuario, tpSanguineo, NotificacaoPush, NotificacaoEmail, StatusApto; 
-	private String nome, eMail;
-	private String dtdUltimaDoacao, dtdNascimento;
+	private String nome, eMail, dtdUltimaDoacao;
+	public String dtdNascimento;	
 	private ApapterDAO DAO;
+	private byte[] imageAchivement;
 	
 	public UserModel(Context context){
-		DAO = new ApapterDAO(context); 
+		DAO = new ApapterDAO(context);
+		dtdNascimento = "";
 	}
 
 	public UserModel(){
@@ -66,16 +72,49 @@ public class UserModel {
 	public void setDtdUltimaDoacao(String dtdUltimaDoacao) {
 		this.dtdUltimaDoacao = dtdUltimaDoacao;
 	}
-	public String getDtdNascimento() {
+	@SuppressLint("SimpleDateFormat")
+	public String getDtdNascimento() {							
 		return dtdNascimento;
 	}
 	public void setDtdNascimento(String dtdNascimento) {
 		this.dtdNascimento = dtdNascimento;
+	}
+	
+	public Bitmap getImageAchivement() {		
+		return BitmapFactory.decodeByteArray(imageAchivement, 0, imageAchivement.length);
+	}
+
+	public void setImageAchivement(byte[] imageAchivement) {
+		this.imageAchivement = imageAchivement;
+	}
+	
+	public String getTpSanguineoAsString()
+	{
+		switch (getTpSanguineo()) {
+		case 0: return "A";
+		case 1: return "A-";
+		case 2: return "B";
+		case 3: return "B-";
+		case 4:	return "AB";
+		case 5: return "AB-";
+		case 6: return "O";
+		case 7: return "O-";
+		default: return "Não Informado";
+		}		
+	}
+	
+	public boolean postInsert(Resources res)
+	{		
+		return DAO.posInsert(this, res);
 	}	
 	
-	public UserModel postValues()
+	public boolean CheckIfExistsUser()
 	{
-		return DAO.postValues(this);
-	}	
-
+		return DAO.CheckIfExistsUser();
+	}
+	
+	public void getUserData(UserModel userData)
+	{
+		DAO.getUserData(userData);
+	}
 }
