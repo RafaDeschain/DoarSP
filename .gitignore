@@ -1,1 +1,33 @@
 /.metadata/
+
+# Resultado de compilação
+*.apk
+*.ap_
+
+# Virtual machine
+*.dex
+
+# Arquivos binários das classes
+*.class
+
+# Arquivos gerados automaticamente
+bin/
+gen/
+/bin/
+/gen/
+
+# Configuração do sdk e afins
+local.properties
+
+# Arquivos do projeto
+.classpath
+.project
+
+# Gerado pelo eclipse
+proguard/
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
