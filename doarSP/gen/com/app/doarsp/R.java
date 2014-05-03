@@ -53,6 +53,7 @@ public final class R {
         public static final int list_item_bg_normal=0x7f02000a;
         public static final int list_item_bg_pressed=0x7f02000b;
         public static final int list_selector=0x7f02000c;
+        public static final int styles_edit_text=0x7f02000d;
     }
     public static final class id {
         public static final int AlterarDadosCancelar=0x7f0a0012;

@@ -11,9 +11,9 @@ public class ApapterDAO {
 		Utils = new UtilsDAO(context);
 	}
 	
-	public UserModel postValues(UserModel Usuario)
+	public boolean postUpdate(UserModel Usuario)
 	{
-		return Utils.postValues(Usuario);
+		return Utils.postUpdate(Usuario);
 	}
 	
 	public boolean CheckIfExistsUser()

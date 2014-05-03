@@ -10,8 +10,7 @@ import com.app.DAO.ApapterDAO;
 
 public class UserModel {
 	private int codUsuario, tpSanguineo, NotificacaoPush, NotificacaoEmail, StatusApto; 
-	private String nome, eMail, dtdUltimaDoacao;
-	public String dtdNascimento;	
+	private String nome, eMail, dtdUltimaDoacao, dtdNascimento;
 	private ApapterDAO DAO;
 	private byte[] imageAchivement;
 	
@@ -116,5 +115,10 @@ public class UserModel {
 	public void getUserData(UserModel userData)
 	{
 		DAO.getUserData(userData);
+	}
+	
+	public boolean postUpdateUser(UserModel userData)
+	{
+		return DAO.postUpdate(userData);
 	}
 }

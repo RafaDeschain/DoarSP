@@ -26,21 +26,42 @@ public class AlterarDados extends Fragment {
 	public AlterarDados() {		
 	}
 	View.OnClickListener saveBtnHandlerClickForInsert = new View.OnClickListener() {
-	  public void onClick(View v) {
-		UserData.setNome(nameEdit.getText().toString());
-		UserData.setTpSanguineo(tpSanguineo.getSelectedItemPosition());
-		UserData.seteMail(eMailEdit.getText().toString());
-		UserData.setDtdNascimento(dataNasEdit.getText().toString());		
-		UserData.setNotificacaoPush((notificaoPush.isChecked() ? 1 : 0));
-		UserData.setNotificacaoEmail((notificaoEmail.isChecked() ? 1 : 0));
-		Resources res = getResources();
-		
-		
-		if (UserData.postInsert(res)) {
-			Utils.showMessage(context, "Cadastro Efetuado com Sucesso", 0);
-	    }
-	  }
+		public void onClick(View v) {
+			String eMail    = eMailEdit.getText().toString();
+			String dataNasc = dataNasEdit.getText().toString();				
+
+			UserData.setNome(nameEdit.getText().toString());
+			UserData.setTpSanguineo(tpSanguineo.getSelectedItemPosition());
+			UserData.seteMail(eMail);
+			UserData.setDtdNascimento(dataNasc);
+			UserData.setNotificacaoPush((notificaoPush.isChecked() ? 1 : 0));
+			UserData.setNotificacaoEmail((notificaoEmail.isChecked() ? 1 : 0));
+			Resources res = getResources();
+			
+			if (Utils.validadeValues(context, dataNasc, eMail) && (UserData.postInsert(res))) {
+				Utils.showMessage(context, "Cadastro Efetuado com Sucesso", 0);
+			}
+		}
 	};
+	View.OnClickListener saveBtnHandlerClickForUpdate = new View.OnClickListener() {
+		public void onClick(View v) {			
+			String eMail    = eMailEdit.getText().toString();
+			String dataNasc = dataNasEdit.getText().toString();
+			
+			UserData.setNome(nameEdit.getText().toString());
+			UserData.setTpSanguineo(tpSanguineo.getSelectedItemPosition());
+			UserData.seteMail(eMail);
+			UserData.setDtdNascimento(dataNasc);
+			UserData.setNotificacaoPush((notificaoPush.isChecked() ? 1 : 0));
+			UserData.setNotificacaoEmail((notificaoEmail.isChecked() ? 1 : 0));
+			Resources res = getResources();
+			
+			if (Utils.validadeValues(context, dataNasc, eMail) && (UserData.postInsert(res))) {
+				Utils.showMessage(context, "Cadastro Efetuado com Sucesso", 0);
+			}			
+		}
+	};
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -55,11 +76,15 @@ public class AlterarDados extends Fragment {
 		dataNasEdit = (EditText)rootView.findViewById(R.id.AlterarDadosNascimento);
 		notificaoPush = (CheckBox)rootView.findViewById(R.id.AlterarDadosPush);
 		notificaoEmail = (CheckBox)rootView.findViewById(R.id.AlterarDadosEmailNot);
+		Button btnSalvar = (Button) rootView.findViewById(R.id.AlterarDadosSalvar);
 		if (!UserData.CheckIfExistsUser())
-		{
-			Button btnSalvar = (Button) rootView.findViewById(R.id.AlterarDadosSalvar);
+		{			
 			btnSalvar.setOnClickListener(saveBtnHandlerClickForInsert);
 		}		
+		else
+		{
+			btnSalvar.setOnClickListener(saveBtnHandlerClickForUpdate);
+		}
 		
 		return rootView;
 	}

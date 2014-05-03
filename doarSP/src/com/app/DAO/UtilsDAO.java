@@ -58,7 +58,7 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	    onCreate(db); 
 	}
 	
-	public UserModel postValues(UserModel Usuario)
+	public boolean postUpdate(UserModel Usuario)
 	{
 		SQLiteDatabase database = this.getWritableDatabase();
 		try
@@ -79,12 +79,13 @@ public class UtilsDAO extends SQLiteOpenHelper{
 
 			Cursor query = database.query(UtilsDAO.TABLE_NAME, allColumns,
 					whereClause, null, null, null, null);
-			return convertQueryForUserModel(query, null);
+			convertQueryForUserModel(query, Usuario);
+			return true;
 		}
 		catch(Exception Ex)
 		{
 			Ex.printStackTrace();
-			return null;
+			return false;
 		}
 		finally
 		{
