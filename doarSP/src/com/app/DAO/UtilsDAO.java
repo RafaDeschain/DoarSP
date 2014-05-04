@@ -9,6 +9,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
@@ -17,7 +18,7 @@ import android.graphics.drawable.Drawable;
 
 public class UtilsDAO extends SQLiteOpenHelper{
 	private static final String DATABASE_NAME    = "doarSP.db";
-	private static final int DATABASE_VERSION 	 = 1;
+	private static final int DATABASE_VERSION 	 = 2;
 	public final static  String ID 			  	 = "USU_CodUsuario";
 	public final static String TPSANGUINEO    	 = "USU_TpSanguineo";
 	public final static String NOME           	 = "USU_Nome";
@@ -29,8 +30,15 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	public final static String DTDNASCIMENTO     = "USU_DtdNascimento";
 	public final static String ARQFOTO           = "USU_ArqFoto";
 	public final static String TABLE_NAME	     = "TB_Usuario";
+	public final static String TABLE_NAME_POSTO  = "TB_PostosDoacao";
+	public final static String IDPOSTO           = "POS_CodPosto";
+	public final static String ENDPOSTO          = "POS_EndPosto";
+	public final static String TELPOSTO          = "POS_TelPosto";
+	public final static String NOMEPOSTO         = "POS_NomePosto";
+	public final static String LATITUDE          = "POS_Latitude";
+	public final static String LONGITUDE         = "POS_Longitude";		
 	private static final String DATABASE_CREATE  = " CREATE TABLE IF NOT EXISTS "
-	+ "TB_Usuario ( USU_CodUsuario integer not null primary key, "  
+	+ " TB_Usuario ( USU_CodUsuario integer not null primary key, "  
 	+ "				USU_TpSanguineo integer not null,"
 	+ "             USU_Nome text not null,"
 	+ "				USU_EndEmail text not null,"
@@ -40,18 +48,39 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	+ "				USU_DtdUltimaDoacao text,"
 	+ "				USU_DtdNascimento text,"
 	+ "				USU_ArqFoto blob"	
-	+ ");";
+	+ "			  );";
+	private static final String DATABASE_CREATE_POSTOS = " CREATE TABLE IF NOT EXISTS "
+	+ " TB_PostosDoacao ( POS_CodPosto integer not null primary key, "  	
+	+ "					 POS_EndPosto text not null,"		
+	+ "					 POS_NomePosto text not null,"
+	+ "					 POS_Latitude real not null,"
+	+ "					 POS_Longitude real not null"	
+	+ "					);";	
 	private String[] allColumns = { UtilsDAO.ID, UtilsDAO.TPSANGUINEO, UtilsDAO.NOME, UtilsDAO.EMAIL, UtilsDAO.NOTIFICAOPUSH, UtilsDAO.NOTIFICACAOEMAIL, 
 			UtilsDAO.STATUSAPTO, UtilsDAO.DTDULTIMADOACAO, UtilsDAO.DTDNASCIMENTO  };	
 	private String[] allColumnsQuery = { UtilsDAO.ID, UtilsDAO.TPSANGUINEO, UtilsDAO.NOME, UtilsDAO.EMAIL, UtilsDAO.NOTIFICAOPUSH, UtilsDAO.NOTIFICACAOEMAIL, 
 			UtilsDAO.STATUSAPTO, UtilsDAO.DTDULTIMADOACAO, UtilsDAO.DTDNASCIMENTO, UtilsDAO.ARQFOTO  };
+	private String[] allColumnsPosto = { UtilsDAO.IDPOSTO, UtilsDAO.ENDPOSTO, UtilsDAO.NOMEPOSTO, 
+										 UtilsDAO.LATITUDE, UtilsDAO.LONGITUDE };
+	
 	public UtilsDAO(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);        
 	}	
 	
 	@Override 
-	public void onCreate(SQLiteDatabase db) { 
-	    db.execSQL(DATABASE_CREATE); 
+	public void onCreate(SQLiteDatabase db) {
+		db.beginTransaction();
+		try{
+			db.execSQL(DATABASE_CREATE);
+			db.execSQL(DATABASE_CREATE_POSTOS);
+			db.setTransactionSuccessful();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			db.endTransaction();
+		}
 	} 
 	@Override 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { 	     
@@ -92,6 +121,24 @@ public class UtilsDAO extends SQLiteOpenHelper{
 			database.close();
 		}
 	}
+	
+	public boolean CheckPostos()
+	{	
+		SQLiteDatabase database = this.getReadableDatabase();
+		try
+		{		
+			database.delete(UtilsDAO.TABLE_NAME_POSTO, null, null);
+			String[] column = { UtilsDAO.IDPOSTO };
+			Cursor query = database.query(UtilsDAO.TABLE_NAME_POSTO, column, null,
+					null, null, null, null);
+			return query.getCount() > 0;
+		}
+		catch(Exception Ex)
+		{			
+			database.close();
+			return false;			
+		}		
+	}		
 	
 	public boolean CheckIfExistsUser()
 	{	
@@ -198,5 +245,48 @@ public class UtilsDAO extends SQLiteOpenHelper{
 			userData.setImageAchivement(query.getBlob(9));
 		}
 		return userData;
-	}		
+	}
+	
+	public void initializePostosInBd(String[][] postosValues)
+	{
+		SQLiteDatabase database = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		try
+		{						
+			for (int i = 0; i <= postosValues.length; i++)
+			{
+				values.clear();
+				values.put(UtilsDAO.IDPOSTO, i);
+				values.put(UtilsDAO.ENDPOSTO, postosValues[i][1]);
+				values.put(UtilsDAO.NOMEPOSTO, postosValues[i][2]);
+				values.put(UtilsDAO.LATITUDE, postosValues[i][3]);
+				values.put(UtilsDAO.LONGITUDE, postosValues[i][4]);
+				database.insert(UtilsDAO.TABLE_NAME_POSTO, null, values);				
+			}										
+		}
+		catch (Exception Ex)
+		{
+			Ex.printStackTrace();			
+		}
+		finally
+		{
+			database.close();
+		}
+	}
+	
+	public Cursor getCursorAllPostos()
+	{
+		SQLiteDatabase database = this.getReadableDatabase();
+		try
+		{						
+			Cursor query = database.query(UtilsDAO.TABLE_NAME_POSTO, allColumnsPosto, null,
+					null, null, null, null);
+			return query;				
+		}
+		catch(Exception Ex)
+		{						
+			database.close();
+			return null;
+		}			
+	}
 }

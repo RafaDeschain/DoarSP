@@ -1,6 +1,7 @@
 package com.app.doarsp;
 
 import com.app.adapter.NavDrawerListAdapter;
+import com.app.model.HemocentrosModel;
 import com.app.model.NavDrawerItem;
 import com.app.model.UserModel;
 
@@ -94,7 +95,14 @@ public class MainActivity extends Activity {
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);				
 		
-		UserModel UserData = new UserModel(getApplicationContext());
+		UserModel UserData 				   = new UserModel(getApplicationContext());
+		HemocentrosModel hemocentrosInsert = new HemocentrosModel(getApplicationContext());
+		
+		// Criação básica dos postos, update vão ser feitos através do servidor
+		if (!hemocentrosInsert.checkPosto())
+		{
+			hemocentrosInsert.initializeValuesInBd();
+		}
 		
 		if (!UserData.CheckIfExistsUser())
 		{			
@@ -166,7 +174,7 @@ public class MainActivity extends Activity {
 			fragment = new Principal();
 			break;
 		case 4:
-			fragment = new Principal();
+			fragment = new Hemocentros();
 			break;
 		case 5:
 			fragment = new Informacoes();

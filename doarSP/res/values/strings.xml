@@ -17,7 +17,8 @@
     <string name="cancelar">Cancelar</string>
     <string name="salvar">Salvar</string>
     <string name="dedicatoria"></string>
-    <string name="principalapto">Apto a doar</string>    
+    <string name="principalapto">Apto a doar</string>
+    <string name="google_play_services_version">4323000</string>    
 	
 <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
@@ -28,7 +29,7 @@
         <item >Buscar Doação</item>
         <item >Abrir Solicitação</item>
         <item >Mural</item>
-        <item >Buscar Hemocentro</item>
+        <item >Postos de Doação</item>
         <item >Informações</item>
         <item >Alterar Dados</item>
     </string-array>

@@ -5,6 +5,9 @@ import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.widget.Toast;
 
 public class Utils {
@@ -46,4 +49,21 @@ public class Utils {
 		}
 		return flag;
 	}
+	
+	public static double getMyPositionLatitude(LocationManager locationManager)
+	{
+		
+		Criteria criteria = new Criteria();
+	    String provider = locationManager.getBestProvider(criteria, false);
+	    Location location = locationManager.getLastKnownLocation(provider);			
+		return location.getLatitude();
+	}
+	
+	public static double getMyPositionLongitude(LocationManager locationManager)
+	{
+		Criteria criteria = new Criteria();
+	    String provider = locationManager.getBestProvider(criteria, false);
+	    Location location = locationManager.getLastKnownLocation(provider);		
+		return location.getLongitude();
+	}	
 }

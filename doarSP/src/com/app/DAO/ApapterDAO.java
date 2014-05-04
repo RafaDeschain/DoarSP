@@ -3,6 +3,7 @@ package com.app.DAO;
 import com.app.model.UserModel;
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.Cursor;
 
 public class ApapterDAO {
 	private UtilsDAO Utils;
@@ -29,5 +30,20 @@ public class ApapterDAO {
 	public void getUserData(UserModel userData)
 	{
 		Utils.getUserData(userData);		
+	}
+	
+	public Boolean checkPostos()
+	{
+		return Utils.CheckPostos();
+	}
+	
+	public void initializeValuesInBd(String[][] postosValues)
+	{
+		Utils.initializePostosInBd(postosValues);
+	}
+	
+	public Cursor getAllPostos()
+	{
+		return Utils.getCursorAllPostos();
 	}
 }
