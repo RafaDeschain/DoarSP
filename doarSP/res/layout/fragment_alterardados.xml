@@ -34,7 +34,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/AlterarDadosNomeTV"
         android:inputType="textPersonName"
-        
+        android:background="@drawable/styles_edit_text"
         android:textSize="16sp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="10dp"
@@ -61,7 +61,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/AlterarDadosEmailTV"
         android:inputType="textEmailAddress" 
-        
+        android:background="@drawable/styles_edit_text"
         android:textSize="16sp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="10dp"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/AlterarDadosTipo"
         android:layout_below="@+id/AlterarDadosTipo"
-        
+        android:background="@drawable/styles_edit_text"
         android:ems="10"
         android:inputType="date"
         android:padding="8dp"
