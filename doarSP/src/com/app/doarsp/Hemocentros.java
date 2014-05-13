@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Hemocentros extends Fragment {		
 	private GoogleMap map;
+	private Context context;
 	
 	public void onDestroyView() {
 		// Necessario destruir o mapa se não dá vazamento de memória e erro ao dar inflate novamente.
@@ -30,11 +31,12 @@ public class Hemocentros extends Fragment {
 		ft.remove(fragment);
 		ft.commit();
         super.onDestroyView();
-    }	
+    }		
 
 	@SuppressWarnings("unused")
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
 		View rootView = inflater.inflate(R.layout.fragment_hemocentro, null, false);		
 		
 		// Pega a instanciação do mapa.
@@ -42,10 +44,12 @@ public class Hemocentros extends Fragment {
 		
 	    // Pega o locationManager que vai ser usado para descobrir a latitude e longitude, usando o melhor provider.
 		LocationManager objGPS = (LocationManager) rootView.getContext().getSystemService(Context.LOCATION_SERVICE);	    		
-		LatLng myPosition = new LatLng(Utils.getMyPositionLatitude(objGPS), Utils.getMyPositionLongitude(objGPS));					
+		
+		//LatLng myPosition = new LatLng(Utils.getMyPositionLatitude(objGPS), Utils.getMyPositionLongitude(objGPS));					
+		context = rootView.getContext();
 		
 		// Marcar com a posição atual.
-		Marker myPositionGPS = map.addMarker(new MarkerOptions().position(myPosition).title("Estou aqui"));		
+		//Marker myPositionGPS = map.addMarker(new MarkerOptions().position(myPosition).title("Estou aqui"));		
 		
 		// Instancia o objeto que faz o retorno dos postos.
 		HemocentrosModel postos = new HemocentrosModel(rootView.getContext());
@@ -64,13 +68,20 @@ public class Hemocentros extends Fragment {
 				.snippet(query.getString(1))
 				.icon(BitmapDescriptorFactory
 						.fromResource(R.drawable.ic_whats_hot)));
-			query.moveToNext();			
+			query.moveToNext();						
 		}
+		
+		map.setTrafficEnabled(true);
+		map.setMyLocationEnabled(true);		
+		map.setIndoorEnabled(true);			
+		
+		//map.setBuildingsEnabled(true);
 		// move a camera para a posição corrente e zoom de 15
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 15));
+		//
 		// animação ao mover a camera
-		map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
-
+		//LatLng myPosition = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
+		//map.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 15));		
+		//map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);		
 		return rootView;
 	}
 }

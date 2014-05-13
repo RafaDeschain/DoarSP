@@ -4,13 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
 
-public class Utils {
+public class Utils extends Activity{
 	
 	public static void showMessage(Context context, String texto, int duracao)
 	{
@@ -65,5 +68,19 @@ public class Utils {
 	    String provider = locationManager.getBestProvider(criteria, false);
 	    Location location = locationManager.getLastKnownLocation(provider);		
 		return location.getLongitude();
-	}	
+	}
+	
+	//Desabilita o slide do menu lateral
+	public static void disableSlideMenu(DrawerLayout mDrawerLayout, ActionBar actionBar){
+		mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+		actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setHomeButtonEnabled(false);
+	}
+	
+	//Habilita o slide do menu lateral
+	public static void enableSlideMenu(DrawerLayout mDrawerLayout, ActionBar actionBar){
+		mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+	}
 }

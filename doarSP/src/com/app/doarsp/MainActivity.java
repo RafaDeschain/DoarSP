@@ -7,6 +7,7 @@ import com.app.model.UserModel;
 
 import java.util.ArrayList;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -24,16 +25,25 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 	
+	//Chama a classe util
+	private ActionBar actionBar;
+	
+	//Cria o DrawerLayout
 	private DrawerLayout mDrawerLayout;
+	
+	//Cria a ListView do menu do DrawerLayout
 	private ListView mDrawerList;
+	
+	//Cria o ActionBar do ListView
 	private ActionBarDrawerToggle mDrawerToggle;
 	
+	//Cria o titulo que fica na barra superior
 	private CharSequence mDrawerTitle;
 
     //Título do app
 	private CharSequence mTitle;
 
-	// items
+	//Itens do menu
 	private String[] navMenuTitles;
 	private TypedArray navMenuIcons;
 
@@ -42,6 +52,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -50,7 +61,8 @@ public class MainActivity extends Activity {
 		navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-		navDrawerItems = new ArrayList<NavDrawerItem>();		
+		navDrawerItems = new ArrayList<NavDrawerItem>();
+		actionBar = getActionBar();
 
 		// Principal
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
@@ -75,9 +87,6 @@ public class MainActivity extends Activity {
 				navDrawerItems);
 		mDrawerList.setAdapter(adapter);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
-
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, //nav menu toggle icon
 				R.string.app_name, // nav drawer open - description for accessibility
@@ -93,6 +102,7 @@ public class MainActivity extends Activity {
 				invalidateOptionsMenu();
 			}
 		};
+		
 		mDrawerLayout.setDrawerListener(mDrawerToggle);				
 		
 		UserModel UserData 				   = new UserModel(getApplicationContext());
@@ -104,11 +114,16 @@ public class MainActivity extends Activity {
 			hemocentrosInsert.initializeValuesInBd();
 		}
 		
+		//Verifica se o usuário ja possui cadastro no aplicativo
 		if (!UserData.CheckIfExistsUser())
-		{			
+		{
+			//Caso não possua, ele mostra a tela de cadastro e desabilita o menu lateral
 			displayView(6);
+			Utils.disableSlideMenu(mDrawerLayout, actionBar);
 		} else if (savedInstanceState == null) {
+			//Caso seja cadastrado ele mostra a tela principal
 			displayView(0);
+			Utils.enableSlideMenu(mDrawerLayout, actionBar);
 		}
 	}
 
@@ -224,5 +239,5 @@ public class MainActivity extends Activity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
-	}	
+	}
 }

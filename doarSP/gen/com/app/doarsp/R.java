@@ -251,7 +251,7 @@ containing a value of this type.
         public static final int styles_edit_text=0x7f020029;
     }
     public static final class id {
-        public static final int AlterarDadosCancelar=0x7f050017;
+        public static final int AlterarDadosCancelar=0x7f050018;
         public static final int AlterarDadosEmail=0x7f05000f;
         public static final int AlterarDadosEmailNot=0x7f050015;
         public static final int AlterarDadosEmailTV=0x7f05000e;
@@ -260,28 +260,29 @@ containing a value of this type.
         public static final int AlterarDadosNome=0x7f05000d;
         public static final int AlterarDadosNomeTV=0x7f05000c;
         public static final int AlterarDadosPush=0x7f050014;
-        public static final int AlterarDadosSalvar=0x7f050016;
+        public static final int AlterarDadosSalvar=0x7f050017;
         public static final int AlterarDadosTipo=0x7f050010;
         public static final int AlterarDadosTipoTV=0x7f050013;
         public static final int AlterarDadosTitulo=0x7f05000b;
-        public static final int PrincipalAptoDoar=0x7f05001e;
-        public static final int PrincipalImageView=0x7f05001b;
-        public static final int PrincipalNome=0x7f05001a;
-        public static final int PrincipalTIpoSanguineo=0x7f05001c;
-        public static final int PrincipalUltimaDoacao=0x7f05001d;
-        public static final int action_settings=0x7f05001f;
+        public static final int InnerRelativeLayot=0x7f050016;
+        public static final int PrincipalAptoDoar=0x7f05001f;
+        public static final int PrincipalImageView=0x7f05001c;
+        public static final int PrincipalNome=0x7f05001b;
+        public static final int PrincipalTIpoSanguineo=0x7f05001d;
+        public static final int PrincipalUltimaDoacao=0x7f05001e;
+        public static final int action_settings=0x7f050020;
         public static final int counter=0x7f05000a;
         public static final int drawer_layout=0x7f050005;
         public static final int frame_container=0x7f050006;
         public static final int hybrid=0x7f050004;
         public static final int icon=0x7f050008;
         public static final int list_slidermenu=0x7f050007;
-        public static final int map=0x7f050018;
+        public static final int map=0x7f050019;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int satellite=0x7f050002;
         public static final int terrain=0x7f050003;
-        public static final int textView2=0x7f050019;
+        public static final int textView2=0x7f05001a;
         public static final int title=0x7f050009;
     }
     public static final class integer {
@@ -486,7 +487,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adSize
+          @attr name com.app.doarsp:adSize
         */
         public static final int AdsAttrs_adSize = 0;
         /**
@@ -506,7 +507,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adSizes
+          @attr name com.app.doarsp:adSizes
         */
         public static final int AdsAttrs_adSizes = 1;
         /**
@@ -522,7 +523,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adUnitId
+          @attr name com.app.doarsp:adUnitId
         */
         public static final int AdsAttrs_adUnitId = 2;
         /** Attributes that can be used with a MapAttrs.
@@ -578,7 +579,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraBearing
+          @attr name com.app.doarsp:cameraBearing
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
@@ -592,7 +593,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLat
+          @attr name com.app.doarsp:cameraTargetLat
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
@@ -606,7 +607,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLng
+          @attr name com.app.doarsp:cameraTargetLng
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
@@ -620,7 +621,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTilt
+          @attr name com.app.doarsp:cameraTilt
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
@@ -634,7 +635,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraZoom
+          @attr name com.app.doarsp:cameraZoom
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
@@ -654,7 +655,7 @@ containing a value of this type.
 <tr><td><code>terrain</code></td><td>3</td><td></td></tr>
 <tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name android:mapType
+          @attr name com.app.doarsp:mapType
         */
         public static final int MapAttrs_mapType = 0;
         /**
@@ -668,7 +669,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiCompass
+          @attr name com.app.doarsp:uiCompass
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
@@ -682,7 +683,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiRotateGestures
+          @attr name com.app.doarsp:uiRotateGestures
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
@@ -696,7 +697,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiScrollGestures
+          @attr name com.app.doarsp:uiScrollGestures
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
@@ -710,7 +711,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiTiltGestures
+          @attr name com.app.doarsp:uiTiltGestures
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
@@ -724,7 +725,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomControls
+          @attr name com.app.doarsp:uiZoomControls
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
@@ -738,7 +739,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomGestures
+          @attr name com.app.doarsp:uiZoomGestures
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
@@ -752,7 +753,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:useViewLifecycle
+          @attr name com.app.doarsp:useViewLifecycle
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
@@ -766,7 +767,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:zOrderOnTop
+          @attr name com.app.doarsp:zOrderOnTop
         */
         public static final int MapAttrs_zOrderOnTop = 13;
     };
