@@ -40,16 +40,8 @@ public class Hemocentros extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_hemocentro, null, false);		
 		
 		// Pega a instanciação do mapa.
-		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();				
-		
-	    // Pega o locationManager que vai ser usado para descobrir a latitude e longitude, usando o melhor provider.
-		LocationManager objGPS = (LocationManager) rootView.getContext().getSystemService(Context.LOCATION_SERVICE);	    		
-		
-		//LatLng myPosition = new LatLng(Utils.getMyPositionLatitude(objGPS), Utils.getMyPositionLongitude(objGPS));					
-		context = rootView.getContext();
-		
-		// Marcar com a posição atual.
-		//Marker myPositionGPS = map.addMarker(new MarkerOptions().position(myPosition).title("Estou aqui"));		
+		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();							    
+		context = rootView.getContext();			
 		
 		// Instancia o objeto que faz o retorno dos postos.
 		HemocentrosModel postos = new HemocentrosModel(rootView.getContext());
@@ -70,14 +62,11 @@ public class Hemocentros extends Fragment {
 						.fromResource(R.drawable.ic_whats_hot)));
 			query.moveToNext();						
 		}
-		
-		map.setTrafficEnabled(true);
-		map.setMyLocationEnabled(true);		
-		map.setIndoorEnabled(true);			
-		
-		//map.setBuildingsEnabled(true);
-		// move a camera para a posição corrente e zoom de 15
-		//
+				
+		map.setMyLocationEnabled(true);
+		// TODO: Necessário montar uma classe que implemente uma locationclient para pegar as localizações para os mapas, 
+		// estou vendo como fazer de forma coerente para que fique global
+
 		// animação ao mover a camera
 		//LatLng myPosition = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
 		//map.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 15));		
