@@ -1,163 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    android:padding="10dp"
-    android:layout_alignParentBottom="true"
-    android:gravity="bottom">
 
-    <TextView
-        android:id="@+id/AlterarDadosTitulo"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="@string/alterardadostitulo" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical" >
 
-    <TextView
-        android:id="@+id/AlterarDadosNomeTV"
-        android:textSize="16sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/AlterarDadosTitulo"
-        android:text="@string/nome" />
-
-    <EditText
-        android:id="@+id/AlterarDadosNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/AlterarDadosNomeTV"
-        android:inputType="textPersonName"
-        android:background="@drawable/styles_edit_text"
-        android:textSize="16sp"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="10dp"
-        android:padding="8dp"
-        >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/AlterarDadosEmailTV"
-        android:textSize="16sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/AlterarDadosNome"
-        android:text="@string/email" />
-
-    <EditText
-        android:id="@+id/AlterarDadosEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/AlterarDadosEmailTV"
-        android:inputType="textEmailAddress" 
-        android:background="@drawable/styles_edit_text"
-        android:textSize="16sp"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="10dp"
-        android:padding="8dp" />
-
-    <Spinner
-        android:id="@+id/AlterarDadosTipo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/AlterarDadosEmail"
-        android:layout_below="@+id/AlterarDadosEmail"
-        android:layout_toRightOf="@+id/AlterarDadosNascimentoTV"
-        android:entries="@array/tipos_Sanguineos" />
-
-    <EditText
-        android:id="@+id/AlterarDadosNascimento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/AlterarDadosTipo"
-        android:layout_below="@+id/AlterarDadosTipo"
-        android:background="@drawable/styles_edit_text"
-        android:ems="10"
-        android:inputType="date"
-        android:padding="8dp"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/AlterarDadosNascimentoTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/AlterarDadosTipoTV"
-        android:layout_below="@+id/AlterarDadosTipo"
-        android:text="@string/data_nascimento"
-        android:textSize="16sp" 
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="10dp"/>
-
-    <TextView
-        android:id="@+id/AlterarDadosTipoTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/AlterarDadosEmail"
-        android:layout_alignTop="@+id/AlterarDadosTipo"
-        android:text="@string/tipo_sanguineo"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"/>
-
-    <CheckBox
-        android:id="@+id/AlterarDadosPush"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/AlterarDadosNascimento"
-        android:checked="true"
-        android:text="@string/notificacoes_push"
-        android:textSize="15sp" 
-        android:layout_marginTop="20dp"/>
-
-    <CheckBox
-        android:id="@+id/AlterarDadosEmailNot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/AlterarDadosPush"
-        android:layout_below="@+id/AlterarDadosPush"
-        android:checked="true"
-        android:text="@string/notificacoes_email"
-        android:textSize="15sp" />
+     <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="fill_parent" >
     
-    <RelativeLayout
-        android:id="@+id/InnerRelativeLayot"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/AlterarDadosEmailNot"
-        android:gravity="bottom"
-        android:orientation="horizontal"
-        android:layout_marginTop="40sp">
-
-	   	<Button
-	   	    android:id="@+id/AlterarDadosSalvar"
-	   	    android:layout_width="wrap_content"
-	   	    android:layout_height="wrap_content"
-	   	    android:layout_alignParentBottom="true"
-	   	    android:layout_alignParentLeft="true"
-	   	    android:layout_toLeftOf="@+id/AlterarDadosCancelar"
-	   	    android:text="@string/salvar" />
-
-	   	<Button
-	   	    android:id="@+id/AlterarDadosCancelar"
-	   	    android:layout_width="wrap_content"
-	   	    android:layout_height="wrap_content"
-	   	    android:layout_alignParentBottom="true"
-	   	    android:layout_alignParentRight="true"
-	   	    android:text="@string/cancelar" />
-        
-    </RelativeLayout>
- 
-</RelativeLayout>
+		<RelativeLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="fill_parent"
+		    android:padding="10dp"
+		    android:layout_alignParentBottom="true"
+		    android:gravity="bottom">
+		
+		    <TextView
+		        android:id="@+id/AlterarDadosTitulo"
+		        android:gravity="center"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_alignParentTop="true"
+		        android:textSize="18sp"
+		        android:textStyle="bold"
+		        android:text="@string/alterardadostitulo" />
+		
+		    <TextView
+		        android:id="@+id/AlterarDadosNomeTV"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/AlterarDadosTitulo"
+		        android:text="@string/nome" />
+		
+		    <EditText
+		        android:id="@+id/AlterarDadosNome"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@id/AlterarDadosNomeTV"
+		        android:inputType="textPersonName"
+		        android:background="@drawable/styles_edit_text"
+		        android:textSize="16sp"
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"
+		        android:padding="8dp"
+		        >
+		
+		        <requestFocus />
+		    </EditText>
+		
+		    <TextView
+		        android:id="@+id/AlterarDadosEmailTV"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/AlterarDadosNome"
+		        android:text="@string/email" />
+		
+		    <EditText
+		        android:id="@+id/AlterarDadosEmail"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@id/AlterarDadosEmailTV"
+		        android:inputType="textEmailAddress" 
+		        android:background="@drawable/styles_edit_text"
+		        android:textSize="16sp"
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"
+		        android:padding="8dp" />
+		
+		    <Spinner
+		        android:id="@+id/AlterarDadosTipo"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignRight="@+id/AlterarDadosEmail"
+		        android:layout_below="@+id/AlterarDadosEmail"
+		        android:layout_toRightOf="@+id/AlterarDadosNascimentoTV"
+		        android:entries="@array/tipos_Sanguineos" />
+		
+		    <EditText
+		        android:id="@+id/AlterarDadosNascimento"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/AlterarDadosTipo"
+		        android:layout_below="@+id/AlterarDadosTipo"
+		        android:background="@drawable/styles_edit_text"
+		        android:ems="10"
+		        android:inputType="date"
+		        android:padding="8dp"
+		        android:textSize="16sp" />
+		
+		    <TextView
+		        android:id="@+id/AlterarDadosNascimentoTV"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/AlterarDadosTipoTV"
+		        android:layout_below="@+id/AlterarDadosTipo"
+		        android:text="@string/data_nascimento"
+		        android:textSize="16sp" 
+		        android:layout_marginTop="8dp"
+		        android:layout_marginRight="10dp"/>
+		
+		    <TextView
+		        android:id="@+id/AlterarDadosTipoTV"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/AlterarDadosEmail"
+		        android:layout_alignTop="@+id/AlterarDadosTipo"
+		        android:text="@string/tipo_sanguineo"
+		        android:textSize="16sp"
+		        android:layout_marginTop="10dp"/>
+		
+		    <CheckBox
+		        android:id="@+id/AlterarDadosPush"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@+id/AlterarDadosNascimento"
+		        android:checked="true"
+		        android:text="@string/notificacoes_push"
+		        android:textSize="15sp" 
+		        android:layout_marginTop="20dp"/>
+		
+		    <CheckBox
+		        android:id="@+id/AlterarDadosEmailNot"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/AlterarDadosPush"
+		        android:layout_below="@+id/AlterarDadosPush"
+		        android:checked="true"
+		        android:text="@string/notificacoes_email"
+		        android:textSize="15sp" />
+		    
+		    <RelativeLayout
+		        android:id="@+id/InnerRelativeLayot"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentBottom="true"
+		        android:layout_below="@+id/AlterarDadosEmailNot"
+		        android:gravity="bottom"
+		        android:orientation="horizontal"
+		        android:layout_marginTop="40sp">
+		
+			   	<Button
+			   	    android:id="@+id/AlterarDadosSalvar"
+			   	    android:layout_width="wrap_content"
+			   	    android:layout_height="wrap_content"
+			   	    android:layout_alignParentBottom="true"
+			   	    android:layout_alignParentLeft="true"
+			   	    android:layout_toLeftOf="@+id/AlterarDadosCancelar"
+			   	    android:text="@string/salvar" />
+		
+			   	<Button
+			   	    android:id="@+id/AlterarDadosCancelar"
+			   	    android:layout_width="wrap_content"
+			   	    android:layout_height="wrap_content"
+			   	    android:layout_alignParentBottom="true"
+			   	    android:layout_alignParentRight="true"
+			   	    android:text="@string/cancelar" />
+		        
+		    </RelativeLayout>
+		</RelativeLayout>
+	</LinearLayout>
+</ScrollView>
