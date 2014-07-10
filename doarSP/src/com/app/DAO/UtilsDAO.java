@@ -17,6 +17,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 public class UtilsDAO extends SQLiteOpenHelper{
+	
 	private static final String DATABASE_NAME    = "doarSP.db";
 	private static final int DATABASE_VERSION 	 = 2;
 	public final static  String ID 			  	 = "USU_CodUsuario";
@@ -37,6 +38,7 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	public final static String NOMEPOSTO         = "POS_NomePosto";
 	public final static String LATITUDE          = "POS_Latitude";
 	public final static String LONGITUDE         = "POS_Longitude";		
+	
 	private static final String DATABASE_CREATE  = " CREATE TABLE IF NOT EXISTS "
 	+ " TB_Usuario ( USU_CodUsuario integer not null primary key, "  
 	+ "				USU_TpSanguineo integer not null,"
@@ -49,6 +51,7 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	+ "				USU_DtdNascimento text,"
 	+ "				USU_ArqFoto blob"	
 	+ "			  );";
+	
 	private static final String DATABASE_CREATE_POSTOS = " CREATE TABLE IF NOT EXISTS "
 	+ " TB_PostosDoacao ( POS_CodPosto integer not null primary key, "  	
 	+ "					 POS_EndPosto text not null,"		
@@ -56,10 +59,13 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	+ "					 POS_Latitude real not null,"
 	+ "					 POS_Longitude real not null"	
 	+ "					);";	
+	
 	private String[] allColumns = { UtilsDAO.ID, UtilsDAO.TPSANGUINEO, UtilsDAO.NOME, UtilsDAO.EMAIL, UtilsDAO.NOTIFICAOPUSH, UtilsDAO.NOTIFICACAOEMAIL, 
 			UtilsDAO.STATUSAPTO, UtilsDAO.DTDULTIMADOACAO, UtilsDAO.DTDNASCIMENTO  };	
+	
 	private String[] allColumnsQuery = { UtilsDAO.ID, UtilsDAO.TPSANGUINEO, UtilsDAO.NOME, UtilsDAO.EMAIL, UtilsDAO.NOTIFICAOPUSH, UtilsDAO.NOTIFICACAOEMAIL, 
 			UtilsDAO.STATUSAPTO, UtilsDAO.DTDULTIMADOACAO, UtilsDAO.DTDNASCIMENTO, UtilsDAO.ARQFOTO  };
+	
 	private String[] allColumnsPosto = { UtilsDAO.IDPOSTO, UtilsDAO.ENDPOSTO, UtilsDAO.NOMEPOSTO, 
 										 UtilsDAO.LATITUDE, UtilsDAO.LONGITUDE };
 	

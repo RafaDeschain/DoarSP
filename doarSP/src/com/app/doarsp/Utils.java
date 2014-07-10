@@ -1,5 +1,7 @@
 package com.app.doarsp;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,6 +21,7 @@ public class Utils extends Activity{
 	{
 		Toast.makeText(context, texto, (duracao > 0 ? duracao : Toast.LENGTH_SHORT)).show();				
 	}
+	
 	@SuppressLint("SimpleDateFormat")
 	public static boolean validadeValues(Context context, String dateNasc, String eMail)
 	{
@@ -82,5 +85,17 @@ public class Utils extends Activity{
 		mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
+	}
+	
+	//Converte String para SHA1, ex de chamada: toSHA1("password".getBytes())
+	public static String toSHA1(byte[] convertme) {
+	    MessageDigest md = null;
+	    try {
+	        md = MessageDigest.getInstance("SHA-1");
+	    }
+	    catch(NoSuchAlgorithmException e) {
+	        e.printStackTrace();
+	    } 
+	    return new String(md.digest(convertme));
 	}
 }
