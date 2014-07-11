@@ -76,7 +76,9 @@ public class AlterarDados extends Fragment {
 		context = rootView.getContext();
 		UserData = new UserModel(context);
 		
-		nameEdit = (EditText)rootView.findViewById(R.id.AlterarDadosNome);
+		UserData.getUserData(UserData);
+		
+		nameEdit = (EditText)rootView.findViewById(R.id.AlterarDadosNome);		
 		tpSanguineo = (Spinner)rootView.findViewById(R.id.AlterarDadosTipo);
 		eMailEdit = (EditText)rootView.findViewById(R.id.AlterarDadosEmail);
 		dataNasEdit = (EditText)rootView.findViewById(R.id.AlterarDadosNascimento);
@@ -92,6 +94,12 @@ public class AlterarDados extends Fragment {
 		}		
 		else
 		{
+			nameEdit.setText(UserData.getNome());
+			tpSanguineo.setSelection(UserData.getTpSanguineo());
+			eMailEdit.setText(UserData.geteMail());
+			dataNasEdit.setText(UserData.getDtdNascimento());
+			notificaoPush.setChecked((UserData.getNotificacaoPush() == 1 ? true : false));
+			notificaoEmail.setChecked(UserData.getNotificacaoEmail() == 1 ? true : false);
 			btnSalvar.setOnClickListener(saveBtnHandlerClickForUpdate);
 		}
 		
