@@ -207,48 +207,49 @@ containing a value of this type.
         public static final int activity_vertical_margin=0x7f080001;
     }
     public static final class drawable {
-        public static final int common_signin_btn_icon_dark=0x7f020000;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f020001;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020002;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020003;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020004;
-        public static final int common_signin_btn_icon_focus_dark=0x7f020005;
-        public static final int common_signin_btn_icon_focus_light=0x7f020006;
-        public static final int common_signin_btn_icon_light=0x7f020007;
-        public static final int common_signin_btn_icon_normal_dark=0x7f020008;
-        public static final int common_signin_btn_icon_normal_light=0x7f020009;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f02000a;
-        public static final int common_signin_btn_icon_pressed_light=0x7f02000b;
-        public static final int common_signin_btn_text_dark=0x7f02000c;
-        public static final int common_signin_btn_text_disabled_dark=0x7f02000d;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f02000e;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f02000f;
-        public static final int common_signin_btn_text_disabled_light=0x7f020010;
-        public static final int common_signin_btn_text_focus_dark=0x7f020011;
-        public static final int common_signin_btn_text_focus_light=0x7f020012;
-        public static final int common_signin_btn_text_light=0x7f020013;
-        public static final int common_signin_btn_text_normal_dark=0x7f020014;
-        public static final int common_signin_btn_text_normal_light=0x7f020015;
-        public static final int common_signin_btn_text_pressed_dark=0x7f020016;
-        public static final int common_signin_btn_text_pressed_light=0x7f020017;
-        public static final int counter_bg=0x7f020018;
-        public static final int ic_communities=0x7f020019;
-        public static final int ic_drawer=0x7f02001a;
-        public static final int ic_firstachivement=0x7f02001b;
-        public static final int ic_home=0x7f02001c;
-        public static final int ic_launcher=0x7f02001d;
-        public static final int ic_pages=0x7f02001e;
-        public static final int ic_people=0x7f02001f;
-        public static final int ic_photos=0x7f020020;
-        public static final int ic_plusone_medium_off_client=0x7f020021;
-        public static final int ic_plusone_small_off_client=0x7f020022;
-        public static final int ic_plusone_standard_off_client=0x7f020023;
-        public static final int ic_plusone_tall_off_client=0x7f020024;
-        public static final int ic_whats_hot=0x7f020025;
-        public static final int list_item_bg_normal=0x7f020026;
-        public static final int list_item_bg_pressed=0x7f020027;
-        public static final int list_selector=0x7f020028;
-        public static final int styles_edit_text=0x7f020029;
+        public static final int button_custom=0x7f020000;
+        public static final int common_signin_btn_icon_dark=0x7f020001;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020002;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020003;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020004;
+        public static final int common_signin_btn_icon_disabled_light=0x7f020005;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020006;
+        public static final int common_signin_btn_icon_focus_light=0x7f020007;
+        public static final int common_signin_btn_icon_light=0x7f020008;
+        public static final int common_signin_btn_icon_normal_dark=0x7f020009;
+        public static final int common_signin_btn_icon_normal_light=0x7f02000a;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f02000b;
+        public static final int common_signin_btn_icon_pressed_light=0x7f02000c;
+        public static final int common_signin_btn_text_dark=0x7f02000d;
+        public static final int common_signin_btn_text_disabled_dark=0x7f02000e;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f02000f;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020010;
+        public static final int common_signin_btn_text_disabled_light=0x7f020011;
+        public static final int common_signin_btn_text_focus_dark=0x7f020012;
+        public static final int common_signin_btn_text_focus_light=0x7f020013;
+        public static final int common_signin_btn_text_light=0x7f020014;
+        public static final int common_signin_btn_text_normal_dark=0x7f020015;
+        public static final int common_signin_btn_text_normal_light=0x7f020016;
+        public static final int common_signin_btn_text_pressed_dark=0x7f020017;
+        public static final int common_signin_btn_text_pressed_light=0x7f020018;
+        public static final int counter_bg=0x7f020019;
+        public static final int ic_communities=0x7f02001a;
+        public static final int ic_drawer=0x7f02001b;
+        public static final int ic_firstachivement=0x7f02001c;
+        public static final int ic_home=0x7f02001d;
+        public static final int ic_launcher=0x7f02001e;
+        public static final int ic_pages=0x7f02001f;
+        public static final int ic_people=0x7f020020;
+        public static final int ic_photos=0x7f020021;
+        public static final int ic_plusone_medium_off_client=0x7f020022;
+        public static final int ic_plusone_small_off_client=0x7f020023;
+        public static final int ic_plusone_standard_off_client=0x7f020024;
+        public static final int ic_plusone_tall_off_client=0x7f020025;
+        public static final int ic_whats_hot=0x7f020026;
+        public static final int list_item_bg_normal=0x7f020027;
+        public static final int list_item_bg_pressed=0x7f020028;
+        public static final int list_selector=0x7f020029;
+        public static final int styles_edit_text=0x7f02002a;
     }
     public static final class id {
         public static final int AlterarDadosCancelar=0x7f050019;
@@ -265,23 +266,33 @@ containing a value of this type.
         public static final int AlterarDadosTipoTV=0x7f050014;
         public static final int AlterarDadosTitulo=0x7f05000c;
         public static final int InnerRelativeLayot=0x7f050017;
-        public static final int PrincipalAptoDoar=0x7f050020;
-        public static final int PrincipalImageView=0x7f05001d;
+        public static final int PrincipalAptoDoar=0x7f05002a;
+        public static final int PrincipalImageView=0x7f050027;
         public static final int PrincipalNome=0x7f05001c;
-        public static final int PrincipalTIpoSanguineo=0x7f05001e;
-        public static final int PrincipalUltimaDoacao=0x7f05001f;
+        public static final int PrincipalTIpoSanguineo=0x7f050028;
+        public static final int PrincipalUltimaDoacao=0x7f050029;
         public static final int ScrollView01=0x7f05000b;
-        public static final int action_settings=0x7f050021;
+        public static final int action_settings=0x7f05002b;
+        public static final int cadastroLayout=0x7f050024;
+        public static final int cadastroLinkTV=0x7f050026;
+        public static final int cadastroTV=0x7f050025;
         public static final int counter=0x7f05000a;
         public static final int drawer_layout=0x7f050005;
         public static final int frame_container=0x7f050006;
         public static final int hybrid=0x7f050004;
         public static final int icon=0x7f050008;
         public static final int list_slidermenu=0x7f050007;
+        public static final int loginBT=0x7f050023;
+        public static final int loginET=0x7f050020;
+        public static final int loginScrollView=0x7f05001d;
+        public static final int loginTV=0x7f05001f;
         public static final int map=0x7f05001a;
+        public static final int mensagemLogin=0x7f05001e;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int satellite=0x7f050002;
+        public static final int senhaET=0x7f050021;
+        public static final int senhaTV=0x7f050022;
         public static final int terrain=0x7f050003;
         public static final int textView2=0x7f05001b;
         public static final int title=0x7f050009;
@@ -329,6 +340,8 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
+        public static final int cadastro=0x7f060035;
+        public static final int cadastroLink=0x7f060036;
         public static final int cancelar=0x7f060028;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -410,15 +423,19 @@ containing a value of this type.
         public static final int drawer_close=0x7f06002e;
         public static final int drawer_open=0x7f06002d;
         public static final int email=0x7f060024;
+        public static final int entrar=0x7f060034;
         public static final int google_play_services_version=0x7f06002c;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f06001a;
+        public static final int login=0x7f060032;
+        public static final int mensagemLogin=0x7f060031;
         public static final int nome=0x7f060022;
         public static final int notificacoes_email=0x7f060027;
         public static final int notificacoes_push=0x7f060026;
         public static final int principalapto=0x7f06002b;
         public static final int salvar=0x7f060029;
+        public static final int senha=0x7f060033;
         public static final int signature=0x7f06001f;
         public static final int tipo_sanguineo=0x7f060021;
         public static final int tpSanguineo=0x7f060023;
@@ -446,11 +463,13 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0a0000;
+        public static final int AppBaseTheme=0x7f0a0003;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0a0001;
+        public static final int AppTheme=0x7f0a0004;
+        public static final int buttonStyle=0x7f0a0000;
+        public static final int editTextStyle=0x7f0a0002;
+        public static final int textStyle=0x7f0a0001;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.
@@ -489,7 +508,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adSize
+          @attr name com.app.doarsp:adSize
         */
         public static final int AdsAttrs_adSize = 0;
         /**
@@ -509,7 +528,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adSizes
+          @attr name com.app.doarsp:adSizes
         */
         public static final int AdsAttrs_adSizes = 1;
         /**
@@ -525,7 +544,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adUnitId
+          @attr name com.app.doarsp:adUnitId
         */
         public static final int AdsAttrs_adUnitId = 2;
         /** Attributes that can be used with a MapAttrs.
@@ -581,7 +600,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraBearing
+          @attr name com.app.doarsp:cameraBearing
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
@@ -595,7 +614,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLat
+          @attr name com.app.doarsp:cameraTargetLat
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
@@ -609,7 +628,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLng
+          @attr name com.app.doarsp:cameraTargetLng
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
@@ -623,7 +642,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTilt
+          @attr name com.app.doarsp:cameraTilt
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
@@ -637,7 +656,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraZoom
+          @attr name com.app.doarsp:cameraZoom
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
@@ -657,7 +676,7 @@ containing a value of this type.
 <tr><td><code>terrain</code></td><td>3</td><td></td></tr>
 <tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name android:mapType
+          @attr name com.app.doarsp:mapType
         */
         public static final int MapAttrs_mapType = 0;
         /**
@@ -671,7 +690,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiCompass
+          @attr name com.app.doarsp:uiCompass
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
@@ -685,7 +704,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiRotateGestures
+          @attr name com.app.doarsp:uiRotateGestures
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
@@ -699,7 +718,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiScrollGestures
+          @attr name com.app.doarsp:uiScrollGestures
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
@@ -713,7 +732,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiTiltGestures
+          @attr name com.app.doarsp:uiTiltGestures
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
@@ -727,7 +746,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomControls
+          @attr name com.app.doarsp:uiZoomControls
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
@@ -741,7 +760,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomGestures
+          @attr name com.app.doarsp:uiZoomGestures
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
@@ -755,7 +774,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:useViewLifecycle
+          @attr name com.app.doarsp:useViewLifecycle
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
@@ -769,7 +788,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:zOrderOnTop
+          @attr name com.app.doarsp:zOrderOnTop
         */
         public static final int MapAttrs_zOrderOnTop = 13;
     };

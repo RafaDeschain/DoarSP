@@ -60,5 +60,10 @@
         <item>O-</item>
     </string-array>
     <string name="alterardadostitulo">Dados Pessoais</string>
-    
+    <string name="mensagemLogin">Seja bem-vindo ao DoarSP!</string>
+    <string name="login">Login:</string>
+    <string name="senha">Senha:</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastro">Ainda não possui cadastro?</string>
+    <string name="cadastroLink">Registre-se agora!</string>
 </resources>

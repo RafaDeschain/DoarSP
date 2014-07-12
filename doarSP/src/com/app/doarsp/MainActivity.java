@@ -118,11 +118,11 @@ public class MainActivity extends Activity {
 		if (!UserData.CheckIfExistsUser())
 		{
 			//Caso não possua, ele mostra a tela de cadastro e desabilita o menu lateral
-			displayView(6);
+			displayView(0);
 			Utils.disableSlideMenu(mDrawerLayout, actionBar);
 		} else if (savedInstanceState == null) {
 			//Caso seja cadastrado ele mostra a tela principal
-			displayView(0);
+			displayView(1);
 			Utils.enableSlideMenu(mDrawerLayout, actionBar);
 		}
 	}
@@ -177,7 +177,7 @@ public class MainActivity extends Activity {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new Principal();
+			fragment = new Login(getApplicationContext());
 			break;
 		case 1:
 			fragment = new Principal();

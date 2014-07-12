@@ -46,11 +46,8 @@
 		        android:layout_alignParentRight="true"
 		        android:layout_below="@id/AlterarDadosNomeTV"
 		        android:inputType="textPersonName"
-		        android:background="@drawable/styles_edit_text"
-		        android:textSize="16sp"
 		        android:layout_marginTop="6dp"
 		        android:layout_marginBottom="10dp"
-		        android:padding="8dp"
 		        >
 		
 		        <requestFocus />
@@ -72,12 +69,9 @@
 		        android:layout_alignParentLeft="true"
 		        android:layout_alignParentRight="true"
 		        android:layout_below="@id/AlterarDadosEmailTV"
-		        android:inputType="textEmailAddress" 
-		        android:background="@drawable/styles_edit_text"
-		        android:textSize="16sp"
+		        android:inputType="textEmailAddress"
 		        android:layout_marginTop="6dp"
-		        android:layout_marginBottom="10dp"
-		        android:padding="8dp" />
+		        android:layout_marginBottom="10dp"/>
 		
 		    <Spinner
 		        android:id="@+id/AlterarDadosTipo"
@@ -94,7 +88,6 @@
 		        android:layout_height="wrap_content"
 		        android:layout_alignLeft="@+id/AlterarDadosTipo"
 		        android:layout_below="@+id/AlterarDadosTipo"
-		        android:background="@drawable/styles_edit_text"
 		        android:ems="10"
 		        android:inputType="date"
 		        android:padding="8dp"
@@ -107,7 +100,6 @@
 		        android:layout_alignLeft="@+id/AlterarDadosTipoTV"
 		        android:layout_below="@+id/AlterarDadosTipo"
 		        android:text="@string/data_nascimento"
-		        android:textSize="16sp" 
 		        android:layout_marginTop="8dp"
 		        android:layout_marginRight="10dp"/>
 		
@@ -118,7 +110,6 @@
 		        android:layout_alignLeft="@+id/AlterarDadosEmail"
 		        android:layout_alignTop="@+id/AlterarDadosTipo"
 		        android:text="@string/tipo_sanguineo"
-		        android:textSize="16sp"
 		        android:layout_marginTop="10dp"/>
 		
 		    <CheckBox
@@ -158,6 +149,7 @@
 			   	    android:layout_height="wrap_content"
 			   	    android:layout_alignParentBottom="true"
 			   	    android:layout_alignParentLeft="true"
+			   	    android:layout_marginRight="10dp"
 			   	    android:layout_toLeftOf="@+id/AlterarDadosCancelar"
 			   	    android:text="@string/salvar" />
 		

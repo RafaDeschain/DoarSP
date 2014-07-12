@@ -17,6 +17,7 @@ public class UserModel {
 	public UserModel(Context context){
 		DAO = new ApapterDAO(context);
 		dtdNascimento = "";
+		dtdUltimaDoacao = "";
 	}
 
 	public UserModel(){
