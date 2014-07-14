@@ -66,4 +66,6 @@
     <string name="entrar">Entrar</string>
     <string name="cadastro">Ainda não possui cadastro?</string>
     <string name="cadastroLink">Registre-se agora!</string>
+    <string name="registrartitulo">Registre-se e ajude a salvar vidas</string>
+    <string name="registrarsenha">Senha</string>
 </resources>

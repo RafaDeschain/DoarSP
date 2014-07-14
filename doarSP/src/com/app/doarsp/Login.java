@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.HashMap;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +22,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.app.*;
+import com.google.android.gms.drive.internal.GetMetadataRequest;
 
 @SuppressLint("ValidFragment")
 public class Login extends Fragment{
@@ -52,12 +55,17 @@ public class Login extends Fragment{
     public static final String KEY_EMAIL = "email";
     
     /** Fim Variaveis da Sessão **/
+    
 	
 	@Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                             Bundle savedInstanceState) {
 	        // Inflate the layout for this fragment
-	        return inflater.inflate(R.layout.fragment_login, container, false);
+	        View regView = inflater.inflate(R.layout.fragment_login, container, false);
+	        TextView btnRegistrar = (TextView) regView.findViewById(R.id.cadastroLinkTV);
+	        btnRegistrar.setOnClickListener(registrarUsuario);
+	        return regView;
+	        
 	    }
 	
 		public Login(Context context){
@@ -93,6 +101,16 @@ public class Login extends Fragment{
 			editor.commit();
 			
 		}
+		
+		/** Métodos dos botões **/
+		
+		View.OnClickListener registrarUsuario = new View.OnClickListener() {
+			public void onClick(View v) {
+				getActivity().setContentView(R.layout.fragment_registrar);
+			}
+		};
+		
+		/** Fim Métodos dos botões **/
 		
 		/** Métodos set e get da classe **/
 		

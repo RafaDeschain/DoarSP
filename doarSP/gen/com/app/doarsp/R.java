@@ -271,8 +271,23 @@ containing a value of this type.
         public static final int PrincipalNome=0x7f05001c;
         public static final int PrincipalTIpoSanguineo=0x7f050028;
         public static final int PrincipalUltimaDoacao=0x7f050029;
+        public static final int RegistrarDadosCancelar=0x7f050039;
+        public static final int RegistrarDadosEmail=0x7f05002f;
+        public static final int RegistrarDadosEmailNot=0x7f050037;
+        public static final int RegistrarDadosEmailTV=0x7f05002e;
+        public static final int RegistrarDadosNascimento=0x7f050034;
+        public static final int RegistrarDadosNascimentoTV=0x7f050033;
+        public static final int RegistrarDadosNome=0x7f05002d;
+        public static final int RegistrarDadosNomeTV=0x7f05002c;
+        public static final int RegistrarDadosPush=0x7f050036;
+        public static final int RegistrarDadosSalvar=0x7f050038;
+        public static final int RegistrarDadosTipo=0x7f050032;
+        public static final int RegistrarDadosTipoTV=0x7f050035;
+        public static final int RegistrarDadosTitulo=0x7f05002b;
+        public static final int RegistrarSenha=0x7f050031;
+        public static final int RegistrarSenhaTV=0x7f050030;
         public static final int ScrollView01=0x7f05000b;
-        public static final int action_settings=0x7f05002b;
+        public static final int action_settings=0x7f05003a;
         public static final int cadastroLayout=0x7f050024;
         public static final int cadastroLinkTV=0x7f050026;
         public static final int cadastroTV=0x7f050025;
@@ -308,6 +323,7 @@ containing a value of this type.
         public static final int fragment_informacoes=0x7f030004;
         public static final int fragment_login=0x7f030005;
         public static final int fragment_principal=0x7f030006;
+        public static final int fragment_registrar=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
@@ -434,6 +450,8 @@ containing a value of this type.
         public static final int notificacoes_email=0x7f060027;
         public static final int notificacoes_push=0x7f060026;
         public static final int principalapto=0x7f06002b;
+        public static final int registrarsenha=0x7f060038;
+        public static final int registrartitulo=0x7f060037;
         public static final int salvar=0x7f060029;
         public static final int senha=0x7f060033;
         public static final int signature=0x7f06001f;

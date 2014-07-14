@@ -17,7 +17,7 @@ import com.app.model.UserModel;
 
 import com.app.doarsp.R;
 
-public class AlterarDados extends Fragment {
+public class RegistrarUsuario extends Fragment {
 	
 	UserModel UserData;
     EditText nameEdit, eMailEdit, dataNasEdit;
@@ -25,15 +25,15 @@ public class AlterarDados extends Fragment {
     CheckBox notificaoPush, notificaoEmail;
     Context context;
     
-	public AlterarDados(){
+	public RegistrarUsuario(){
 		//Construtor em branco
 	}
 	
-	View.OnClickListener saveBtnHandlerClickForUpdate = new View.OnClickListener() {
-		public void onClick(View v) {			
+	View.OnClickListener saveBtnHandlerClickForInsert = new View.OnClickListener() {
+		public void onClick(View v) {
 			String eMail    = eMailEdit.getText().toString();
-			String dataNasc = dataNasEdit.getText().toString();
-			
+			String dataNasc = dataNasEdit.getText().toString();				
+
 			UserData.setNome(nameEdit.getText().toString());
 			UserData.setTpSanguineo(tpSanguineo.getSelectedItemPosition());
 			UserData.seteMail(eMail);
@@ -44,36 +44,36 @@ public class AlterarDados extends Fragment {
 			
 			if (Utils.validadeValues(context, dataNasc, eMail) && (UserData.postInsert(res))) {
 				Utils.showMessage(context, "Cadastro Efetuado com Sucesso", 0);
-			}			
+				Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+			}
 		}
 	};
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
-		View rootView = inflater.inflate(R.layout.fragment_alterardados, container, false);
+/**
+		View rootView = inflater.inflate(R.layout.fragment_registrar, container, false);
 		context = rootView.getContext();
 		UserData = new UserModel(context);
 		
 		UserData.getUserData(UserData);
 		
-		nameEdit = (EditText)rootView.findViewById(R.id.AlterarDadosNome);		
-		tpSanguineo = (Spinner)rootView.findViewById(R.id.AlterarDadosTipo);
-		eMailEdit = (EditText)rootView.findViewById(R.id.AlterarDadosEmail);
-		dataNasEdit = (EditText)rootView.findViewById(R.id.AlterarDadosNascimento);
-		notificaoPush = (CheckBox)rootView.findViewById(R.id.AlterarDadosPush);
-		notificaoEmail = (CheckBox)rootView.findViewById(R.id.AlterarDadosEmailNot);
-		Button btnSalvar = (Button) rootView.findViewById(R.id.AlterarDadosSalvar);
+		nameEdit = (EditText)rootView.findViewById(R.id.);		
+		tpSanguineo = (Spinner)rootView.findViewById(R.id.);
+		eMailEdit = (EditText)rootView.findViewById(R.id.);
+		dataNasEdit = (EditText)rootView.findViewById(R.id.);
+		notificaoPush = (CheckBox)rootView.findViewById(R.id.);
+		notificaoEmail = (CheckBox)rootView.findViewById(R.id.);
+		Button btnSalvar = (Button) rootView.findViewById(R.id.);
+				
+		btnSalvar.setOnClickListener(saveBtnHandlerClickForInsert);
+		CharSequence mFirstTitle = "Doe sorrisos :)";
+		getActivity().getActionBar().setTitle(mFirstTitle);
 		
-		nameEdit.setText(UserData.getNome());
-		tpSanguineo.setSelection(UserData.getTpSanguineo());
-		eMailEdit.setText(UserData.geteMail());
-		dataNasEdit.setText(UserData.getDtdNascimento());
-		notificaoPush.setChecked((UserData.getNotificacaoPush() == 1 ? true : false));
-		notificaoEmail.setChecked(UserData.getNotificacaoEmail() == 1 ? true : false);
-		btnSalvar.setOnClickListener(saveBtnHandlerClickForUpdate);
-		
+		return rootView;
+		**/
+		View rootView = inflater.inflate(R.layout.fragment_registrar, container, false);
 		return rootView;
 	}
 }

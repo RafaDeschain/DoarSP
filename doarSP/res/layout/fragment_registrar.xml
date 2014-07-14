@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical" >
+
+     <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="fill_parent" >
+    
+		<RelativeLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="fill_parent"
+		    android:padding="10dp"
+		    android:layout_alignParentBottom="true"
+		    android:gravity="bottom">
+		
+		    <TextView
+		        android:id="@+id/RegistrarDadosTitulo"
+		        android:gravity="center"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_alignParentTop="true"
+		        android:textSize="18sp"
+		        android:textStyle="bold"
+		        android:layout_marginBottom="15dp"
+		        android:text="@string/registrartitulo" />
+		
+		    <TextView
+		        android:id="@+id/RegistrarDadosNomeTV"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/RegistrarDadosTitulo"
+		        android:text="@string/nome" />
+		
+		    <EditText
+		        android:id="@+id/RegistrarDadosNome"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@id/RegistrarDadosNomeTV"
+		        android:inputType="textPersonName"
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"
+		        >
+		
+		        <requestFocus />
+		    </EditText>
+		
+		    <TextView
+		        android:id="@+id/RegistrarDadosEmailTV"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/RegistrarDadosNome"
+		        android:text="@string/email" />
+		
+		    <EditText
+		        android:id="@+id/RegistrarDadosEmail"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@id/RegistrarDadosEmailTV"
+		        android:inputType="textEmailAddress"
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"/>
+		    
+		    <TextView
+		        android:id="@+id/RegistrarSenhaTV"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/RegistrarDadosEmail"
+		        android:text="@string/registrarsenha" />
+		    
+		    <EditText
+		        android:id="@+id/RegistrarSenha"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@+id/RegistrarSenhaTV"
+		        android:ems="10"
+		        android:inputType="date"
+		        android:padding="8dp"
+		        android:textSize="16sp" 
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"/>
+		
+		    <Spinner
+		        android:id="@+id/RegistrarDadosTipo"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignRight="@+id/RegistrarDadosEmail"
+		        android:layout_below="@+id/RegistrarSenha"
+		        android:layout_toRightOf="@+id/RegistrarDadosNascimentoTV"
+		        android:entries="@array/tipos_Sanguineos" />
+		
+		    <EditText
+		        android:id="@+id/RegistrarDadosNascimento"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/RegistrarDadosTipo"
+		        android:layout_below="@+id/RegistrarDadosTipo"
+		        android:ems="10"
+		        android:inputType="date"
+		        android:padding="8dp"
+		        android:textSize="16sp" />
+		
+		    <TextView
+		        android:id="@+id/RegistrarDadosNascimentoTV"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/RegistrarDadosTipoTV"
+		        android:layout_below="@+id/RegistrarDadosTipo"
+		        android:text="@string/data_nascimento"
+		        android:layout_marginTop="8dp"
+		        android:layout_marginRight="10dp"/>
+		
+		    <TextView
+		        android:id="@+id/RegistrarDadosTipoTV"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/RegistrarSenha"
+		        android:layout_alignTop="@+id/RegistrarDadosTipo"
+		        android:text="@string/tipo_sanguineo"
+		        android:layout_marginTop="10dp"/>
+		
+		    <CheckBox
+		        android:id="@+id/RegistrarDadosPush"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@+id/RegistrarDadosNascimento"
+		        android:checked="true"
+		        android:text="@string/notificacoes_push"
+		        android:textSize="15sp" 
+		        android:layout_marginTop="20dp"/>
+		
+		    <CheckBox
+		        android:id="@+id/RegistrarDadosEmailNot"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/RegistrarDadosPush"
+		        android:layout_below="@+id/RegistrarDadosPush"
+		        android:checked="true"
+		        android:text="@string/notificacoes_email"
+		        android:textSize="15sp" />
+		    
+		    <RelativeLayout
+		        android:id="@+id/InnerRelativeLayot"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentBottom="true"
+		        android:layout_below="@+id/RegistrarDadosEmailNot"
+		        android:gravity="bottom"
+		        android:orientation="horizontal"
+		        android:layout_marginTop="40sp">
+		
+			   	<Button
+			   	    android:id="@+id/RegistrarDadosSalvar"
+			   	    android:layout_width="wrap_content"
+			   	    android:layout_height="wrap_content"
+			   	    android:layout_alignParentBottom="true"
+			   	    android:layout_alignParentLeft="true"
+			   	    android:layout_marginRight="10dp"
+			   	    android:layout_toLeftOf="@+id/RegistrarDadosCancelar"
+			   	    android:text="@string/salvar" />
+		
+			   	<Button
+			   	    android:id="@+id/RegistrarDadosCancelar"
+			   	    android:layout_width="wrap_content"
+			   	    android:layout_height="wrap_content"
+			   	    android:layout_alignParentBottom="true"
+			   	    android:layout_alignParentRight="true"
+			   	    android:text="@string/cancelar" />
+		        
+		    </RelativeLayout>
+		</RelativeLayout>
+	</LinearLayout>
+</ScrollView>

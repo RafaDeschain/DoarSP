@@ -88,7 +88,7 @@ public class Utils extends Activity{
 	}
 	
 	//Converte String para SHA1, ex de chamada: toSHA1("password".getBytes())
-	public static String toSHA1(byte[] convertme) {
+	public String toSHA1(byte[] convertme) {
 	    MessageDigest md = null;
 	    try {
 	        md = MessageDigest.getInstance("SHA-1");
