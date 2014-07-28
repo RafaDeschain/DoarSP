@@ -15,9 +15,10 @@
 	<style name="textStyle">
 	    <item name="android:textSize">16sp</item>
 	</style>
-	<style name="editTextStyle" parent="@style/textStyle">
+	<style name="App_editTextStyle" parent="@android:style/Widget.EditText">
 	    <item name="android:background">@drawable/styles_edit_text</item>
 	    <item name="android:padding">8dip</item>
+	    <item name="android:enabled">true</item>
 	</style>
     
     <!--
@@ -36,7 +37,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:buttonStyle">@style/buttonStyle</item>
         <item name="android:textViewStyle">@style/textStyle</item>
-        <item name="android:editTextStyle">@style/editTextStyle</item>
+        <item name="android:editTextStyle">@style/App_editTextStyle</item>
     </style>
 
 </resources>

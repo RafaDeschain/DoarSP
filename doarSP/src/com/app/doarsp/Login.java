@@ -1,7 +1,10 @@
 package com.app.doarsp;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -49,12 +52,13 @@ public class Login extends Fragment{
     private static final String PREF_NAME = "AndroidHivePref";
     
     // All Shared Preferences Keys
-    private static final String IS_LOGIN = "IsLoggedIn";
-     
+    private static final String IS_LOGIN = "IsLoggedIn"; 
     // Email do usuário
     public static final String KEY_EMAIL = "email";
     
     /** Fim Variaveis da Sessão **/
+    
+    ActionBar actionBar;
     
 	
 	@Override
@@ -63,9 +67,14 @@ public class Login extends Fragment{
 	        // Inflate the layout for this fragment
 	        View regView = inflater.inflate(R.layout.fragment_login, container, false);
 	        TextView btnRegistrar = (TextView) regView.findViewById(R.id.cadastroLinkTV);
-	        btnRegistrar.setOnClickListener(registrarUsuario);
-	        return regView;
+	        Button btnLogin = (Button) regView.findViewById(R.id.loginBT);
 	        
+	        btnRegistrar.setOnClickListener(registrarUsuario);
+	        btnLogin.setOnClickListener(loginBtn);
+	        
+	        actionBar = getActivity().getActionBar();
+	        actionBar.setTitle("Login");
+	        return regView;
 	    }
 	
 		public Login(Context context){
@@ -106,7 +115,26 @@ public class Login extends Fragment{
 		
 		View.OnClickListener registrarUsuario = new View.OnClickListener() {
 			public void onClick(View v) {
-				getActivity().setContentView(R.layout.fragment_registrar);
+				RegistrarUsuario regUsr = new RegistrarUsuario();
+				FragmentManager fragmentManager = getFragmentManager();
+				FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentTransaction.replace(R.id.frame_container, regUsr);
+				fragmentTransaction.addToBackStack(null);
+				fragmentTransaction.commit();
+			}
+		};
+		
+		View.OnClickListener loginBtn = new View.OnClickListener() {
+			public void onClick(View v) {
+				
+				//if(validaLogin() == true) {}
+				
+				Principal principal = new Principal();
+				FragmentManager fragmentManager = getFragmentManager();
+				FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentTransaction.replace(R.id.frame_container, principal);
+				fragmentTransaction.addToBackStack(null);
+				fragmentTransaction.commit();
 			}
 		};
 		

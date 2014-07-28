@@ -287,7 +287,6 @@ containing a value of this type.
         public static final int RegistrarSenha=0x7f050031;
         public static final int RegistrarSenhaTV=0x7f050030;
         public static final int ScrollView01=0x7f05000b;
-        public static final int action_settings=0x7f05003a;
         public static final int cadastroLayout=0x7f050024;
         public static final int cadastroLinkTV=0x7f050026;
         public static final int cadastroTV=0x7f050025;
@@ -303,6 +302,7 @@ containing a value of this type.
         public static final int loginTV=0x7f05001f;
         public static final int map=0x7f05001a;
         public static final int mensagemLogin=0x7f05001e;
+        public static final int menuAbout=0x7f05003a;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int satellite=0x7f050002;
@@ -331,7 +331,7 @@ containing a value of this type.
     public static final class string {
         public static final int aboutMe=0x7f06001e;
         public static final int action_settings=0x7f06001c;
-        public static final int alterardadostitulo=0x7f060030;
+        public static final int alterardadostitulo=0x7f060031;
         public static final int app_name=0x7f06001b;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -356,8 +356,8 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
-        public static final int cadastro=0x7f060035;
-        public static final int cadastroLink=0x7f060036;
+        public static final int cadastro=0x7f060036;
+        public static final int cadastroLink=0x7f060037;
         public static final int cancelar=0x7f060028;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -435,25 +435,26 @@ containing a value of this type.
         public static final int dedicatoria=0x7f06002a;
         /**  Content Description 
          */
-        public static final int desc_list_item_icon=0x7f06002f;
-        public static final int drawer_close=0x7f06002e;
-        public static final int drawer_open=0x7f06002d;
+        public static final int desc_list_item_icon=0x7f060030;
+        public static final int drawer_close=0x7f06002f;
+        public static final int drawer_open=0x7f06002e;
         public static final int email=0x7f060024;
-        public static final int entrar=0x7f060034;
+        public static final int entrar=0x7f060035;
         public static final int google_play_services_version=0x7f06002c;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f06001a;
-        public static final int login=0x7f060032;
-        public static final int mensagemLogin=0x7f060031;
+        public static final int login=0x7f060033;
+        public static final int mensagemLogin=0x7f060032;
+        public static final int menuAbout=0x7f06002d;
         public static final int nome=0x7f060022;
         public static final int notificacoes_email=0x7f060027;
         public static final int notificacoes_push=0x7f060026;
         public static final int principalapto=0x7f06002b;
-        public static final int registrarsenha=0x7f060038;
-        public static final int registrartitulo=0x7f060037;
+        public static final int registrarsenha=0x7f060039;
+        public static final int registrartitulo=0x7f060038;
         public static final int salvar=0x7f060029;
-        public static final int senha=0x7f060033;
+        public static final int senha=0x7f060034;
         public static final int signature=0x7f06001f;
         public static final int tipo_sanguineo=0x7f060021;
         public static final int tpSanguineo=0x7f060023;
@@ -485,8 +486,8 @@ containing a value of this type.
         /**  Application theme. 
          */
         public static final int AppTheme=0x7f0a0004;
+        public static final int App_editTextStyle=0x7f0a0002;
         public static final int buttonStyle=0x7f0a0000;
-        public static final int editTextStyle=0x7f0a0002;
         public static final int textStyle=0x7f0a0001;
     }
     public static final class styleable {

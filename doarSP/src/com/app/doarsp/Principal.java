@@ -5,6 +5,7 @@ import com.app.model.UserModel;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class Principal extends Fragment {
 	ImageView achivementPicture;
 	TextView nameEdit, tpSanguineo, ultimaDoacao;
 	CheckBox aptoDoar;
+	Utils util;
      
     public Principal(){}
      
@@ -25,7 +27,8 @@ public class Principal extends Fragment {
             Bundle savedInstanceState) {
   
         View rootView = inflater.inflate(R.layout.fragment_principal, container, false);
-
+        Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+/**
         // Carrega os componentes
         achivementPicture = (ImageView)rootView.findViewById(R.id.PrincipalImageView);
         nameEdit 		  = (TextView)rootView.findViewById(R.id.PrincipalNome);
@@ -46,7 +49,7 @@ public class Principal extends Fragment {
         // Ainda nao esta feito o recurso de alterar a ultima doacao fixado o nascimento
         ultimaDoacao.setText(userData.getDtdNascimento());
         aptoDoar.setChecked(true);
-        
+        **/
         return rootView;
     }
 }

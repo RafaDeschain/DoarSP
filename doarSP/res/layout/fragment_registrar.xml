@@ -91,7 +91,7 @@
 		        android:layout_alignParentRight="true"
 		        android:layout_below="@+id/RegistrarSenhaTV"
 		        android:ems="10"
-		        android:inputType="date"
+		        android:inputType="textPassword"
 		        android:padding="8dp"
 		        android:textSize="16sp" 
 		        android:layout_marginTop="6dp"

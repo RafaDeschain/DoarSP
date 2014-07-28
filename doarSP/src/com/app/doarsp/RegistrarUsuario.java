@@ -1,5 +1,6 @@
 package com.app.doarsp;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.Resources;
@@ -24,6 +25,8 @@ public class RegistrarUsuario extends Fragment {
     Spinner tpSanguineo;
     CheckBox notificaoPush, notificaoEmail;
     Context context;
+    ActionBar actionBar;
+    Utils util;
     
 	public RegistrarUsuario(){
 		//Construtor em branco
@@ -73,7 +76,12 @@ public class RegistrarUsuario extends Fragment {
 		
 		return rootView;
 		**/
+		
 		View rootView = inflater.inflate(R.layout.fragment_registrar, container, false);
+		actionBar = getActivity().getActionBar();
+		actionBar.setTitle("Registre-se");
+		dataNasEdit = (EditText)rootView.findViewById(R.id.RegistrarDadosNascimento);
+		dataNasEdit.addTextChangedListener(Utils.insert("##/##/####", dataNasEdit));
 		return rootView;
 	}
 }

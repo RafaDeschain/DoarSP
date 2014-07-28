@@ -26,6 +26,8 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
 	
 	//Chama a classe util
+	Utils util;
+	
 	private ActionBar actionBar;
 	
 	//Cria o DrawerLayout
@@ -103,7 +105,7 @@ public class MainActivity extends Activity {
 			}
 		};
 		
-		mDrawerLayout.setDrawerListener(mDrawerToggle);				
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		
 		UserModel UserData 				   = new UserModel(getApplicationContext());
 		HemocentrosModel hemocentrosInsert = new HemocentrosModel(getApplicationContext());
@@ -123,7 +125,6 @@ public class MainActivity extends Activity {
 		} else if (savedInstanceState == null) {
 			//Caso seja cadastrado ele mostra a tela principal
 			displayView(1);
-			Utils.enableSlideMenu(mDrawerLayout, actionBar);
 		}
 	}
 
@@ -151,7 +152,7 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		switch (item.getItemId()) {
-		case R.id.action_settings:
+		case R.id.menuAbout:
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -165,7 +166,7 @@ public class MainActivity extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// if nav drawer is opened, hide the action items
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+		menu.findItem(R.id.menuAbout).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 

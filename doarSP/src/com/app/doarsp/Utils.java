@@ -7,15 +7,26 @@ import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnCreateContextMenuListener;
+import android.widget.EditText;
 import android.widget.Toast;
 
-public class Utils extends Activity{
+public class Utils{
+	
+	DrawerLayout mDrawerLayout;
+	ActionBar actionBar;
 	
 	public static void showMessage(Context context, String texto, int duracao)
 	{
@@ -73,7 +84,7 @@ public class Utils extends Activity{
 		return location.getLongitude();
 	}
 	
-	//Desabilita o slide do menu lateral
+	//Desabilita o slide do menu lateral	
 	public static void disableSlideMenu(DrawerLayout mDrawerLayout, ActionBar actionBar){
 		mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 		actionBar.setDisplayHomeAsUpEnabled(false);
@@ -97,5 +108,53 @@ public class Utils extends Activity{
 	        e.printStackTrace();
 	    } 
 	    return new String(md.digest(convertme));
+	}
+	
+	//Métodos para mascara de data
+	public static String unmask(String s) {
+		return s.replaceAll("[.]", "").replaceAll("[-]", "")
+				.replaceAll("[/]", "").replaceAll("[(]", "")
+				.replaceAll("[)]", "");
+	}
+ 
+	public static TextWatcher insert(final String mask, final EditText ediTxt) {
+		return new TextWatcher() {
+			boolean isUpdating;
+			String old = "";
+ 
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				String str = Utils.unmask(s.toString());
+				String mascara = "";
+				if (isUpdating) {
+					old = str;
+					isUpdating = false;
+					return;
+				}
+				int i = 0;
+				for (char m : mask.toCharArray()) {
+					if (m != '#' && str.length() > old.length()) {
+						mascara += m;
+						continue;
+					}
+					try {
+						mascara += str.charAt(i);
+					} catch (Exception e) {
+						break;
+					}
+					i++;
+				}
+				isUpdating = true;
+				ediTxt.setText(mascara);
+				ediTxt.setSelection(mascara.length());
+			}
+ 
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+ 
+			public void afterTextChanged(Editable s) {
+			}
+		};
 	}
 }

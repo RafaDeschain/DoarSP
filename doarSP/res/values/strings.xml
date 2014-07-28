@@ -18,7 +18,8 @@
     <string name="salvar">Salvar</string>
     <string name="dedicatoria"></string>
     <string name="principalapto">Apto a doar</string>
-    <string name="google_play_services_version">4323000</string>    
+    <string name="google_play_services_version">4323000</string>   
+    <string name="menuAbout">Sobre</string>    
 	
 <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
