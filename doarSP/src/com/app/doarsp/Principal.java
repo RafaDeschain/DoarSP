@@ -2,6 +2,7 @@ package com.app.doarsp;
 
 import com.app.model.UserModel;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -19,7 +20,8 @@ public class Principal extends Fragment {
 	TextView nameEdit, tpSanguineo, ultimaDoacao;
 	CheckBox aptoDoar;
 	Utils util;
-     
+    ActionBar actionBar;
+	
     public Principal(){}
      
     @Override
@@ -28,6 +30,8 @@ public class Principal extends Fragment {
   
         View rootView = inflater.inflate(R.layout.fragment_principal, container, false);
         Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+        actionBar = getActivity().getActionBar();
+        actionBar.setTitle("Principal");
 /**
         // Carrega os componentes
         achivementPicture = (ImageView)rootView.findViewById(R.id.PrincipalImageView);

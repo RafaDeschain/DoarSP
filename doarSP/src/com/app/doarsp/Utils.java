@@ -8,6 +8,8 @@ import java.util.Date;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
@@ -116,7 +118,8 @@ public class Utils{
 				.replaceAll("[/]", "").replaceAll("[(]", "")
 				.replaceAll("[)]", "");
 	}
- 
+	
+	//Métodos para mascara de data
 	public static TextWatcher insert(final String mask, final EditText ediTxt) {
 		return new TextWatcher() {
 			boolean isUpdating;
@@ -157,4 +160,13 @@ public class Utils{
 			}
 		};
 	}
+	
+	//Método para trocar o Fragment
+	public static void trocarFragment(Fragment fragment, FragmentManager fragmentManager){
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.replace(R.id.frame_container, fragment);
+		fragmentTransaction.addToBackStack(null);
+		fragmentTransaction.commit();
+	}
+	
 }

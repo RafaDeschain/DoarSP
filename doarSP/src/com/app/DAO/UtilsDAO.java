@@ -152,7 +152,7 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		try
 		{		
 			// parar sempre criar um usuario - Caso precise depurar o postInsert
-			database.delete(UtilsDAO.TABLE_NAME, null, null);
+			//database.delete(UtilsDAO.TABLE_NAME, null, null);
 			String[] column = { UtilsDAO.ID };
 			Cursor query = database.query(UtilsDAO.TABLE_NAME, column, null,
 					null, null, null, null);

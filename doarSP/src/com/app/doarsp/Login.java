@@ -59,22 +59,37 @@ public class Login extends Fragment{
     /** Fim Variaveis da Sessão **/
     
     ActionBar actionBar;
+    Principal principal;
     
 	
 	@Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                             Bundle savedInstanceState) {
-	        // Inflate the layout for this fragment
-	        View regView = inflater.inflate(R.layout.fragment_login, container, false);
-	        TextView btnRegistrar = (TextView) regView.findViewById(R.id.cadastroLinkTV);
-	        Button btnLogin = (Button) regView.findViewById(R.id.loginBT);
 	        
-	        btnRegistrar.setOnClickListener(registrarUsuario);
-	        btnLogin.setOnClickListener(loginBtn);
-	        
-	        actionBar = getActivity().getActionBar();
-	        actionBar.setTitle("Login");
-	        return regView;
+			//Verifica se o usuario ja esta logado
+			if(checarSessao() == false){
+				View regView = inflater.inflate(R.layout.fragment_principal, container, false);
+				principal = new Principal();
+				Utils.trocarFragment(principal, getFragmentManager());
+				return regView;
+			}
+			
+			//Caso não esteja, cria a tela de login
+			else{
+				
+		        View regView = inflater.inflate(R.layout.fragment_login, container, false);
+		        TextView btnRegistrar = (TextView) regView.findViewById(R.id.cadastroLinkTV);
+		        Button btnLogin = (Button) regView.findViewById(R.id.loginBT);
+		        
+		        btnRegistrar.setOnClickListener(registrarUsuario);
+		        btnLogin.setOnClickListener(loginBtn);
+		        
+		        actionBar = getActivity().getActionBar();
+		        actionBar.setTitle("Login");
+		        
+		        Utils.disableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+		        return regView;
+			}
 	    }
 	
 		public Login(Context context){
@@ -116,11 +131,7 @@ public class Login extends Fragment{
 		View.OnClickListener registrarUsuario = new View.OnClickListener() {
 			public void onClick(View v) {
 				RegistrarUsuario regUsr = new RegistrarUsuario();
-				FragmentManager fragmentManager = getFragmentManager();
-				FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-				fragmentTransaction.replace(R.id.frame_container, regUsr);
-				fragmentTransaction.addToBackStack(null);
-				fragmentTransaction.commit();
+				Utils.trocarFragment(regUsr, getFragmentManager());
 			}
 		};
 		
@@ -128,13 +139,10 @@ public class Login extends Fragment{
 			public void onClick(View v) {
 				
 				//if(validaLogin() == true) {}
-				
+				criarSessao("gustavo@teste.com.br");
 				Principal principal = new Principal();
-				FragmentManager fragmentManager = getFragmentManager();
-				FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-				fragmentTransaction.replace(R.id.frame_container, principal);
-				fragmentTransaction.addToBackStack(null);
-				fragmentTransaction.commit();
+				Utils.trocarFragment(principal, getFragmentManager());
+				
 			}
 		};
 		

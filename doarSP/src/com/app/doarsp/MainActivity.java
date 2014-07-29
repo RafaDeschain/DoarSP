@@ -11,6 +11,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -65,6 +66,8 @@ public class MainActivity extends Activity {
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 		actionBar = getActionBar();
+		
+		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		// Principal
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
@@ -116,16 +119,8 @@ public class MainActivity extends Activity {
 			hemocentrosInsert.initializeValuesInBd();
 		}
 		
-		//Verifica se o usuário ja possui cadastro no aplicativo
-		if (!UserData.CheckIfExistsUser())
-		{
-			//Caso não possua, ele mostra a tela de cadastro e desabilita o menu lateral
-			displayView(0);
-			Utils.disableSlideMenu(mDrawerLayout, actionBar);
-		} else if (savedInstanceState == null) {
-			//Caso seja cadastrado ele mostra a tela principal
-			displayView(1);
-		}
+		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
+		displayView(0);
 	}
 
 	/**
@@ -174,7 +169,8 @@ public class MainActivity extends Activity {
 	 * Diplaying fragment view for selected nav drawer list item
 	 * */
 	private void displayView(int position) {
-		// update the main content by replacing fragments
+		
+		//Pega qual é o item que está sendo clicado
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
@@ -202,17 +198,18 @@ public class MainActivity extends Activity {
 		default:
 			break;
 		}
-
+		
+		//seta o fragment para qual foi clicado
+		
 		if (fragment != null) {
-			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-
-			// update selected item and title, then close the drawer
+			
+			Utils.trocarFragment(fragment, getFragmentManager());
+			
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
+		
 		} else {
 			// error in creating fragment
 			Log.e("MainActivity", "Error in creating fragment");
