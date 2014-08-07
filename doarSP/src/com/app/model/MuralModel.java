@@ -4,11 +4,16 @@ import android.content.Context;
 
 public class MuralModel {
 	
-	private int CodMural, CodSolicitacao;
+	private int CodMural, CodSolicitacao, imagem;
 	private String Comentario ;
 	
-	public MuralModel(Context context){
+	public MuralModel(int CodMural, int CodSolicitacao, String Comentario, int imagem  ){
 		
+		super();
+		this.CodMural = CodMural;
+		this.CodSolicitacao = CodSolicitacao;
+		this.Comentario = Comentario;
+		this.imagem = imagem;
 		
 	}
 	
@@ -46,5 +51,18 @@ public class MuralModel {
 		
 		this.Comentario = Comentario;
 	}
+	
+	 public int getImagem() {
+		 
+	    return imagem;
+	        
+	 }
+	 
+	  public void setImagem(int imagem) {
+		  
+		this.imagem = imagem;
+	 } 
+	
+	
 
 }
