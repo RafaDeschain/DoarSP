@@ -2,7 +2,6 @@ package com.app.doarsp;
 
 import com.app.adapter.NavDrawerListAdapter;
 import com.app.model.HemocentrosModel;
-import com.app.model.NavDrawerItem;
 import com.app.model.UserModel;
 
 import java.util.ArrayList;
@@ -174,7 +173,7 @@ public class MainActivity extends Activity {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new Principal();
+			fragment = new Login(getApplicationContext());
 			break;
 		case 1:
 			fragment = new Principal();

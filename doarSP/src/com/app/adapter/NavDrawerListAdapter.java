@@ -1,6 +1,6 @@
 package com.app.adapter;
 
-import com.app.model.NavDrawerItem;
+import com.app.doarsp.NavDrawerItem;
 import com.app.doarsp.R;
 
 import java.util.ArrayList;
