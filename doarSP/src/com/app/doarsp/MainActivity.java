@@ -174,7 +174,7 @@ public class MainActivity extends Activity {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new Login(getApplicationContext());
+			fragment = new Principal();
 			break;
 		case 1:
 			fragment = new Principal();
@@ -183,7 +183,7 @@ public class MainActivity extends Activity {
 			fragment = new Principal();
 			break;
 		case 3:
-			fragment = new Principal();
+			fragment = new Mural();
 			break;
 		case 4:
 			fragment = new Hemocentros();
@@ -196,6 +196,7 @@ public class MainActivity extends Activity {
 			break;
 					
 		default:
+			fragment = new Login(getApplicationContext());
 			break;
 		}
 		

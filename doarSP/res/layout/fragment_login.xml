@@ -14,7 +14,7 @@
 		    android:layout_height="match_parent"
 		    android:layout_alignParentBottom="true"
 		    android:padding="10dp" >
-		
+
 		    <TextView
 		        android:id="@+id/mensagemLogin"
 		        android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
 		        android:text="@string/mensagemLogin"
 		        android:textSize="18sp"
 		        android:textStyle="bold" />
-		
+
 		    <TextView
 		        android:id="@+id/loginTV"
 		        android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
 		        android:layout_below="@+id/mensagemLogin"
 		        android:layout_marginTop="22dp"
 		        android:text="@string/login" />
-		
+
 		    <EditText
 		        android:id="@+id/loginET"
 		        android:layout_width="wrap_content"
@@ -42,13 +42,13 @@
 		        android:layout_alignParentRight="true"
 		        android:layout_below="@+id/loginTV"
 		        android:layout_marginTop="12dp"
-		        android:ems="10" 
-		        android:inputType="textEmailAddress"
-		        android:enabled="true">
-				
+		        android:ems="10"
+		        android:enabled="true"
+		        android:inputType="textEmailAddress" >
+
 		        <requestFocus />
 		    </EditText>
-		
+
 		    <EditText
 		        android:id="@+id/senhaET"
 		        android:layout_width="wrap_content"
@@ -57,10 +57,10 @@
 		        android:layout_alignParentRight="true"
 		        android:layout_below="@+id/senhaTV"
 		        android:layout_marginTop="12dp"
-		        android:ems="10" 
-		        android:inputType="textPassword">
+		        android:ems="10"
+		        android:inputType="textPassword" >
 		    </EditText>
-		
+
 		    <TextView
 		        android:id="@+id/senhaTV"
 		        android:layout_width="wrap_content"
@@ -69,45 +69,58 @@
 		        android:layout_below="@+id/loginET"
 		        android:layout_marginTop="12dp"
 		        android:text="@string/senha" />
-		
+
+		    <TextView
+		        android:id="@+id/loginerroTV"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/senhaET"
+		        android:layout_below="@+id/senhaET"
+		        android:text="@string/loginerro"
+		        android:textAppearance="?android:attr/textAppearanceSmall"
+		        android:textColor="#E81300"
+		        android:textSize="13sp"
+		        android:layout_marginTop="10dp"/>
+		    
 		    <Button
 		        android:id="@+id/loginBT"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
 		        android:layout_alignParentRight="true"
-		        android:layout_below="@+id/senhaET"
-		        android:layout_marginTop="18dp"
+		        android:layout_below="@+id/loginerroTV"
+		        android:layout_marginTop="12dp"
 		        android:text="@string/entrar" />
-		
+
 		    <RelativeLayout
 		        android:id="@+id/cadastroLayout"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_below="@+id/loginBT"
-		        android:layout_centerHorizontal="true" 
-		        android:layout_marginTop="12dp">
-		        
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="12dp" >
+
 		        <TextView
-			        android:id="@+id/cadastroTV"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:text="@string/cadastro"
-			        android:textAppearance="?android:attr/textAppearanceSmall" 
-			        android:textSize="13dp"/>
-		        
+		            android:id="@+id/cadastroTV"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/cadastro"
+		            android:textAppearance="?android:attr/textAppearanceSmall"
+		            android:textSize="13sp" />
+
 		        <TextView
-			        android:id="@+id/cadastroLinkTV"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:layout_toRightOf="@+id/cadastroTV"
-			        android:text="@string/cadastroLink"
-			        android:textAppearance="?android:attr/textAppearanceSmall"
-			        android:textSize="13dp"
-			        android:layout_marginLeft="3dp"
-			        android:textColor="#0B7A96"/>
-		        
+		            android:id="@+id/cadastroLinkTV"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="3dp"
+		            android:layout_toRightOf="@+id/cadastroTV"
+		            android:text="@string/cadastroLink"
+		            android:textAppearance="?android:attr/textAppearanceSmall"
+		            android:textColor="#0B7A96"
+		            android:textSize="13sp" />
 		    </RelativeLayout>
+		    
 		</RelativeLayout>
+
 	</LinearLayout>
 </ScrollView>
