@@ -27,7 +27,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.app.*;
-import com.app.model.UserModel;
+import com.app.model.*;
 import com.google.android.gms.drive.internal.GetMetadataRequest;
 
 @SuppressLint("ValidFragment")
@@ -35,7 +35,7 @@ public class Login extends Fragment{
 	
 	Utils util;
 	
-	private String login, senha;
+	private LoginModel loginModel;
 	
 	ActionBar actionBar;
     Principal principal;
@@ -87,8 +87,8 @@ public class Login extends Fragment{
 			if (login.equals("") || senha.equals("")){
 				return false;
 			}else{
-				setLogin(login);
-				setSenha(senha);
+				loginModel.setLogin(login);
+				loginModel.setSenha(senha);
 				return true;
 			}
 		}
@@ -138,25 +138,4 @@ public class Login extends Fragment{
 		};
 		
 		/** Fim Métodos dos botões **/
-		
-		/** Métodos set e get da classe **/
-		
-		public void setLogin(String login){
-			this.login = login;
-		}
-		
-		public void setSenha(String senha){
-			//this.senha = util.toSHA1(senha.getBytes());
-			this.senha = senha;
-		}
-		
-		public String getLogin(){
-			return login;
-		}
-		
-		public String getSenha(){
-			return senha;
-		}
-		
-		/** Fim Métodos set e get da classe **/
 }

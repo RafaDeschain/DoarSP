@@ -7,9 +7,9 @@ import com.app.DAO.ApapterDAO;
 import com.app.doarsp.ArrayPostos;
 
 public class HemocentrosModel {
-	private int CodPosto;
-	private String EndPosto, TelPosto, NomePosto;
-	private double Latitude, Longitude;
+	private int codPosto;
+	private String endPosto, telPosto, nomePosto;
+	private double latitude, longitude;
 	private ApapterDAO DAO;
 	
 	public HemocentrosModel(Context context){
@@ -21,40 +21,40 @@ public class HemocentrosModel {
 	}
 	
 	public int getCodPosto() {
-		return CodPosto;
+		return codPosto;
 	}
 	public void setCodPosto(int codPosto) {
-		CodPosto = codPosto;
+		this.codPosto = codPosto;
 	}
 	public String getEndPosto() {
-		return EndPosto;
+		return endPosto;
 	}
 	public void setEndPosto(String endPosto) {
-		EndPosto = endPosto;
+		this.endPosto = endPosto;
 	}
 	public String getTelPosto() {
-		return TelPosto;
+		return telPosto;
 	}
 	public void setTelPosto(String telPosto) {
-		TelPosto = telPosto;
+		this.telPosto = telPosto;
 	}
 	public String getNomePosto() {
-		return NomePosto;
+		return nomePosto;
 	}
 	public void setNomePosto(String nomePosto) {
-		NomePosto = nomePosto;
+		this.nomePosto = nomePosto;
 	}
 	public double getLatitude() {
-		return Latitude;
+		return latitude;
 	}
 	public void setLatitude(double latitude) {
-		Latitude = latitude;
+		this.latitude = latitude;
 	}
 	public double getLongitude() {
-		return Longitude;
+		return longitude;
 	}
 	public void setLongitude(double longitude) {
-		Longitude = longitude;
+		this.longitude = longitude;
 	}
 	
 	public boolean checkPosto()

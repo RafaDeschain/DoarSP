@@ -6,8 +6,8 @@ import android.content.Context;
 
 public class DoacoesModel {
 	
-	private int CodDoacao, CodSolicitacao, CodUsuarioDoador;
-	private Date DtdDoacao;
+	private int codDoacao, codSolicitacao, codUsuarioDoador;
+	private Date dtdDoacao;
 	
 	public DoacoesModel(Context context){
 		
@@ -20,42 +20,42 @@ public class DoacoesModel {
 	
 	public int getCodDoacao(){
 		
-		return CodDoacao;
+		return codDoacao;
 	}
 	
-	public void setCodDoacao(int CodDoacao ){
+	public void setCodDoacao(int codDoacao ){
 		
-		this.CodDoacao = CodDoacao;
+		this.codDoacao = codDoacao;
 	}
 	
 	public int getCodSolicitacao(){
 		
-		return CodSolicitacao;
+		return codSolicitacao;
 	}
 	
-	public void setCodSolicitacao(int CodSolicitacao){
+	public void setCodSolicitacao(int codSolicitacao){
 		
-		this.CodSolicitacao = CodSolicitacao;
+		this.codSolicitacao = codSolicitacao;
 	}
 	
 	public int getCodUsuarioDoador(){
 		
-		return CodUsuarioDoador;
+		return codUsuarioDoador;
 	}
 	
-	public void setCodUsuarioDoador(int CodUsuarioDoador){
+	public void setCodUsuarioDoador(int codUsuarioDoador){
 		
-		this.CodUsuarioDoador = CodUsuarioDoador;
+		this.codUsuarioDoador = codUsuarioDoador;
 	}
 	
 	public Date getDtdDoacao(){
 		
-		return  DtdDoacao;
+		return dtdDoacao;
 	}
 	
-	public void setDtdDoacao(Date DtdDoacao){
+	public void setDtdDoacao(Date dtdDoacao){
 		
-		this.DtdDoacao =  DtdDoacao;
+		this.dtdDoacao =  dtdDoacao;
 	}
 
 }
