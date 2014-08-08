@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.app.doarsp.Utils;
 
 import com.app.adapter.ListaMuralAdapter;
 import com.app.doarsp.R;
@@ -48,12 +49,9 @@ public class Mural extends Fragment {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3){
 				
 				MuralModel mural = muralAdapter.getItem(position);
-				  //Toast.makeText(getActivity(),mural.getComentario(), Toast.LENGTH_SHORT).show();    
-				
-				FragmentManager fragmentManager = getFragmentManager();
-				fragmentManager.beginTransaction()
-						.replace(R.id.frame_container, new MensagemDoMural()).commit();
-
+				Utils.trocarFragment(new MensagemDoMural(), getFragmentManager());
+			    //Toast.makeText(getActivity(),mural.getComentario(), Toast.LENGTH_SHORT).show();    
+					
 			}
 			
 		
