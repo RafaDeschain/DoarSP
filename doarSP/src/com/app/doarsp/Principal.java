@@ -1,5 +1,9 @@
 package com.app.doarsp;
 
+import java.util.List;
+
+import com.app.adapter.ListaMuralAdapter;
+import com.app.model.MuralModel;
 import com.app.model.UserModel;
 
 import android.app.ActionBar;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
  
 public class Principal extends Fragment {
@@ -32,6 +37,13 @@ public class Principal extends Fragment {
         Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
         actionBar = getActivity().getActionBar();
         actionBar.setTitle("Principal");
+        
+        Mural mu = new Mural();
+        ListView listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
+		List<MuralModel> mural = mu.gerarDoacaoMSG();
+		final ListaMuralAdapter muralAdapter = new ListaMuralAdapter(getActivity(), mural);
+		listView.setAdapter(muralAdapter);
+        
 /**
         // Carrega os componentes
         achivementPicture = (ImageView)rootView.findViewById(R.id.PrincipalImageView);

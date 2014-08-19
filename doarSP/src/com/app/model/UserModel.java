@@ -9,7 +9,8 @@ import android.graphics.BitmapFactory;
 import com.app.DAO.ApapterDAO;
 
 public class UserModel {
-	private int codUsuario, tpSanguineo, notificacaoPush, notificacaoEmail, statusApto; 
+	private int codUsuario, tpSanguineo, statusApto; 
+	private boolean notificacaoPush, notificacaoEmail;
 	private String nome, eMail, dtdUltimaDoacao, dtdNascimento;
 	private ApapterDAO DAO;
 	private byte[] imageAchivement;
@@ -36,16 +37,16 @@ public class UserModel {
 	public void setTpSanguineo(int tpSanguineo) {
 		this.tpSanguineo = tpSanguineo;
 	}
-	public int getNotificacaoPush() {
+	public boolean getNotificacaoPush() {
 		return notificacaoPush;
 	}
-	public void setNotificacaoPush(int notificacaoPush) {
+	public void setNotificacaoPush(boolean notificacaoPush) {
 		this.notificacaoPush = notificacaoPush;
 	}
-	public int getNotificacaoEmail() {
+	public boolean getNotificacaoEmail() {
 		return notificacaoEmail;
 	}
-	public void setNotificacaoEmail(int notificacaoEmail) {
+	public void setNotificacaoEmail(boolean notificacaoEmail) {
 		this.notificacaoEmail = notificacaoEmail;
 	}
 	public int getStatusApto() {

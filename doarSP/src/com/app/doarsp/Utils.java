@@ -69,6 +69,48 @@ public class Utils{
 		return flag;
 	}
 	
+	//Método para validar data
+	public static boolean validaData(EditText data){
+		
+		boolean valido = true;
+		
+		if(isEmpty(data)){
+			data.setError("Por favor, coloque uma data");
+			return false;
+		}
+		
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		try
+		{
+			Date date = format.parse(data.getText().toString());
+			Date now = new Date();								
+			Date limite = format.parse("01/01/1900");
+			if (date.after(now) || date.before(limite))
+			{
+				data.setError("Por favor, escolha data válida");
+				valido = false;
+			}
+		} catch (java.text.ParseException e) {				
+			e.printStackTrace();
+		}
+		return valido;
+	}
+	
+	//Método para validar email
+	public static boolean validaEmail(EditText email){
+		
+		if(isEmpty(email)){
+			email.setError("Por favor, coloque um email");
+			return false;
+		}
+		
+		if (!email.getText().toString().contains("@")){
+			email.setError("Por favor, coloque um email válido");
+			return false;
+		}
+		return true;
+	}
+	
 	public static double getMyPositionLatitude(LocationManager locationManager)
 	{
 		
@@ -162,11 +204,18 @@ public class Utils{
 	}
 	
 	//Método para trocar o Fragment
-	public static void trocarFragment(Fragment fragment, FragmentManager fragmentManager){
+	public static void trocarFragment(Fragment fragment, FragmentManager fragmentManager, boolean backStack){
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(R.id.frame_container, fragment);
-		fragmentTransaction.addToBackStack(null);
+		if(backStack == true){
+			fragmentTransaction.addToBackStack(null);
+		}
 		fragmentTransaction.commit();
+	}
+	
+	//Método que verifica se EditText é nulo
+	public static boolean isEmpty(EditText etText){
+		return etText.getText().toString().trim().length() == 0;
 	}
 	
 }

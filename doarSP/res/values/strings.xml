@@ -8,7 +8,7 @@
 	<string name="signature">Atenciosamente,\nGrupo Nothing Else Matters.</string>	
     <string name="configuracao">Alterar Dados</string>
     <string name="tipo_sanguineo">Tipo Sanguineo</string>
-    <string name="nome">Nome</string>
+    <string name="nome">Nome Completo</string>
     <string name="tpSanguineo">Tipo Sanguineo</string>
     <string name="email">E-Mail</string>
     <string name="data_nascimento">Data de Nascimento</string>
@@ -19,7 +19,8 @@
     <string name="dedicatoria"></string>
     <string name="principalapto">Apto a doar</string>
     <string name="google_play_services_version">4323000</string>   
-    <string name="menuAbout">Sobre</string>    
+    <string name="menuAbout">Sobre</string> 
+    <string name="ultimasolicitacoes">Solicitações abertas</string>    
 	
 <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
@@ -67,7 +68,7 @@
     <string name="entrar">Entrar</string>
     <string name="cadastro">Ainda não possui cadastro?</string>
     <string name="cadastroLink">Registre-se agora!</string>
-    <string name="registrartitulo">Registre-se e ajude a salvar vidas</string>
+    <string name="registrartitulo">Registre-se, doe sorrisos :)</string>
     <string name="registrarsenha">Senha</string>
     <string name="loginerro">Login e/ou senha incorreta</string>
 </resources>

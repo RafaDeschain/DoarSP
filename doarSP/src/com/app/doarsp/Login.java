@@ -51,7 +51,7 @@ public class Login extends Fragment{
 			if(checarSessao() == true){
 				View regView = inflater.inflate(R.layout.fragment_principal, container, false);
 				principal = new Principal();
-				Utils.trocarFragment(principal, getFragmentManager());
+				Utils.trocarFragment(principal, getFragmentManager(), false);
 				return regView;
 			}
 			
@@ -61,6 +61,13 @@ public class Login extends Fragment{
 		        View regView = inflater.inflate(R.layout.fragment_login, container, false);
 		        TextView btnRegistrar = (TextView) regView.findViewById(R.id.cadastroLinkTV);
 		        Button btnLogin = (Button) regView.findViewById(R.id.loginBT);
+		        
+		        //Pega o login e a senha digitados
+				loginET = (EditText) regView.findViewById(R.id.loginET);
+				senhaET = (EditText) regView.findViewById(R.id.senhaET);
+				
+				//Cria a classe de modelo login
+				loginModel = new LoginModel();
 		        
 		        btnRegistrar.setOnClickListener(registrarUsuario);
 		        btnLogin.setOnClickListener(loginBtn);
@@ -114,22 +121,18 @@ public class Login extends Fragment{
 		View.OnClickListener registrarUsuario = new View.OnClickListener() {
 			public void onClick(View v) {
 				RegistrarUsuario regUsr = new RegistrarUsuario();
-				Utils.trocarFragment(regUsr, getFragmentManager());
+				Utils.trocarFragment(regUsr, getFragmentManager(), true);
 			}
 		};
 		
 		View.OnClickListener loginBtn = new View.OnClickListener() {
 			public void onClick(View v) {
 				
-				//Pega o login e a senha digitados
-				loginET = (EditText) getView().findViewById(R.id.loginET);
-				senhaET = (EditText) getView().findViewById(R.id.senhaET);
-				
 				//Valida se há algo escrito neles
 				if(validaLogin(loginET.getText().toString(), senhaET.getText().toString()) == true){
 					//Login com sucesso, vai para a tela principal
 					Principal principal = new Principal();
-					Utils.trocarFragment(principal, getFragmentManager());
+					Utils.trocarFragment(principal, getFragmentManager(), false);
 				}
 				else{
 					loginErro.setVisibility(View.VISIBLE);

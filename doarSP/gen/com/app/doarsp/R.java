@@ -271,21 +271,20 @@ containing a value of this type.
         public static final int PrincipalNome=0x7f05001c;
         public static final int PrincipalTIpoSanguineo=0x7f05002a;
         public static final int PrincipalUltimaDoacao=0x7f05002b;
-        public static final int RegistrarDadosCancelar=0x7f05003b;
-        public static final int RegistrarDadosEmail=0x7f050031;
-        public static final int RegistrarDadosEmailNot=0x7f050039;
-        public static final int RegistrarDadosEmailTV=0x7f050030;
-        public static final int RegistrarDadosNascimento=0x7f050036;
-        public static final int RegistrarDadosNascimentoTV=0x7f050035;
-        public static final int RegistrarDadosNome=0x7f05002f;
-        public static final int RegistrarDadosNomeTV=0x7f05002e;
-        public static final int RegistrarDadosPush=0x7f050038;
-        public static final int RegistrarDadosSalvar=0x7f05003a;
-        public static final int RegistrarDadosTipo=0x7f050034;
-        public static final int RegistrarDadosTipoTV=0x7f050037;
-        public static final int RegistrarDadosTitulo=0x7f05002d;
-        public static final int RegistrarSenha=0x7f050033;
-        public static final int RegistrarSenhaTV=0x7f050032;
+        public static final int RegistrarDadosEmail=0x7f050032;
+        public static final int RegistrarDadosEmailNot=0x7f05003a;
+        public static final int RegistrarDadosEmailTV=0x7f050031;
+        public static final int RegistrarDadosNascimento=0x7f050037;
+        public static final int RegistrarDadosNascimentoTV=0x7f050036;
+        public static final int RegistrarDadosNome=0x7f050030;
+        public static final int RegistrarDadosNomeTV=0x7f05002f;
+        public static final int RegistrarDadosPush=0x7f050039;
+        public static final int RegistrarDadosSalvar=0x7f05003b;
+        public static final int RegistrarDadosTipo=0x7f050035;
+        public static final int RegistrarDadosTipoTV=0x7f050038;
+        public static final int RegistrarDadosTitulo=0x7f05002e;
+        public static final int RegistrarSenha=0x7f050034;
+        public static final int RegistrarSenhaTV=0x7f050033;
         public static final int ScrollView01=0x7f05000b;
         public static final int cadastroLayout=0x7f050025;
         public static final int cadastroLinkTV=0x7f050027;
@@ -316,6 +315,7 @@ containing a value of this type.
         public static final int text_view_id=0x7f05003e;
         public static final int text_view_nome_Comentario=0x7f05003d;
         public static final int title=0x7f050009;
+        public static final int ultimasSolicitacoes=0x7f05002d;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
@@ -339,7 +339,7 @@ containing a value of this type.
     public static final class string {
         public static final int aboutMe=0x7f06001e;
         public static final int action_settings=0x7f06001c;
-        public static final int alterardadostitulo=0x7f060031;
+        public static final int alterardadostitulo=0x7f060032;
         public static final int app_name=0x7f06001b;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -364,8 +364,8 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
-        public static final int cadastro=0x7f060036;
-        public static final int cadastroLink=0x7f060037;
+        public static final int cadastro=0x7f060037;
+        public static final int cadastroLink=0x7f060038;
         public static final int cancelar=0x7f060028;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -443,30 +443,31 @@ containing a value of this type.
         public static final int dedicatoria=0x7f06002a;
         /**  Content Description 
          */
-        public static final int desc_list_item_icon=0x7f060030;
-        public static final int drawer_close=0x7f06002f;
-        public static final int drawer_open=0x7f06002e;
+        public static final int desc_list_item_icon=0x7f060031;
+        public static final int drawer_close=0x7f060030;
+        public static final int drawer_open=0x7f06002f;
         public static final int email=0x7f060024;
-        public static final int entrar=0x7f060035;
+        public static final int entrar=0x7f060036;
         public static final int google_play_services_version=0x7f06002c;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f06001a;
-        public static final int login=0x7f060033;
-        public static final int loginerro=0x7f06003a;
-        public static final int mensagemLogin=0x7f060032;
+        public static final int login=0x7f060034;
+        public static final int loginerro=0x7f06003b;
+        public static final int mensagemLogin=0x7f060033;
         public static final int menuAbout=0x7f06002d;
         public static final int nome=0x7f060022;
         public static final int notificacoes_email=0x7f060027;
         public static final int notificacoes_push=0x7f060026;
         public static final int principalapto=0x7f06002b;
-        public static final int registrarsenha=0x7f060039;
-        public static final int registrartitulo=0x7f060038;
+        public static final int registrarsenha=0x7f06003a;
+        public static final int registrartitulo=0x7f060039;
         public static final int salvar=0x7f060029;
-        public static final int senha=0x7f060034;
+        public static final int senha=0x7f060035;
         public static final int signature=0x7f06001f;
         public static final int tipo_sanguineo=0x7f060021;
         public static final int tpSanguineo=0x7f060023;
+        public static final int ultimasolicitacoes=0x7f06002e;
         public static final int version=0x7f06001d;
     }
     public static final class style {
