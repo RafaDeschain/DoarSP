@@ -218,4 +218,12 @@ public class Utils{
 		return etText.getText().toString().trim().length() == 0;
 	}
 	
+	// Sobrecarga do método para escolher qual view trocar
+	public static void trocarFragment(Fragment fragment, FragmentManager fragmentManager, int idView){
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.replace(idView, fragment);
+		fragmentTransaction.addToBackStack(null);
+		fragmentTransaction.commit();
+	}
+	
 }

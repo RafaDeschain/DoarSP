@@ -1,5 +1,7 @@
 package com.app.model;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.database.Cursor;
 
@@ -11,6 +13,7 @@ public class HemocentrosModel {
 	private String endPosto, telPosto, nomePosto;
 	private double latitude, longitude;
 	private ApapterDAO DAO;
+	private ArrayList<SolicitacoesModel> solicitacoes;
 	
 	public HemocentrosModel(Context context){
 		DAO = new ApapterDAO(context);		
@@ -71,5 +74,33 @@ public class HemocentrosModel {
 	public Cursor getAllPostos()
 	{
 		return DAO.getAllPostos();
+	}
+	
+	// Metodos de Solicitacao
+	public void setSolicitacoes(ArrayList<SolicitacoesModel> solicitacoes)
+	{
+		this.solicitacoes = solicitacoes;
+	}
+	
+	public ArrayList<SolicitacoesModel> getSolicitacoes()
+	{
+		return this.solicitacoes;
+	}
+	
+	public void addSolicitacao(SolicitacoesModel solicitacao)
+	{
+		if(solicitacoesIsNull())
+			setSolicitacoes(new ArrayList<SolicitacoesModel>());
+		this.solicitacoes.add(solicitacao);
+	}
+	
+	public SolicitacoesModel getSolicitacao(int indice)
+	{
+		return this.solicitacoes.get(indice);
+	}
+	
+	public boolean solicitacoesIsNull()
+	{
+		return (this.solicitacoes == null);
 	}
 }

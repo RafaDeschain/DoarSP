@@ -179,7 +179,7 @@ public class MainActivity extends Activity {
 			fragment = new Principal();
 			break;
 		case 1:
-			fragment = new Principal();
+			fragment = new BuscarDoacoes();
 			break;
 		case 2:
 			fragment = new Principal();
