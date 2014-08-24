@@ -1,7 +1,5 @@
 package com.app.model;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.database.Cursor;
 
@@ -9,11 +7,10 @@ import com.app.DAO.ApapterDAO;
 import com.app.doarsp.ArrayPostos;
 
 public class HemocentrosModel {
-	private int codPosto;
-	private String endPosto, telPosto, nomePosto;
-	private double latitude, longitude;
+	private int CodPosto;
+	private String EndPosto, TelPosto, NomePosto;
+	private double Latitude, Longitude;
 	private ApapterDAO DAO;
-	private ArrayList<SolicitacoesModel> solicitacoes;
 	
 	public HemocentrosModel(Context context){
 		DAO = new ApapterDAO(context);		
@@ -24,40 +21,40 @@ public class HemocentrosModel {
 	}
 	
 	public int getCodPosto() {
-		return codPosto;
+		return CodPosto;
 	}
 	public void setCodPosto(int codPosto) {
-		this.codPosto = codPosto;
+		CodPosto = codPosto;
 	}
 	public String getEndPosto() {
-		return endPosto;
+		return EndPosto;
 	}
 	public void setEndPosto(String endPosto) {
-		this.endPosto = endPosto;
+		EndPosto = endPosto;
 	}
 	public String getTelPosto() {
-		return telPosto;
+		return TelPosto;
 	}
 	public void setTelPosto(String telPosto) {
-		this.telPosto = telPosto;
+		TelPosto = telPosto;
 	}
 	public String getNomePosto() {
-		return nomePosto;
+		return NomePosto;
 	}
 	public void setNomePosto(String nomePosto) {
-		this.nomePosto = nomePosto;
+		NomePosto = nomePosto;
 	}
 	public double getLatitude() {
-		return latitude;
+		return Latitude;
 	}
 	public void setLatitude(double latitude) {
-		this.latitude = latitude;
+		Latitude = latitude;
 	}
 	public double getLongitude() {
-		return longitude;
+		return Longitude;
 	}
 	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+		Longitude = longitude;
 	}
 	
 	public boolean checkPosto()
@@ -74,33 +71,5 @@ public class HemocentrosModel {
 	public Cursor getAllPostos()
 	{
 		return DAO.getAllPostos();
-	}
-	
-	// Metodos de Solicitacao
-	public void setSolicitacoes(ArrayList<SolicitacoesModel> solicitacoes)
-	{
-		this.solicitacoes = solicitacoes;
-	}
-	
-	public ArrayList<SolicitacoesModel> getSolicitacoes()
-	{
-		return this.solicitacoes;
-	}
-	
-	public void addSolicitacao(SolicitacoesModel solicitacao)
-	{
-		if(solicitacoesIsNull())
-			setSolicitacoes(new ArrayList<SolicitacoesModel>());
-		this.solicitacoes.add(solicitacao);
-	}
-	
-	public SolicitacoesModel getSolicitacao(int indice)
-	{
-		return this.solicitacoes.get(indice);
-	}
-	
-	public boolean solicitacoesIsNull()
-	{
-		return (this.solicitacoes == null);
 	}
 }

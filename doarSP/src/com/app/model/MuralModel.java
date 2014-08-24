@@ -1,53 +1,68 @@
 package com.app.model;
 
-
+import android.content.Context;
 
 public class MuralModel {
 	
-	private int codMural, codSolicitacao, imagem;
-	private String comentario ;
+	private int CodMural, CodSolicitacao, imagem;
+	private String Comentario ;
 	
-	public MuralModel(int codMural, int codSolicitacao, String comentario, int imagem  ){
-		setCodMural(codMural);
-		setCodSolicitacao(codSolicitacao);
-		setComentario(comentario);
-		setImagem(imagem);
+	public MuralModel(int CodMural, int CodSolicitacao, String Comentario, int imagem  ){
+		
+		super();
+		this.CodMural = CodMural;
+		this.CodSolicitacao = CodSolicitacao;
+		this.Comentario = Comentario;
+		this.imagem = imagem;
+		
 	}
 	
 	public MuralModel(){
 		
+		
 	}
-
-	public int getCodMural() {
-		return codMural;
+	
+	public int getCodMural(){
+		
+		return CodMural;
 	}
-
-	public void setCodMural(int codMural) {
-		this.codMural = codMural;
+	
+	public void setCodMural(int CodMural){
+		
+		this.CodMural = CodMural;
 	}
-
-	public int getCodSolicitacao() {
-		return codSolicitacao;
+	
+	public int getCodSolicitacao(){
+		
+		return CodSolicitacao;
 	}
-
-	public void setCodSolicitacao(int codSolicitacao) {
-		this.codSolicitacao = codSolicitacao;
+	
+	public void setCodSolicitacao(int CodSolicitacao){
+		
+		this.CodSolicitacao = CodSolicitacao;
 	}
-
-	public int getImagem() {
-		return imagem;
+	
+	public String getComentario(){
+		
+		return Comentario;
 	}
-
-	public void setImagem(int imagem) {
+	
+	public void setComentario(String Comentario){
+		
+		this.Comentario = Comentario;
+	}
+	
+	 public int getImagem() {
+		 
+	    return imagem;
+	        
+	 }
+	 
+	  public void setImagem(int imagem) {
+		  
 		this.imagem = imagem;
-	}
-
-	public String getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}
+	 } 
+	
+	
 
 }

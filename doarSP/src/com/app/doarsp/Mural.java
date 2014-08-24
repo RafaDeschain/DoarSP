@@ -36,7 +36,6 @@ public class Mural extends Fragment {
 
 		View rootView = inflater.inflate(R.layout.fragment_mural,
 				container, false);
-		
 		ListView listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
 		
 		List<MuralModel> mural = gerarDoacaoMSG(); // metodo para criar a lista (dados).
@@ -50,7 +49,7 @@ public class Mural extends Fragment {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3){
 				
 				MuralModel mural = muralAdapter.getItem(position);
-				Utils.trocarFragment(new MensagemDoMural(), getFragmentManager(), true);
+				Utils.trocarFragment(new MensagemDoMural(), getFragmentManager());
 			    //Toast.makeText(getActivity(),mural.getComentario(), Toast.LENGTH_SHORT).show();    
 					
 			}
@@ -62,9 +61,8 @@ public class Mural extends Fragment {
 		return rootView;
 	}
 	
-	public List<MuralModel> gerarDoacaoMSG() {
-	    
-		List<MuralModel> mural = new ArrayList<MuralModel>();
+	private List<MuralModel>gerarDoacaoMSG() {
+	    List<MuralModel> mural = new ArrayList<MuralModel>();
 	    mural.add(criarMural(1,1,"teste1",R.drawable.ic_firstachivement));
 	    mural.add(criarMural(2,2,"teste2",R.drawable.ic_firstachivement));
 	    mural.add(criarMural(2,2,"teste3",R.drawable.ic_firstachivement ));

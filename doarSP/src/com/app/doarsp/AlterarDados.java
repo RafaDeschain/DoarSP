@@ -38,8 +38,8 @@ public class AlterarDados extends Fragment {
 			UserData.setTpSanguineo(tpSanguineo.getSelectedItemPosition());
 			UserData.seteMail(eMail);
 			UserData.setDtdNascimento(dataNasc);
-			UserData.setNotificacaoPush(notificaoPush.isChecked());
-			UserData.setNotificacaoEmail(notificaoEmail.isChecked());
+			UserData.setNotificacaoPush((notificaoPush.isChecked() ? 1 : 0));
+			UserData.setNotificacaoEmail((notificaoEmail.isChecked() ? 1 : 0));
 			Resources res = getResources();
 			
 			if (Utils.validadeValues(context, dataNasc, eMail) && (UserData.postInsert(res))) {
@@ -70,8 +70,8 @@ public class AlterarDados extends Fragment {
 		tpSanguineo.setSelection(UserData.getTpSanguineo());
 		eMailEdit.setText(UserData.geteMail());
 		dataNasEdit.setText(UserData.getDtdNascimento());
-		notificaoPush.setChecked(UserData.getNotificacaoPush());
-		notificaoEmail.setChecked(UserData.getNotificacaoEmail());
+		notificaoPush.setChecked((UserData.getNotificacaoPush() == 1 ? true : false));
+		notificaoEmail.setChecked(UserData.getNotificacaoEmail() == 1 ? true : false);
 		btnSalvar.setOnClickListener(saveBtnHandlerClickForUpdate);
 		
 		return rootView;

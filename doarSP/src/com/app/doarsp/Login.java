@@ -27,7 +27,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.app.*;
-import com.app.model.*;
+import com.app.model.UserModel;
 import com.google.android.gms.drive.internal.GetMetadataRequest;
 
 @SuppressLint("ValidFragment")
@@ -35,7 +35,7 @@ public class Login extends Fragment{
 	
 	Utils util;
 	
-	private LoginModel loginModel;
+	private String login, senha;
 	
 	ActionBar actionBar;
     Principal principal;
@@ -51,7 +51,7 @@ public class Login extends Fragment{
 			if(checarSessao() == true){
 				View regView = inflater.inflate(R.layout.fragment_principal, container, false);
 				principal = new Principal();
-				Utils.trocarFragment(principal, getFragmentManager(), false);
+				Utils.trocarFragment(principal, getFragmentManager());
 				return regView;
 			}
 			
@@ -61,13 +61,6 @@ public class Login extends Fragment{
 		        View regView = inflater.inflate(R.layout.fragment_login, container, false);
 		        TextView btnRegistrar = (TextView) regView.findViewById(R.id.cadastroLinkTV);
 		        Button btnLogin = (Button) regView.findViewById(R.id.loginBT);
-		        
-		        //Pega o login e a senha digitados
-				loginET = (EditText) regView.findViewById(R.id.loginET);
-				senhaET = (EditText) regView.findViewById(R.id.senhaET);
-				
-				//Cria a classe de modelo login
-				loginModel = new LoginModel();
 		        
 		        btnRegistrar.setOnClickListener(registrarUsuario);
 		        btnLogin.setOnClickListener(loginBtn);
@@ -94,8 +87,8 @@ public class Login extends Fragment{
 			if (login.equals("") || senha.equals("")){
 				return false;
 			}else{
-				loginModel.setLogin(login);
-				loginModel.setSenha(senha);
+				setLogin(login);
+				setSenha(senha);
 				return true;
 			}
 		}
@@ -121,18 +114,22 @@ public class Login extends Fragment{
 		View.OnClickListener registrarUsuario = new View.OnClickListener() {
 			public void onClick(View v) {
 				RegistrarUsuario regUsr = new RegistrarUsuario();
-				Utils.trocarFragment(regUsr, getFragmentManager(), true);
+				Utils.trocarFragment(regUsr, getFragmentManager());
 			}
 		};
 		
 		View.OnClickListener loginBtn = new View.OnClickListener() {
 			public void onClick(View v) {
 				
+				//Pega o login e a senha digitados
+				loginET = (EditText) getView().findViewById(R.id.loginET);
+				senhaET = (EditText) getView().findViewById(R.id.senhaET);
+				
 				//Valida se há algo escrito neles
 				if(validaLogin(loginET.getText().toString(), senhaET.getText().toString()) == true){
 					//Login com sucesso, vai para a tela principal
 					Principal principal = new Principal();
-					Utils.trocarFragment(principal, getFragmentManager(), false);
+					Utils.trocarFragment(principal, getFragmentManager());
 				}
 				else{
 					loginErro.setVisibility(View.VISIBLE);
@@ -141,4 +138,25 @@ public class Login extends Fragment{
 		};
 		
 		/** Fim Métodos dos botões **/
+		
+		/** Métodos set e get da classe **/
+		
+		public void setLogin(String login){
+			this.login = login;
+		}
+		
+		public void setSenha(String senha){
+			//this.senha = util.toSHA1(senha.getBytes());
+			this.senha = senha;
+		}
+		
+		public String getLogin(){
+			return login;
+		}
+		
+		public String getSenha(){
+			return senha;
+		}
+		
+		/** Fim Métodos set e get da classe **/
 }
