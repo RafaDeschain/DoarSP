@@ -16,6 +16,7 @@ public final class R {
         /**  Nav Drawer Menu Items 
          */
         public static final int nav_drawer_items=0x7f090000;
+        public static final int quant_doaco=0x7f090003;
         public static final int tipos_Sanguineos=0x7f090002;
     }
     public static final class attr {
@@ -266,41 +267,47 @@ containing a value of this type.
         public static final int AlterarDadosTipoTV=0x7f050014;
         public static final int AlterarDadosTitulo=0x7f05000c;
         public static final int InnerRelativeLayot=0x7f050017;
-        public static final int PrincipalAptoDoar=0x7f05002f;
-        public static final int PrincipalImageView=0x7f05002c;
+        public static final int NomePacienteSolicitacao=0x7f05002d;
+        public static final int NomePacienteSolicitacaoTV=0x7f05002c;
+        public static final int PacienteSolicitacaoTi=0x7f05002b;
+        public static final int PrincipalAptoDoar=0x7f05003b;
+        public static final int PrincipalImageView=0x7f050038;
         public static final int PrincipalNome=0x7f05001f;
-        public static final int PrincipalTIpoSanguineo=0x7f05002d;
-        public static final int PrincipalUltimaDoacao=0x7f05002e;
-        public static final int RegistrarDadosEmail=0x7f050035;
-        public static final int RegistrarDadosEmailNot=0x7f05003d;
-        public static final int RegistrarDadosEmailTV=0x7f050034;
-        public static final int RegistrarDadosNascimento=0x7f05003a;
-        public static final int RegistrarDadosNascimentoTV=0x7f050039;
-        public static final int RegistrarDadosNome=0x7f050033;
-        public static final int RegistrarDadosNomeTV=0x7f050032;
-        public static final int RegistrarDadosPush=0x7f05003c;
-        public static final int RegistrarDadosSalvar=0x7f05003e;
-        public static final int RegistrarDadosTipo=0x7f050038;
-        public static final int RegistrarDadosTipoTV=0x7f05003b;
-        public static final int RegistrarDadosTitulo=0x7f050031;
-        public static final int RegistrarSenha=0x7f050037;
-        public static final int RegistrarSenhaTV=0x7f050036;
+        public static final int PrincipalTIpoSanguineo=0x7f050039;
+        public static final int PrincipalUltimaDoacao=0x7f05003a;
+        public static final int RegistrarDadosEmail=0x7f050041;
+        public static final int RegistrarDadosEmailNot=0x7f050049;
+        public static final int RegistrarDadosEmailTV=0x7f050040;
+        public static final int RegistrarDadosNascimento=0x7f050046;
+        public static final int RegistrarDadosNascimentoTV=0x7f050045;
+        public static final int RegistrarDadosNome=0x7f05003f;
+        public static final int RegistrarDadosNomeTV=0x7f05003e;
+        public static final int RegistrarDadosPush=0x7f050048;
+        public static final int RegistrarDadosSalvar=0x7f05004a;
+        public static final int RegistrarDadosTipo=0x7f050044;
+        public static final int RegistrarDadosTipoTV=0x7f050047;
+        public static final int RegistrarDadosTitulo=0x7f05003d;
+        public static final int RegistrarSenha=0x7f050043;
+        public static final int RegistrarSenhaTV=0x7f050042;
         public static final int ScrollView01=0x7f05000b;
+        public static final int SolicitacaoDadosHemoTV=0x7f050034;
+        public static final int SolicitacaoPostoHemocentro=0x7f050035;
+        public static final int SolicitacaoSalvar=0x7f050036;
         public static final int cadastroLayout=0x7f050028;
         public static final int cadastroLinkTV=0x7f05002a;
         public static final int cadastroTV=0x7f050029;
         public static final int counter=0x7f05000a;
         public static final int drawer_layout=0x7f050005;
-        public static final int endPosto=0x7f050041;
+        public static final int endPosto=0x7f05004d;
         public static final int feed=0x7f05001a;
         public static final int frame_container=0x7f050006;
         public static final int hemocentros=0x7f05001c;
         public static final int hybrid=0x7f050004;
         public static final int icon=0x7f050008;
-        public static final int image_view_mural=0x7f050043;
-        public static final int imagemPosto=0x7f05003f;
+        public static final int image_view_mural=0x7f05004f;
+        public static final int imagemPosto=0x7f05004b;
         public static final int list_slidermenu=0x7f050007;
-        public static final int lista_doacoes=0x7f05002b;
+        public static final int lista_doacoes=0x7f050037;
         public static final int loginBT=0x7f050027;
         public static final int loginET=0x7f050023;
         public static final int loginScrollView=0x7f050020;
@@ -309,20 +316,26 @@ containing a value of this type.
         public static final int map=0x7f05001d;
         public static final int mapa=0x7f05001b;
         public static final int mensagemLogin=0x7f050021;
-        public static final int menuAbout=0x7f050046;
-        public static final int nomePosto=0x7f050040;
+        public static final int menuAbout=0x7f050052;
+        public static final int nomePosto=0x7f05004c;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int quantSolicitacoes=0x7f050042;
+        public static final int quantSolicitacoes=0x7f05004e;
         public static final int satellite=0x7f050002;
         public static final int senhaET=0x7f050024;
         public static final int senhaTV=0x7f050025;
+        public static final int solicitacaoDadosHemo=0x7f050033;
+        public static final int solicitacaoDadosTipo=0x7f050032;
+        public static final int solicitacaoQuantidadeDoacao=0x7f050031;
+        public static final int solicitacaoQuantidadeDoacaoTv=0x7f050030;
+        public static final int solicitacaoidIdade=0x7f05002f;
+        public static final int solicitacaoidIdadeTv=0x7f05002e;
         public static final int terrain=0x7f050003;
         public static final int textView2=0x7f05001e;
-        public static final int text_view_id=0x7f050045;
-        public static final int text_view_nome_Comentario=0x7f050044;
+        public static final int text_view_id=0x7f050051;
+        public static final int text_view_nome_Comentario=0x7f050050;
         public static final int title=0x7f050009;
-        public static final int ultimasSolicitacoes=0x7f050030;
+        public static final int ultimasSolicitacoes=0x7f05003c;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
@@ -337,16 +350,18 @@ containing a value of this type.
         public static final int fragment_hemocentro=0x7f030006;
         public static final int fragment_informacoes=0x7f030007;
         public static final int fragment_login=0x7f030008;
-        public static final int fragment_mural=0x7f030009;
-        public static final int fragment_principal=0x7f03000a;
-        public static final int fragment_registrar=0x7f03000b;
-        public static final int item_hemocentro=0x7f03000c;
-        public static final int item_layout_mural=0x7f03000d;
+        public static final int fragment_mantersolicitacao=0x7f030009;
+        public static final int fragment_mural=0x7f03000a;
+        public static final int fragment_principal=0x7f03000b;
+        public static final int fragment_registrar=0x7f03000c;
+        public static final int item_hemocentro=0x7f03000d;
+        public static final int item_layout_mural=0x7f03000e;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
     }
     public static final class string {
+        public static final int CadastrarQuantiadDoacao=0x7f060045;
         public static final int aboutMe=0x7f06001e;
         public static final int action_settings=0x7f06001c;
         public static final int alterardadostitulo=0x7f060032;
@@ -464,6 +479,7 @@ containing a value of this type.
         public static final int entrar=0x7f060036;
         public static final int filtro=0x7f06003e;
         public static final int google_play_services_version=0x7f06002c;
+        public static final int idade=0x7f060044;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f06001a;
@@ -474,11 +490,13 @@ containing a value of this type.
         public static final int nome=0x7f060022;
         public static final int notificacoes_email=0x7f060027;
         public static final int notificacoes_push=0x7f060026;
+        public static final int postoHemocentro=0x7f060043;
         public static final int principalapto=0x7f06002b;
         public static final int quantSolicitacao0=0x7f06003f;
         public static final int quantSolicitacao1=0x7f060040;
         public static final int quantSolicitacaoN=0x7f060041;
         public static final int registrarsenha=0x7f06003a;
+        public static final int registrarsolicitao=0x7f060042;
         public static final int registrartitulo=0x7f060039;
         public static final int salvar=0x7f060029;
         public static final int senha=0x7f060035;

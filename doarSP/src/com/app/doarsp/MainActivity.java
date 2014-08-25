@@ -182,7 +182,7 @@ public class MainActivity extends Activity {
 			fragment = new BuscarDoacoes();
 			break;
 		case 2:
-			fragment = new Principal();
+			fragment = new ManterSolicitacao();
 			break;
 		case 3:
 			fragment = new Mural();

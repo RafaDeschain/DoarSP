@@ -61,6 +61,40 @@
         <item>O</item>
         <item>O-</item>
     </string-array>
+    
+       <string-array name="quant_doaco">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+    </string-array>
+    
     <string name="alterardadostitulo">Dados Pessoais</string>
     <string name="mensagemLogin">Seja bem-vindo ao DoarSP!</string>
     <string name="login">Login:</string>
@@ -78,4 +112,8 @@
    	<string name="quantSolicitacao0">Que ótimo! Não existe solicitações. :)</string>
    	<string name="quantSolicitacao1">Apenas uma solicitação.</string>
    	<string name="quantSolicitacaoN">Qtd. de Solicitações:</string>
+   	<string name ="registrarsolicitao">Solicitar Doadores</string>
+   	<string name="postoHemocentro">Postos de doação </string>
+   	<string name="idade">Idade </string>
+   	<string name="CadastrarQuantiadDoacao">Quantidade de doações necessitada </string> 
 </resources>

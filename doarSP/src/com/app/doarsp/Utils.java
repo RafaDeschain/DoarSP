@@ -147,7 +147,7 @@ public class Utils{
             public void onProviderDisabled(String provider) {}
             
         };
-        lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, lListener);
+       // lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, lListener);
     }
 	
     public void updateView(Location locat){
