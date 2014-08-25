@@ -148,7 +148,7 @@
 			        android:layout_alignParentRight="true"
 			        android:layout_below="@dimen/activity_horizontal_margin"
 			        android:layout_marginTop="12dp"
-			        android:text="@string/salvar" />
+			        android:text="@string/entrar" />
 			        
 			
 
