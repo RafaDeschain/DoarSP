@@ -92,6 +92,28 @@ public class Utils{
 		return location.getLongitude();
 	}
 	
+	
+	  //Método que faz a leitura de fato dos valores recebidos do GPS
+    public void startGPS(){   	
+   //     LocationManager lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); (verificar getSystemService, extender o activity no utils?)
+        LocationListener lListener = new LocationListener() {
+            public void onLocationChanged(Location locat) {
+                updateView(locat);            	
+            }
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+            public void onProviderEnabled(String provider) {}
+            public void onProviderDisabled(String provider) {}
+            
+        };
+        lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, lListener);
+    }
+	
+    public void updateView(Location locat){
+        Double latitude = locat.getLatitude(); 
+        Double longitude = locat.getLongitude();		
+    }
+    
+    
 	//Desabilita o slide do menu lateral	
 	public static void disableSlideMenu(DrawerLayout mDrawerLayout, ActionBar actionBar){
 		mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
