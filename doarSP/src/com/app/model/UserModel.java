@@ -9,7 +9,8 @@ import android.graphics.BitmapFactory;
 import com.app.DAO.ApapterDAO;
 
 public class UserModel {
-	private int codUsuario, tpSanguineo, NotificacaoPush, NotificacaoEmail, StatusApto; 
+	private int codUsuario, tpSanguineo, statusApto; 
+	private boolean notificacaoPush, notificacaoEmail;
 	private String nome, eMail, dtdUltimaDoacao, dtdNascimento;
 	private ApapterDAO DAO;
 	private byte[] imageAchivement;
@@ -36,23 +37,23 @@ public class UserModel {
 	public void setTpSanguineo(int tpSanguineo) {
 		this.tpSanguineo = tpSanguineo;
 	}
-	public int getNotificacaoPush() {
-		return NotificacaoPush;
+	public boolean getNotificacaoPush() {
+		return notificacaoPush;
 	}
-	public void setNotificacaoPush(int notificacaoPush) {
-		NotificacaoPush = notificacaoPush;
+	public void setNotificacaoPush(boolean notificacaoPush) {
+		this.notificacaoPush = notificacaoPush;
 	}
-	public int getNotificacaoEmail() {
-		return NotificacaoEmail;
+	public boolean getNotificacaoEmail() {
+		return notificacaoEmail;
 	}
-	public void setNotificacaoEmail(int notificacaoEmail) {
-		NotificacaoEmail = notificacaoEmail;
+	public void setNotificacaoEmail(boolean notificacaoEmail) {
+		this.notificacaoEmail = notificacaoEmail;
 	}
 	public int getStatusApto() {
-		return StatusApto;
+		return statusApto;
 	}
 	public void setStatusApto(int statusApto) {
-		StatusApto = statusApto;
+		this.statusApto = statusApto;
 	}
 	public String getNome() {
 		return nome;
@@ -72,10 +73,12 @@ public class UserModel {
 	public void setDtdUltimaDoacao(String dtdUltimaDoacao) {
 		this.dtdUltimaDoacao = dtdUltimaDoacao;
 	}
+	
 	@SuppressLint("SimpleDateFormat")
 	public String getDtdNascimento() {							
 		return dtdNascimento;
 	}
+	
 	public void setDtdNascimento(String dtdNascimento) {
 		this.dtdNascimento = dtdNascimento;
 	}

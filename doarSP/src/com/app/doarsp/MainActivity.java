@@ -119,7 +119,9 @@ public class MainActivity extends Activity {
 		}
 		
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
-		displayView(0);
+		//displayView(0);
+		Fragment login = new Login(getApplicationContext());
+		Utils.trocarFragment(login, getFragmentManager(), false);
 	}
 
 	/**
@@ -171,15 +173,16 @@ public class MainActivity extends Activity {
 		
 		//Pega qual é o item que está sendo clicado
 		Fragment fragment = null;
+		
 		switch (position) {
 		case 0:
-			fragment = new Login(getApplicationContext());
-			break;
-		case 1:
 			fragment = new Principal();
 			break;
+		case 1:
+			fragment = new BuscarDoacoes();
+			break;
 		case 2:
-			fragment = new ManterSolicitacao();
+			fragment = new Principal();
 			break;
 		case 3:
 			fragment = new Mural();
@@ -195,7 +198,6 @@ public class MainActivity extends Activity {
 			break;
 					
 		default:
-			fragment = new Login(getApplicationContext());
 			break;
 		}
 		
@@ -203,7 +205,7 @@ public class MainActivity extends Activity {
 		
 		if (fragment != null) {
 			
-			Utils.trocarFragment(fragment, getFragmentManager());
+			Utils.trocarFragment(fragment, getFragmentManager(), true);
 			
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);

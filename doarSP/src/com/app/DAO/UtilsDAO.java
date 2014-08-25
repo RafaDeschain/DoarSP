@@ -240,8 +240,8 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		userData.setTpSanguineo(query.getInt(1));
 		userData.setNome(query.getString(2));
 		userData.seteMail(query.getString(3));
-		userData.setNotificacaoPush(query.getInt(4));
-		userData.setNotificacaoEmail(query.getInt(5)); 
+		userData.setNotificacaoPush(query.getInt(4) == 1 ? true : false );
+		userData.setNotificacaoEmail(query.getInt(5) == 1 ? true : false); 
 		userData.setStatusApto(query.getInt(6)); 
 		userData.setDtdUltimaDoacao(query.getString(7));
 		userData.setDtdNascimento(query.getString(8));

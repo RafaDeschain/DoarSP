@@ -1,5 +1,8 @@
 package com.app.doarsp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
@@ -14,40 +17,66 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.app.model.LoginModel;
 import com.app.model.UserModel;
 
 import com.app.doarsp.R;
 
 public class RegistrarUsuario extends Fragment {
 	
-	UserModel UserData;
-    EditText nameEdit, eMailEdit, dataNasEdit;
+	LoginModel userModel;
+    EditText nameEdit, eMailEdit, dataNasEdit, senhaEdit;
     Spinner tpSanguineo;
     CheckBox notificaoPush, notificaoEmail;
-    Context context;
     ActionBar actionBar;
     Utils util;
-    
-	public RegistrarUsuario(){
-		//Construtor em branco
-	}
+    Button btnSalvar;
 	
 	View.OnClickListener saveBtnHandlerClickForInsert = new View.OnClickListener() {
 		public void onClick(View v) {
-			String eMail    = eMailEdit.getText().toString();
-			String dataNasc = dataNasEdit.getText().toString();				
-
-			UserData.setNome(nameEdit.getText().toString());
-			UserData.setTpSanguineo(tpSanguineo.getSelectedItemPosition());
-			UserData.seteMail(eMail);
-			UserData.setDtdNascimento(dataNasc);
-			UserData.setNotificacaoPush((notificaoPush.isChecked() ? 1 : 0));
-			UserData.setNotificacaoEmail((notificaoEmail.isChecked() ? 1 : 0));
-			Resources res = getResources();
 			
-			if (Utils.validadeValues(context, dataNasc, eMail) && (UserData.postInsert(res))) {
-				Utils.showMessage(context, "Cadastro Efetuado com Sucesso", 0);
-				Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+			boolean valido = true;
+			boolean dataValida = true;
+			
+			if(Utils.isEmpty(nameEdit)){
+				nameEdit.setError("Por favor, preencha o nome");
+				valido = false;
+			}
+			if(Utils.validaEmail(eMailEdit) == false){
+				valido = false;
+			}
+			if(Utils.validaData(dataNasEdit) == false){
+				valido = false;
+			}
+			if(Utils.isEmpty(senhaEdit)){
+				senhaEdit.setError("Por favor, escolha uma senha");
+				valido = false;
+			}
+			
+			if (valido == true) {
+				
+				//Transforma os EditTexts para String
+				String nameString = nameEdit.getText().toString();
+				String eMailString = eMailEdit.getText().toString();
+				String senhaString = senhaEdit.getText().toString();
+				int tpSanguineoInt = tpSanguineo.getSelectedItemPosition();
+				String dataNasString = dataNasEdit.getText().toString();
+				boolean notificaoPushVal = notificaoPush.isChecked();
+				boolean notificaoEmailVal = notificaoEmail.isChecked();
+				
+				//Seta a classe de modelo
+				userModel = new LoginModel();
+				userModel.setNome(nameString);
+				userModel.seteMail(eMailString);
+				userModel.setSenha(senhaString);
+				userModel.setTpSanguineo(tpSanguineoInt);
+				userModel.setDtdNascimento(dataNasString);
+				userModel.setNotificacaoPush(notificaoPushVal);
+				userModel.setNotificacaoEmail(notificaoEmailVal);
+				
+				
+				Utils.showMessage(getActivity().getApplicationContext(), "Cadastro Efetuado com Sucesso", 0);
+				//Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
 			}
 		}
 	};
@@ -55,33 +84,25 @@ public class RegistrarUsuario extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-/**
-		View rootView = inflater.inflate(R.layout.fragment_registrar, container, false);
-		context = rootView.getContext();
-		UserData = new UserModel(context);
 		
-		UserData.getUserData(UserData);
+		View registrar = inflater.inflate(R.layout.fragment_registrar, container, false);
 		
-		nameEdit = (EditText)rootView.findViewById(R.id.);		
-		tpSanguineo = (Spinner)rootView.findViewById(R.id.);
-		eMailEdit = (EditText)rootView.findViewById(R.id.);
-		dataNasEdit = (EditText)rootView.findViewById(R.id.);
-		notificaoPush = (CheckBox)rootView.findViewById(R.id.);
-		notificaoEmail = (CheckBox)rootView.findViewById(R.id.);
-		Button btnSalvar = (Button) rootView.findViewById(R.id.);
-				
-		btnSalvar.setOnClickListener(saveBtnHandlerClickForInsert);
-		CharSequence mFirstTitle = "Doe sorrisos :)";
-		getActivity().getActionBar().setTitle(mFirstTitle);
-		
-		return rootView;
-		**/
-		
-		View rootView = inflater.inflate(R.layout.fragment_registrar, container, false);
 		actionBar = getActivity().getActionBar();
 		actionBar.setTitle("Registre-se");
-		dataNasEdit = (EditText)rootView.findViewById(R.id.RegistrarDadosNascimento);
+		dataNasEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosNascimento);
 		dataNasEdit.addTextChangedListener(Utils.insert("##/##/####", dataNasEdit));
-		return rootView;
+		
+		nameEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosNome);
+		eMailEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosEmail);
+		senhaEdit = (EditText)registrar.findViewById(R.id.RegistrarSenha);
+		tpSanguineo = (Spinner)registrar.findViewById(R.id.RegistrarDadosTipo);
+		dataNasEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosNascimento);
+		notificaoPush = (CheckBox)registrar.findViewById(R.id.RegistrarDadosPush);
+		notificaoEmail = (CheckBox)registrar.findViewById(R.id.RegistrarDadosEmailNot);
+		btnSalvar = (Button) registrar.findViewById(R.id.RegistrarDadosSalvar);
+				
+		btnSalvar.setOnClickListener(saveBtnHandlerClickForInsert);
+		
+		return registrar;
 	}
 }
