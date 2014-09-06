@@ -24,12 +24,31 @@ public class ManterSolicitacao extends Fragment {
 	
 	View.OnClickListener saveBtnInsert = new View.OnClickListener() {
 	public void onClick(View v) {
+			boolean campo = true;
+			
+			if(Utils.isEmpty(nomeEdite)){
+				nomeEdite.setError("Por favor, preencha o nome");
+				campo = false;
+			}
+			
+			if(Utils.isEmpty(idadeEdite)){
+				idadeEdite.setError("Por favor, preencha a idade");
+				campo = false;
+			}
+			
+			if(campo == true)
+			{
+				solicitacao.setNome(nomeEdite.getText().toString());
+				solicitacao.setIdade(Integer.parseInt((idadeEdite.getText().toString())));
+				solicitacao.setQtnDoacoes(qtdDoacao.getSelectedItemPosition());
+				solicitacao.setPostoDoacao(Integer.toString(pstDoacao.getSelectedItemPosition()));
+				solicitacao.setTipoSanguineo(Integer.toString(tpSanguineo.getSelectedItemPosition()));
+				
+				Utils.showMessage(getActivity().getApplicationContext(), "Solicitação efetuado com sucesso", 0);    
+				
+			}
 		
-			solicitacao.setNome(nomeEdite.getText().toString());
-			solicitacao.setIdade(Integer.parseInt((idadeEdite.getText().toString())));
-			solicitacao.setQtnDoacoes(qtdDoacao.getSelectedItemPosition());
-			solicitacao.setPostoDoacao(Integer.toString(pstDoacao.getSelectedItemPosition()));
-			solicitacao.setTipoSanguineo(Integer.toString(tpSanguineo.getSelectedItemPosition()));
+
 			
 		}
 	};
