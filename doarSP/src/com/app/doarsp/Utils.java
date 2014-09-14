@@ -254,4 +254,11 @@ public class Utils{
 		fragmentTransaction.commit();
 	}
 	
+	public static boolean validarIdade(EditText etText){
+		
+		
+		return Integer.parseInt(etText.getText().toString()) >=115;
+		
+	}
+	
 }
