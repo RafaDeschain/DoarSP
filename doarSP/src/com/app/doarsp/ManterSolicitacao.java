@@ -25,7 +25,6 @@ public class ManterSolicitacao extends Fragment {
 	View.OnClickListener saveBtnInsert = new View.OnClickListener() {
 	public void onClick(View v) {
 			boolean campo = true;
-		
 			
 			if(Utils.isEmpty(nomeEdite)){
 				nomeEdite.setError("Por favor, preencha o nome");
@@ -36,13 +35,6 @@ public class ManterSolicitacao extends Fragment {
 				idadeEdite.setError("Por favor, preencha a idade");
 				campo = false;
 			}
-			
-				
-			else if (Utils.validarIdade(idadeEdite)){
-				idadeEdite.setError("Por favor, preencha uma idade valida");
-				campo = false;
-			}
-			
 			
 			if(campo == true)
 			{
@@ -55,8 +47,7 @@ public class ManterSolicitacao extends Fragment {
 				Utils.showMessage(getActivity().getApplicationContext(), "Solicitação efetuado com sucesso", 0);    
 				
 			}
-			
-			
+		
 
 			
 		}

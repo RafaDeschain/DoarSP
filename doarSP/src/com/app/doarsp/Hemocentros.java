@@ -57,7 +57,7 @@ public class Hemocentros extends Fragment {
 				.title(query.getString(2))
 				.snippet(query.getString(1))
 				.icon(BitmapDescriptorFactory
-						.fromResource(R.drawable.ic_whats_hot)));
+						.fromResource(R.drawable.ic_postos)));
 			query.moveToNext();						
 		}
 				

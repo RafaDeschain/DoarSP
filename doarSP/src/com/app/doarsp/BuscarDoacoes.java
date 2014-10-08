@@ -12,6 +12,7 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 public class BuscarDoacoes extends Fragment {
+	
 	TextView versionInfo;
 	private TabHost tabHost;
 	private View rootView;

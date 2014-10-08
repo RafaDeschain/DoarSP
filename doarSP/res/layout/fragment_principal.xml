@@ -1,69 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp">
 
-    <ImageView
-        android:id="@+id/PrincipalImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:src="@android:drawable/gallery_thumb" 
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"/>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollViewPrincipal"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical" >
 
-    <TextView
-        android:id="@+id/PrincipalNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/PrincipalImageView"
-        android:layout_toRightOf="@+id/PrincipalImageView"
-        android:layout_marginBottom="10dp"
-        android:text="Gustavo Palazolo" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/PrincipalTIpoSanguineo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/PrincipalNome"
-        android:layout_below="@+id/PrincipalNome"
-        android:layout_marginBottom="10dp"
-        android:text="Tipo Sanguineo: A+" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:padding="20dp" >
 
-    <TextView
-        android:id="@+id/PrincipalUltimaDoacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/PrincipalTIpoSanguineo"
-        android:layout_below="@+id/PrincipalTIpoSanguineo"
-        android:text="Data ultima doação: xx/xx/xx" />
+            <ImageView
+                android:id="@+id/PrincipalImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@android:drawable/gallery_thumb" />
 
-    <CheckBox
-        android:id="@+id/PrincipalAptoDoar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/PrincipalImageView"
-        android:layout_below="@+id/PrincipalImageView"
-        android:text="@string/principalapto" />
+            <TextView
+                android:id="@+id/PrincipalNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/PrincipalImageView"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/PrincipalImageView"
+                android:text="Gustavo Palazolo" />
 
-    <TextView
-        android:id="@+id/ultimasSolicitacoes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/PrincipalAptoDoar"
-        android:layout_below="@+id/PrincipalAptoDoar"
-        android:text="@string/ultimasolicitacoes"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="20dp"
-        android:textStyle="bold" />
-    
-    <ListView
-        android:id="@+id/lista_doacoes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/ultimasSolicitacoes" />
- 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/PrincipalTIpoSanguineo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/PrincipalNome"
+                android:layout_below="@+id/PrincipalNome"
+                android:layout_marginBottom="10dp"
+                android:text="Tipo Sanguineo: A+" />
+
+            <TextView
+                android:id="@+id/PrincipalUltimaDoacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/PrincipalTIpoSanguineo"
+                android:layout_below="@+id/PrincipalTIpoSanguineo"
+                android:text="Data ultima doação: xx/xx/xx" />
+
+            <CheckBox
+                android:id="@+id/PrincipalAptoDoar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/PrincipalImageView"
+                android:layout_below="@+id/PrincipalImageView"
+                android:text="@string/principalapto" />
+
+            <TextView
+                android:id="@+id/ultimasSolicitacoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/PrincipalAptoDoar"
+                android:layout_below="@+id/PrincipalAptoDoar"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/ultimasolicitacoes"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/lista_doacoes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/ultimasSolicitacoes" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

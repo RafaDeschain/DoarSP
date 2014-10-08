@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -37,12 +38,34 @@ public class Principal extends Fragment {
         Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
         actionBar = getActivity().getActionBar();
         actionBar.setTitle("Principal");
-        
+             
         Mural mu = new Mural();
         ListView listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
 		List<MuralModel> mural = mu.gerarDoacaoMSG();
 		final ListaMuralAdapter muralAdapter = new ListaMuralAdapter(getActivity(), mural);
 		listView.setAdapter(muralAdapter);
+		
+		listView.setOnTouchListener(new ListView.OnTouchListener() {
+		        @Override
+		        public boolean onTouch(View v, MotionEvent event) {
+		            int action = event.getAction();
+		            switch (action) {
+		            case MotionEvent.ACTION_DOWN:
+		                // Disallow ScrollView to intercept touch events.
+		                v.getParent().requestDisallowInterceptTouchEvent(true);
+		                break;
+
+		            case MotionEvent.ACTION_UP:
+		                // Allow ScrollView to intercept touch events.
+		                v.getParent().requestDisallowInterceptTouchEvent(false);
+		                break;
+		            }
+
+		            // Handle ListView touch events.
+		            v.onTouchEvent(event);
+		            return true;
+		        }
+		    });
         
 /**
         // Carrega os componentes

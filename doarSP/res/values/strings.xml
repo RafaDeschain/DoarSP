@@ -39,13 +39,13 @@
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
-        <item>@drawable/ic_home</item>
-        <item>@drawable/ic_people</item>
-        <item>@drawable/ic_photos</item>
-        <item>@drawable/ic_communities</item>
-        <item>@drawable/ic_pages</item>
-        <item>@drawable/ic_whats_hot</item>
-        <item>@drawable/ic_whats_hot</item>
+        <item>@drawable/ic_principal</item>
+        <item>@drawable/ic_buscar</item>
+        <item>@drawable/ic_abrir</item>
+        <item>@drawable/ic_mural</item>
+        <item>@drawable/ic_postos</item>
+        <item>@drawable/ic_info</item>
+        <item>@drawable/ic_alterar</item>
     </array>
      
     <!-- Content Description -->
@@ -107,7 +107,7 @@
     <string name="loginerro">Login e/ou senha incorreta</string>
     <!--  Tela de BuscarDoacoes -->
    	<string name="bd_feed">Solicitações</string>
-   	<string name="bd_mapa">Buscar no Mapa</string>
+   	<string name="bd_mapa">Mapa</string>
    	<string name="filtro">Filtro</string>
    	<string name="quantSolicitacao0">Que ótimo! Não existe solicitações. :)</string>
    	<string name="quantSolicitacao1">Apenas uma solicitação.</string>

@@ -1,5 +1,6 @@
 package com.app.doarsp;
 
+import android.UnusedStub;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -13,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,12 +32,14 @@ import com.app.*;
 import com.app.model.*;
 import com.google.android.gms.drive.internal.GetMetadataRequest;
 
+@SuppressWarnings("unused")
 @SuppressLint("ValidFragment")
+
 public class Login extends Fragment{
 	
 	Utils util;
 	
-	private LoginModel loginModel;
+	private UserModel loginModel;
 	
 	ActionBar actionBar;
     Principal principal;
@@ -46,7 +50,7 @@ public class Login extends Fragment{
 	@Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                             Bundle savedInstanceState) {
-			
+		
 			//Verifica se o usuario ja esta logado
 			if(checarSessao() == true){
 				View regView = inflater.inflate(R.layout.fragment_principal, container, false);
@@ -67,7 +71,7 @@ public class Login extends Fragment{
 				senhaET = (EditText) regView.findViewById(R.id.senhaET);
 				
 				//Cria a classe de modelo login
-				loginModel = new LoginModel();
+				loginModel = new UserModel();
 		        
 		        btnRegistrar.setOnClickListener(registrarUsuario);
 		        btnLogin.setOnClickListener(loginBtn);
@@ -120,6 +124,7 @@ public class Login extends Fragment{
 		
 		View.OnClickListener registrarUsuario = new View.OnClickListener() {
 			public void onClick(View v) {
+				Utils.hideKeyboard((EditText)getActivity().getCurrentFocus(), getActivity());
 				RegistrarUsuario regUsr = new RegistrarUsuario();
 				Utils.trocarFragment(regUsr, getFragmentManager(), true);
 			}
@@ -130,6 +135,9 @@ public class Login extends Fragment{
 				
 				//Valida se há algo escrito neles
 				if(validaLogin(loginET.getText().toString(), senhaET.getText().toString()) == true){
+					
+					Utils.hideKeyboard((EditText)getActivity().getCurrentFocus(), getActivity());
+					
 					//Login com sucesso, vai para a tela principal
 					Principal principal = new Principal();
 					Utils.trocarFragment(principal, getFragmentManager(), false);

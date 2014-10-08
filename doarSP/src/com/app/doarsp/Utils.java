@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnCreateContextMenuListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -254,11 +255,9 @@ public class Utils{
 		fragmentTransaction.commit();
 	}
 	
-	public static boolean validarIdade(EditText etText){
-		
-		
-		return Integer.parseInt(etText.getText().toString()) >=115;
-		
+	//Método para esconder teclado
+	public static void hideKeyboard(EditText et, Activity act){
+		InputMethodManager imm = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
 	}
-	
 }

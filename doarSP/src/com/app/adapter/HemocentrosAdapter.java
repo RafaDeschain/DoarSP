@@ -31,7 +31,7 @@ public class HemocentrosAdapter extends BaseAdapter{
 			view = LayoutInflater.from(contexto).inflate(R.layout.item_hemocentro, null);
 		
 	    ImageView imageView = (ImageView) view.findViewById(R.id.imagemPosto);
-	    imageView.setImageResource(R.drawable.ic_whats_hot);
+	    imageView.setImageResource(R.drawable.ic_postos);
 	         
 	    TextView nomePosto = (TextView) view.findViewById(R.id.nomePosto);
 	    TextView enderecoPosto = (TextView) view.findViewById(R.id.endPosto);

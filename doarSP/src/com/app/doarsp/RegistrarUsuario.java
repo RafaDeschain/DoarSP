@@ -17,14 +17,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.app.model.LoginModel;
 import com.app.model.UserModel;
 
 import com.app.doarsp.R;
 
 public class RegistrarUsuario extends Fragment {
 	
-	LoginModel userModel;
+	UserModel userModel;
     EditText nameEdit, eMailEdit, dataNasEdit, senhaEdit;
     Spinner tpSanguineo;
     CheckBox notificaoPush, notificaoEmail;
@@ -65,7 +64,7 @@ public class RegistrarUsuario extends Fragment {
 				boolean notificaoEmailVal = notificaoEmail.isChecked();
 				
 				//Seta a classe de modelo
-				userModel = new LoginModel();
+				userModel = new UserModel();
 				userModel.setNome(nameString);
 				userModel.seteMail(eMailString);
 				userModel.setSenha(senhaString);
