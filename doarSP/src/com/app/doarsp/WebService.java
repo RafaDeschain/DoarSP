@@ -7,17 +7,25 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import android.content.Context;
+import android.os.AsyncTask;
+
 @SuppressWarnings("unused")
-public class WebService {
+public class WebService{
+	
 
-	private final String NAMESPACE = "http://tempuri.org/";
-	private final String URL = "http://10.0.2.2:80/WS.asmx";
-
+	private final String NAMESPACE = "http://192.168.0.14/doarsp/";
+	private final String URL = "http://192.168.0.14/doarsp/doarsp.asmx/";
+	private String SOAP_CALL;
+	
+	private String METHOD_NAME;
+	private String[][] params;
+	
 	public String callWebService(String METHOD_NAME,
 			String[][] params) {
 		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
-		for (int i = 0; i <= params.length; i++) {
+		for (int i = 0; i < params.length; i++) {
 			request.addProperty(params[i][0], params[i][1]);
 		}
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
@@ -28,7 +36,8 @@ public class WebService {
 		
 		try
 		{
-			androidHttpTransport.call(NAMESPACE+METHOD_NAME, envelope);
+			SOAP_CALL = URL + METHOD_NAME;
+			androidHttpTransport.call(SOAP_CALL, envelope);
             SoapPrimitive response = (SoapPrimitive) envelope.getResponse();            
             return response.toString();
 			 
