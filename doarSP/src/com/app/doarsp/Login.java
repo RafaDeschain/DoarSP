@@ -50,7 +50,6 @@ public class Login extends Fragment{
     
     WebService webservice;
     String[][] params;
-    AsyncTask<String, Void, String> retorno;
     
 	@Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,25 +95,6 @@ public class Login extends Fragment{
 			}
 	    }
 	
-	//starting asynchronus task
-	 private class SoapAccessTask extends AsyncTask<String, Void, String> {
-	      
-	     @Override
-	     protected void onPreExecute() {
-	          //if you want, start progress dialog here
-	     }
-	          
-	     @Override
-	     protected String doInBackground(String... urls) {
-	    	 return webservice.callWebService("usuario_Login", params);
-	    }
-	   
-	    @Override
-	    protected void onPostExecute(String result) {
-	            //if you started progress dialog dismiss it here
-	         }
-	     }
-	
 		public Login(Context context){
 			
 		}
@@ -136,17 +116,10 @@ public class Login extends Fragment{
 				params[1][0] = "password";
 				params[1][1] = loginModel.getSenha();
 				
-				SoapAccessTask task = new SoapAccessTask();
+				webservice = new WebService();
+				String ret = webservice.callWebService("login_Usuario", params);
 				
-				try
-				{				
-				  task.execute();
-				  return true;
-				}
-				catch(Exception ex)
-				{
-				  return false;
-				}
+				return Boolean.parseBoolean(ret);
 			}
 		}
 		
