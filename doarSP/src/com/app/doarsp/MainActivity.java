@@ -2,15 +2,12 @@ package com.app.doarsp;
 
 import com.app.adapter.NavDrawerListAdapter;
 import com.app.model.HemocentrosModel;
-import com.app.model.UserModel;
 
 import java.util.ArrayList;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -21,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -58,15 +56,17 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		mTitle = mDrawerTitle = getTitle();
-		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);		
-		navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-		navDrawerItems = new ArrayList<NavDrawerItem>();
-		actionBar = getActionBar();
+		mTitle = mDrawerTitle 	= getTitle();
+		navMenuTitles 			= getResources().getStringArray(R.array.nav_drawer_items);		
+		navMenuIcons 			= getResources().obtainTypedArray(R.array.nav_drawer_icons);
+		mDrawerLayout 			= (DrawerLayout) findViewById(R.id.drawer_layout);
+		mDrawerList 			= (ListView) findViewById(R.id.list_slidermenu);
+		navDrawerItems 			= new ArrayList<NavDrawerItem>();
+		actionBar 				= getActionBar();
 		
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		
+		/** Adiciona os itens no menu lateral **/
 
 		//Para adicionar contador após o nome: true, "15"
 		// Principal
@@ -81,10 +81,9 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		// Informações
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-		// Alterar Dados
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-		
 		navMenuIcons.recycle();
+		
+		/** Adiciona os itens no menu lateral - Fim**/
 
 		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 	
@@ -110,7 +109,6 @@ public class MainActivity extends Activity {
 		
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		
-		UserModel UserData 				   = new UserModel(getApplicationContext());
 		HemocentrosModel hemocentrosInsert = new HemocentrosModel(getApplicationContext());
 		
 		// Criação básica dos postos, update vão ser feitos através do servidor
@@ -120,7 +118,6 @@ public class MainActivity extends Activity {
 		}
 		
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
-		//displayView(0);
 		Fragment login = new Login(getApplicationContext());
 		Utils.trocarFragment(login, getFragmentManager(), false);
 	}
@@ -128,6 +125,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Slide menu item click listener
 	 * */
+	
 	private class SlideMenuClickListener implements
 			ListView.OnItemClickListener {
 		@Override
@@ -142,7 +140,8 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	
+	/** Listener dos botões do ActionBar **/
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
@@ -150,15 +149,24 @@ public class MainActivity extends Activity {
 		}
 		switch (item.getItemId()) {
 		case R.id.menuAbout:
+			aboutView();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	//Chama a tela de informações ao clicar em "Sobre" no ActionBar
+	public void aboutView(){
+		Fragment about = new Informacoes();
+		Utils.hideKeyboard((Activity) this);
+		Utils.trocarFragment(about, getFragmentManager(), true);
+	}
 
 	/* *
 	 * Called when invalidateOptionsMenu() is triggered
 	 */
+	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// if nav drawer is opened, hide the action items
@@ -170,6 +178,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Diplaying fragment view for selected nav drawer list item
 	 * */
+	
 	private void displayView(int position) {
 		
 		//Pega qual é o item que está sendo clicado
@@ -192,9 +201,6 @@ public class MainActivity extends Activity {
 			fragment = new Hemocentros();
 			break;
 		case 5:
-			fragment = new Informacoes();
-			break;
-		case 6:
 			fragment = new AlterarDados();
 			break;
 					
@@ -203,7 +209,6 @@ public class MainActivity extends Activity {
 		}
 		
 		//seta o fragment para qual foi clicado
-		
 		if (fragment != null) {
 			
 			Utils.trocarFragment(fragment, getFragmentManager(), true);

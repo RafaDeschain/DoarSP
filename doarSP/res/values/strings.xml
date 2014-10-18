@@ -32,7 +32,7 @@
         <item >Abrir Solicitação</item>
         <item >Mural</item>
         <item >Postos de Doação</item>
-        <item >Informações</item>
+        <!-- <item >Informações</item> -->
         <item >Alterar Dados</item>
     </string-array>
      

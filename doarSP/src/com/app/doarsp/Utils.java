@@ -30,13 +30,24 @@ import android.widget.Toast;
 import android.app.Activity;
 import android.widget.Button;
 
+import android.app.AlertDialog;
+
 
 
 public class Utils{
 	
 	DrawerLayout mDrawerLayout;
 	ActionBar actionBar;
+	AlertDialog alertDialog;
 	
+	public AlertDialog getAlertDialog() {
+		return alertDialog;
+	}
+
+	public void setAlertDialog(AlertDialog alertDialog) {
+		this.alertDialog = alertDialog;
+	}
+
 	public static void showMessage(Context context, String texto, int duracao)
 	{
 		Toast.makeText(context, texto, (duracao > 0 ? duracao : Toast.LENGTH_SHORT)).show();				
@@ -256,8 +267,21 @@ public class Utils{
 	}
 	
 	//Método para esconder teclado
-	public static void hideKeyboard(EditText et, Activity act){
+	public static void hideKeyboard(Activity act){
 		InputMethodManager imm = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
+		if(imm.isActive()){
+			imm.hideSoftInputFromWindow(act.getCurrentFocus().getWindowToken(), 0);
+		}
+	}
+	
+	//Mostrar caixa de dialogo
+	public static AlertDialog showDialog(Activity act, CharSequence title, CharSequence message, boolean cancelable){
+		AlertDialog alertDialog;
+		alertDialog = new AlertDialog.Builder(act).create();
+		alertDialog.setTitle(title);
+		alertDialog.setCancelable(cancelable);
+		alertDialog.setMessage(message);
+		alertDialog.show();
+		return alertDialog;
 	}
 }

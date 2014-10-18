@@ -1,62 +1,52 @@
 package com.app.doarsp;
 
-import android.R.bool;
-import android.UnusedStub;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.sax.RootElement;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-
-import com.app.*;
 import com.app.model.*;
-import com.google.android.gms.drive.internal.GetMetadataRequest;
+import com.app.webservice.InterfaceListener;
+import com.app.webservice.Thread;
+import com.app.webservice.WebService;
 
-@SuppressWarnings("unused")
 @SuppressLint("ValidFragment")
 
-public class Login extends Fragment{
+public class Login extends Fragment implements InterfaceListener{
 	
 	Utils util;
 	
 	private UserModel loginModel;
 	
-	ActionBar actionBar;
-    Principal principal;
-    TextView loginErro;
-    EditText loginET, senhaET;
+	private ActionBar actionBar;
+	private Principal principal;
+	private TextView loginErro;
+	private EditText loginET, senhaET;
     
-    WebService webservice;
-    String[][] params;
+	private WebService webservice;
+	private String[][] params;	
+	public AlertDialog alertDialog;
+	
+	public Login(Context context){
+		
+	}
     
 	@Override
-	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	                             Bundle savedInstanceState) {
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 		
 			//Verifica se o usuario ja esta logado
 			if(checarSessao() == true){
+				
 				View regView = inflater.inflate(R.layout.fragment_principal, container, false);
 				principal = new Principal();
 				Utils.trocarFragment(principal, getFragmentManager(), false);
@@ -65,7 +55,7 @@ public class Login extends Fragment{
 			
 			//Caso não esteja, cria a tela de login
 			else{
-				
+					
 		        View regView = inflater.inflate(R.layout.fragment_login, container, false);
 		        TextView btnRegistrar = (TextView) regView.findViewById(R.id.cadastroLinkTV);
 		        Button btnLogin = (Button) regView.findViewById(R.id.loginBT);
@@ -77,9 +67,6 @@ public class Login extends Fragment{
 				//Cria a classe de modelo login
 				loginModel = new UserModel();
 		        
-				//Cria o webservice
-				webservice = new WebService();
-				
 		        btnRegistrar.setOnClickListener(registrarUsuario);
 		        btnLogin.setOnClickListener(loginBtn);
 		        
@@ -93,79 +80,100 @@ public class Login extends Fragment{
 		        Utils.disableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
 		        return regView;
 			}
-	    }
-	
-		public Login(Context context){
-			
 		}
 		
-		//método que valida o login do usuário
-		public boolean validaLogin(String login, String senha){
+		/** Método que recebe o retorno do WebService **/
+		
+		@Override
+		public void returningCall(String result) {
 			
-			if (login.equals("") || senha.equals("")){
-				return false;
-			}else{
-				
-				loginModel.setLogin(login);
-				loginModel.setSenha(senha);
-				
-				params = new String[2][2];
-				
-				params[0][0] = "userName";
-				params[0][1] = loginModel.getLogin();
-				params[1][0] = "password";
-				params[1][1] = loginModel.getSenha();
-				
-				webservice = new WebService();
-				String ret = webservice.callWebService("login_Usuario", params);
-				
-				return Boolean.parseBoolean(ret);
+			if(result.equalsIgnoreCase("true")){
+				//Login com sucesso, vai para a tela principal
+				Utils.hideKeyboard(getActivity());
+				Principal principal = new Principal();
+				Utils.trocarFragment(principal, getFragmentManager(), false);
 			}
-		}
-		
-		
-		//Método que cria a sessão
-		public void criarSessao(String email){
-			
-		}
-		
-		//Método que checa sessão
-		public boolean checarSessao(){
-		        return false;
-		}
-		
-		//Método que destroi a sessão
-		public void destroiSessao(){
-			
+			else if(result.equalsIgnoreCase("false")){
+				loginErro.setVisibility(View.VISIBLE);
+			}
+			else{
+				Utils.showDialog(getActivity(), "Oops..", "Verifique sua conexão de internet", true);
+			}
 		}
 		
 		/** Métodos dos botões **/
 		
 		View.OnClickListener registrarUsuario = new View.OnClickListener() {
 			public void onClick(View v) {
-				Utils.hideKeyboard((EditText)getActivity().getCurrentFocus(), getActivity());
+				
+				Utils.hideKeyboard(getActivity());
 				RegistrarUsuario regUsr = new RegistrarUsuario();
 				Utils.trocarFragment(regUsr, getFragmentManager(), true);
+				
 			}
 		};
 		
 		View.OnClickListener loginBtn = new View.OnClickListener() {
 			public void onClick(View v) {
 				
-				//Valida se há algo escrito neles
-				if(validaLogin(loginET.getText().toString(), senhaET.getText().toString()) == true){
-					
-					Utils.hideKeyboard((EditText)getActivity().getCurrentFocus(), getActivity());
-					
-					//Login com sucesso, vai para a tela principal
-					Principal principal = new Principal();
-					Utils.trocarFragment(principal, getFragmentManager(), false);
+				loginErro.setVisibility(View.INVISIBLE);
+				
+				String login, senha;
+				login = loginET.getText().toString();
+				senha = senhaET.getText().toString();
+				
+				if (login.equals("") || senha.equals("")){
+					returningCall("false");
 				}
 				else{
-					loginErro.setVisibility(View.VISIBLE);
+					
+					Utils.hideKeyboard(getActivity());
+					
+					loginModel.setLogin(login);
+					loginModel.setSenha(senha);
+					
+					params = new String[2][2];
+					
+					params[0][0] = "userName";
+					params[0][1] = loginModel.getLogin();
+					params[1][0] = "password";
+					params[1][1] = loginModel.getSenha();
+					
+					setWebservice(new WebService("login_Usuario", params));
+					
+					/**
+					 * Cria uma nova Thread, necessária para fazer a requisição no WebService
+					 * Recebe como parametros a Activity, o WebService criado e a Interface Listener
+					 * Após executar, ele retorna o resultado para o método returningCall()
+					 */
+					
+					Thread thread = new Thread(getActivity(), getWebservice(), getInterface());
+					thread.execute();
 				}
 			}
 		};
 		
 		/** Fim Métodos dos botões **/
+		
+		/** Class Methods **/
+		
+		public boolean checarSessao(){
+		        return false;
+		}
+		
+		/** Getters and Setters **/
+		
+		public WebService getWebservice() {
+			return webservice;
+		}
+
+		public void setWebservice(WebService webservice) {
+			this.webservice = webservice;
+		}
+		
+		public InterfaceListener getInterface(){
+			return this;
+		}
+		
+		/** Getters and Setters End **/
 }
