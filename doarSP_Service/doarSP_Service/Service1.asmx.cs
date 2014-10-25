@@ -209,6 +209,8 @@ namespace doarSP_Service
         public String usuario_Login(String userName, String password)
         {
             User userLogin = new User();
+            userLogin.userName = userName;
+            userLogin.password = password;
 
             if (userLogin.login())
             {

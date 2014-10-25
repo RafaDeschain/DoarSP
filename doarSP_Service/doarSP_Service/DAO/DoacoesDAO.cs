@@ -8,7 +8,7 @@ using System.Data.Sql;
 
 public class DoacoesDAO
 {
-    private static String connectionString = "server=.\\SQLEXPRESS; database=doarSP; Integrated Security=SSPI";
+    private static String connectionString = "server=.\\SQLEXPRESS; database=doarSP; User ID=sa;Password=123";
 
     #region Public
     public Boolean insertUserDonation(Doacao objData)

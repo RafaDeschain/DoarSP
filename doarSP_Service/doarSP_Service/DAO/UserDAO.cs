@@ -11,7 +11,7 @@ using System.Collections;
 /// </summary>
 public class UserDAO
 {
-    private static String connectionString = "server=.\\SQLEXPRESS; database=doarSP; Integrated Security=SSPI";
+    private static String connectionString = "server=.\\SQLEXPRESS; database=doarSP; User ID=sa;Password=123";
 
     public UserDAO()
     {
@@ -147,18 +147,17 @@ public class UserDAO
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
-            conn.Open();
-            SqlTransaction transaction = conn.BeginTransaction("LoginTransaction");
+            conn.Open();            
 
             try
             {
-                String cmdLogin = " Select USU_IdUsuario, USU_TpSanguineo, USU_Nome, USU_EndEmail, USU_NotificacaoPush " +
+                String cmdLogin = " Select USU_IdUsuario, USU_TpSanguineo, USU_Nome, USU_EndEmail, USU_NotificacaoPush, " +
                                   "        USU_NotificacaoEmail, USU_StatusApto, USU_DtdUltimaDoacao, USU_DtdDataNascimento, " +
                                   "        USU_UserName, USU_Password " +
                                   " from TB_Usuarios where " +
                                   "        USU_UserName = @userName and USU_Password = @password";
 
-                SqlCommand queryLogin = new SqlCommand(cmdLogin, conn, transaction);
+                SqlCommand queryLogin = new SqlCommand(cmdLogin, conn);
                 queryLogin.Parameters.AddWithValue("@userName", userData.userName);
                 queryLogin.Parameters.AddWithValue("@password", userData.password);
 
@@ -170,18 +169,20 @@ public class UserDAO
                     userData.tpSanguineo = userRecord.GetInt32(1);
                     userData.nome = userRecord.GetString(2);
                     userData.eMail = userRecord.GetString(3);
-                    userData.notificacaoPush = userRecord.GetInt16(4);
-                    userData.notificaoEmail = userRecord.GetInt16(5);
-                    userData.statusApto = userRecord.GetInt16(6);
+                    userData.notificacaoPush = userRecord.GetInt32(4);
+                    userData.notificaoEmail = userRecord.GetInt32(5);
+                    userData.statusApto = userRecord.GetInt32(6);
                     userData.ultimaDoacao = userRecord.GetDateTime(7);
-                    userData.dtdNascimento = userRecord.GetDateTime(8);                    
+                    userData.dtdNascimento = userRecord.GetDateTime(8);
+                    return true;
                 }
-                transaction.Commit();
-                return true;
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
-            {
-                transaction.Rollback();
+            {                
                 throw new Exception(ex.ToString());
             }
             finally

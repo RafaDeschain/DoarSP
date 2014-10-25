@@ -1,0 +1,5 @@
+D:\doarSP\doarSP_Service\doarSP_Service\bin\doarSP_Service.dll
+D:\doarSP\doarSP_Service\doarSP_Service\bin\doarSP_Service.pdb
+D:\doarSP\doarSP_Service\doarSP_Service\obj\Release\doarSP_Service.csprojResolveAssemblyReference.cache
+D:\doarSP\doarSP_Service\doarSP_Service\obj\Release\doarSP_Service.dll
+D:\doarSP\doarSP_Service\doarSP_Service\obj\Release\doarSP_Service.pdb

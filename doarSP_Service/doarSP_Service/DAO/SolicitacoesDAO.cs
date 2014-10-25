@@ -10,7 +10,7 @@ using System.Data.Sql;
 /// </summary>
 public class SolicitacoesDAO
 {
-    private static String connectionString = "server=.\\SQLEXPRESS; database=doarSP; Integrated Security=SSPI";
+    private static String connectionString = "server=.\\SQLEXPRESS; database=doarSP; User ID=sa;Password=123";
     public SolicitacoesDAO()
     {
     }
