@@ -7,23 +7,25 @@ import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
+import org.ksoap2.transport.HttpTransportSE;	
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.webkit.WebView;
 
 @SuppressWarnings("unused")
 public class WebService{
-
-	private final String NAMESPACE = "http://192.168.0.14/doarsp/";
-	private final String URL = "http://192.168.0.14/doarsp/doarsp.asmx/";
-	private String SOAP_CALL;
 	
-	private String METHOD_NAME;
+	private final String SOAP_NAMESPACE = "http://tempuri.org/";
+	private final String SOAP_URL = "http://192.168.0.14/doarsp/doarsp.asmx";
+	private String SOAP_METHOD_NAME;
+	
+	private SoapObject request;
+	
 	private String[][] params;
 	private String wsReturn;
 	private String resp;
@@ -39,34 +41,36 @@ public class WebService{
 	
 	public String connectWS(){
 		
+		//webservice thingi start
+		
+		request = new SoapObject(SOAP_NAMESPACE, SOAP_METHOD_NAME);
+		
 		String[][] prop = getParams();
 		
-		SoapObject request = new SoapObject(NAMESPACE, getMETHOD_NAME());
-
 		for (int i = 0; i < params.length; i++) {
-			request.addProperty(prop[i][0], prop[i][1]);
+			PropertyInfo pi = new PropertyInfo();
+			pi.setName(prop[i][0]);
+			pi.setValue(prop[i][1]);//get the string that is to be sent to the web service
+			pi.setType(String.class);
+			request.addProperty(pi);
 		}
+		 
+		SoapSerializationEnvelope envp = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		envp.dotNet = true;
+		envp.setOutputSoapObject(request);
+		HttpTransportSE androidHttpTransport = new HttpTransportSE(SOAP_URL, 60000);
 		
-		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-				SoapEnvelope.VER11);
-		envelope.dotNet = true;
-		envelope.setOutputSoapObject(request);
-		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
-
-		try
-		{
-			SOAP_CALL = URL + METHOD_NAME;
-			androidHttpTransport.call(SOAP_CALL, envelope);
-			SoapPrimitive response = (SoapPrimitive) envelope.getResponse();
+		try {
+			String SOAP_ACTION = SOAP_NAMESPACE + SOAP_METHOD_NAME;
+			androidHttpTransport.call(SOAP_ACTION, envp);
+			SoapPrimitive response = (SoapPrimitive) envp.getResponse();
 			resp = response.toString();
+			setWsReturn(resp);
+		} catch (Exception e) {
+			Log.i("WS Error->",e.toString());
 		}
-		catch(Exception ex)
-		{			
-			resp = "Erro" ;
-		}
-		setWsReturn(resp);
-		
-		return "true";
+		 //webservice thingi ends
+		return getWsReturn();
 	}
 	
 	/** Getters and Setters **/
@@ -79,20 +83,12 @@ public class WebService{
 		this.wsReturn = wsReturn;
 	}
 
-	public String getSOAP_CALL() {
-		return SOAP_CALL;
-	}
-
-	public void setSOAP_CALL(String sOAP_CALL) {
-		SOAP_CALL = sOAP_CALL;
-	}
-
 	public String getMETHOD_NAME() {
-		return METHOD_NAME;
+		return SOAP_METHOD_NAME;
 	}
 
-	public void setMETHOD_NAME(String METHOD_NAME) {
-		this.METHOD_NAME = METHOD_NAME;
+	public void setMETHOD_NAME(String SOAP_METHOD_NAME) {
+		this.SOAP_METHOD_NAME = SOAP_METHOD_NAME;
 	}
 
 	public String[][] getParams() {
