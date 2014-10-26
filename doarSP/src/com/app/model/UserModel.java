@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import com.app.DAO.ApapterDAO;
 
 public class UserModel {
+	
 	private int codUsuario, tpSanguineo, statusApto; 
 	private boolean notificacaoPush, notificacaoEmail;
 	private String nome, eMail, dtdUltimaDoacao, dtdNascimento;

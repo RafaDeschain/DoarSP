@@ -25,7 +25,6 @@ public class Thread extends AsyncTask<String, Void, String> {
         setAlertdialog(Utils.showDialog(getActivity(), "Aguarde", "Carregando...", false));
     }
 
-	@Override
 	protected String doInBackground(String... urls) {
 		return getWebservice().connectWS();
 	}

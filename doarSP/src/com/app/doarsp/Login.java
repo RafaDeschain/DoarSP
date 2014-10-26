@@ -23,8 +23,6 @@ import com.app.webservice.WebService;
 
 public class Login extends Fragment implements InterfaceListener{
 	
-	Utils util;
-	
 	private UserModel loginModel;
 	
 	private ActionBar actionBar;
@@ -32,7 +30,9 @@ public class Login extends Fragment implements InterfaceListener{
 	private TextView loginErro;
 	private EditText loginET, senhaET;
     
+	/** Webservice **/
 	private WebService webservice;
+	private Thread thread;
 	private String[][] params;	
 	public AlertDialog alertDialog;
 	
@@ -89,7 +89,7 @@ public class Login extends Fragment implements InterfaceListener{
 			
 			if(result.equalsIgnoreCase("true")){
 				//Login com sucesso, vai para a tela principal
-				Utils.hideKeyboard(getActivity());
+				//Utils.hideKeyboard(getActivity());
 				Principal principal = new Principal();
 				Utils.trocarFragment(principal, getFragmentManager(), false);
 			}
@@ -134,12 +134,12 @@ public class Login extends Fragment implements InterfaceListener{
 					
 					params = new String[2][2];
 					
-					params[0][0] = "userName";
+					params[0][0] = "username";
 					params[0][1] = loginModel.getLogin();
 					params[1][0] = "password";
 					params[1][1] = loginModel.getSenha();
 					
-					setWebservice(new WebService("login_Usuario", params));
+					setWebservice(new WebService("usuario_Login", params));
 					
 					/**
 					 * Cria uma nova Thread, necessária para fazer a requisição no WebService
@@ -147,7 +147,7 @@ public class Login extends Fragment implements InterfaceListener{
 					 * Após executar, ele retorna o resultado para o método returningCall()
 					 */
 					
-					Thread thread = new Thread(getActivity(), getWebservice(), getInterface());
+					thread = new Thread(getActivity(), getWebservice(), getInterface());
 					thread.execute();
 				}
 			}

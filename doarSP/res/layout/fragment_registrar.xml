@@ -71,12 +71,32 @@
 		        android:layout_marginBottom="10dp"/>
 		    
 		    <TextView
-		        android:id="@+id/RegistrarSenhaTV"
+		        android:id="@+id/RegistrarDadosUsernameTV"
 		        android:textSize="16sp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
 		        android:layout_below="@id/RegistrarDadosEmail"
+		        android:text="@string/username" />
+		
+		    <EditText
+		        android:id="@+id/RegistrarDadosUsername"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@id/RegistrarDadosUsernameTV"
+		        android:inputType="textEmailAddress"
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"/>
+		    
+		    <TextView
+		        android:id="@+id/RegistrarSenhaTV"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/RegistrarDadosUsername"
 		        android:text="@string/registrarsenha" />
 		    
 		    <EditText

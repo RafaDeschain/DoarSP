@@ -1,14 +1,9 @@
 package com.app.doarsp;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,24 +13,31 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.app.model.UserModel;
+import com.app.webservice.InterfaceListener;
+import com.app.webservice.Thread;
+import com.app.webservice.WebService;
 
 import com.app.doarsp.R;
 
-public class RegistrarUsuario extends Fragment {
+public class RegistrarUsuario extends Fragment implements InterfaceListener{
 	
-	UserModel userModel;
-    EditText nameEdit, eMailEdit, dataNasEdit, senhaEdit;
-    Spinner tpSanguineo;
-    CheckBox notificaoPush, notificaoEmail;
-    ActionBar actionBar;
-    Utils util;
-    Button btnSalvar;
+	private UserModel userModel;
+	private EditText nameEdit, eMailEdit, dataNasEdit, senhaEdit, usernameEdit;
+	private Spinner tpSanguineo;
+	private CheckBox notificaoPush, notificaoEmail;
+	private ActionBar actionBar;
+	private Button btnSalvar;
+    
+    /** Webservice **/
+	private WebService webservice;
+	private Thread thread;
+	private String[][] params;	
+	public AlertDialog alertDialog;
 	
 	View.OnClickListener saveBtnHandlerClickForInsert = new View.OnClickListener() {
 		public void onClick(View v) {
 			
 			boolean valido = true;
-			boolean dataValida = true;
 			
 			if(Utils.isEmpty(nameEdit)){
 				nameEdit.setError("Por favor, preencha o nome");
@@ -55,30 +57,90 @@ public class RegistrarUsuario extends Fragment {
 			if (valido == true) {
 				
 				//Transforma os EditTexts para String
-				String nameString = nameEdit.getText().toString();
-				String eMailString = eMailEdit.getText().toString();
-				String senhaString = senhaEdit.getText().toString();
-				int tpSanguineoInt = tpSanguineo.getSelectedItemPosition();
-				String dataNasString = dataNasEdit.getText().toString();
-				boolean notificaoPushVal = notificaoPush.isChecked();
-				boolean notificaoEmailVal = notificaoEmail.isChecked();
+				String nameString 			= nameEdit.getText().toString();
+				String eMailString 			= eMailEdit.getText().toString();
+				String username				= usernameEdit.getText().toString();
+				String senhaString 			= senhaEdit.getText().toString();
+				int tpSanguineoInt 			= tpSanguineo.getSelectedItemPosition();
+				String dataNasString 		= dataNasEdit.getText().toString();
+				boolean notificaoPushVal 	= notificaoPush.isChecked();
+				boolean notificaoEmailVal 	= notificaoEmail.isChecked();
 				
 				//Seta a classe de modelo
 				userModel = new UserModel();
 				userModel.setNome(nameString);
 				userModel.seteMail(eMailString);
+				userModel.setLogin(username);
 				userModel.setSenha(senhaString);
 				userModel.setTpSanguineo(tpSanguineoInt);
 				userModel.setDtdNascimento(dataNasString);
 				userModel.setNotificacaoPush(notificaoPushVal);
 				userModel.setNotificacaoEmail(notificaoEmailVal);
 				
+				params = new String[9][2];
 				
-				Utils.showMessage(getActivity().getApplicationContext(), "Cadastro Efetuado com Sucesso", 0);
-				//Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+				params[0][0] = "tpSanguineo";
+				params[0][1] =  String.valueOf(userModel.getTpSanguineo());
+				params[1][0] = "nome";
+				params[1][1] = userModel.getNome();
+				params[2][0] = "eMail";
+				params[2][1] = userModel.geteMail();
+				params[3][0] = "notificacaoPush";
+				params[3][1] = String.valueOf(((userModel.getNotificacaoPush()) ? 1 : 0));
+				params[4][0] = "notificacaoEmail";
+				params[4][1] = String.valueOf(((userModel.getNotificacaoEmail()) ? 1 : 0));
+				params[5][0] = "statusApto";
+				params[5][1] = "1";
+				params[6][0] = "dtdNascimento";
+				params[6][1] = userModel.getDtdNascimento();
+				params[7][0] = "username";
+				params[7][1] = userModel.getLogin();
+				params[8][0] = "password";
+				params[8][1] = userModel.getSenha();
+				
+				setWebservice(new WebService("usuario_insereNovoUsuario", params));
+				
+				/**
+				 * Cria uma nova Thread, necessária para fazer a requisição no WebService
+				 * Recebe como parametros a Activity, o WebService criado e a Interface Listener
+				 * Após executar, ele retorna o resultado para o método returningCall()
+				 */
+				
+				thread = new Thread(getActivity(), getWebservice(), getInterface());
+				try
+				{
+					thread.execute();
+				}
+				finally
+				{
+					if (thread.isCancelled())
+					{
+						thread.cancel(true);						
+					}
+				}
 			}
 		}
 	};
+	
+	/** Método que recebe o retorno do WebService **/
+	
+	@Override
+	public void returningCall(String result) {
+		
+		if(result.equalsIgnoreCase("true")){
+			//Login com sucesso, vai para a tela principal
+			Utils.hideKeyboard(getActivity());
+			Login login = new Login(getActivity().getApplicationContext());
+			Utils.trocarFragment(login, getFragmentManager(), false);
+			Utils.showDialog(getActivity(), "Sucesso", "Cadastrado com sucesso", true);
+		}
+		else if(result.equalsIgnoreCase("false")){
+			Utils.showDialog(getActivity(), "Oops..", "Ocorreu um erro durante o cadastro", true);
+		}
+		else{
+			Utils.showDialog(getActivity(), "Oops..", "Verifique sua conexão de internet", true);
+		}
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,17 +153,34 @@ public class RegistrarUsuario extends Fragment {
 		dataNasEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosNascimento);
 		dataNasEdit.addTextChangedListener(Utils.insert("##/##/####", dataNasEdit));
 		
-		nameEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosNome);
-		eMailEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosEmail);
-		senhaEdit = (EditText)registrar.findViewById(R.id.RegistrarSenha);
-		tpSanguineo = (Spinner)registrar.findViewById(R.id.RegistrarDadosTipo);
-		dataNasEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosNascimento);
-		notificaoPush = (CheckBox)registrar.findViewById(R.id.RegistrarDadosPush);
-		notificaoEmail = (CheckBox)registrar.findViewById(R.id.RegistrarDadosEmailNot);
-		btnSalvar = (Button) registrar.findViewById(R.id.RegistrarDadosSalvar);
+		nameEdit 		= (EditText)registrar.findViewById(R.id.RegistrarDadosNome);
+		eMailEdit 		= (EditText)registrar.findViewById(R.id.RegistrarDadosEmail);
+		usernameEdit	= (EditText)registrar.findViewById(R.id.RegistrarDadosUsername);
+		senhaEdit 		= (EditText)registrar.findViewById(R.id.RegistrarSenha);
+		tpSanguineo 	= (Spinner)registrar.findViewById(R.id.RegistrarDadosTipo);
+		dataNasEdit 	= (EditText)registrar.findViewById(R.id.RegistrarDadosNascimento);
+		notificaoPush 	= (CheckBox)registrar.findViewById(R.id.RegistrarDadosPush);
+		notificaoEmail 	= (CheckBox)registrar.findViewById(R.id.RegistrarDadosEmailNot);
+		btnSalvar 		= (Button) registrar.findViewById(R.id.RegistrarDadosSalvar);
 				
 		btnSalvar.setOnClickListener(saveBtnHandlerClickForInsert);
 		
 		return registrar;
 	}
+	
+	/** Getters and Setters **/
+	
+	public WebService getWebservice() {
+		return webservice;
+	}
+
+	public void setWebservice(WebService webservice) {
+		this.webservice = webservice;
+	}
+	
+	public InterfaceListener getInterface(){
+		return this;
+	}
+	
+	/** Getters and Setters End **/
 }
