@@ -19,47 +19,44 @@ public class UserDAO
     }
 
     #region public
-    public void inserUser(User userData)
+    public Boolean inserUser(User userData)
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
-            conn.Open();
-            SqlTransaction transaction = conn.BeginTransaction("InsertTransaction");
+            conn.Open();            
             try
             {
                 String cmdInsert = " insert into TB_Usuarios(USU_TpSanguineo, USU_Nome, USU_EndEmail, USU_NotificacaoPush, USU_NotificacaoEmail, " +
-                                   "                         USU_StatusApto, USU_DtdUltimaDoacao, USU_DtdDataNascimento, USU_UserName, USU_Password) " +
+                                   "                         USU_StatusApto, USU_DtdDataNascimento, USU_UserName, USU_Password) " +
                                    " values " +
-                                   " (@tpSanguineo, @nome, @endEmail, @notPush, @notEmail, @statusApto, @dtdUltimaDoa, @dtdNasci, @userName, @password)";
+                                   " (@tpSanguineo, @nome, @endEmail, @notPush, @notEmail, @statusApto, @dtdNasci, @userName, @password)";
                 String cmdNewUser = " select MAX(USU_IdUsuario) from TB_Usuarios ";
 
 
-                SqlCommand insertUser = new SqlCommand(cmdInsert, conn, transaction);
+                SqlCommand insertUser = new SqlCommand(cmdInsert, conn);
                 insertUser.Parameters.AddWithValue("@tpSanguineo", userData.tpSanguineo);
                 insertUser.Parameters.AddWithValue("@nome", userData.nome);
                 insertUser.Parameters.AddWithValue("@endEmail", userData.eMail);
                 insertUser.Parameters.AddWithValue("@notPush", userData.notificacaoPush);
                 insertUser.Parameters.AddWithValue("@notEmail", userData.notificaoEmail);
-                insertUser.Parameters.AddWithValue("@statusApto", userData.statusApto);
-                insertUser.Parameters.AddWithValue("@dtdUltimaDoa", userData.ultimaDoacao);
+                insertUser.Parameters.AddWithValue("@statusApto", userData.statusApto);                
                 insertUser.Parameters.AddWithValue("@dtdNasci", userData.dtdNascimento);
                 insertUser.Parameters.AddWithValue("@userName", userData.userName);
                 insertUser.Parameters.AddWithValue("@password", userData.password);
                 insertUser.ExecuteNonQuery();
 
-                SqlCommand getNewUser = new SqlCommand(cmdNewUser, conn, transaction);
+                SqlCommand getNewUser = new SqlCommand(cmdNewUser, conn);
                 SqlDataReader newRowUser = getNewUser.ExecuteReader();
 
                 if (newRowUser.Read())
                 {
                     userData.codUsuario = newRowUser.GetInt32(0);
                 }
-                newRowUser.Close();
-                transaction.Commit();
+                newRowUser.Close();                
+                return true;
             }
             catch (Exception ex)
-            {
-                transaction.Rollback();
+            {                
                 throw new Exception(ex.ToString());
             }
             finally
@@ -165,16 +162,21 @@ public class UserDAO
 
                 if (userRecord.Read())
                 {
-                    userData.codUsuario = userRecord.GetInt32(0);
-                    userData.tpSanguineo = userRecord.GetInt32(1);
-                    userData.nome = userRecord.GetString(2);
-                    userData.eMail = userRecord.GetString(3);
-                    userData.notificacaoPush = userRecord.GetInt32(4);
-                    userData.notificaoEmail = userRecord.GetInt32(5);
-                    userData.statusApto = userRecord.GetInt32(6);
-                    userData.ultimaDoacao = userRecord.GetDateTime(7);
-                    userData.dtdNascimento = userRecord.GetDateTime(8);
-                    return true;
+                    if (userRecord.GetInt32(0) > 0)
+                    {
+                        userData.codUsuario = userRecord.GetInt32(0);
+                        userData.tpSanguineo = userRecord.GetInt32(1);
+                        userData.nome = userRecord.GetString(2);
+                        userData.eMail = userRecord.GetString(3);
+                        userData.notificacaoPush = userRecord.GetInt32(4);
+                        userData.notificaoEmail = userRecord.GetInt32(5);
+                        userData.statusApto = userRecord.GetInt32(6);
+                        //userData.ultimaDoacao = userRecord.GetString(7);
+                        userData.dtdNascimento = userRecord.GetString(8);
+                        return true;
+                    }
+                    else
+                        return false;
                 }
                 else
                 {

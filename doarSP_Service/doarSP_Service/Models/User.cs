@@ -30,9 +30,9 @@ public class User
 
     public int statusApto { get; set; }
 
-    public DateTime ultimaDoacao { get; set; }
+    public String ultimaDoacao { get; set; }
 
-    public DateTime dtdNascimento { get; set; }
+    public String dtdNascimento { get; set; }
 
     public String userName { get; set; }
 
@@ -41,9 +41,9 @@ public class User
 
     #region Métodos
 
-    public void registerNewUser()
+    public Boolean registerNewUser()
     {
-        daoUser.inserUser(this);
+        return daoUser.inserUser(this);
     }
 
     public Boolean updateUser()

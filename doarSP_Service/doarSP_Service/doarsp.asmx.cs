@@ -18,30 +18,43 @@ namespace doarSP_Service
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class Service1 : System.Web.Services.WebService
+    public class doarsp : System.Web.Services.WebService
     {
         #region Insere_Usuario
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
         public String usuario_insereNovoUsuario(int tpSanguineo, String nome, String eMail, int notificacaoPush, int notificacaoEmail,
-                                 int statusApto, DateTime ultimaDoacao, DateTime dtdNascimento)
+                                 int statusApto, String dtdNascimento, String username, String password)
         {
-            User userData = new User();
+            User userData = new User();            
 
             userData.tpSanguineo = tpSanguineo;
             userData.nome = nome;
             userData.eMail = eMail;
             userData.notificacaoPush = notificacaoPush;
             userData.notificaoEmail = notificacaoEmail;
-            userData.statusApto = statusApto;
-            userData.ultimaDoacao = ultimaDoacao;
+            userData.statusApto = statusApto;            
             userData.dtdNascimento = dtdNascimento;
-            userData.registerNewUser();
-            List<User> jsonUser = new List<User>();
+            userData.userName = username;
+            userData.password = password;            
+            
+            /*List<User> jsonUser = new List<User>();
             jsonUser.Insert(0, userData);
 
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
             return jsonClient.Serialize(jsonUser);
+            List<Boolean> json = new List<Boolean>();
+            json.Insert(0, userData.registerNewUser());
+            JavaScriptSerializer jsonClient = new JavaScriptSerializer();
+            return jsonClient.Serialize(json);*/
+            if (userData.registerNewUser())
+            {
+                return "true";
+            }
+            else
+            {
+                return "false";
+            }
         }
         #endregion
 
@@ -49,7 +62,7 @@ namespace doarSP_Service
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
         public String usuario_AtualizaUsuario(int CodUser, int tpSanguineo, String nome, String eMail, int notificacaoPush, int notificacaoEmail,
-                                 int statusApto, DateTime ultimaDoacao, DateTime dtdNascimento)
+                                 int statusApto, String ultimaDoacao, String dtdNascimento)
         {
             User userData = new User();
             userData.codUsuario = CodUser;
@@ -206,23 +219,31 @@ namespace doarSP_Service
         #region Login
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
-        public String usuario_Login(String userName, String password)
-        {
-            User userLogin = new User();
-            userLogin.userName = userName;
-            userLogin.password = password;
-
-            if (userLogin.login())
+        public String usuario_Login(String username, String password)
+        {            
+            try
             {
-                List<User> jsonUser = new List<User>();
-                jsonUser.Insert(0, userLogin);
+                
+                User userLogin = new User();
+                userLogin.userName = username;
+                userLogin.password = password;
 
-                JavaScriptSerializer jsonClient = new JavaScriptSerializer();
-                return jsonClient.Serialize(jsonUser);
+                if (userLogin.login())
+                {
+                    List<User> jsonUser = new List<User>();
+                    jsonUser.Insert(0, userLogin);
+
+                    JavaScriptSerializer jsonClient = new JavaScriptSerializer();
+                    return jsonClient.Serialize(jsonUser);
+                }
+                else
+                {
+                    return "false";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return "false";
+                throw new Exception("" + ex.ToString() + ex.StackTrace);
             }
         }
         #endregion

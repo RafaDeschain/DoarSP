@@ -52,7 +52,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.asmx" />
+    <Content Include="doarsp.asmx" />
     <Content Include="Utils\htmlContent.htm" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -64,8 +64,8 @@
     <Compile Include="Models\Ranking.cs" />
     <Compile Include="Models\Solicitacoes.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Service1.asmx.cs">
-      <DependentUpon>Service1.asmx</DependentUpon>
+    <Compile Include="doarsp.asmx.cs">
+      <DependentUpon>doarsp.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

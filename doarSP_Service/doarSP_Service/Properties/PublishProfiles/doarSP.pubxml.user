@@ -10,7 +10,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/doarSP_Service.dll">
-      <publishTime>10/25/2014 17:47:31</publishTime>
+      <publishTime>10/25/2014 22:19:14</publishTime>
+    </File>
+    <File Include="doarsp.asmx">
+      <publishTime>10/25/2014 19:15:26</publishTime>
     </File>
     <File Include="Service1.asmx">
       <publishTime>10/25/2014 16:34:43</publishTime>
