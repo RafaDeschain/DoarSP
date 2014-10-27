@@ -42,13 +42,13 @@ public class BuscarDoacoes extends Fragment {
 	private void carregarMapa()
 	{
 		hemocentro = new Hemocentros();
-		Utils.trocarFragment(hemocentro, getActivity().getFragmentManager(), R.id.mapa);
+		Configuracao.trocarFragment(hemocentro, getActivity().getFragmentManager(), R.id.mapa);
 	}
 	
 	private void carregarFeed()
 	{
 		feed = new FeedDoacoes();
-		Utils.trocarFragment(feed, getActivity().getFragmentManager(), R.id.feed);
+		Configuracao.trocarFragment(feed, getActivity().getFragmentManager(), R.id.feed);
 	}
 	
 	private TabSpec criarTab(String tag, int nome, int local)

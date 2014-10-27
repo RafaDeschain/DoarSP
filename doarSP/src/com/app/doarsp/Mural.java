@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import com.app.doarsp.Utils;
+import com.app.doarsp.Configuracao;
 
 import com.app.adapter.ListaMuralAdapter;
 import com.app.doarsp.R;
@@ -19,7 +19,7 @@ import com.app.doarsp.R;
 import com.app.model.MuralModel;
 
 public class Mural extends Fragment {
-	
+
 
 	public Mural() {
 	}
@@ -28,29 +28,24 @@ public class Mural extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_mural,
-				container, false);
-		
+		View rootView = inflater.inflate(R.layout.fragment_mural, container, false);
 		ListView listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
-		
 		List<MuralModel> mural = gerarDoacaoMSG(); // metodo para criar a lista (dados).
-		
-	     
+
 		final ListaMuralAdapter muralAdapter = new ListaMuralAdapter(getActivity(), mural);
 		listView.setAdapter(muralAdapter);
-		 
+
 		listView.setOnItemClickListener(new OnItemClickListener(){
-			
+
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3){
-				
+
 				MuralModel mural = muralAdapter.getItem(position);
-				Utils.trocarFragment(new MensagemDoMural(), getFragmentManager(), true);
+				Configuracao.trocarFragment(new MensagemDoMural(), getFragmentManager(), true);
 			    //Toast.makeText(getActivity(),mural.getComentario(), Toast.LENGTH_SHORT).show();    
-					
+
 			}
 		});
-				
-	
+
 		return rootView;
 	}
 	
@@ -67,7 +62,6 @@ public class Mural extends Fragment {
 	private MuralModel criarMural(int CodMural,int CodSolicitacao, String Comentario, int imagem){
 		
 		MuralModel mural = new MuralModel(CodMural,CodSolicitacao,Comentario, imagem);
-		
 		return mural;
 	}
 

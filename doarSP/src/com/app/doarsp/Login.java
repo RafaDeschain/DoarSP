@@ -1,5 +1,7 @@
 package com.app.doarsp;
 
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -29,7 +31,8 @@ public class Login extends Fragment implements InterfaceListener{
 	private Principal principal;
 	private TextView loginErro;
 	private EditText loginET, senhaET;
-    
+	private String login, senha;
+
 	/** Webservice **/
 	private WebService webservice;
 	private Thread thread;
@@ -49,7 +52,7 @@ public class Login extends Fragment implements InterfaceListener{
 				
 				View regView = inflater.inflate(R.layout.fragment_principal, container, false);
 				principal = new Principal();
-				Utils.trocarFragment(principal, getFragmentManager(), false);
+				Configuracao.trocarFragment(principal, getFragmentManager(), false);
 				return regView;
 			}
 			
@@ -64,9 +67,6 @@ public class Login extends Fragment implements InterfaceListener{
 				loginET = (EditText) regView.findViewById(R.id.loginET);
 				senhaET = (EditText) regView.findViewById(R.id.senhaET);
 				
-				//Cria a classe de modelo login
-				loginModel = new UserModel();
-		        
 		        btnRegistrar.setOnClickListener(registrarUsuario);
 		        btnLogin.setOnClickListener(loginBtn);
 		        
@@ -77,7 +77,7 @@ public class Login extends Fragment implements InterfaceListener{
 				loginErro = (TextView) regView.findViewById(R.id.loginerroTV);
 				loginErro.setVisibility(View.INVISIBLE);
 		        
-		        Utils.disableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+		        Configuracao.disableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
 		        return regView;
 			}
 		}
@@ -87,17 +87,25 @@ public class Login extends Fragment implements InterfaceListener{
 		@Override
 		public void returningCall(String result) {
 			
-			if(result.equalsIgnoreCase("true")){
-				//Login com sucesso, vai para a tela principal
-				//Utils.hideKeyboard(getActivity());
-				Principal principal = new Principal();
-				Utils.trocarFragment(principal, getFragmentManager(), false);
-			}
-			else if(result.equalsIgnoreCase("false")){
+			if(result.equalsIgnoreCase("false")){
 				loginErro.setVisibility(View.VISIBLE);
 			}
+			else if(result.equalsIgnoreCase("Erro")){
+				Configuracao.showDialog(getActivity(), "Oops..", "Verifique sua conexão de internet", true);
+			}
 			else{
-				Utils.showDialog(getActivity(), "Oops..", "Verifique sua conexão de internet", true);
+				//Login com sucesso, vai para a tela principal
+				//Utils.hideKeyboard(getActivity());
+				
+				//JSONObject json = new JSONObject(result);
+				
+				//Cria a classe de modelo login
+				loginModel = new UserModel();
+				loginModel.setLogin(getLogin());
+				loginModel.setSenha(getSenha());
+				
+				Principal principal = new Principal();
+				Configuracao.trocarFragment(principal, getFragmentManager(), false);
 			}
 		}
 		
@@ -106,9 +114,9 @@ public class Login extends Fragment implements InterfaceListener{
 		View.OnClickListener registrarUsuario = new View.OnClickListener() {
 			public void onClick(View v) {
 				
-				Utils.hideKeyboard(getActivity());
+				Configuracao.hideKeyboard(getActivity());
 				RegistrarUsuario regUsr = new RegistrarUsuario();
-				Utils.trocarFragment(regUsr, getFragmentManager(), true);
+				Configuracao.trocarFragment(regUsr, getFragmentManager(), true);
 				
 			}
 		};
@@ -127,17 +135,17 @@ public class Login extends Fragment implements InterfaceListener{
 				}
 				else{
 					
-					Utils.hideKeyboard(getActivity());
-					
-					loginModel.setLogin(login);
-					loginModel.setSenha(senha);
+					Configuracao.hideKeyboard(getActivity());
 					
 					params = new String[2][2];
 					
+					setLogin(login);
+					setSenha(senha);
+					
 					params[0][0] = "username";
-					params[0][1] = loginModel.getLogin();
+					params[0][1] = getLogin();
 					params[1][0] = "password";
-					params[1][1] = loginModel.getSenha();
+					params[1][1] = getSenha();
 					
 					setWebservice(new WebService("usuario_Login", params));
 					
@@ -173,6 +181,22 @@ public class Login extends Fragment implements InterfaceListener{
 		
 		public InterfaceListener getInterface(){
 			return this;
+		}
+		
+		public String getLogin() {
+			return login;
+		}
+
+		public void setLogin(String login) {
+			this.login = login;
+		}
+
+		public String getSenha() {
+			return senha;
+		}
+
+		public void setSenha(String senha) {
+			this.senha = senha;
 		}
 		
 		/** Getters and Setters End **/

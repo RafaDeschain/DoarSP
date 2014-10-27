@@ -34,7 +34,7 @@ import android.app.AlertDialog;
 
 
 
-public class Utils{
+public class Configuracao{
 	
 	DrawerLayout mDrawerLayout;
 	ActionBar actionBar;
@@ -82,7 +82,7 @@ public class Utils{
 		}
 		
 		if (!flag){
-			Utils.showMessage(context, msg, 2);
+			Configuracao.showMessage(context, msg, 2);
 		}
 		return flag;
 	}
@@ -209,7 +209,7 @@ public class Utils{
  
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				String str = Utils.unmask(s.toString());
+				String str = Configuracao.unmask(s.toString());
 				String mascara = "";
 				if (isUpdating) {
 					old = str;

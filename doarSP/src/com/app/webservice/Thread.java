@@ -1,6 +1,6 @@
 package com.app.webservice;
 
-import com.app.doarsp.Utils;
+import com.app.doarsp.Configuracao;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,7 +22,7 @@ public class Thread extends AsyncTask<String, Void, String> {
 	@Override
     protected void onPreExecute() {
         super.onPreExecute();
-        setAlertdialog(Utils.showDialog(getActivity(), "Aguarde", "Carregando...", false));
+        setAlertdialog(Configuracao.showDialog(getActivity(), "Aguarde", "Carregando...", false));
     }
 
 	protected String doInBackground(String... urls) {

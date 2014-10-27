@@ -25,7 +25,7 @@ public class Principal extends Fragment {
 	ImageView achivementPicture;
 	TextView nameEdit, tpSanguineo, ultimaDoacao;
 	CheckBox aptoDoar;
-	Utils util;
+	Configuracao util;
     ActionBar actionBar;
 	
     public Principal(){}
@@ -35,7 +35,8 @@ public class Principal extends Fragment {
             Bundle savedInstanceState) {
   
         View rootView = inflater.inflate(R.layout.fragment_principal, container, false);
-        Utils.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+        Configuracao.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+        
         actionBar = getActivity().getActionBar();
         actionBar.setTitle("Principal");
              
@@ -45,6 +46,7 @@ public class Principal extends Fragment {
 		final ListaMuralAdapter muralAdapter = new ListaMuralAdapter(getActivity(), mural);
 		listView.setAdapter(muralAdapter);
 		
+		//Método para fazer funcionar o Scroll das solicitações
 		listView.setOnTouchListener(new ListView.OnTouchListener() {
 		        @Override
 		        public boolean onTouch(View v, MotionEvent event) {

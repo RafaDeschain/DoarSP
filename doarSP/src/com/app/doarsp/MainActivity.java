@@ -24,7 +24,7 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
 	
 	//Chama a classe util
-	Utils util;
+	Configuracao util;
 	
 	private ActionBar actionBar;
 	
@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
 		
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
 		Fragment login = new Login(getApplicationContext());
-		Utils.trocarFragment(login, getFragmentManager(), false);
+		Configuracao.trocarFragment(login, getFragmentManager(), false);
 	}
 
 	/**
@@ -159,8 +159,8 @@ public class MainActivity extends Activity {
 	//Chama a tela de informações ao clicar em "Sobre" no ActionBar
 	public void aboutView(){
 		Fragment about = new Informacoes();
-		Utils.hideKeyboard((Activity) this);
-		Utils.trocarFragment(about, getFragmentManager(), true);
+		Configuracao.hideKeyboard((Activity) this);
+		Configuracao.trocarFragment(about, getFragmentManager(), true);
 	}
 
 	/* *
@@ -211,7 +211,7 @@ public class MainActivity extends Activity {
 		//seta o fragment para qual foi clicado
 		if (fragment != null) {
 			
-			Utils.trocarFragment(fragment, getFragmentManager(), true);
+			Configuracao.trocarFragment(fragment, getFragmentManager(), true);
 			
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);

@@ -42,8 +42,8 @@ public class AlterarDados extends Fragment {
 			UserData.setNotificacaoEmail(notificaoEmail.isChecked());
 			Resources res = getResources();
 			
-			if (Utils.validadeValues(context, dataNasc, eMail) && (UserData.postInsert(res))) {
-				Utils.showMessage(context, "Cadastro Efetuado com Sucesso", 0);
+			if (Configuracao.validadeValues(context, dataNasc, eMail) && (UserData.postInsert(res))) {
+				Configuracao.showMessage(context, "Cadastro Efetuado com Sucesso", 0);
 			}			
 		}
 	};

@@ -26,12 +26,12 @@ public class ManterSolicitacao extends Fragment {
 	public void onClick(View v) {
 			boolean campo = true;
 			
-			if(Utils.isEmpty(nomeEdite)){
+			if(Configuracao.isEmpty(nomeEdite)){
 				nomeEdite.setError("Por favor, preencha o nome");
 				campo = false;
 			}
 			
-			if(Utils.isEmpty(idadeEdite)){
+			if(Configuracao.isEmpty(idadeEdite)){
 				idadeEdite.setError("Por favor, preencha a idade");
 				campo = false;
 			}
@@ -44,7 +44,7 @@ public class ManterSolicitacao extends Fragment {
 				solicitacao.setPostoDoacao(Integer.toString(pstDoacao.getSelectedItemPosition()));
 				solicitacao.setTipoSanguineo(Integer.toString(tpSanguineo.getSelectedItemPosition()));
 				
-				Utils.showMessage(getActivity().getApplicationContext(), "Solicitação efetuado com sucesso", 0);    
+				Configuracao.showMessage(getActivity().getApplicationContext(), "Solicitação efetuado com sucesso", 0);    
 				
 			}
 		

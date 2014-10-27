@@ -39,17 +39,17 @@ public class RegistrarUsuario extends Fragment implements InterfaceListener{
 			
 			boolean valido = true;
 			
-			if(Utils.isEmpty(nameEdit)){
+			if(Configuracao.isEmpty(nameEdit)){
 				nameEdit.setError("Por favor, preencha o nome");
 				valido = false;
 			}
-			if(Utils.validaEmail(eMailEdit) == false){
+			if(Configuracao.validaEmail(eMailEdit) == false){
 				valido = false;
 			}
-			if(Utils.validaData(dataNasEdit) == false){
+			if(Configuracao.validaData(dataNasEdit) == false){
 				valido = false;
 			}
-			if(Utils.isEmpty(senhaEdit)){
+			if(Configuracao.isEmpty(senhaEdit)){
 				senhaEdit.setError("Por favor, escolha uma senha");
 				valido = false;
 			}
@@ -107,17 +107,7 @@ public class RegistrarUsuario extends Fragment implements InterfaceListener{
 				 */
 				
 				thread = new Thread(getActivity(), getWebservice(), getInterface());
-				try
-				{
-					thread.execute();
-				}
-				finally
-				{
-					if (thread.isCancelled())
-					{
-						thread.cancel(true);						
-					}
-				}
+				thread.execute();
 			}
 		}
 	};
@@ -129,16 +119,16 @@ public class RegistrarUsuario extends Fragment implements InterfaceListener{
 		
 		if(result.equalsIgnoreCase("true")){
 			//Login com sucesso, vai para a tela principal
-			Utils.hideKeyboard(getActivity());
+			Configuracao.hideKeyboard(getActivity());
 			Login login = new Login(getActivity().getApplicationContext());
-			Utils.trocarFragment(login, getFragmentManager(), false);
-			Utils.showDialog(getActivity(), "Sucesso", "Cadastrado com sucesso", true);
+			Configuracao.trocarFragment(login, getFragmentManager(), false);
+			Configuracao.showDialog(getActivity(), "Sucesso", "Cadastrado com sucesso", true);
 		}
 		else if(result.equalsIgnoreCase("false")){
-			Utils.showDialog(getActivity(), "Oops..", "Ocorreu um erro durante o cadastro", true);
+			Configuracao.showDialog(getActivity(), "Oops..", "Ocorreu um erro durante o cadastro", true);
 		}
 		else{
-			Utils.showDialog(getActivity(), "Oops..", "Verifique sua conexão de internet", true);
+			Configuracao.showDialog(getActivity(), "Oops..", "Verifique sua conexão de internet", true);
 		}
 	}
 	
@@ -151,17 +141,17 @@ public class RegistrarUsuario extends Fragment implements InterfaceListener{
 		actionBar = getActivity().getActionBar();
 		actionBar.setTitle("Registre-se");
 		dataNasEdit = (EditText)registrar.findViewById(R.id.RegistrarDadosNascimento);
-		dataNasEdit.addTextChangedListener(Utils.insert("##/##/####", dataNasEdit));
+		dataNasEdit.addTextChangedListener(Configuracao.insert("##/##/####", dataNasEdit));
 		
 		nameEdit 		= (EditText)registrar.findViewById(R.id.RegistrarDadosNome);
 		eMailEdit 		= (EditText)registrar.findViewById(R.id.RegistrarDadosEmail);
 		usernameEdit	= (EditText)registrar.findViewById(R.id.RegistrarDadosUsername);
 		senhaEdit 		= (EditText)registrar.findViewById(R.id.RegistrarSenha);
-		tpSanguineo 	= (Spinner)registrar.findViewById(R.id.RegistrarDadosTipo);
+		tpSanguineo 	= (Spinner)	registrar.findViewById(R.id.RegistrarDadosTipo);
 		dataNasEdit 	= (EditText)registrar.findViewById(R.id.RegistrarDadosNascimento);
 		notificaoPush 	= (CheckBox)registrar.findViewById(R.id.RegistrarDadosPush);
 		notificaoEmail 	= (CheckBox)registrar.findViewById(R.id.RegistrarDadosEmailNot);
-		btnSalvar 		= (Button) registrar.findViewById(R.id.RegistrarDadosSalvar);
+		btnSalvar 		= (Button) 	registrar.findViewById(R.id.RegistrarDadosSalvar);
 				
 		btnSalvar.setOnClickListener(saveBtnHandlerClickForInsert);
 		
