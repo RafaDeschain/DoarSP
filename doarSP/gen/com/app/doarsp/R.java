@@ -368,20 +368,11 @@ containing a value of this type.
         public static final int main=0x7f0b0000;
     }
     public static final class string {
-<<<<<<< 376222cbda5a1b9627995394930dd4ec45cc0796
-        public static final int CadastrarQuantiadDoacao=0x7f060056;
-        public static final int aboutMe=0x7f06002f;
-        public static final int action_settings=0x7f06002d;
-        public static final int already_registered=0x7f06001c;
-        public static final int alterardadostitulo=0x7f060043;
-        public static final int app_name=0x7f06002c;
-=======
         public static final int CadastrarQuantiadDoacao=0x7f060046;
         public static final int aboutMe=0x7f06001e;
         public static final int action_settings=0x7f06001c;
         public static final int alterardadostitulo=0x7f060033;
         public static final int app_name=0x7f06001b;
->>>>>>> feb4dc024cafce6e1ade91c1066e2505fcc5253d
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
@@ -407,19 +398,11 @@ containing a value of this type.
         public static final int auth_client_using_bad_version_title=0x7f060014;
         /**   Tela de BuscarDoacoes 
          */
-<<<<<<< 376222cbda5a1b9627995394930dd4ec45cc0796
-        public static final int bd_feed=0x7f06004d;
-        public static final int bd_mapa=0x7f06004e;
-        public static final int cadastro=0x7f060048;
-        public static final int cadastroLink=0x7f060049;
-        public static final int cancelar=0x7f060039;
-=======
         public static final int bd_feed=0x7f06003d;
         public static final int bd_mapa=0x7f06003e;
         public static final int cadastro=0x7f060038;
         public static final int cadastroLink=0x7f060039;
         public static final int cancelar=0x7f060028;
->>>>>>> feb4dc024cafce6e1ade91c1066e2505fcc5253d
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -491,64 +474,11 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
-        public static final int configuracao=0x7f060031;
-        public static final int data_nascimento=0x7f060036;
-        public static final int dedicatoria=0x7f06003b;
+        public static final int configuracao=0x7f060020;
+        public static final int data_nascimento=0x7f060025;
+        public static final int dedicatoria=0x7f06002a;
         /**  Content Description 
          */
-<<<<<<< 376222cbda5a1b9627995394930dd4ec45cc0796
-        public static final int desc_list_item_icon=0x7f060042;
-        public static final int drawer_close=0x7f060041;
-        public static final int drawer_open=0x7f060040;
-        public static final int email=0x7f060035;
-        public static final int entrar=0x7f060047;
-        /**  End location client resources 
-         */
-        public static final int error_config=0x7f06001b;
-        public static final int filtro=0x7f06004f;
-        public static final int gcm_deleted=0x7f060022;
-        public static final int gcm_error=0x7f060020;
-        public static final int gcm_message=0x7f06001f;
-        public static final int gcm_recoverable_error=0x7f060021;
-        public static final int gcm_registered=0x7f06001d;
-        public static final int gcm_unregistered=0x7f06001e;
-        public static final int google_play_services_version=0x7f06003d;
-        public static final int idade=0x7f060055;
-        /**  Location client code resources (prefix with location_client) 
-         */
-        public static final int location_client_powered_by_google=0x7f06001a;
-        public static final int login=0x7f060045;
-        public static final int loginerro=0x7f06004c;
-        public static final int mensagemLogin=0x7f060044;
-        public static final int menuAbout=0x7f06003e;
-        public static final int nome=0x7f060033;
-        public static final int notificacoes_email=0x7f060038;
-        public static final int notificacoes_push=0x7f060037;
-        public static final int options_clear=0x7f06002a;
-        public static final int options_exit=0x7f06002b;
-        public static final int options_register=0x7f060028;
-        public static final int options_unregister=0x7f060029;
-        public static final int postoHemocentro=0x7f060054;
-        public static final int principalapto=0x7f06003c;
-        public static final int quantSolicitacao0=0x7f060050;
-        public static final int quantSolicitacao1=0x7f060051;
-        public static final int quantSolicitacaoN=0x7f060052;
-        public static final int registrarsenha=0x7f06004b;
-        public static final int registrarsolicitao=0x7f060053;
-        public static final int registrartitulo=0x7f06004a;
-        public static final int salvar=0x7f06003a;
-        public static final int senha=0x7f060046;
-        public static final int server_register_error=0x7f060026;
-        public static final int server_registered=0x7f060024;
-        public static final int server_registering=0x7f060023;
-        public static final int server_unregister_error=0x7f060027;
-        public static final int server_unregistered=0x7f060025;
-        public static final int signature=0x7f060030;
-        public static final int tipo_sanguineo=0x7f060032;
-        public static final int tpSanguineo=0x7f060034;
-        public static final int ultimasolicitacoes=0x7f06003f;
-        public static final int version=0x7f06002e;
-=======
         public static final int desc_list_item_icon=0x7f060032;
         public static final int drawer_close=0x7f060031;
         public static final int drawer_open=0x7f060030;
@@ -583,7 +513,6 @@ containing a value of this type.
         public static final int ultimasolicitacoes=0x7f06002e;
         public static final int username=0x7f06002f;
         public static final int version=0x7f06001d;
->>>>>>> feb4dc024cafce6e1ade91c1066e2505fcc5253d
     }
     public static final class style {
         /** 

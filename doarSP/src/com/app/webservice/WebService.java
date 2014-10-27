@@ -21,7 +21,7 @@ import android.webkit.WebView;
 public class WebService{
 	
 	private final String SOAP_NAMESPACE = "http://tempuri.org/";
-	private final String SOAP_URL = "http://192.168.0.14/doarsp/doarsp.asmx";
+	private final String SOAP_URL = "http://doarsp.ddns.net:8080/doarsp/doarsp.asmx";
 	private String SOAP_METHOD_NAME;
 	
 	private SoapObject request;
@@ -67,9 +67,10 @@ public class WebService{
 			resp = response.toString();
 			setWsReturn(resp);
 		} catch (Exception e) {
+			setWsReturn("Erro");
 			Log.i("WS Error->",e.toString());
 		}
-		 //webservice thingi ends
+		
 		return getWsReturn();
 	}
 	
