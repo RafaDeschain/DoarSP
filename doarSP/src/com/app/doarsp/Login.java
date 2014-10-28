@@ -25,7 +25,7 @@ import com.app.webservice.WebService;
 
 public class Login extends Fragment implements InterfaceListener{
 	
-	private UserModel loginModel;
+	private UserModel userModel;
 	
 	private ActionBar actionBar;
 	private Principal principal;
@@ -97,15 +97,35 @@ public class Login extends Fragment implements InterfaceListener{
 				//Login com sucesso, vai para a tela principal
 				//Utils.hideKeyboard(getActivity());
 				
-				//JSONObject json = new JSONObject(result);
+				result = result.replace("[", "");
+				result = result.replace("]", "");
 				
-				//Cria a classe de modelo login
-				loginModel = new UserModel();
-				loginModel.setLogin(getLogin());
-				loginModel.setSenha(getSenha());
-				
-				Principal principal = new Principal();
-				Configuracao.trocarFragment(principal, getFragmentManager(), false);
+				try{
+					
+					JSONObject json = new JSONObject(result);
+					
+					//Cria a classe de modelo login
+					userModel = new UserModel();
+					userModel.setCodUsuario			(json.getInt("codUsuario"));
+					userModel.setTpSanguineo		(json.getInt("tpSanguineo"));
+					userModel.setNome				(json.getString("nome"));
+					userModel.seteMail				(json.getString("eMail"));
+					userModel.setNotificacaoPush	((json.getInt("notificacaoPush") == 1 ? true : false));
+					userModel.setNotificacaoEmail	((json.getInt("notificaoEmail") == 1 ? true : false));
+					userModel.setStatusApto			((json.getInt("statusApto") == 1 ? true : false));
+					userModel.setDtdUltimaDoacao	(json.getString("ultimaDoacao"));
+					userModel.setDtdNascimento		(json.getString("dtdNascimento"));
+					userModel.setLogin				(getLogin());
+					userModel.setSenha				(getSenha());
+					userModel.setIsLoggedIn			(true);
+					
+					Principal principal = new Principal(userModel);
+					Configuracao.trocarFragment(principal, getFragmentManager(), false);
+					
+				}
+				catch(Exception e){
+					Configuracao.showDialog(getActivity(), "Oops", "Ocorreu um erro durante o seu login", true);
+				}
 			}
 		}
 		

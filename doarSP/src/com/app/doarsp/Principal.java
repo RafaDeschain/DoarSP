@@ -6,6 +6,7 @@ import com.app.adapter.ListaMuralAdapter;
 import com.app.model.MuralModel;
 import com.app.model.UserModel;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.graphics.Bitmap;
@@ -20,15 +21,30 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
  
+@SuppressLint("ValidFragment")
 public class Principal extends Fragment {
 	
-	ImageView achivementPicture;
-	TextView nameEdit, tpSanguineo, ultimaDoacao;
-	CheckBox aptoDoar;
-	Configuracao util;
-    ActionBar actionBar;
+	/** Tela **/
+	private ImageView achivementPicture;
+	private TextView nameEdit, tpSanguineo, ultimaDoacao;
+	private CheckBox aptoDoar;
+	private ActionBar actionBar;
 	
-    public Principal(){}
+	/** Modelo **/
+	public UserModel user;
+	
+	//Código usuario
+	int codusuario;
+	
+	public Principal(){}
+	
+	public Principal(int codUsuario){
+		
+	}
+	
+	public Principal(UserModel user){
+		setUserModel(user);
+	}
      
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +55,57 @@ public class Principal extends Fragment {
         
         actionBar = getActivity().getActionBar();
         actionBar.setTitle("Principal");
-             
+        
+        // Carrega os componentes
+        achivementPicture = (ImageView)rootView.findViewById(R.id.PrincipalImageView);
+        nameEdit 		  = (TextView)rootView.findViewById(R.id.PrincipalNome);
+        tpSanguineo 	  = (TextView)rootView.findViewById(R.id.PrincipalTIpoSanguineo);
+        ultimaDoacao	  = (TextView)rootView.findViewById(R.id.PrincipalUltimaDoacao);
+        aptoDoar 	      = (CheckBox)rootView.findViewById(R.id.PrincipalAptoDoar);
+                
+        // Seta os dados do usuário nos componentes
+        
+        switch (user.getTpSanguineo()) {
+        case 0:
+			achivementPicture.setImageResource(R.drawable.tp_a);
+			break;
+        case 1:
+			achivementPicture.setImageResource(R.drawable.tp_an);
+			break;
+        case 2:
+			achivementPicture.setImageResource(R.drawable.tp_b);
+			break;
+        case 3:
+			achivementPicture.setImageResource(R.drawable.tp_bn);
+			break;
+        case 4:
+			achivementPicture.setImageResource(R.drawable.tp_ab);
+			break;
+        case 5:
+			achivementPicture.setImageResource(R.drawable.tp_abn);
+			break;
+        case 6:
+			achivementPicture.setImageResource(R.drawable.tp_o);
+			break;
+        case 7:
+			achivementPicture.setImageResource(R.drawable.tp_on);
+			break;
+		default:
+			break;
+		}   
+        
+        nameEdit.setText(user.getNome());
+        tpSanguineo.setText("Tipo sanguineo: " + user.getTpSanguineoAsString());
+        
+        if(user.getDtdUltimaDoacao().equals("null")){
+        	ultimaDoacao.setText("Ainda não efetuou nenhuma doação");
+        }else{
+        	ultimaDoacao.setText("Data ultima doação: " + user.getDtdUltimaDoacao());	
+        }
+        
+        aptoDoar.setChecked(user.getStatusApto());
+        
+        //Solicitações
         Mural mu = new Mural();
         ListView listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
 		List<MuralModel> mural = mu.gerarDoacaoMSG();
@@ -69,28 +135,18 @@ public class Principal extends Fragment {
 		        }
 		    });
         
-/**
-        // Carrega os componentes
-        achivementPicture = (ImageView)rootView.findViewById(R.id.PrincipalImageView);
-        nameEdit 		  = (TextView)rootView.findViewById(R.id.PrincipalNome);
-        tpSanguineo 	  = (TextView)rootView.findViewById(R.id.PrincipalTIpoSanguineo);
-        ultimaDoacao	  = (TextView)rootView.findViewById(R.id.PrincipalUltimaDoacao);
-        aptoDoar 	      = (CheckBox)rootView.findViewById(R.id.PrincipalAptoDoar);
-                
-        // Carrega os dados no banco
-        UserModel userData = new UserModel(rootView.getContext());
-        userData.getUserData(userData);
-        
-        // Seta os dados do banco nos componentes
-        Bitmap achivementBitmap = userData.getImageAchivement();        
-        if (achivementBitmap.getByteCount() > 0)
-        	achivementPicture.setImageBitmap(achivementBitmap);        
-        nameEdit.setText(userData.getNome());
-        tpSanguineo.setText(userData.getTpSanguineoAsString());
-        // Ainda nao esta feito o recurso de alterar a ultima doacao fixado o nascimento
-        ultimaDoacao.setText(userData.getDtdNascimento());
-        aptoDoar.setChecked(true);
-        **/
         return rootView;
     }
+    
+    /** Getters and Setters **/
+    
+    public UserModel getUserModel() {
+		return user;
+	}
+
+	public void setUserModel(UserModel user) {
+		this.user = user;
+	}
+	
+	/** Fim Getters and Setters **/
 }

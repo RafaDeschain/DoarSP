@@ -112,13 +112,36 @@
 		        android:textSize="16sp" 
 		        android:layout_marginTop="6dp"
 		        android:layout_marginBottom="10dp"/>
+		    
+		    <TextView
+		        android:id="@+id/RegistrarSenhaTV2"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/RegistrarSenha"
+		        android:text="@string/registrarsenha2" />
+		    
+		    <EditText
+		        android:id="@+id/RegistrarSenha2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@+id/RegistrarSenhaTV2"
+		        android:ems="10"
+		        android:inputType="textPassword"
+		        android:padding="8dp"
+		        android:textSize="16sp" 
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"/>
 		
 		    <Spinner
 		        android:id="@+id/RegistrarDadosTipo"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignRight="@+id/RegistrarDadosEmail"
-		        android:layout_below="@+id/RegistrarSenha"
+		        android:layout_below="@+id/RegistrarSenha2"
 		        android:layout_toRightOf="@+id/RegistrarDadosNascimentoTV"
 		        android:entries="@array/tipos_Sanguineos" />
 		

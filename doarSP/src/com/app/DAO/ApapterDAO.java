@@ -6,10 +6,10 @@ import android.content.res.Resources;
 import android.database.Cursor;
 
 public class ApapterDAO {
-	private UtilsDAO Utils;
+	private AppDAO Utils;
 	
 	public ApapterDAO(Context context){
-		Utils = new UtilsDAO(context);
+		Utils = new AppDAO(context);
 	}
 	
 	public boolean postUpdate(UserModel Usuario)

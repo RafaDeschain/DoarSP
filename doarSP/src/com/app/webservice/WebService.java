@@ -20,7 +20,7 @@ import android.webkit.WebView;
 @SuppressWarnings("unused")
 public class WebService{
 	
-	private final String SOAP_NAMESPACE = "http://tempuri.org/";
+	private final String SOAP_NAMESPACE = "http://doarsp.ws/";
 	private final String SOAP_URL = "http://doarsp.ddns.net:8080/doarsp/doarsp.asmx";
 	private String SOAP_METHOD_NAME;
 	

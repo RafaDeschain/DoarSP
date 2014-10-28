@@ -105,6 +105,7 @@
     <string name="cadastroLink">Registre-se agora!</string>
     <string name="registrartitulo">Registre-se e ajude a salvar vidas</string>
     <string name="registrarsenha">Senha</string>
+    <string name="registrarsenha2">Confirme sua senha</string>
     <string name="loginerro">Login e/ou senha incorreta</string>
     <!--  Tela de BuscarDoacoes -->
    	<string name="bd_feed">Solicitações</string>

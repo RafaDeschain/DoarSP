@@ -2,6 +2,7 @@ package com.app.doarsp;
 
 import com.app.adapter.NavDrawerListAdapter;
 import com.app.model.HemocentrosModel;
+import com.app.model.UserModel;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -49,6 +49,9 @@ public class MainActivity extends Activity {
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
+	
+	//Modelo
+	UserModel user;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -246,4 +249,16 @@ public class MainActivity extends Activity {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
+	
+	/** Getters and Setters **/
+	
+	public UserModel getUser() {
+		return user;
+	}
+
+	public void setUser(UserModel user) {
+		this.user = user;
+	}
+	
+	/** Getters and Setters end **/
 }

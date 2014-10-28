@@ -16,7 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-public class UtilsDAO extends SQLiteOpenHelper{
+public class AppDAO extends SQLiteOpenHelper{
 	
 	private static final String DATABASE_NAME    = "doarSP.db";
 	private static final int DATABASE_VERSION 	 = 2;
@@ -30,7 +30,8 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	public final static String DTDULTIMADOACAO   = "USU_DtdUltimaDoacao";
 	public final static String DTDNASCIMENTO     = "USU_DtdNascimento";
 	public final static String ARQFOTO           = "USU_ArqFoto";
-	public final static String TABLE_NAME	     = "TB_Usuario";
+	public final static String LOGGEDIN          = "USU_LoggedIn";
+	public final static String TB_USUARIO	     = "TB_Usuario";
 	public final static String TABLE_NAME_POSTO  = "TB_PostosDoacao";
 	public final static String IDPOSTO           = "POS_CodPosto";
 	public final static String ENDPOSTO          = "POS_EndPosto";
@@ -49,7 +50,8 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	+ "				USU_StatusApto integer not null,"
 	+ "				USU_DtdUltimaDoacao text,"
 	+ "				USU_DtdNascimento text,"
-	+ "				USU_ArqFoto blob"	
+	+ "				USU_ArqFoto blob,"
+	+ "				USU_LoggedIn integer not null"
 	+ "			  );";
 	
 	private static final String DATABASE_CREATE_POSTOS = " CREATE TABLE IF NOT EXISTS "
@@ -60,16 +62,16 @@ public class UtilsDAO extends SQLiteOpenHelper{
 	+ "					 POS_Longitude real not null"	
 	+ "					);";	
 	
-	private String[] allColumns = { UtilsDAO.ID, UtilsDAO.TPSANGUINEO, UtilsDAO.NOME, UtilsDAO.EMAIL, UtilsDAO.NOTIFICAOPUSH, UtilsDAO.NOTIFICACAOEMAIL, 
-			UtilsDAO.STATUSAPTO, UtilsDAO.DTDULTIMADOACAO, UtilsDAO.DTDNASCIMENTO  };	
+	private String[] allColumns = { AppDAO.ID, AppDAO.TPSANGUINEO, AppDAO.NOME, AppDAO.EMAIL, AppDAO.NOTIFICAOPUSH, AppDAO.NOTIFICACAOEMAIL, 
+			AppDAO.STATUSAPTO, AppDAO.DTDULTIMADOACAO, AppDAO.DTDNASCIMENTO  };	
 	
-	private String[] allColumnsQuery = { UtilsDAO.ID, UtilsDAO.TPSANGUINEO, UtilsDAO.NOME, UtilsDAO.EMAIL, UtilsDAO.NOTIFICAOPUSH, UtilsDAO.NOTIFICACAOEMAIL, 
-			UtilsDAO.STATUSAPTO, UtilsDAO.DTDULTIMADOACAO, UtilsDAO.DTDNASCIMENTO, UtilsDAO.ARQFOTO  };
+	private String[] allColumnsQuery = { AppDAO.ID, AppDAO.TPSANGUINEO, AppDAO.NOME, AppDAO.EMAIL, AppDAO.NOTIFICAOPUSH, AppDAO.NOTIFICACAOEMAIL, 
+			AppDAO.STATUSAPTO, AppDAO.DTDULTIMADOACAO, AppDAO.DTDNASCIMENTO, AppDAO.ARQFOTO, AppDAO.LOGGEDIN  };
 	
-	private String[] allColumnsPosto = { UtilsDAO.IDPOSTO, UtilsDAO.ENDPOSTO, UtilsDAO.NOMEPOSTO, 
-										 UtilsDAO.LATITUDE, UtilsDAO.LONGITUDE };
+	private String[] allColumnsPosto = { AppDAO.IDPOSTO, AppDAO.ENDPOSTO, AppDAO.NOMEPOSTO, 
+										 AppDAO.LATITUDE, AppDAO.LONGITUDE };
 	
-	public UtilsDAO(Context context) {
+	public AppDAO(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);        
 	}	
 	
@@ -99,20 +101,21 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		try
 		{			
 			ContentValues values = new ContentValues();
-			values.put(UtilsDAO.ID, Usuario.getCodUsuario());
-			values.put(UtilsDAO.TPSANGUINEO, Usuario.getTpSanguineo());
-			values.put(UtilsDAO.NOME, Usuario.getNome());
-			values.put(UtilsDAO.EMAIL, Usuario.geteMail());
-			values.put(UtilsDAO.NOTIFICAOPUSH, Usuario.getNotificacaoPush());
-			values.put(UtilsDAO.NOTIFICACAOEMAIL, Usuario.getNotificacaoEmail());
-			values.put(UtilsDAO.STATUSAPTO, Usuario.getStatusApto());
-			values.put(UtilsDAO.DTDULTIMADOACAO, Usuario.getDtdUltimaDoacao());
-			String whereClause = " " + UtilsDAO.ID + " = "
+			values.put(AppDAO.ID, Usuario.getCodUsuario());
+			values.put(AppDAO.TPSANGUINEO, Usuario.getTpSanguineo());
+			values.put(AppDAO.NOME, Usuario.getNome());
+			values.put(AppDAO.EMAIL, Usuario.geteMail());
+			values.put(AppDAO.NOTIFICAOPUSH, Usuario.getNotificacaoPush());
+			values.put(AppDAO.NOTIFICACAOEMAIL, Usuario.getNotificacaoEmail());
+			values.put(AppDAO.STATUSAPTO, Usuario.getStatusApto());
+			values.put(AppDAO.DTDULTIMADOACAO, Usuario.getDtdUltimaDoacao());
+			values.put(AppDAO.LOGGEDIN, Usuario.getIsLoggedIn());
+			String whereClause = " " + AppDAO.ID + " = "
 					+ Usuario.getCodUsuario();
 
-			database.update(UtilsDAO.TABLE_NAME, values, whereClause, null);
+			database.update(AppDAO.TB_USUARIO, values, whereClause, null);
 
-			Cursor query = database.query(UtilsDAO.TABLE_NAME, allColumns,
+			Cursor query = database.query(AppDAO.TB_USUARIO, allColumns,
 					whereClause, null, null, null, null);
 			convertQueryForUserModel(query, Usuario);
 			return true;
@@ -133,9 +136,9 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		SQLiteDatabase database = this.getReadableDatabase();
 		try
 		{		
-			database.delete(UtilsDAO.TABLE_NAME_POSTO, null, null);
-			String[] column = { UtilsDAO.IDPOSTO };
-			Cursor query = database.query(UtilsDAO.TABLE_NAME_POSTO, column, null,
+			database.delete(AppDAO.TABLE_NAME_POSTO, null, null);
+			String[] column = { AppDAO.IDPOSTO };
+			Cursor query = database.query(AppDAO.TABLE_NAME_POSTO, column, null,
 					null, null, null, null);
 			return query.getCount() > 0;
 		}
@@ -153,8 +156,8 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		{		
 			// parar sempre criar um usuario - Caso precise depurar o postInsert
 			//database.delete(UtilsDAO.TABLE_NAME, null, null);
-			String[] column = { UtilsDAO.ID };
-			Cursor query = database.query(UtilsDAO.TABLE_NAME, column, null,
+			String[] column = { AppDAO.ID };
+			Cursor query = database.query(AppDAO.TB_USUARIO, column, null,
 					null, null, null, null);
 			return query.getCount() > 0;
 		}
@@ -171,19 +174,18 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		try
 		{			
 			ContentValues values = new ContentValues();
-			values.put(UtilsDAO.ID, 1);
-			values.put(UtilsDAO.TPSANGUINEO, userData.getTpSanguineo());
-			values.put(UtilsDAO.NOME, userData.getNome());
-			values.put(UtilsDAO.EMAIL, userData.geteMail());
-			values.put(UtilsDAO.NOTIFICAOPUSH, userData.getNotificacaoPush());
-			values.put(UtilsDAO.NOTIFICACAOEMAIL,
-					userData.getNotificacaoEmail());
-			values.put(UtilsDAO.STATUSAPTO, userData.getStatusApto());
-			values.put(UtilsDAO.DTDULTIMADOACAO, userData.getDtdUltimaDoacao());
-			values.put(UtilsDAO.DTDNASCIMENTO, userData.getDtdNascimento());
-			values.put(UtilsDAO.ARQFOTO, getFirstImageForSave(res));
+			values.put(AppDAO.ID, userData.getCodUsuario());
+			values.put(AppDAO.TPSANGUINEO, userData.getTpSanguineo());
+			values.put(AppDAO.NOME, userData.getNome());
+			values.put(AppDAO.EMAIL, userData.geteMail());
+			values.put(AppDAO.NOTIFICAOPUSH, userData.getNotificacaoPush());
+			values.put(AppDAO.NOTIFICACAOEMAIL, userData.getNotificacaoEmail());
+			values.put(AppDAO.STATUSAPTO, userData.getStatusApto());
+			values.put(AppDAO.DTDULTIMADOACAO, userData.getDtdUltimaDoacao());
+			values.put(AppDAO.DTDNASCIMENTO, userData.getDtdNascimento());
+			values.put(AppDAO.ARQFOTO, getFirstImageForSave(res));
 
-			database.insert(UtilsDAO.TABLE_NAME, null, values);
+			database.insert(AppDAO.TB_USUARIO, null, values);
 			return true;
 		}
 		catch (Exception Ex)
@@ -219,7 +221,7 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		SQLiteDatabase database = this.getReadableDatabase();
 		try
 		{						
-			Cursor query = database.query(UtilsDAO.TABLE_NAME, allColumnsQuery, null,
+			Cursor query = database.query(AppDAO.TB_USUARIO, allColumnsQuery, null,
 					null, null, null, null);
 			if (query.getCount() > 0)
 				convertQueryForUserModel(query, userData);				
@@ -242,7 +244,7 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		userData.seteMail(query.getString(3));
 		userData.setNotificacaoPush(query.getInt(4) == 1 ? true : false );
 		userData.setNotificacaoEmail(query.getInt(5) == 1 ? true : false); 
-		userData.setStatusApto(query.getInt(6)); 
+		//userData.setStatusApto(query.getInt(6)); 
 		userData.setDtdUltimaDoacao(query.getString(7));
 		userData.setDtdNascimento(query.getString(8));
 		
@@ -262,12 +264,12 @@ public class UtilsDAO extends SQLiteOpenHelper{
 			for (int i = 0; i <= postosValues.length; i++)
 			{
 				values.clear();
-				values.put(UtilsDAO.IDPOSTO, i);
-				values.put(UtilsDAO.ENDPOSTO, postosValues[i][1]);
-				values.put(UtilsDAO.NOMEPOSTO, postosValues[i][2]);
-				values.put(UtilsDAO.LATITUDE, postosValues[i][3]);
-				values.put(UtilsDAO.LONGITUDE, postosValues[i][4]);
-				database.insert(UtilsDAO.TABLE_NAME_POSTO, null, values);				
+				values.put(AppDAO.IDPOSTO, i);
+				values.put(AppDAO.ENDPOSTO, postosValues[i][1]);
+				values.put(AppDAO.NOMEPOSTO, postosValues[i][2]);
+				values.put(AppDAO.LATITUDE, postosValues[i][3]);
+				values.put(AppDAO.LONGITUDE, postosValues[i][4]);
+				database.insert(AppDAO.TABLE_NAME_POSTO, null, values);				
 			}										
 		}
 		catch (Exception Ex)
@@ -285,7 +287,7 @@ public class UtilsDAO extends SQLiteOpenHelper{
 		SQLiteDatabase database = this.getReadableDatabase();
 		try
 		{						
-			Cursor query = database.query(UtilsDAO.TABLE_NAME_POSTO, allColumnsPosto, null,
+			Cursor query = database.query(AppDAO.TABLE_NAME_POSTO, allColumnsPosto, null,
 					null, null, null, null);
 			return query;				
 		}

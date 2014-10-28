@@ -36,6 +36,7 @@
                 android:layout_alignTop="@+id/PrincipalImageView"
                 android:layout_marginBottom="10dp"
                 android:layout_toRightOf="@+id/PrincipalImageView"
+                android:textStyle="bold"
                 android:text="Gustavo Palazolo" />
 
             <TextView
@@ -61,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/PrincipalImageView"
                 android:layout_below="@+id/PrincipalImageView"
-                android:text="@string/principalapto" />
+                android:text="@string/principalapto" 
+                android:enabled="false"/>
 
             <TextView
                 android:id="@+id/ultimasSolicitacoes"

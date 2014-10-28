@@ -19,20 +19,13 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnCreateContextMenuListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import android.app.Activity;
-import android.widget.Button;
 
 import android.app.AlertDialog;
-
-
 
 public class Configuracao{
 	
@@ -150,7 +143,7 @@ public class Configuracao{
 	  //Método que faz a leitura de fato dos valores recebidos do GPS
     public void startGPS(){   	
    //     LocationManager lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); (verificar getSystemService, extender o activity no utils?)
-        LocationListener lListener = new LocationListener() {
+       LocationListener lListener = new LocationListener() {
             public void onLocationChanged(Location locat) {
                 updateView(locat);            	
             }

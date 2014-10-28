@@ -10,8 +10,8 @@ import com.app.DAO.ApapterDAO;
 
 public class UserModel {
 	
-	private int codUsuario, tpSanguineo, statusApto; 
-	private boolean notificacaoPush, notificacaoEmail;
+	private int codUsuario, tpSanguineo; 
+	private boolean notificacaoPush, notificacaoEmail, statusApto;
 	private String nome, eMail, dtdUltimaDoacao, dtdNascimento;
 	private ApapterDAO DAO;
 	private byte[] imageAchivement;
@@ -54,10 +54,10 @@ public class UserModel {
 	public void setNotificacaoEmail(boolean notificacaoEmail) {
 		this.notificacaoEmail = notificacaoEmail;
 	}
-	public int getStatusApto() {
+	public boolean getStatusApto() {
 		return statusApto;
 	}
-	public void setStatusApto(int statusApto) {
+	public void setStatusApto(boolean statusApto) {
 		this.statusApto = statusApto;
 	}
 	public String getNome() {
