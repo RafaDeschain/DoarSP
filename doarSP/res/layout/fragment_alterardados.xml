@@ -27,7 +27,7 @@
 		        android:textSize="18sp"
 		        android:textStyle="bold"
 		        android:layout_marginBottom="15dp"
-		        android:text="@string/configuracao" />
+		        android:text="@string/Alterartitulo" />
 		
 		    <TextView
 		        android:id="@+id/AlterarDadosNomeTV"
@@ -71,13 +71,33 @@
 		        android:layout_marginBottom="10dp"/>
 		    
 		    <TextView
-		        android:id="@+id/AlterarSenhaTV"
+		        android:id="@+id/AlterarDadosUsernameTV"
 		        android:textSize="16sp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
 		        android:layout_below="@id/AlterarDadosEmail"
-		        android:text="@string/senha" />
+		        android:text="@string/username" />
+		
+		    <EditText
+		        android:id="@+id/AlterarDadosUsername"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@id/AlterarDadosUsernameTV"
+		        android:inputType="textEmailAddress"
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"/>
+		    
+		    <TextView
+		        android:id="@+id/AlterarSenhaTV"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/AlterarDadosUsername"
+		        android:text="@string/alterarsenha" />
 		    
 		    <EditText
 		        android:id="@+id/AlterarSenha"
@@ -92,13 +112,36 @@
 		        android:textSize="16sp" 
 		        android:layout_marginTop="6dp"
 		        android:layout_marginBottom="10dp"/>
+		    
+		    <TextView
+		        android:id="@+id/AlterarSenhaTV2"
+		        android:textSize="16sp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@id/AlterarSenha"
+		        android:text="@string/alterarsenha2" />
+		    
+		    <EditText
+		        android:id="@+id/AlterarSenha2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_below="@+id/AlterarSenhaTV2"
+		        android:ems="10"
+		        android:inputType="textPassword"
+		        android:padding="8dp"
+		        android:textSize="16sp" 
+		        android:layout_marginTop="6dp"
+		        android:layout_marginBottom="10dp"/>
 		
 		    <Spinner
 		        android:id="@+id/AlterarDadosTipo"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignRight="@+id/AlterarDadosEmail"
-		        android:layout_below="@+id/AlterarSenha"
+		        android:layout_below="@+id/AlterarSenha2"
 		        android:layout_toRightOf="@+id/AlterarDadosNascimentoTV"
 		        android:entries="@array/tipos_Sanguineos" />
 		
@@ -171,6 +214,7 @@
 			   	    android:layout_alignParentLeft="true"
 			   	    android:layout_alignParentRight="true"
 			   	    android:text="@string/salvar" />
+		        
 		    </RelativeLayout>
 		</RelativeLayout>
 	</LinearLayout>

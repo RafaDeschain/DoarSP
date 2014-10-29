@@ -10,7 +10,7 @@
     <string name="tipo_sanguineo">Tipo Sanguineo</string>
     <string name="nome">Nome</string>
     <string name="tpSanguineo">Tipo Sanguineo</string>
-    <string name="email">E-Mail</string>
+    <string name="email">Email</string>
     <string name="data_nascimento">Data de Nascimento</string>
     <string name="notificacoes_push">Notificações Push</string>
     <string name="notificacoes_email">Notificações E-Mail</string>
@@ -21,7 +21,13 @@
     <string name="google_play_services_version">4323000</string>   
     <string name="menuAbout">Sobre</string>    
     <string name="ultimasolicitacoes">Solicitações abertas</string> 
-    <string name="username">Nome de usuário</string>    
+    <string name="Alterartitulo">Alterar dados</string>   
+    <string name="username">Nome de usuário</string>   
+    <string name="alterarsenha">Senha</string>   
+    <string name="alterarsenha2">Confirmar senha</string>    
+    <string name="nomepaciente">Nome do paciente</string>   
+    <string name="solicitacaohemocentro">Selecione um hemocentro para doação</string>   
+    <string name="solicitacaocomentario">Use o espaço abaixo para agradecer os doadores :)</string>   
     
 <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
@@ -65,34 +71,11 @@
     
        <string-array name="quant_doaco">
         <item>01</item>
-        <item>02</item>
-        <item>03</item>
-        <item>04</item>
         <item>05</item>
-        <item>06</item>
-        <item>07</item>
-        <item>08</item>
-        <item>09</item>
         <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
         <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
         <item>20</item>
-        <item>21</item>
-        <item>22</item>
-        <item>23</item>
-        <item>24</item>
         <item>25</item>
-        <item>26</item>
-        <item>27</item>
-        <item>28</item>
-        <item>29</item>
         <item>30</item>
     </string-array>
     
@@ -115,7 +98,7 @@
    	<string name="quantSolicitacao1">Apenas uma solicitação.</string>
    	<string name="quantSolicitacaoN">Qtd. de Solicitações:</string>
    	<string name ="registrarsolicitao">Solicitar Doadores</string>
-   	<string name="postoHemocentro">Postos de doação </string>
+   	<string name="postoHemocentro">Postos de doação</string>
    	<string name="idade">Idade </string>
-   	<string name="CadastrarQuantiadDoacao">Quantidade de doações necessitada </string> 
+   	<string name="CadastrarQuantiadDoacao">Quantidade de doações necessárias</string> 
 </resources>

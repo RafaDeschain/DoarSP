@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="fill_parent" >
+           
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="fill_parent"
+               android:layout_alignParentBottom="true"
+               android:gravity="bottom"
+               android:padding="10dp" >
+
+               <TextView
+                   android:id="@+id/SolicitarDoacaoTV"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentTop="true"
+                   android:layout_marginBottom="15dp"
+                   android:gravity="center"
+                   android:text="@string/registrarsolicitao"
+                   android:textSize="18sp"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:id="@+id/SolicitacaoNomeTV"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentLeft="true"
+                   android:layout_below="@id/SolicitarDoacaoTV"
+                   android:text="@string/nomepaciente"
+                   android:textSize="16sp" />
+
+               <EditText
+                   android:id="@+id/SolicitacaoNome"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_below="@id/SolicitacaoNomeTV"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginTop="6dp"
+                   android:inputType="textPersonName" >
+
+                   <requestFocus />
+               </EditText>
+
+               <TextView
+                   android:id="@+id/SolicitacaoQuantidadeTV"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentLeft="true"
+                   android:layout_below="@id/SolicitacaoNome"
+                   android:text="@string/CadastrarQuantiadDoacao"
+                   android:textSize="16sp" />
+
+               <Spinner
+                   android:id="@+id/SolicitacaoQuantidade"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/SolicitacaoQuantidadeTV"
+                   android:entries="@array/quant_doaco" />
+               
+               <TextView
+                   android:id="@+id/SolicitacaoTipoTV"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/SolicitacaoQuantidade"
+                   android:text="@string/tpSanguineo" />
+               
+               <Spinner
+                   android:id="@+id/SolicitacaoTipo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/SolicitacaoTipoTV"
+                   android:entries="@array/tipos_Sanguineos" />
+               
+               <TextView
+                   android:id="@+id/SolicitacaoHemocentroTV"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/SolicitacaoTipo"
+                   android:text="@string/solicitacaohemocentro" />
+               
+               <Spinner
+                   android:id="@+id/SolicitacaoHemocentro"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/SolicitacaoHemocentroTV"
+                   android:entries="@array/tipos_Sanguineos" />
+               
+               <TextView
+                   android:id="@+id/SolicitacaoComentarioTV"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/SolicitacaoHemocentro"
+                   android:text="@string/solicitacaocomentario" />
+               
+               <EditText
+                   android:id="@+id/SolicitacaoComentario"
+                   android:layout_width="wrap_content"
+                   android:layout_height="150dp"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_below="@id/SolicitacaoComentarioTV"
+                   android:layout_marginTop="6dp"
+                   android:inputType="textMultiLine" />
+
+               <RelativeLayout
+                   android:id="@+id/InnerRelativeLayot"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentBottom="true"
+                   android:layout_below="@+id/SolicitacaoComentario"
+                   android:layout_marginTop="40sp"
+                   android:gravity="bottom"
+                   android:orientation="horizontal" >
+                   
+                   <Button
+                       android:id="@+id/SolicitacaoSalvar"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentLeft="true"
+                       android:layout_alignParentRight="true"
+                       android:layout_below="@dimen/activity_horizontal_margin"
+                       android:layout_marginTop="12dp"
+                       android:text="@string/salvar" />
+               </RelativeLayout>
+           </RelativeLayout>
+       </LinearLayout>
+</ScrollView>	
