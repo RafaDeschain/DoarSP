@@ -38,8 +38,8 @@ public class Mural extends Fragment {
 		listView.setOnItemClickListener(new OnItemClickListener(){
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3){
-
-				MuralModel mural = muralAdapter.getItem(position);
+				// TODO Quando for fazer a tela descomentar abaixo, se não vou usar deletar.
+				//MuralModel mural = muralAdapter.getItem(position);
 				Configuracao.trocarFragment(new MensagemDoMural(), getFragmentManager(), true);
 			    //Toast.makeText(getActivity(),mural.getComentario(), Toast.LENGTH_SHORT).show();    
 

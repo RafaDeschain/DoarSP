@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Hemocentros extends Fragment {		
 	private GoogleMap map;
+	@SuppressWarnings("unused")
 	private Context context;
 	
 	public void onDestroyView() {
@@ -35,7 +36,7 @@ public class Hemocentros extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		View rootView = inflater.inflate(R.layout.fragment_hemocentro, null, false);		
+		View rootView = inflater.inflate(R.layout.fragment_hemocentro, container, false);		
 		
 		// Pega a instanciação do mapa.
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();							    

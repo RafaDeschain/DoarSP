@@ -9,7 +9,6 @@ import com.app.model.UserModel;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -64,6 +63,9 @@ public class Principal extends Fragment {
         aptoDoar 	      = (CheckBox)rootView.findViewById(R.id.PrincipalAptoDoar);
                 
         // Seta os dados do usuário nos componentes
+        
+        MainActivity global = (MainActivity)getActivity();
+        user = global.getUser();
         
         switch (user.getTpSanguineo()) {
         case 0:

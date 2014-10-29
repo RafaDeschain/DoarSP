@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.app.model.UserModel;
 import com.app.webservice.InterfaceListener;
 import com.app.webservice.Thread;
 import com.app.webservice.WebService;

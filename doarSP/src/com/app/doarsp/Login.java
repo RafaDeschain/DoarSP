@@ -31,7 +31,7 @@ public class Login extends Fragment implements InterfaceListener{
 	private Principal principal;
 	private TextView loginErro;
 	private EditText loginET, senhaET;
-	private String login, senha;
+	private String login, senha;	
 
 	/** Webservice **/
 	private WebService webservice;
@@ -52,7 +52,7 @@ public class Login extends Fragment implements InterfaceListener{
 				
 				View regView = inflater.inflate(R.layout.fragment_principal, container, false);
 				principal = new Principal();
-				Configuracao.trocarFragment(principal, getFragmentManager(), false);
+				Configuracao.trocarFragment(principal, getFragmentManager(), false);				
 				return regView;
 			}
 			
@@ -104,7 +104,9 @@ public class Login extends Fragment implements InterfaceListener{
 					
 					JSONObject json = new JSONObject(result);
 					
-					//Cria a classe de modelo login
+					//Cria a classe de modelo login					
+
+					
 					userModel = new UserModel();
 					userModel.setCodUsuario			(json.getInt("codUsuario"));
 					userModel.setTpSanguineo		(json.getInt("tpSanguineo"));
@@ -119,7 +121,10 @@ public class Login extends Fragment implements InterfaceListener{
 					userModel.setSenha				(getSenha());
 					userModel.setIsLoggedIn			(true);
 					
-					Principal principal = new Principal(userModel);
+					MainActivity global = (MainActivity)getActivity();
+					global.setUser(userModel);
+					
+					Principal principal = new Principal();
 					Configuracao.trocarFragment(principal, getFragmentManager(), false);
 					
 				}

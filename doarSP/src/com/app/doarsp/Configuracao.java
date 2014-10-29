@@ -13,9 +13,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -137,29 +135,7 @@ public class Configuracao{
 	    String provider = locationManager.getBestProvider(criteria, false);
 	    Location location = locationManager.getLastKnownLocation(provider);		
 		return location.getLongitude();
-	}
-	
-	
-	  //Método que faz a leitura de fato dos valores recebidos do GPS
-    public void startGPS(){   	
-   //     LocationManager lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); (verificar getSystemService, extender o activity no utils?)
-       LocationListener lListener = new LocationListener() {
-            public void onLocationChanged(Location locat) {
-                updateView(locat);            	
-            }
-            public void onStatusChanged(String provider, int status, Bundle extras) {}
-            public void onProviderEnabled(String provider) {}
-            public void onProviderDisabled(String provider) {}
-            
-        };
-       // lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, lListener);
-    }
-	
-    public void updateView(Location locat){
-        Double latitude = locat.getLatitude(); 
-        Double longitude = locat.getLongitude();		
-    }
-    
+	}    
     
 	//Desabilita o slide do menu lateral	
 	public static void disableSlideMenu(DrawerLayout mDrawerLayout, ActionBar actionBar){

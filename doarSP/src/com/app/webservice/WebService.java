@@ -21,7 +21,8 @@ import android.webkit.WebView;
 public class WebService{
 	
 	private final String SOAP_NAMESPACE = "http://doarsp.ws/";
-	private final String SOAP_URL = "http://doarsp.ddns.net:8080/doarsp/doarsp.asmx";
+	//private final String SOAP_URL = "http://192.168.0.14/doarsp/doarsp.asmx"; Casadei
+	private final String SOAP_URL = "http://doarsp.ddns.net:8080/doarsp/doarsp.asmx"; // Palazolo
 	private String SOAP_METHOD_NAME;
 	
 	private SoapObject request;
