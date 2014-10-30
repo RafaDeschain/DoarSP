@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -39,9 +38,7 @@ public class Login extends Fragment implements InterfaceListener{
 	private String[][] params;	
 	public AlertDialog alertDialog;
 	
-	public Login(Context context){
-		
-	}
+	public Login(){}
     
 	@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,

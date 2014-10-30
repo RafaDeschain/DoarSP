@@ -115,7 +115,7 @@ public class RegistrarUsuario extends Fragment implements InterfaceListener{
 		if(result.equalsIgnoreCase("true")){
 			//Login com sucesso, vai para a tela principal
 			Configuracao.hideKeyboard(getActivity());
-			Login login = new Login(getActivity().getApplicationContext());
+			Login login = new Login();
 			Configuracao.trocarFragment(login, getFragmentManager(), false);
 			Configuracao.showDialog(getActivity(), "Sucesso", "Cadastrado com sucesso", true);
 		}

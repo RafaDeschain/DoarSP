@@ -25,6 +25,7 @@ import android.app.Activity;
 
 import android.app.AlertDialog;
 
+@SuppressLint("SimpleDateFormat")
 public class Configuracao{
 	
 	DrawerLayout mDrawerLayout;

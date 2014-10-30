@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
 		}
 		
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
-		Fragment login = new Login(getApplicationContext());
+		Fragment login = new Login();
 		Configuracao.trocarFragment(login, getFragmentManager(), false);
 	}
 

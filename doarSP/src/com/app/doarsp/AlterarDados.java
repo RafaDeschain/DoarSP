@@ -30,6 +30,9 @@ public class AlterarDados extends Fragment implements InterfaceListener{
 	private Thread thread;
 	private String[][] params;	
 	public AlertDialog alertDialog;
+	
+	//Modelo
+	UserModel userModel;
     
 	public AlterarDados(){
 		//Construtor em branco
@@ -57,8 +60,9 @@ public class AlterarDados extends Fragment implements InterfaceListener{
 		
 		nameEdit.setText(user.getNome());
 		eMailEdit.setText(user.geteMail());
-		usuario.setText(user.getLogin());
 		tpSanguineo.setSelection(user.getTpSanguineo());
+		usuario.setText(user.getLogin());
+		usuario.setEnabled(false);
 		dataNasEdit.setText(user.getDtdNascimento());
 		notificaoPush.setChecked(user.getNotificacaoPush());
 		notificaoEmail.setChecked(user.getNotificacaoEmail());
@@ -100,14 +104,13 @@ public class AlterarDados extends Fragment implements InterfaceListener{
 				//Transforma os EditTexts para String
 				String nameString 			= nameEdit.getText().toString();
 				String eMailString 			= eMailEdit.getText().toString();
-				String login				= usuario.getText().toString();
 				String senhaString 			= senha.getText().toString();
 				int tpSanguineoInt 			= tpSanguineo.getSelectedItemPosition();
 				String dataNasString 		= dataNasEdit.getText().toString();
 				boolean notificaoPushVal 	= notificaoPush.isChecked();
 				boolean notificaoEmailVal 	= notificaoEmail.isChecked();
 				
-				params = new String[9][2];
+				params = new String[8][2];
 				
 				params[0][0] = "tpSanguineo";
 				params[0][1] =  String.valueOf(tpSanguineoInt);
@@ -121,12 +124,10 @@ public class AlterarDados extends Fragment implements InterfaceListener{
 				params[4][1] = String.valueOf(((notificaoEmailVal) ? 1 : 0));
 				params[5][0] = "dtdNascimento";
 				params[5][1] = dataNasString;
-				params[6][0] = "username";
-				params[6][1] = login;
-				params[7][0] = "password";
-				params[7][1] = senhaString;
-				params[8][0] = "CodUser";
-				params[8][1] = String.valueOf(user.getCodUsuario());
+				params[6][0] = "password";
+				params[6][1] = senhaString;
+				params[7][0] = "CodUser";
+				params[7][1] = String.valueOf(user.getCodUsuario());
 				
 				setWebservice(new WebService("usuario_AtualizaUsuario", params));
 				
@@ -144,8 +145,27 @@ public class AlterarDados extends Fragment implements InterfaceListener{
 
 	@Override
 	public void returningCall(String result) {
-		// TODO Auto-generated method stub
 		
+		if(result.equalsIgnoreCase("true")){
+			
+			MainActivity global = (MainActivity) getActivity();
+			userModel = global.getUser();
+			
+			userModel.setNome(nameEdit.getText().toString());
+			userModel.seteMail(eMailEdit.getText().toString());
+			userModel.setSenha(senha.getText().toString());
+			userModel.setTpSanguineo(tpSanguineo.getSelectedItemPosition());
+			userModel.setDtdNascimento(dataNasEdit.getText().toString());
+			userModel.setNotificacaoPush(notificaoPush.isChecked());
+			userModel.setNotificacaoEmail(notificaoEmail.isChecked());
+			
+			global.setUser(userModel);
+			
+			Configuracao.showDialog(getActivity(), "Sucesso", "Seus dados foram atualizados", true);
+		}
+		else{
+			Configuracao.showDialog(getActivity(), "Oops..", "Ocorreu um erro durante a atualização", true);
+		}
 	}
 	
 	/** Getters and Setters **/
