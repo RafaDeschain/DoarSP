@@ -32,9 +32,6 @@ public class Principal extends Fragment {
 	/** Modelo **/
 	public UserModel user;
 	
-	//Código usuario
-	int codusuario;
-	
 	public Principal(){}
 	
 	public Principal(int codUsuario){

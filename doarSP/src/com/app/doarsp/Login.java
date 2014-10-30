@@ -121,7 +121,7 @@ public class Login extends Fragment implements InterfaceListener{
 					userModel.setSenha				(getSenha());
 					userModel.setIsLoggedIn			(true);
 					
-					MainActivity global = (MainActivity)getActivity();
+					MainActivity global = (MainActivity) getActivity();
 					global.setUser(userModel);
 					
 					Principal principal = new Principal();

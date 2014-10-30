@@ -100,7 +100,7 @@
 		        android:text="@string/alterarsenha" />
 		    
 		    <EditText
-		        android:id="@+id/AlterarSenha"
+		        android:id="@+id/AlterarDadosSenha"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
@@ -114,21 +114,21 @@
 		        android:layout_marginBottom="10dp"/>
 		    
 		    <TextView
-		        android:id="@+id/AlterarSenhaTV2"
+		        android:id="@+id/AlterarDadosSenhaTV2"
 		        android:textSize="16sp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
-		        android:layout_below="@id/AlterarSenha"
+		        android:layout_below="@id/AlterarDadosSenha"
 		        android:text="@string/alterarsenha2" />
 		    
 		    <EditText
-		        android:id="@+id/AlterarSenha2"
+		        android:id="@+id/AlterarDadosSenha2"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
 		        android:layout_alignParentRight="true"
-		        android:layout_below="@+id/AlterarSenhaTV2"
+		        android:layout_below="@+id/AlterarDadosSenhaTV2"
 		        android:ems="10"
 		        android:inputType="textPassword"
 		        android:padding="8dp"
@@ -141,7 +141,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignRight="@+id/AlterarDadosEmail"
-		        android:layout_below="@+id/AlterarSenha2"
+		        android:layout_below="@+id/AlterarDadosSenha2"
 		        android:layout_toRightOf="@+id/AlterarDadosNascimentoTV"
 		        android:entries="@array/tipos_Sanguineos" />
 		
@@ -170,7 +170,7 @@
 		        android:id="@+id/AlterarDadosTipoTV"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/AlterarSenha"
+		        android:layout_alignLeft="@+id/AlterarDadosSenha2"
 		        android:layout_alignTop="@+id/AlterarDadosTipo"
 		        android:text="@string/tipo_sanguineo"
 		        android:layout_marginTop="10dp"/>

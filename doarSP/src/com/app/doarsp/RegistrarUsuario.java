@@ -120,7 +120,7 @@ public class RegistrarUsuario extends Fragment implements InterfaceListener{
 			Configuracao.showDialog(getActivity(), "Sucesso", "Cadastrado com sucesso", true);
 		}
 		else if(result.equalsIgnoreCase("false")){
-			Configuracao.showDialog(getActivity(), "Oops..", "Ocorreu um erro durante o cadastro", true);
+			Configuracao.showDialog(getActivity(), "Oops..", "Já existe um usuário com este nome, por favor escolha outro", true);
 		}
 		else{
 			Configuracao.showDialog(getActivity(), "Oops..", "Verifique sua conexão de internet", true);
