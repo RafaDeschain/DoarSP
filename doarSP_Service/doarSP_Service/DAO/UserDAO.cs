@@ -11,7 +11,7 @@ using System.Collections;
 /// </summary>
 public class UserDAO
 {
-    private static String connectionString = "server=.\\SQLEXPRESS; database=doarSP; User ID=sa;Password=123";
+    private static String connectionString = "server=.\\SQLSERVER; database=doarSP; User ID=sa;Password=123";
 
     public UserDAO()
     {
@@ -21,13 +21,18 @@ public class UserDAO
     #region public
     public Boolean inserUser(User userData)
     {
+        if (checkUserName(userData.userName) == true)
+        {
+            return false;
+        }
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
-            conn.Open();            
+            conn.Open();
+            
             try
             {
                 String cmdInsert = " insert into TB_Usuarios(USU_TpSanguineo, USU_Nome, USU_EndEmail, USU_NotificacaoPush, USU_NotificacaoEmail, " +
-                                   "                         USU_StatusApto, USU_DtdDataNascimento, USU_UserName, USU_Password) " +
+                                   "                         USU_StatusApto, USU_DtdNascimento, USU_UserName, USU_Password) " +
                                    " values " +
                                    " (@tpSanguineo, @nome, @endEmail, @notPush, @notEmail, @statusApto, @dtdNasci, @userName, @password)";
                 String cmdNewUser = " select MAX(USU_IdUsuario) from TB_Usuarios ";
@@ -67,6 +72,45 @@ public class UserDAO
 
     }
 
+    public Boolean checkUserName(String username)
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+
+            try
+            {
+                String cmdInsert = "SELECT * FROM TB_Usuarios WHERE USU_UserName = @userName";
+
+
+                SqlCommand checkusr = new SqlCommand(cmdInsert, conn);
+                checkusr.Parameters.AddWithValue("@userName", username);
+                checkusr.ExecuteNonQuery();
+
+                SqlDataReader reader = checkusr.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Close();
+                    return true;
+                }
+                else
+                {
+                    reader.Close();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+    }
+
     public Boolean updateUser(User userData)
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
@@ -77,8 +121,8 @@ public class UserDAO
             {
                 String cmdUpdate = " update TB_Usuarios set USU_TpSanguineo = @tpSanguineo, USU_Nome = @nome, USU_EndEmail = @endEmail,  " +
                                     "                        USU_NotificacaoPush = @notPush, USU_NotificacaoEmail = @notEmail, " +
-                                    "                        USU_StatusApto = @statusApto, USU_DtdUltimaDoacao = @dtdUltimaDoa, " +
-                                    "                        USU_DtdNascimento = @dtdNasci where USU_CodUsuario = @codUser ";
+                                    "                        USU_UserName = @username, USU_Password = @password, " +
+                                    "                        USU_DtdNascimento = @dtdNasci where USU_IdUsuario = @codUser ";
                 SqlCommand updateUser = new SqlCommand(cmdUpdate, conn, transaction);
 
                 updateUser.Parameters.AddWithValue("@tpSanguineo", userData.tpSanguineo);
@@ -86,9 +130,9 @@ public class UserDAO
                 updateUser.Parameters.AddWithValue("@endEmail", userData.eMail);
                 updateUser.Parameters.AddWithValue("@notPush", userData.notificacaoPush);
                 updateUser.Parameters.AddWithValue("@notEmail", userData.notificaoEmail);
-                updateUser.Parameters.AddWithValue("@statusApto", userData.statusApto);
-                updateUser.Parameters.AddWithValue("@dtdUltimaDoa", userData.ultimaDoacao);
                 updateUser.Parameters.AddWithValue("@dtdNasci", userData.dtdNascimento);
+                updateUser.Parameters.AddWithValue("@username", userData.userName);
+                updateUser.Parameters.AddWithValue("@password", userData.eMail);
                 updateUser.Parameters.AddWithValue("@codUser", userData.codUsuario);
                 updateUser.ExecuteNonQuery();
 
@@ -149,7 +193,7 @@ public class UserDAO
             try
             {
                 String cmdLogin = " Select USU_IdUsuario, USU_TpSanguineo, USU_Nome, USU_EndEmail, USU_NotificacaoPush, " +
-                                  "        USU_NotificacaoEmail, USU_StatusApto, USU_DtdUltimaDoacao, USU_DtdDataNascimento, " +
+                                  "        USU_NotificacaoEmail, USU_StatusApto, USU_DtdUltimaDoacao, USU_DtdNascimento, " +
                                   "        USU_UserName, USU_Password " +
                                   " from TB_Usuarios where " +
                                   "        USU_UserName = @userName and USU_Password = @password";

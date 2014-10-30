@@ -62,7 +62,7 @@ namespace doarSP_Service
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
         public String usuario_AtualizaUsuario(int CodUser, int tpSanguineo, String nome, String eMail, int notificacaoPush, int notificacaoEmail,
-                                 int statusApto, String ultimaDoacao, String dtdNascimento)
+                                                String dtdNascimento, String username, String password)
         {
             User userData = new User();
             userData.codUsuario = CodUser;
@@ -71,9 +71,9 @@ namespace doarSP_Service
             userData.eMail = eMail;
             userData.notificacaoPush = notificacaoPush;
             userData.notificaoEmail = notificacaoEmail;
-            userData.statusApto = statusApto;
-            userData.ultimaDoacao = ultimaDoacao;
             userData.dtdNascimento = dtdNascimento;
+            userData.userName = username;
+            userData.password = password;
 
             List<Boolean> json = new List<Boolean>();
             json.Insert(0, userData.updateUser());
