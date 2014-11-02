@@ -3,8 +3,8 @@ package com.app.doarsp;
 import java.util.List;
 
 import com.app.adapter.ListaMuralAdapter;
-import com.app.model.MuralModel;
-import com.app.model.UserModel;
+import com.app.model.Mural;
+import com.app.model.User;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -30,7 +30,7 @@ public class Principal extends Fragment {
 	private ActionBar actionBar;
 	
 	/** Modelo **/
-	public UserModel user;
+	public User user;
 	
 	public Principal(){}
 	
@@ -38,8 +38,8 @@ public class Principal extends Fragment {
 		
 	}
 	
-	public Principal(UserModel user){
-		setUserModel(user);
+	public Principal(User user){
+		setUser(user);
 	}
      
     @Override
@@ -105,11 +105,11 @@ public class Principal extends Fragment {
         aptoDoar.setChecked(user.getStatusApto());
         
         //Solicitações
-        Mural mu = new Mural();
+        NovoMural mu = new NovoMural();
         ListView listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
-		List<MuralModel> mural = mu.gerarDoacaoMSG();
-		final ListaMuralAdapter muralAdapter = new ListaMuralAdapter(getActivity(), mural);
-		listView.setAdapter(muralAdapter);
+		List<Mural> NovoMural = mu.gerarDoacaoMSG();
+		final ListaMuralAdapter NovoMuralAdapter = new ListaMuralAdapter(getActivity(), NovoMural);
+		listView.setAdapter(NovoMuralAdapter);
 		
 		//Método para fazer funcionar o Scroll das solicitações
 		listView.setOnTouchListener(new ListView.OnTouchListener() {
@@ -139,11 +139,11 @@ public class Principal extends Fragment {
     
     /** Getters and Setters **/
     
-    public UserModel getUserModel() {
+    public User getUser() {
 		return user;
 	}
 
-	public void setUserModel(UserModel user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	

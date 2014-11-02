@@ -16,7 +16,7 @@ public class BuscarDoacoes extends Fragment {
 	TextView versionInfo;
 	private TabHost tabHost;
 	private View rootView;
-	private Hemocentros hemocentro;
+	private MapaHemocentros hemocentro;
 	private FeedDoacoes feed;
 
 	@Override
@@ -41,7 +41,7 @@ public class BuscarDoacoes extends Fragment {
 	
 	private void carregarMapa()
 	{
-		hemocentro = new Hemocentros();
+		hemocentro = new MapaHemocentros();
 		Configuracao.trocarFragment(hemocentro, getActivity().getFragmentManager(), R.id.mapa);
 	}
 	

@@ -1,8 +1,8 @@
 package com.app.doarsp;
 
 import com.app.adapter.NavDrawerListAdapter;
-import com.app.model.HemocentrosModel;
-import com.app.model.UserModel;
+import com.app.model.Hemocentros;
+import com.app.model.User;
 
 import java.util.ArrayList;
 
@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
 	private NavDrawerListAdapter adapter;
 	
 	//Modelo
-	UserModel user;
+	User user;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
 		
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		
-		HemocentrosModel hemocentrosInsert = new HemocentrosModel(getApplicationContext());
+		Hemocentros hemocentrosInsert = new Hemocentros(getApplicationContext());
 		
 		// Criação básica dos postos, update vão ser feitos através do servidor
 		if (!hemocentrosInsert.checkPosto())
@@ -123,6 +123,9 @@ public class MainActivity extends Activity {
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
 		Fragment login = new Login();
 		Configuracao.trocarFragment(login, getFragmentManager(), false);
+		
+		//NovaSolicitacao login = new NovaSolicitacao();
+		//Configuracao.trocarFragment(login, getFragmentManager(), false);
 	}
 
 	/**
@@ -198,10 +201,10 @@ public class MainActivity extends Activity {
 			fragment = new NovaSolicitacao();
 			break;
 		case 3:
-			fragment = new Mural();
+			fragment = new NovoMural();
 			break;
 		case 4:
-			fragment = new Hemocentros();
+			fragment = new MapaHemocentros();
 			break;
 		case 5:
 			fragment = new AlterarDados();
@@ -252,11 +255,11 @@ public class MainActivity extends Activity {
 	
 	/** Getters and Setters **/
 	
-	public UserModel getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(UserModel user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	

@@ -1,6 +1,6 @@
 package com.app.DAO;
 
-import com.app.model.UserModel;
+import com.app.model.User;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -12,7 +12,7 @@ public class ApapterDAO {
 		Utils = new AppDAO(context);
 	}
 	
-	public boolean postUpdate(UserModel Usuario)
+	public boolean postUpdate(User Usuario)
 	{
 		return Utils.postUpdate(Usuario);
 	}
@@ -22,12 +22,12 @@ public class ApapterDAO {
 		return Utils.CheckIfExistsUser();
 	}			
 	
-	public boolean posInsert(UserModel userData, Resources res)
+	public boolean posInsert(User userData, Resources res)
 	{
 		return Utils.postInsert(userData, res);
 	}
 	
-	public void getUserData(UserModel userData)
+	public void getUserData(User userData)
 	{
 		Utils.getUserData(userData);		
 	}

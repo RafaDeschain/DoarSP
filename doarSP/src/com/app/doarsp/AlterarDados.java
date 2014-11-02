@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.app.model.UserModel;
+import com.app.model.User;
 import com.app.webservice.InterfaceListener;
 import com.app.webservice.Thread;
 import com.app.webservice.WebService;
@@ -20,7 +20,7 @@ import com.app.doarsp.R;
 
 public class AlterarDados extends Fragment implements InterfaceListener{
 	
-	private UserModel user;
+	private User user;
 	private EditText nameEdit, eMailEdit, dataNasEdit, usuario, senha, senha2;
 	private Spinner tpSanguineo;
 	private CheckBox notificaoPush, notificaoEmail;
@@ -32,7 +32,7 @@ public class AlterarDados extends Fragment implements InterfaceListener{
 	public AlertDialog alertDialog;
 	
 	//Modelo
-	UserModel userModel;
+	User userModel;
     
 	public AlterarDados(){
 		//Construtor em branco

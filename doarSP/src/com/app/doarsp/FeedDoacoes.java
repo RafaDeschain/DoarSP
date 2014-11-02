@@ -14,8 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.adapter.HemocentrosAdapter;
-import com.app.model.HemocentrosModel;
-import com.app.model.SolicitacoesModel;
+import com.app.model.Hemocentros;
+import com.app.model.Solicitacoes;
 
 public class FeedDoacoes extends Fragment {
 	TextView versionInfo;
@@ -28,7 +28,7 @@ public class FeedDoacoes extends Fragment {
 		rootView = inflater.inflate(R.layout.fragment_feeddoacoes,
 				container, false);
 		
-		ArrayList<HemocentrosModel> model = pegarHemocentros();
+		ArrayList<Hemocentros> model = pegarHemocentros();
 		HemocentrosAdapter adapter = new HemocentrosAdapter(getActivity(), model);
 		
 		// pegar ListView
@@ -44,11 +44,11 @@ public class FeedDoacoes extends Fragment {
 		return rootView;
 	}
 	
-	public ArrayList<HemocentrosModel> pegarHemocentros()
+	public ArrayList<Hemocentros> pegarHemocentros()
 	{
-		ArrayList<HemocentrosModel> list = new ArrayList<HemocentrosModel>();
+		ArrayList<Hemocentros> list = new ArrayList<Hemocentros>();
 		
-		HemocentrosModel model = new HemocentrosModel(getActivity());
+		Hemocentros model = new Hemocentros(getActivity());
 		Cursor resultado = model.getAllPostos();
 		
 		if(resultado.isBeforeFirst())
@@ -60,7 +60,7 @@ public class FeedDoacoes extends Fragment {
 			resultado.moveToNext();
 			
 			// Criar Model temporário
-			HemocentrosModel tempModel = new HemocentrosModel(getActivity());
+			Hemocentros tempModel = new Hemocentros(getActivity());
 			// Preenche Model
 			tempModel.setCodPosto(resultado.getInt(0));
 			tempModel.setEndPosto(resultado.getString(1));
@@ -75,30 +75,30 @@ public class FeedDoacoes extends Fragment {
 	}
 	
 
-	private ArrayList<SolicitacoesModel> getSolicitacoes()
+	private ArrayList<Solicitacoes> getSolicitacoes()
 	{
-		ArrayList<SolicitacoesModel> tempList = new ArrayList<SolicitacoesModel>();
+		ArrayList<Solicitacoes> tempList = new ArrayList<Solicitacoes>();
 		
 		// Solicitações Temporárias
-		SolicitacoesModel solic1 = new SolicitacoesModel();
+		Solicitacoes solic1 = new Solicitacoes();
 		solic1.setCodSolicitacao(1);
 		solic1.setQtnDoacoes(25);
 		solic1.setQtnDoacoesRealizadas(5);
 		solic1.setHemocentroResp(1);
 		
-		SolicitacoesModel solic2 = new SolicitacoesModel();
+		Solicitacoes solic2 = new Solicitacoes();
 		solic2.setCodSolicitacao(2);
 		solic2.setQtnDoacoes(10);
 		solic2.setQtnDoacoesRealizadas(7);
 		solic2.setHemocentroResp(1);
 		
-		SolicitacoesModel solic3 = new SolicitacoesModel();
+		Solicitacoes solic3 = new Solicitacoes();
 		solic3.setCodSolicitacao(3);
 		solic3.setQtnDoacoes(10);
 		solic3.setQtnDoacoesRealizadas(2);
 		solic3.setHemocentroResp(1);
 		
-		SolicitacoesModel solic4 = new SolicitacoesModel();
+		Solicitacoes solic4 = new Solicitacoes();
 		solic4.setCodSolicitacao(3);
 		solic4.setQtnDoacoes(10);
 		solic4.setQtnDoacoesRealizadas(2);
@@ -112,13 +112,13 @@ public class FeedDoacoes extends Fragment {
 		return tempList;	
 	}
 
-	private ArrayList<HemocentrosModel> getHemocentroComSolicitacao(ArrayList<HemocentrosModel> hemocentros)
+	private ArrayList<Hemocentros> getHemocentroComSolicitacao(ArrayList<Hemocentros> hemocentros)
 	{
-		ArrayList<SolicitacoesModel> listaSolicitacoes = getSolicitacoes();
-		ArrayList<HemocentrosModel> listaHemocentrosComSolicitacao = new ArrayList<HemocentrosModel>();
+		ArrayList<Solicitacoes> listaSolicitacoes = getSolicitacoes();
+		ArrayList<Hemocentros> listaHemocentrosComSolicitacao = new ArrayList<Hemocentros>();
 		
-		for(HemocentrosModel hemocentro : hemocentros) {
-			for (SolicitacoesModel solicitacao : listaSolicitacoes) {
+		for(Hemocentros hemocentro : hemocentros) {
+			for (Solicitacoes solicitacao : listaSolicitacoes) {
 				if(solicitacao.getHemocentroResp() == hemocentro.getCodPosto())
 				{
 					hemocentro.addSolicitacao(solicitacao);

@@ -20,6 +20,16 @@
 	    <item name="android:padding">8dip</item>
 	    <item name="android:enabled">true</item>
 	</style>
+	
+	<style name="App_spinnerDropDownStyle" parent="android:style/Widget.ListView.DropDown">
+	    <item name="android:divider">#cccccc</item>
+	    <item name="android:dividerHeight">1dp</item>
+	</style>
+	<style name="App_listViewStyle" parent="@android:style/Widget.ListView">
+	    <item name="android:background">@drawable/styles_listview</item>
+	    <item name="android:divider">#cccccc</item>
+	    <item name="android:dividerHeight">1dp</item>
+	</style>
     
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -38,6 +48,8 @@
         <item name="android:buttonStyle">@style/buttonStyle</item>
         <item name="android:textViewStyle">@style/textStyle</item>
         <item name="android:editTextStyle">@style/App_editTextStyle</item>
+        <item name="android:dropDownListViewStyle">@style/App_spinnerDropDownStyle</item>
+        <item name="android:listViewStyle">@style/App_listViewStyle</item>
     </style>
 
 </resources>

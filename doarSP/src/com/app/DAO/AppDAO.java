@@ -3,7 +3,7 @@ package com.app.DAO;
 import java.io.ByteArrayOutputStream;
 
 import com.app.doarsp.R;
-import com.app.model.UserModel;
+import com.app.model.User;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -95,7 +95,7 @@ public class AppDAO extends SQLiteOpenHelper{
 	    onCreate(db); 
 	}
 	
-	public boolean postUpdate(UserModel Usuario)
+	public boolean postUpdate(User Usuario)
 	{
 		SQLiteDatabase database = this.getWritableDatabase();
 		try
@@ -168,7 +168,7 @@ public class AppDAO extends SQLiteOpenHelper{
 		}		
 	}	
 	
-	public boolean postInsert(UserModel userData, Resources res)
+	public boolean postInsert(User userData, Resources res)
 	{
 		SQLiteDatabase database = this.getWritableDatabase();
 		try
@@ -216,7 +216,7 @@ public class AppDAO extends SQLiteOpenHelper{
 		}		
 	}
 	
-	public void getUserData(UserModel userData)
+	public void getUserData(User userData)
 	{
 		SQLiteDatabase database = this.getReadableDatabase();
 		try
@@ -232,11 +232,11 @@ public class AppDAO extends SQLiteOpenHelper{
 		}		
 	}
 	
-	private UserModel convertQueryForUserModel(Cursor query, UserModel userData){
+	private User convertQueryForUserModel(Cursor query, User userData){
 		query.moveToFirst();
 		if (userData == null)
 		{
-			userData = new UserModel();
+			userData = new User();
 		}
 		userData.setCodUsuario(query.getInt(0));
 		userData.setTpSanguineo(query.getInt(1));

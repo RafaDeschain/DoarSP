@@ -24,7 +24,7 @@ import com.app.webservice.WebService;
 
 public class Login extends Fragment implements InterfaceListener{
 	
-	private UserModel userModel;
+	private User userModel;
 	
 	private ActionBar actionBar;
 	private Principal principal;
@@ -103,8 +103,7 @@ public class Login extends Fragment implements InterfaceListener{
 					
 					//Cria a classe de modelo login					
 
-					
-					userModel = new UserModel();
+					userModel = new User();
 					userModel.setCodUsuario			(json.getInt("codUsuario"));
 					userModel.setTpSanguineo		(json.getInt("tpSanguineo"));
 					userModel.setNome				(json.getString("nome"));

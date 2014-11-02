@@ -11,13 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.doarsp.R;
-import com.app.model.HemocentrosModel;
+import com.app.model.Hemocentros;
 
 public class HemocentrosAdapter extends BaseAdapter{
 	private Context contexto;
-	private List<HemocentrosModel> modelo;
+	private List<Hemocentros> modelo;
 	
-	public HemocentrosAdapter(Context context, List<HemocentrosModel> model)
+	public HemocentrosAdapter(Context context, List<Hemocentros> model)
 	{
 		this.contexto = context;
 		this.modelo = model;		
@@ -25,7 +25,7 @@ public class HemocentrosAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View view, ViewGroup vg){
 		
-		HemocentrosModel hemocentro = modelo.get(position);
+		Hemocentros hemocentro = modelo.get(position);
 		
 		if(view == null)
 			view = LayoutInflater.from(contexto).inflate(R.layout.item_hemocentro, null);

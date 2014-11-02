@@ -3,7 +3,7 @@ package com.app.adapter;
 import java.util.List;
 
 import com.app.doarsp.R;
-import com.app.model.MuralModel;
+import com.app.model.Mural;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,12 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ListaMuralAdapter extends ArrayAdapter<MuralModel> {
+public class ListaMuralAdapter extends ArrayAdapter<Mural> {
 	
 	private Context context;
-	private List<MuralModel> mural = null;
+	private List<Mural> mural = null;
 
-	public ListaMuralAdapter(Context context,  List<MuralModel> mural) {
+	public ListaMuralAdapter(Context context,  List<Mural> mural) {
 	        super(context,0, mural);
 	        this.mural = mural;
 	        this.context = context;
@@ -26,7 +26,7 @@ public class ListaMuralAdapter extends ArrayAdapter<MuralModel> {
 	
 	public View getView(int position, View view, ViewGroup parent ){
 		
-		MuralModel muralmod = mural.get(position);
+		Mural muralmod = mural.get(position);
 	         
 	    if(view == null)
 	    	view = LayoutInflater.from(context).inflate(R.layout.item_layout_mural, null);
@@ -41,12 +41,6 @@ public class ListaMuralAdapter extends ArrayAdapter<MuralModel> {
 	    String textoId = String.valueOf(muralmod.getCodSolicitacao());
 	    textViewId.setText(textoId);
 	 
-	    return view;
-		
-		
-		
+	    return view;	
 	}
-	
-	
-
 }
