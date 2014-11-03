@@ -29,12 +29,16 @@ public class ListaHemocentrosAdapter extends ArrayAdapter<Hemocentros> {
 	         
 	    if(view == null)
 	    	view = LayoutInflater.from(context).inflate(R.layout.item_lista_hemocentros, null);
-	         
+	    
+	    TextView textViewID = (TextView) view.findViewById(R.id.ListaIdHemocentro);
+	    textViewID.setText(Integer.toString(hemocentrosmod.getCodPosto()));
+	    textViewID.setVisibility(View.INVISIBLE);
+	    
 	    TextView textViewNome = (TextView) view.findViewById(R.id.ListaHemocentrosNome);
 	    textViewNome.setText(hemocentrosmod.getNomePosto());
 	    
 	    TextView textViewEnd = (TextView) view.findViewById(R.id.ListaHemocentrosEndereco);
-	    textViewEnd.setText(hemocentrosmod.getNomePosto());
+	    textViewEnd.setText(hemocentrosmod.getEndPosto());
 	 
 	    return view;
 	}

@@ -4,98 +4,67 @@ import android.content.Context;
 
 public class Solicitacoes {
 	
-	private int CodSolicitacao, CodUsuarioSolicitante, QtnDoacoes, 
-				QtnDoacoesRealizadas, HemocentroResp, HemocentroRespEx, idade;
-	
-	private String postoDoacao, nome, tipoSanguineo;
+	private int codSolicitacao, codUsuario, codHemocentro, tipoSanguineo, qtdDoacoes;
+	private String nomePaciente, comentarios;
 				
-	public Solicitacoes(Context context){
-		
-		
-	}
+	public Solicitacoes(Context context){}
 	
-	public Solicitacoes(){
-		
-	}
+	public Solicitacoes(){}
 	
-	public int getCodSolicitacao(){
-		
-		return CodSolicitacao;
+	public int getCodSolicitacao() {
+		return codSolicitacao;
 	}
-	
-	public void setCodSolicitacao(int CodSolicitacao){
-		this.CodSolicitacao = CodSolicitacao;
+
+	public void setCodSolicitacao(int codSolicitacao) {
+		this.codSolicitacao = codSolicitacao;
 	}
-	
-	public int getCodUsuarioSolicitante(){
-		return CodUsuarioSolicitante;
+
+	public int getCodUsuario() {
+		return codUsuario;
 	}
-	
-	public void setCodUsuarioSolicitante(int CodUsuarioSolicitante){
-		this.CodUsuarioSolicitante = CodUsuarioSolicitante;
+
+	public void setCodUsuario(int codUsuario) {
+		this.codUsuario = codUsuario;
 	}
-	
-	public int getQtnDoacoes(){
-		return QtnDoacoes;
+
+	public int getCodHemocentro() {
+		return codHemocentro;
 	}
-	
-	public void setQtnDoacoes(int QtnDoacoes){
-		this.QtnDoacoes = QtnDoacoes;
+
+	public void setCodHemocentro(int codHemocentro) {
+		this.codHemocentro = codHemocentro;
 	}
-	
-	public int getQtnDoacoesRealizadas(){
-		return QtnDoacoesRealizadas;
-	}
-	
-	public void setQtnDoacoesRealizadas(int QtnDoacoesRealizadas){
-		this.QtnDoacoesRealizadas = QtnDoacoesRealizadas;
-	}
-	
-	public int getHemocentroResp(){
-		return HemocentroResp;
-	}
-	
-	public void setHemocentroResp(int HemocentroResp){
-		this.HemocentroResp = HemocentroResp;
-	}
-	
-	public int getHemocentroRespEx(){
-		return HemocentroRespEx;
-	}
-	
-	public void setHemocentroRespEx(int HemocentroRespEx){
-		this.HemocentroRespEx = HemocentroRespEx;
-	}
-	
-	public int getIdade(){
-		return idade;
-	}
-	
-	public void setIdade(int idade){
-		this.idade = idade;
-	}
-	
-	public String getNome(){
-		return nome;
-	}
-	
-	public void setNome(String nome){
-		this.nome = nome;
-	}
-	
-	public String getTipoSanguineo(){
+
+	public int getTipoSanguineo() {
 		return tipoSanguineo;
 	}
-	
-	public void setTipoSanguineo(String tipoSanguineo){
+
+	public void setTipoSanguineo(int tipoSanguineo) {
 		this.tipoSanguineo = tipoSanguineo;
 	}
-	
-	public String getpostoDoacao(){
-		return postoDoacao;
+
+	public int getQtdDoacoes() {
+		return qtdDoacoes;
+	}
+
+	public void setQtdDoacoes(int qtdDoacoes) {
+		this.qtdDoacoes = qtdDoacoes;
+	}
+
+	public String getNomePaciente() {
+		return nomePaciente;
+	}
+
+	public void setNomePaciente(String nomePaciente) {
+		this.nomePaciente = nomePaciente;
+	}
+
+	public String getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(String comentarios) {
+		this.comentarios = comentarios;
 	}
 	
-	public void setPostoDoacao(String postoDoacao){
-		this.postoDoacao = postoDoacao;
-	}
 }

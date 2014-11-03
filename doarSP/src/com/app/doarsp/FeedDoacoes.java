@@ -79,7 +79,7 @@ public class FeedDoacoes extends Fragment {
 	{
 		ArrayList<Solicitacoes> tempList = new ArrayList<Solicitacoes>();
 		
-		// Solicitações Temporárias
+		/** Solicitações Temporárias
 		Solicitacoes solic1 = new Solicitacoes();
 		solic1.setCodSolicitacao(1);
 		solic1.setQtnDoacoes(25);
@@ -108,7 +108,7 @@ public class FeedDoacoes extends Fragment {
 		tempList.add(solic2);
 		tempList.add(solic3);
 		tempList.add(solic4);
-		
+		**/
 		return tempList;	
 	}
 
@@ -116,7 +116,7 @@ public class FeedDoacoes extends Fragment {
 	{
 		ArrayList<Solicitacoes> listaSolicitacoes = getSolicitacoes();
 		ArrayList<Hemocentros> listaHemocentrosComSolicitacao = new ArrayList<Hemocentros>();
-		
+		/**
 		for(Hemocentros hemocentro : hemocentros) {
 			for (Solicitacoes solicitacao : listaSolicitacoes) {
 				if(solicitacao.getHemocentroResp() == hemocentro.getCodPosto())
@@ -128,7 +128,7 @@ public class FeedDoacoes extends Fragment {
 			{
 				listaHemocentrosComSolicitacao.add(hemocentro);
 			}
-		}
+		}**/
 		return listaHemocentrosComSolicitacao;		
 	}
 }

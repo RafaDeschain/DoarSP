@@ -291,6 +291,7 @@ containing a value of this type.
         public static final int LLHemocentros=0x7f05005d;
         public static final int ListaHemocentrosEndereco=0x7f05005f;
         public static final int ListaHemocentrosNome=0x7f05005e;
+        public static final int ListaIdHemocentro=0x7f050060;
         public static final int PrincipalAptoDoar=0x7f050041;
         public static final int PrincipalImageView=0x7f05003e;
         public static final int PrincipalNome=0x7f050024;
@@ -351,7 +352,7 @@ containing a value of this type.
         public static final int map=0x7f050022;
         public static final int mapa=0x7f050020;
         public static final int mensagemLogin=0x7f050026;
-        public static final int menuAbout=0x7f050060;
+        public static final int menuAbout=0x7f050061;
         public static final int nomePosto=0x7f050057;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;

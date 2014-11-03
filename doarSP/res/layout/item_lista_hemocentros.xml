@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp" >
-
+	
     <LinearLayout
         android:id="@+id/LLHemocentros"
         android:layout_width="wrap_content"
@@ -28,5 +28,13 @@
             android:layout_height="wrap_content"
             android:text="Endereco do hemocentro" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/ListaIdHemocentro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/LLHemocentros"
+        android:text="ID" />
 
 </RelativeLayout>
