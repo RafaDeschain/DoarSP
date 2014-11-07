@@ -160,6 +160,7 @@ public class AlterarDados extends Fragment implements InterfaceListener{
 			userModel.setNotificacaoEmail(notificaoEmail.isChecked());
 			
 			global.setUser(userModel);
+			userModel.updateUser();
 			
 			Configuracao.showDialog(getActivity(), "Sucesso", "Seus dados foram atualizados", true);
 		}

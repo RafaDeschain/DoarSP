@@ -12,8 +12,7 @@ import com.app.doarsp.R;
 public class Informacoes extends Fragment {
 	TextView versionInfo;
 
-	public Informacoes() {
-	}
+	public Informacoes() {}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

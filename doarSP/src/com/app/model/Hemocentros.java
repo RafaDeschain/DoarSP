@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.app.DAO.ApapterDAO;
+import com.app.DAO.AppDAO;
 import com.app.doarsp.ArrayPostos;
 
 public class Hemocentros {
 	private int codPosto;
 	private String endPosto, telPosto, nomePosto;
 	private double latitude, longitude;
-	private ApapterDAO DAO;
+	private AppDAO DAO;
 	private ArrayList<Solicitacoes> solicitacoes;
 	
 	public Hemocentros(Context context){
-		DAO = new ApapterDAO(context);		
+		DAO = new AppDAO(context);		
 	}	
 	
 	public Hemocentros(int codPosto, String nomePosto, String endPosto){
@@ -74,7 +74,7 @@ public class Hemocentros {
 	public void initializeValuesInBd()
 	{
 		String[][] postosValues = ArrayPostos.postosDoacao;
-		DAO.initializeValuesInBd(postosValues);
+		DAO.initializePostosInBd(postosValues);
 	}
 	
 	public Cursor getAllPostos()

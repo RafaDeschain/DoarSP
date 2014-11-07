@@ -5,8 +5,6 @@ import com.app.model.Hemocentros;
 import com.app.model.User;
 
 import java.util.ArrayList;
-
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Configuration;
@@ -25,8 +23,6 @@ public class MainActivity extends Activity {
 	
 	//Chama a classe util
 	Configuracao util;
-	
-	private ActionBar actionBar;
 	
 	//Cria o DrawerLayout
 	private DrawerLayout mDrawerLayout;
@@ -65,9 +61,6 @@ public class MainActivity extends Activity {
 		mDrawerLayout 			= (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList 			= (ListView) findViewById(R.id.list_slidermenu);
 		navDrawerItems 			= new ArrayList<NavDrawerItem>();
-		actionBar 				= getActionBar();
-		
-		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		/** Adiciona os itens no menu lateral **/
 
@@ -123,9 +116,6 @@ public class MainActivity extends Activity {
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
 		Fragment login = new Login();
 		Configuracao.trocarFragment(login, getFragmentManager(), false);
-		
-		//NovaSolicitacao login = new NovaSolicitacao();
-		//Configuracao.trocarFragment(login, getFragmentManager(), false);
 	}
 
 	/**
@@ -140,10 +130,11 @@ public class MainActivity extends Activity {
 			displayView(position);
 		}
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
+		menu.findItem(R.id.menuSair).setVisible(false);
 		return true;
 	}
 	
@@ -155,18 +146,29 @@ public class MainActivity extends Activity {
 		}
 		switch (item.getItemId()) {
 		case R.id.menuAbout:
-			aboutView();
+			menuSobre();
+			return true;
+		case R.id.menuSair:
+			menuSair();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+		
 	}
 	
 	//Chama a tela de informações ao clicar em "Sobre" no ActionBar
-	public void aboutView(){
+	public void menuSobre(){
 		Fragment about = new Informacoes();
 		Configuracao.hideKeyboard((Activity) this);
 		Configuracao.trocarFragment(about, getFragmentManager(), true);
+	}
+	
+	//Destroi a sessão logada do usuário
+	public void menuSair(){
+		user.deleteUser();
+		Fragment login = new Login();
+		Configuracao.trocarFragment(login, getFragmentManager(), false);
 	}
 
 	/* *

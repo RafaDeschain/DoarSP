@@ -19,7 +19,8 @@
     <string name="dedicatoria"></string>
     <string name="principalapto">Apto a doar</string>
     <string name="google_play_services_version">4323000</string>   
-    <string name="menuAbout">Sobre</string>    
+    <string name="menuAbout">Sobre</string> 
+    <string name="menuSair">Sair</string>    
     <string name="ultimasolicitacoes">Solicitações abertas</string> 
     <string name="Alterartitulo">Alterar dados</string>   
     <string name="username">Nome de usuário</string>   

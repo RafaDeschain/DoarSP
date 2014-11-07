@@ -12,6 +12,8 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,13 +43,25 @@ public class Principal extends Fragment {
 	public Principal(User user){
 		setUser(user);
 	}
-     
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		menu.findItem(R.id.menuSair).setVisible(true);
+	}
+	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
   
         View rootView = inflater.inflate(R.layout.fragment_principal, container, false);
         Configuracao.enableSlideMenu((DrawerLayout)getActivity().findViewById(R.id.drawer_layout), getActivity().getActionBar());
+        Configuracao.hideKeyboard(getActivity());
         
         actionBar = getActivity().getActionBar();
         actionBar.setTitle("Principal");

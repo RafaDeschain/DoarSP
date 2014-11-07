@@ -2,18 +2,17 @@ package com.app.model;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.app.DAO.ApapterDAO;
+import com.app.DAO.AppDAO;
 
 public class User {
 	
 	private int codUsuario, tpSanguineo; 
 	private boolean notificacaoPush, notificacaoEmail, statusApto;
 	private String nome, eMail, dtdUltimaDoacao, dtdNascimento;
-	private ApapterDAO DAO;
+	private AppDAO DAO;
 	private byte[] imageAchivement;
 	
 	//Login
@@ -21,13 +20,9 @@ public class User {
 	private boolean isLoggedIn;
 	
 	public User(Context context){
-		DAO = new ApapterDAO(context);
+		DAO = new AppDAO(context);
 		dtdNascimento = "";
 		dtdUltimaDoacao = "";
-	}
-
-	public User(){
-	 
 	}
 	
 	public int getCodUsuario() {
@@ -109,27 +104,33 @@ public class User {
 		case 7: return "O-";
 		default: return "Não Informado";
 		}		
-	}
-	
-	public boolean postInsert(Resources res)
-	{		
-		return DAO.posInsert(this, res);
 	}	
+	
+	/*********** DAO ***********/
 	
 	public boolean CheckIfExistsUser()
 	{
 		return DAO.CheckIfExistsUser();
 	}
 	
-	public void getUserData(User userData)
+	public void getUserData()
 	{
-		DAO.getUserData(userData);
+		DAO.getUserData(this);
 	}
 	
-	public boolean postUpdateUser(User userData)
-	{
-		return DAO.postUpdate(userData);
+	public void userInsert(){
+		DAO.userInsert(this);
 	}
+	
+	public void deleteUser(){
+		DAO.deleteUser();
+	}
+	
+	public void updateUser(){
+		DAO.updateUser(this);
+	}
+	
+	/*********** DAO ***********/
 	
 	public String getLogin() {
 		return login;
