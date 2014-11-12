@@ -9,19 +9,20 @@ using System.Web;
 public class NotificacaoPush
 {
 
-    private void pushNOtificacao()
+    private void pushNotificacao()
     {
         // o id recebido do servidor gcm
-        String regID = "";
+		//Palazolo's ID
+        String regID = "APA91bHVzWogobpoENowv7U1M4lqrkTidbmJjyjgzLGi0FaHglqM0wFT4WPW82rcmF9UHn_Z3kPdnLvgg9z-Cs5ytda4MIKqqHFNzTsBU2xenA_HJUa1w7kH5iP0yxbx-fb-KM-Swg6BWhxusqoIFlXHyqXGqLPonw";
 
         // id do goolgle api
-        string applicationID = "";
+        string applicationID = "AIzaSyDU5RwfdGW8d1aFk18pXMW0rlZDUh-Z8EI";
 
         // id do projeto no google
-        string senderID = "";
+        string senderID = "595477754580";
 
         // mensagem que será enviada.
-        string msg = "Teste do crazy life" ;    
+        string msg = "Teste do crazy life" ;
       
         WebRequest tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");           
 
@@ -60,12 +61,8 @@ public class NotificacaoPush
         // resposta do servidor
         String sResponseFromServer = tReader.ReadToEnd();   
 
-    
         tReader.Close();
-
         dataStream.Close();
         tResponse.Close();                                                                                                              
-    
-
     }
 }
