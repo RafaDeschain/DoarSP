@@ -93,7 +93,7 @@ public class RegistrarUsuario extends Fragment implements InterfaceListener{
 				params[8][0] = "password";
 				params[8][1] = senhaString;
 				
-				setWebservice(new WebService("usuario_insereNovoUsuario", params));
+				setWebservice(new WebService("usuario_insereNovoUsuario", params, getActivity()));
 				
 				/**
 				 * Cria uma nova Thread, necessária para fazer a requisição no WebService

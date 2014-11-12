@@ -1,5 +1,6 @@
 package com.app.webservice;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import org.ksoap2.SoapEnvelope;
@@ -9,10 +10,13 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;	
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.webkit.WebView;
@@ -31,8 +35,20 @@ public class WebService{
 	private String wsReturn;
 	private String resp;
 	
+	/** GCM **/
+	GoogleCloudMessaging gcm;
+	String regid;
+	String PROJECT_NUMBER = "595477754580";
+	Context context;
+	
 	public WebService(){
 		
+	}
+	
+	public WebService(String method, String[][] params, Context context){
+		setMETHOD_NAME(method);
+		setParams(params);
+		this.context = context;
 	}
 	
 	public WebService(String method, String[][] params){
@@ -42,16 +58,37 @@ public class WebService{
 	
 	public String connectWS(){
 		
-		//webservice thingi start
-		
 		request = new SoapObject(SOAP_NAMESPACE, SOAP_METHOD_NAME);
+		
+		/** Caso seja registro, cria o GCM do usuário **/
+		
+		if(getMETHOD_NAME() == "usuario_insereNovoUsuario"){
+            try {
+                if (gcm == null) {
+                    gcm = GoogleCloudMessaging.getInstance(context);
+                }
+                
+                regid = gcm.register(PROJECT_NUMBER);
+                
+                PropertyInfo pi = new PropertyInfo();
+        		pi.setName("gcm_usuario");
+        		pi.setValue(regid);
+        		pi.setType(String.class);
+        		request.addProperty(pi);
+
+            } catch (Exception e) {
+            	Log.i("GCM Error->",e.toString());
+            }
+		}		
+		
+		/** Fim GCM **/
 		
 		String[][] prop = getParams();
 		
 		for (int i = 0; i < params.length; i++) {
 			PropertyInfo pi = new PropertyInfo();
 			pi.setName(prop[i][0]);
-			pi.setValue(prop[i][1]);//get the string that is to be sent to the web service
+			pi.setValue(prop[i][1]); //get the string that is to be sent to the web service
 			pi.setType(String.class);
 			request.addProperty(pi);
 		}
