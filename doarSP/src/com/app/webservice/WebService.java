@@ -10,6 +10,7 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;	
 
+import com.app.gcm.AppGCM;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import android.app.Activity;
@@ -36,19 +37,14 @@ public class WebService{
 	private String resp;
 	
 	/** GCM **/
-	GoogleCloudMessaging gcm;
-	String regid;
-	String PROJECT_NUMBER = "595477754580";
-	Context context;
+	AppGCM gcm;
+	String regId;
+	Activity activity;
 	
-	public WebService(){
-		
-	}
-	
-	public WebService(String method, String[][] params, Context context){
+	public WebService(String method, String[][] params, Activity activity){
 		setMETHOD_NAME(method);
 		setParams(params);
-		this.context = context;
+		this.activity = activity;
 	}
 	
 	public WebService(String method, String[][] params){
@@ -63,22 +59,16 @@ public class WebService{
 		/** Caso seja registro, cria o GCM do usuário **/
 		
 		if(getMETHOD_NAME() == "usuario_insereNovoUsuario"){
-            try {
-                if (gcm == null) {
-                    gcm = GoogleCloudMessaging.getInstance(context);
-                }
-                
-                regid = gcm.register(PROJECT_NUMBER);
-                
-                PropertyInfo pi = new PropertyInfo();
-        		pi.setName("gcm_usuario");
-        		pi.setValue(regid);
-        		pi.setType(String.class);
-        		request.addProperty(pi);
-
-            } catch (Exception e) {
-            	Log.i("GCM Error->",e.toString());
-            }
+           gcm = new AppGCM(activity);
+           regId = gcm.registrarGCM();
+           
+           if(!regId.contains("erro") || !regId.isEmpty()){
+        	   PropertyInfo pi = new PropertyInfo();
+	   			pi.setName("gcm");
+	   			pi.setValue(regId);
+	   			pi.setType(String.class);
+	   			request.addProperty(pi);
+           }
 		}		
 		
 		/** Fim GCM **/

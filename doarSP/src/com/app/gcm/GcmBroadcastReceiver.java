@@ -7,15 +7,14 @@ import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
 public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
-
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        // Explicitly specify that GcmMessageHandler will handle the intent.
+        
+    	// Especifica que o GcmIntentService vai tratar essa intent.
         ComponentName comp = new ComponentName(context.getPackageName(),
-                GcmMessageHandler.class.getName());
-
-        // Start the service, keeping the device awake while it is launching.
+                GcmIntentService.class.getName());
+        
+        // Starta o serviço, deixando o dispositivo acordado enquanto estiver abrindo.
         startWakefulService(context, (intent.setComponent(comp)));
         setResultCode(Activity.RESULT_OK);
     }
