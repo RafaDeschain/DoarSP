@@ -27,7 +27,6 @@ public class NotificacaoPush
         WebRequest tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");           
 
         tRequest.Method = "post";                                                                                                    
-
         tRequest.ContentType = " application/x-www-form-urlencoded;charset=UTF-8";                             
 
         tRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));                              
