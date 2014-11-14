@@ -63,7 +63,7 @@ public class WebService{
            regId = gcm.registrarGCM();
            
            if(!regId.contains("erro") || !regId.isEmpty()){
-        	   PropertyInfo pi = new PropertyInfo();
+        	   	PropertyInfo pi = new PropertyInfo();
 	   			pi.setName("gcm");
 	   			pi.setValue(regId);
 	   			pi.setType(String.class);

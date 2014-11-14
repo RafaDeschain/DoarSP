@@ -195,9 +195,8 @@ public class NovaSolicitacao extends Fragment implements InterfaceListener{
 	
 	@Override
 	public void returningCall(String result) {
-		MainActivity global = (MainActivity)getActivity();
 		
-		if(result.equalsIgnoreCase(Integer.toString(global.getUser().getCodUsuario()))){
+		if(result.equalsIgnoreCase("true")){
 			Configuracao.showDialog(getActivity(), "Sucesso", "Sua solicitação foi aberta com sucesso", true);
 			Principal fragment = new Principal();
 			Configuracao.trocarFragment(fragment, getFragmentManager(), false);
