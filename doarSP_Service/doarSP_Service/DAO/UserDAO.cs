@@ -32,11 +32,11 @@ public class UserDAO
             try
             {
                 String cmdInsert = " insert into TB_Usuarios(USU_TpSanguineo, USU_Nome, USU_EndEmail, USU_NotificacaoPush, USU_NotificacaoEmail, " +
-                                   "                         USU_StatusApto, USU_DtdNascimento, USU_UserName, USU_Password) " +
+                                   "                         USU_StatusApto, USU_DtdNascimento, USU_UserName, USU_Password, USU_GcmId) " +
                                    " values " +
-                                   " (@tpSanguineo, @nome, @endEmail, @notPush, @notEmail, @statusApto, @dtdNasci, @userName, @password)";
+                                   " (@tpSanguineo, @nome, @endEmail, @notPush, @notEmail, @statusApto, @dtdNasci, @userName, @password, @gcmId)";
+                
                 String cmdNewUser = " select MAX(USU_IdUsuario) from TB_Usuarios ";
-
 
                 SqlCommand insertUser = new SqlCommand(cmdInsert, conn);
                 insertUser.Parameters.AddWithValue("@tpSanguineo", userData.tpSanguineo);
@@ -48,6 +48,7 @@ public class UserDAO
                 insertUser.Parameters.AddWithValue("@dtdNasci", userData.dtdNascimento);
                 insertUser.Parameters.AddWithValue("@userName", userData.userName);
                 insertUser.Parameters.AddWithValue("@password", userData.password);
+                insertUser.Parameters.AddWithValue("@gcmId", userData.gcmId);
                 insertUser.ExecuteNonQuery();
 
                 SqlCommand getNewUser = new SqlCommand(cmdNewUser, conn);
@@ -80,7 +81,7 @@ public class UserDAO
 
             try
             {
-                String cmdInsert = "SELECT * FROM TB_Usuarios WHERE USU_UserName = @userName";
+                String cmdInsert = "SELECT 1 FROM TB_Usuarios WHERE USU_UserName = @userName";
 
 
                 SqlCommand checkusr = new SqlCommand(cmdInsert, conn);
@@ -142,6 +143,45 @@ public class UserDAO
             catch (Exception ex)
             {
                 transaction.Rollback();
+                throw new Exception(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+    }
+
+    public String getGcm(int userId)
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+
+            try
+            {
+                String cmdInsert = "SELECT USU_GcmId FROM TB_Usuarios WHERE USU_IdUsuario = @userId";
+
+                SqlCommand checkusr = new SqlCommand(cmdInsert, conn);
+                checkusr.Parameters.AddWithValue("@userId", userId);
+                checkusr.ExecuteNonQuery();
+
+                SqlDataReader reader = checkusr.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    String ret = reader.GetString(0);
+                    reader.Close();
+                    return ret;
+                }
+                else
+                {
+                    reader.Close();
+                    return "";
+                }
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.ToString());
             }
             finally

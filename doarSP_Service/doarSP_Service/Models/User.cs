@@ -37,6 +37,9 @@ public class User
     public String userName { get; set; }
 
     public String password { get; set; }
+
+    public String gcmId { get; set; }
+
     #endregion
 
     #region Métodos
@@ -59,6 +62,11 @@ public class User
     public bool login()
     {
         return daoUser.login(this);
+    }
+
+    public String getGcm(int userId)
+    {
+        return daoUser.getGcm(userId);
     }
 
     #endregion

@@ -24,7 +24,7 @@ namespace doarSP_Service
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
         public String usuario_insereNovoUsuario(int tpSanguineo, String nome, String eMail, int notificacaoPush, int notificacaoEmail,
-                                 int statusApto, String dtdNascimento, String username, String password)
+                                 int statusApto, String dtdNascimento, String username, String password, String gcmId)
         {
             User userData = new User();            
 
@@ -36,7 +36,8 @@ namespace doarSP_Service
             userData.statusApto = statusApto;            
             userData.dtdNascimento = dtdNascimento;
             userData.userName = username;
-            userData.password = password;            
+            userData.password = password;
+            userData.gcmId = gcmId;
             
             /*List<User> jsonUser = new List<User>();
             jsonUser.Insert(0, userData);
@@ -105,12 +106,13 @@ namespace doarSP_Service
         }
         #endregion
 
-        #region Inicia_Solicitacao
+        #region Insere_Solicitacao
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
         public String solicitacao_InserirNovaSolicitacao(int userId, int qtnNecessaria, int idHemoCentro, int tpSanguineo, String pacienteNome, String comentario)
         {
             Solicitacoes novaDoacao = new Solicitacoes();
+            NotificacaoPush push = new NotificacaoPush();
             novaDoacao.idUserSolicitante = userId;
             novaDoacao.qtnDoacoes = qtnNecessaria;
             novaDoacao.qtnRealizadas = 0;
@@ -121,7 +123,10 @@ namespace doarSP_Service
 
             if (novaDoacao.insertNewDonation())
             {
-                return "" + novaDoacao.codDoacao;
+                User user = new User();
+                String userGcm = user.getGcm(userId);
+                push.pushNotificacao(userGcm, "Uma nova solicitação foi aberta");
+                return "true";
             }
             else
             {
@@ -149,7 +154,15 @@ namespace doarSP_Service
             doacao.usuarioDoador = userId;
 
             List<Boolean> json = new List<Boolean>();
-            json.Insert(0, doacao.insertDoacao());
+            if(doacao.insertDoacao()){
+                json.Insert(0, true);
+                NotificacaoPush push = new NotificacaoPush();
+            }
+            else
+            {
+                json.Insert(0, false);
+            }
+
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
             return jsonClient.Serialize(json);
         }
@@ -192,25 +205,13 @@ namespace doarSP_Service
         #region Informacoes_Doacao
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
-        public String solicitacoes_GetSolicitacoes(int idHemocentro, bool getAll, double latitude, double longitude, int quantidadeRetornada, int userID)
+        public String solicitacoes_GetSolicitacoes(int userID)
         {
-            Solicitacoes getDonation = new Solicitacoes();
-
-            if (idHemocentro > 0)
-            {
-                getDonation.hemoCentro = idHemocentro;
-            }
+            Solicitacoes sol = new Solicitacoes();
             List<Solicitacoes> recordsDonation = new List<Solicitacoes>();
 
-            SqlDataReader records = getDonation.getDonationRecords(getAll, idHemocentro, userID);
-            Solicitacoes data = new Solicitacoes();
-            int Count = ((quantidadeRetornada > 0) ? quantidadeRetornada : 10);
-
-            for (int i = 0; i <= Count; i++)
-            {
-                recordsDonation.Insert(i, data);
-            }
-
+            recordsDonation = sol.getDonationRecords(userID);
+            
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
             return jsonClient.Serialize(recordsDonation);
         }

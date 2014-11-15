@@ -10,7 +10,7 @@ using System.Data.Sql;
 /// </summary>
 public class SolicitacoesDAO
 {
-    private static String connectionString = "server=.\\SQLEXPRESS; database=doarSP; User ID=sa;Password=123";
+    private static String connectionString = "server=.\\SQLSERVER; database=doarSP; User ID=sa;Password=123";
     public SolicitacoesDAO()
     {
     }
@@ -27,10 +27,10 @@ public class SolicitacoesDAO
             {
                 String cmdInsert = " insert into TB_Solicitacoes(SOL_IdUsuarioSolicitador, SOL_QuantidadeSolicitacoes, " +
                                    "                             SOL_QuantidadeRealizadas, SOL_IdHemocentroSolicitado, " +
-                                   "                             SOL_NomePaciente, SOL_TipoSanguineo, SOL_DtdAberturaSolicitacao,  " +
-                                   "                             SOL_Comentario)  " +
+                                   "                             SOL_NomePaciente, SOL_TipoSanguineo, SOL_StatusSolicitacao,  " +
+                                   "                             SOL_DtdAberturaSolicitacao, SOL_Comentario)  " +
                                    " values (@idSolicitador, @qtnQuantidadeSol, @qtnQuantidadeRel, @idHemoCentro, " +
-                                   " @nomePaciente, @tpSanguineo, @dtdAberturaSolicitacao, @comentario ) ";
+                                   " @nomePaciente, @tpSanguineo, @SOL_StatusSolicitacao, @dtdAberturaSolicitacao, @comentario ) ";
                 String cmdNewUser = " select MAX(SOL_IdUsuarioSolicitador) from TB_Solicitacoes ";
 
 
@@ -40,7 +40,8 @@ public class SolicitacoesDAO
                 insertDonation.Parameters.AddWithValue("@qtnQuantidadeRel", donationData.qtnRealizadas);
                 insertDonation.Parameters.AddWithValue("@idHemoCentro", donationData.hemoCentro);
                 insertDonation.Parameters.AddWithValue("@nomePaciente", donationData.nomePaciente);
-                insertDonation.Parameters.AddWithValue("@tpSanguineo",  donationData.tpSanguineo);
+                insertDonation.Parameters.AddWithValue("@tpSanguineo", donationData.tpSanguineo);
+                insertDonation.Parameters.AddWithValue("@SOL_StatusSolicitacao", 1);
                 insertDonation.Parameters.AddWithValue("@dtdAberturaSolicitacao", DateTime.Now);
                 insertDonation.Parameters.AddWithValue("@comentario", donationData.comentario);
                 insertDonation.ExecuteNonQuery();
@@ -68,49 +69,50 @@ public class SolicitacoesDAO
         }
     }
 
-    public SqlDataReader getDonationRecords(bool getAll, int idHemocentro, int userID)
+    public List<Solicitacoes> getSolicitacao(int userID)
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
             conn.Open();
-            SqlTransaction transaction = conn.BeginTransaction("FindDonations");
-            String whereClause;
             try
             {
-                if (getAll)
-                {
-                    whereClause = " where SOL_StatusSolicitacao = 1";
-                }
-                else if (idHemocentro > 0)
-                {
-                    whereClause = " where SOL_StatusSolicitacao = 1 and SOL_IdHemocentroSolicitado = @idHemoCentro ";
-                }
-                else if (userID > 0)
-                {
-                    whereClause = " where SOL_IdUsuarioSolicitador = @idUser ";
-                }
-                else
-                {
-                    whereClause = " SOL_StatusSolicitacao = 1 ";
-                }
-
                 String cmdDonationRecords = " Select SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, SOL_QuantidadeSolicitacoes " +
-                                            "        SOL_QuantidadeRealizadas, SOL_IdHemocentroSolicitado, SOL_NomePaciente, SOL_TipoSanguineo " +
-                                            " From TB_Solicitacoes " + 
-                                            whereClause;
+                                            " SOL_QuantidadeRealizadas, SOL_IdHemocentroSolicitado, SOL_NomePaciente, SOL_TipoSanguineo " +
+                                            " From TB_Solicitacoes " +
+                                            " where SOL_IdUsuarioSolicitador = @idUser";
 
-                SqlCommand queryRecords = new SqlCommand(cmdDonationRecords, conn, transaction);
+                SqlCommand queryRecords = new SqlCommand(cmdDonationRecords, conn);
 
-                queryRecords.Parameters.AddWithValue("@idHemoCentro", idHemocentro);
-                queryRecords.Parameters.AddWithValue("@idUser", idHemocentro);
+                queryRecords.Parameters.AddWithValue("@idUser", userID);
 
-                SqlDataReader recordsRanking = queryRecords.ExecuteReader();
-                transaction.Commit();
-                return recordsRanking;
+                SqlDataReader reader = queryRecords.ExecuteReader();
+                List<Solicitacoes> recordsDonation = new List<Solicitacoes>();
+
+                if (reader.HasRows)
+                {
+                    int i = 0;
+                    while (reader.Read())
+                    {
+                        Solicitacoes data = new Solicitacoes();
+                        
+                        data.codDoacao          = reader.GetInt32(0);
+                        data.idUserSolicitante  = reader.GetInt32(1);
+                        data.qtnRealizadas      = reader.GetInt32(2);
+                        data.hemoCentro         = reader.GetInt32(3);
+                        data.nomePaciente       = reader.GetString(4);
+                        data.tpSanguineo        = reader.GetByte(5);
+                        
+                        recordsDonation.Insert(i, data);
+                        i++;
+                        reader.NextResult();
+                    }
+                    reader.Close();
+                }
+
+                return recordsDonation;
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
                 throw new Exception(ex.ToString());
             }
             finally

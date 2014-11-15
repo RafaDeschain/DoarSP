@@ -32,9 +32,9 @@ public class Solicitacoes
         return dao.insertNewDonation(this);
     }
 
-    public SqlDataReader getDonationRecords(bool getAll, int idHemocentro, int userID)
+    public List<Solicitacoes> getDonationRecords(int userID)
     {
-        return dao.getDonationRecords(getAll, idHemocentro, userID);
+        return dao.getSolicitacao(userID);
     }
 
     public void getMural()
