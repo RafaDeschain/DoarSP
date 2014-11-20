@@ -42,6 +42,7 @@
         <item >Postos de Doação</item>
         <!-- <item >Informações</item> -->
         <item >Alterar Dados</item>
+        <item>Ranking</item>
     </string-array>
      
     <!-- Nav Drawer List Item Icons -->
@@ -54,6 +55,7 @@
         <item>@drawable/ic_postos</item>
         <item>@drawable/ic_info</item>
         <item>@drawable/ic_alterar</item>
+        <item>@drawable/ic_ranking</item>
     </array>
      
     <!-- Content Description -->
