@@ -15,12 +15,11 @@ import android.widget.TextView;
 
 import com.app.adapter.HemocentrosAdapter;
 import com.app.model.Hemocentros;
-import com.app.model.Solicitacoes;
 
 public class FeedDoacoes extends Fragment {
 	TextView versionInfo;
 	private View rootView;
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -28,12 +27,12 @@ public class FeedDoacoes extends Fragment {
 		rootView = inflater.inflate(R.layout.fragment_feeddoacoes,
 				container, false);
 		
-		ArrayList<Hemocentros> model = pegarHemocentros();
-		HemocentrosAdapter adapter = new HemocentrosAdapter(getActivity(), model);
+		//ArrayList<Hemocentros> model = pegarHemocentros();
+		//HemocentrosAdapter adapter = new HemocentrosAdapter(getActivity(), model);
 		
 		// pegar ListView
 		final ListView listaHemocentros = (ListView) rootView.findViewById(R.id.hemocentros);
-		listaHemocentros.setAdapter(adapter);
+		//listaHemocentros.setAdapter(adapter);
 		
 		listaHemocentros.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3){
@@ -43,7 +42,7 @@ public class FeedDoacoes extends Fragment {
 		
 		return rootView;
 	}
-	
+	/**
 	public ArrayList<Hemocentros> pegarHemocentros()
 	{
 		ArrayList<Hemocentros> list = new ArrayList<Hemocentros>();
@@ -74,12 +73,12 @@ public class FeedDoacoes extends Fragment {
 		return getHemocentroComSolicitacao(list);
 	}
 	
-
+	
 	private ArrayList<Solicitacoes> getSolicitacoes()
 	{
 		ArrayList<Solicitacoes> tempList = new ArrayList<Solicitacoes>();
 		
-		/** Solicitações Temporárias
+		 Solicitações Temporárias
 		Solicitacoes solic1 = new Solicitacoes();
 		solic1.setCodSolicitacao(1);
 		solic1.setQtnDoacoes(25);
@@ -108,7 +107,6 @@ public class FeedDoacoes extends Fragment {
 		tempList.add(solic2);
 		tempList.add(solic3);
 		tempList.add(solic4);
-		**/
 		return tempList;	
 	}
 
@@ -116,7 +114,7 @@ public class FeedDoacoes extends Fragment {
 	{
 		ArrayList<Solicitacoes> listaSolicitacoes = getSolicitacoes();
 		ArrayList<Hemocentros> listaHemocentrosComSolicitacao = new ArrayList<Hemocentros>();
-		/**
+		
 		for(Hemocentros hemocentro : hemocentros) {
 			for (Solicitacoes solicitacao : listaSolicitacoes) {
 				if(solicitacao.getHemocentroResp() == hemocentro.getCodPosto())
@@ -128,7 +126,7 @@ public class FeedDoacoes extends Fragment {
 			{
 				listaHemocentrosComSolicitacao.add(hemocentro);
 			}
-		}**/
+		}
 		return listaHemocentrosComSolicitacao;		
-	}
+	}**/
 }

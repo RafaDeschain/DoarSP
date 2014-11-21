@@ -13,7 +13,6 @@ public class Hemocentros {
 	private String endPosto, telPosto, nomePosto;
 	private double latitude, longitude;
 	private AppDAO DAO;
-	private ArrayList<Solicitacoes> solicitacoes;
 	
 	public Hemocentros(Context context){
 		DAO = new AppDAO(context);		
@@ -80,33 +79,5 @@ public class Hemocentros {
 	public Cursor getAllPostos()
 	{
 		return DAO.getAllPostos();
-	}
-	
-	// Metodos de Solicitacao
-	public void setSolicitacoes(ArrayList<Solicitacoes> solicitacoes)
-	{
-		this.solicitacoes = solicitacoes;
-	}
-	
-	public ArrayList<Solicitacoes> getSolicitacoes()
-	{
-		return this.solicitacoes;
-	}
-	
-	public void addSolicitacao(Solicitacoes solicitacao)
-	{
-		if(solicitacoesIsNull())
-			setSolicitacoes(new ArrayList<Solicitacoes>());
-		this.solicitacoes.add(solicitacao);
-	}
-	
-	public Solicitacoes getSolicitacao(int indice)
-	{
-		return this.solicitacoes.get(indice);
-	}
-	
-	public boolean solicitacoesIsNull()
-	{
-		return (this.solicitacoes == null);
 	}
 }

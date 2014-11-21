@@ -3,10 +3,16 @@ package com.app.doarsp;
 import com.app.adapter.NavDrawerListAdapter;
 import com.app.model.Hemocentros;
 import com.app.model.User;
+import com.app.services.ServiceReceiver;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Fragment;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -45,6 +51,9 @@ public class MainActivity extends Activity {
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
+	
+	//Serviço
+	private PendingIntent pendingIntent;
 	
 	//Modelo
 	User user;
@@ -114,6 +123,22 @@ public class MainActivity extends Activity {
 		{
 			hemocentrosInsert.initializeValuesInBd();
 		}
+		
+		/**
+		 * Cria o serviço que atualiza a localização do usuário no bd
+		 */
+		
+        Intent alarmIntent = new Intent(MainActivity.this, ServiceReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
+	    
+        //O intervalo de chamada do serviço está setado de 10 em 10 minutos
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        int interval = 1000 * 60 * 10;
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+		
+	    /**
+	     * Fim do serviço
+	     */
 		
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
 		Fragment login = new Login();

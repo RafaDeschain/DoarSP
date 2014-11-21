@@ -64,7 +64,7 @@ public class WebService{
            
            if(!regId.contains("erro") || !regId.isEmpty()){
         	   	PropertyInfo pi = new PropertyInfo();
-	   			pi.setName("gcm");
+	   			pi.setName("gcmId");
 	   			pi.setValue(regId);
 	   			pi.setType(String.class);
 	   			request.addProperty(pi);
