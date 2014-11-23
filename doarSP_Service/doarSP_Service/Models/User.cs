@@ -40,6 +40,10 @@ public class User
 
     public String gcmId { get; set; }
 
+    public double latitude { get; set; }
+
+    public double longitude { get; set; }
+
     #endregion
 
     #region Métodos
@@ -52,6 +56,11 @@ public class User
     public Boolean updateUser()
     {
         return daoUser.updateUser(this);
+    }
+
+    public Boolean updateLocation()
+    {
+        return daoUser.updateLocation(this);
     }
 
     public SqlDataReader getRanking()

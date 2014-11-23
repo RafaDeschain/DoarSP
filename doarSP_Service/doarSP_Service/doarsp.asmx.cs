@@ -83,6 +83,27 @@ namespace doarSP_Service
         }
         #endregion
 
+        #region Atualiza_Localizacao
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        [WebMethod]
+        public Boolean usuario_AtualizaLocalizacao(int CodUser, double latitude, double longitude)
+        {
+            User userData = new User();
+            userData.codUsuario = CodUser;
+            userData.latitude   = latitude;
+            userData.longitude  = longitude;
+
+            if (userData.updateLocation())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+
         #region Informacoes_Ranking
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
