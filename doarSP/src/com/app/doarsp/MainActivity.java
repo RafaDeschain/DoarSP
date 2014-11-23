@@ -86,8 +86,6 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		// Informações
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-		// Ranking
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(7, -1)));
 		navMenuIcons.recycle();
 		
 		/** Adiciona os itens no menu lateral - Fim**/
@@ -143,7 +141,6 @@ public class MainActivity extends Activity {
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
 		Fragment login = new Login();
 		Configuracao.trocarFragment(login, getFragmentManager(), false);
-
 	}
 
 	/**
@@ -238,10 +235,6 @@ public class MainActivity extends Activity {
 			break;
 		case 5:
 			fragment = new AlterarDados();
-			break;
-			
-		case 6:
-			fragment = new ConsultarRanking();
 			break;
 					
 		default:

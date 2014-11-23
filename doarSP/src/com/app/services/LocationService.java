@@ -1,6 +1,5 @@
 package com.app.services;
 
-import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -8,46 +7,89 @@ import android.location.LocationManager;
 import android.os.Bundle;
 
 
-public class LocationService implements LocationListener{
+public class LocationService{
 	
 	protected LocationManager locationManager;
-	protected LocationListener locationListener;
+	protected double latitude,longitude;
 	protected Context context;
-	String lat;
-	String provider;
-	protected String latitude,longitude; 
-	protected boolean gps_enabled,network_enabled;
-	protected Activity activity;
 	
-	public LocationService(Activity activity){
+	// GPS status
+    boolean isGPSEnabled = false;
+ 
+    // Internet status
+    boolean isNetworkEnabled = false;
+	
+	public LocationService(Context context){
+		this.context = context;
+		locationManager = (LocationManager) context.getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
 		
-		this.activity = activity;
-		locationManager = (LocationManager) activity.getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+		//Verifica o status do GPS
+        isGPSEnabled = locationManager
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        //Verifica o status do 3G
+        isNetworkEnabled = locationManager
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 		
+        if(isGPSEnabled){
+        	locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+        }
+        else if(isNetworkEnabled){
+        	locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
+        }
+        
+		Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		updateLocation(location);
+	}
+	
+	private LocationListener listener = new LocationListener() {
+		
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void onProviderEnabled(String provider) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void onProviderDisabled(String provider) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void onLocationChanged(Location location) {
+			if(location != null){
+				updateLocation(location);
+			}
+		}
+	};
+
+	private void updateLocation(Location location) {
+		if(location != null){
+			setLatitude(location.getLatitude());
+			setLongitude(location.getLongitude());
+		}
+	}
+	
+	public double getLatitude() {
+		return latitude;
 	}
 
-	@Override
-	public void onLocationChanged(Location location) {
-		// TODO Auto-generated method stub
-		
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
-		
+	public double getLongitude() {
+		return longitude;
 	}
 
-	@Override
-	public void onProviderEnabled(String provider) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
-		
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 }
