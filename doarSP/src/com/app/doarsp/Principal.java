@@ -5,10 +5,12 @@ import java.util.List;
 import com.app.adapter.ListaMuralAdapter;
 import com.app.model.Mural;
 import com.app.model.User;
+import com.app.webservice.WebService;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -36,20 +38,16 @@ public class Principal extends Fragment {
 	
 	public Principal(){}
 	
-	public Principal(int codUsuario){
-		
-	}
-	
-	public Principal(User user){
-		setUser(user);
-	}
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		MainActivity global = (MainActivity)getActivity();
+        user = global.getUser();
+		GetSolicitacao solicitacao = new GetSolicitacao(user.getCodUsuario());
+		solicitacao.execute();
 	}
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		menu.findItem(R.id.menuSair).setVisible(true);
@@ -74,7 +72,6 @@ public class Principal extends Fragment {
         aptoDoar 	      = (CheckBox)rootView.findViewById(R.id.PrincipalAptoDoar);
                 
         // Seta os dados do usuário nos componentes
-        
         MainActivity global = (MainActivity)getActivity();
         user = global.getUser();
         
@@ -150,6 +147,42 @@ public class Principal extends Fragment {
         
         return rootView;
     }
+    
+    /** AsycnTask solicitação **/
+    
+	private class GetSolicitacao extends AsyncTask<String, Void, String>{
+		
+		private String[][] wsparams;
+		private int userId;
+		private WebService webservice;
+		
+		public GetSolicitacao(int userId){
+			this.userId = userId;
+		}
+		
+		@Override
+		protected String doInBackground(String... params) {
+			
+			wsparams = new String[1][2];
+			
+			wsparams[0][0] = "userID";
+			wsparams[0][1] = String.valueOf(userId);
+			
+			webservice = new WebService("solicitacoes_GetSolicitacoes", wsparams);
+			return webservice.connectWS();
+		}
+		
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			preencherSolicitacao(result);
+		}
+	}
+	
+	/** Fim AsyncTask **/
+	
+	public void preencherSolicitacao(String solicitacoes){
+		
+	}
     
     /** Getters and Setters **/
     

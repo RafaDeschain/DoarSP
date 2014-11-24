@@ -107,7 +107,7 @@ public class Login extends Fragment implements InterfaceListener{
 					params[0][0] = "username";
 					params[0][1] = getLogin();
 					params[1][0] = "password";
-					params[1][1] = getSenha();
+					params[1][1] = Configuracao.encripta(getSenha());
 					
 					setWebservice(new WebService("usuario_Login", params));
 					
@@ -202,7 +202,7 @@ public class Login extends Fragment implements InterfaceListener{
 			params[0][0] = "username";
 			params[0][1] = getLogin();
 			params[1][0] = "password";
-			params[1][1] = getSenha();
+			params[1][1] = Configuracao.encripta(getSenha());
 			
 			setWebservice(new WebService("usuario_Login", params));
 			

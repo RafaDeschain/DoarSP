@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.app.DAO.AppDAO;
+import com.app.doarsp.Configuracao;
 
 public class User {
 	
@@ -130,7 +131,7 @@ public class User {
 		DAO.updateUser(this);
 	}
 	
-	/*********** DAO ***********/
+	/*********** FIM DAO ***********/
 	
 	public String getLogin() {
 		return login;

@@ -62,8 +62,8 @@ namespace doarSP_Service
         #region Atualiza_Usuario
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
-        public String usuario_AtualizaUsuario(int CodUser, int tpSanguineo, String nome, String eMail, int notificacaoPush, int notificacaoEmail,
-                                                String dtdNascimento, String username, String password)
+        public Boolean usuario_AtualizaUsuario(int CodUser, int tpSanguineo, String nome, String eMail, int notificacaoPush, int notificacaoEmail,
+                                                String dtdNascimento, String password)
         {
             User userData = new User();
             userData.codUsuario = CodUser;
@@ -73,13 +73,37 @@ namespace doarSP_Service
             userData.notificacaoPush = notificacaoPush;
             userData.notificaoEmail = notificacaoEmail;
             userData.dtdNascimento = dtdNascimento;
-            userData.userName = username;
             userData.password = password;
 
-            List<Boolean> json = new List<Boolean>();
-            json.Insert(0, userData.updateUser());
-            JavaScriptSerializer jsonClient = new JavaScriptSerializer();
-            return jsonClient.Serialize(json);
+            if (userData.updateUser())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region Atualiza_Localizacao
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        [WebMethod]
+        public Boolean usuario_AtualizaLocalizacao(int CodUser, double latitude, double longitude)
+        {
+            User userData = new User();
+            userData.codUsuario = CodUser;
+            userData.latitude   = latitude;
+            userData.longitude  = longitude;
+
+            if (userData.updateLocation())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
 

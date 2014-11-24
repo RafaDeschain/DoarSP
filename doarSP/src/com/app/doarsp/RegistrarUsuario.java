@@ -91,7 +91,7 @@ public class RegistrarUsuario extends Fragment implements InterfaceListener{
 				params[7][0] = "username";
 				params[7][1] = login;
 				params[8][0] = "password";
-				params[8][1] = senhaString;
+				params[8][1] = Configuracao.encripta(senhaString);
 				
 				setWebservice(new WebService("usuario_insereNovoUsuario", params, getActivity()));
 				

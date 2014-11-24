@@ -5,15 +5,13 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import Decoder.BASE64Encoder;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -120,23 +118,6 @@ public class Configuracao{
 		}
 		return true;
 	}
-	
-	public static double getMyPositionLatitude(LocationManager locationManager)
-	{
-		
-		Criteria criteria = new Criteria();
-	    String provider = locationManager.getBestProvider(criteria, false);
-	    Location location = locationManager.getLastKnownLocation(provider);			
-		return location.getLatitude();
-	}
-	
-	public static double getMyPositionLongitude(LocationManager locationManager)
-	{
-		Criteria criteria = new Criteria();
-	    String provider = locationManager.getBestProvider(criteria, false);
-	    Location location = locationManager.getLastKnownLocation(provider);		
-		return location.getLongitude();
-	}    
     
 	//Desabilita o slide do menu lateral	
 	public static void disableSlideMenu(DrawerLayout mDrawerLayout, ActionBar actionBar){
@@ -152,17 +133,18 @@ public class Configuracao{
 		actionBar.setHomeButtonEnabled(true);
 	}
 	
-	//Converte String para SHA1, ex de chamada: toSHA1("password".getBytes())
-	public String toSHA1(byte[] convertme) {
-	    MessageDigest md = null;
-	    try {
-	        md = MessageDigest.getInstance("SHA-1");
-	    }
-	    catch(NoSuchAlgorithmException e) {
-	        e.printStackTrace();
-	    } 
-	    return new String(md.digest(convertme));
-	}
+	//Criptografa senha
+	public static String encripta(String senha) {     
+        try {     
+             MessageDigest digest = MessageDigest.getInstance("MD5");      
+             digest.update(senha.getBytes());      
+             BASE64Encoder encoder = new BASE64Encoder();      
+             return encoder.encode (digest.digest ());      
+        } catch (NoSuchAlgorithmException ns) {     
+             ns.printStackTrace();      
+             return senha;      
+        }      
+   }
 	
 	//Métodos para mascara de data
 	public static String unmask(String s) {

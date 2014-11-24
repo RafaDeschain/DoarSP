@@ -122,7 +122,7 @@ public class UserDAO
             {
                 String cmdUpdate = " update TB_Usuarios set USU_TpSanguineo = @tpSanguineo, USU_Nome = @nome, USU_EndEmail = @endEmail,  " +
                                     "                        USU_NotificacaoPush = @notPush, USU_NotificacaoEmail = @notEmail, " +
-                                    "                        USU_UserName = @username, USU_Password = @password, " +
+                                    "                        USU_Password = @password, " +
                                     "                        USU_DtdNascimento = @dtdNasci where USU_IdUsuario = @codUser ";
                 SqlCommand updateUser = new SqlCommand(cmdUpdate, conn, transaction);
 
@@ -132,8 +132,38 @@ public class UserDAO
                 updateUser.Parameters.AddWithValue("@notPush", userData.notificacaoPush);
                 updateUser.Parameters.AddWithValue("@notEmail", userData.notificaoEmail);
                 updateUser.Parameters.AddWithValue("@dtdNasci", userData.dtdNascimento);
-                updateUser.Parameters.AddWithValue("@username", userData.userName);
-                updateUser.Parameters.AddWithValue("@password", userData.eMail);
+                updateUser.Parameters.AddWithValue("@password", userData.password);
+                updateUser.Parameters.AddWithValue("@codUser", userData.codUsuario);
+                updateUser.ExecuteNonQuery();
+
+                transaction.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                throw new Exception(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+    }
+
+    public Boolean updateLocation(User userData)
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            SqlTransaction transaction = conn.BeginTransaction("UpdateTransaction");
+            try
+            {
+                String cmdUpdate = " update TB_Usuarios set USU_Lat = @lat, USU_Long = @long where USU_IdUsuario = @codUser ";
+                SqlCommand updateUser = new SqlCommand(cmdUpdate, conn, transaction);
+
+                updateUser.Parameters.AddWithValue("@lat", userData.latitude);
+                updateUser.Parameters.AddWithValue("@long", userData.longitude);
                 updateUser.Parameters.AddWithValue("@codUser", userData.codUsuario);
                 updateUser.ExecuteNonQuery();
 
