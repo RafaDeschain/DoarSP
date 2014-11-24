@@ -9,11 +9,11 @@ using System.Web;
 public class NotificacaoPush
 {
 
-    public void pushNotificacao(String regID, String msg)
+    public void pushNotificacao(int userID, String msg)
     {
         // o id recebido do servidor gcm
 		//Palazolo's ID
-        //String regID = "APA91bHVzWogobpoENowv7U1M4lqrkTidbmJjyjgzLGi0FaHglqM0wFT4WPW82rcmF9UHn_Z3kPdnLvgg9z-Cs5ytda4MIKqqHFNzTsBU2xenA_HJUa1w7kH5iP0yxbx-fb-KM-Swg6BWhxusqoIFlXHyqXGqLPonw";
+        //String regID = "APA91bE7xgAaSzXavlPXdrkLg5pCGSVDrV5KVIPD2GTubHk5YQ0y8h0IrKyLz07GxOimQ1kuYAjFyD5EoFrYB-EShuz3bgFMGjPOveSIoWGne8-FDvQLAIkT_Q9AAYNnQH4G2RGxrbjopVOE9ROpc0obqkBrbRF5KA";
 
         // id do goolgle api
         string applicationID = "AIzaSyDU5RwfdGW8d1aFk18pXMW0rlZDUh-Z8EI";
@@ -21,8 +21,8 @@ public class NotificacaoPush
         // id do projeto no google
         string senderID = "595477754580";
 
-        // mensagem que será enviada.
-        //string msg = "Mensagem" ;
+        User user = new User();
+        String regID = user.getGcm(userID);
       
         WebRequest tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");           
 

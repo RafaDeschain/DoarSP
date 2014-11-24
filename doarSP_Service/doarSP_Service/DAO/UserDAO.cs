@@ -182,37 +182,6 @@ public class UserDAO
         }
     }
 
-    public Boolean updateLocation(User userData)
-    {
-        using (SqlConnection conn = new SqlConnection(connectionString))
-        {
-            conn.Open();
-            SqlTransaction transaction = conn.BeginTransaction("UpdateTransaction");
-            try
-            {
-                String cmdUpdate = " update TB_Usuarios set USU_Lat = @lat, USU_Long = @long where USU_IdUsuario = @codUser ";
-                SqlCommand updateUser = new SqlCommand(cmdUpdate, conn, transaction);
-
-                updateUser.Parameters.AddWithValue("@lat", userData.latitude);
-                updateUser.Parameters.AddWithValue("@long", userData.longitude);
-                updateUser.Parameters.AddWithValue("@codUser", userData.codUsuario);
-                updateUser.ExecuteNonQuery();
-
-                transaction.Commit();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                transaction.Rollback();
-                throw new Exception(ex.ToString());
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-    }
-
     public String getGcm(int userId)
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
