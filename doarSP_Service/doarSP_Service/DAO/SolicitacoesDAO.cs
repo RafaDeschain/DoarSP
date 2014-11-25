@@ -77,7 +77,7 @@ public class SolicitacoesDAO
             try
             {
                 String cmdDonationRecords = " Select SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, SOL_QuantidadeSolicitacoes " +
-                                            " SOL_QuantidadeRealizadas, SOL_IdHemocentroSolicitado, SOL_NomePaciente, SOL_TipoSanguineo " +
+                                            " SOL_QuantidadeRealizadas, SOL_IdHemocentroSolicitado, SOL_NomePaciente, SOL_TipoSanguineo, SOL_DtdAberturaSolicitacao, SOL_Comentario " +
                                             " From TB_Solicitacoes " +
                                             " where SOL_IdUsuarioSolicitador = @idUser";
 
@@ -101,6 +101,8 @@ public class SolicitacoesDAO
                         data.hemoCentro         = reader.GetInt32(3);
                         data.nomePaciente       = reader.GetString(4);
                         data.tpSanguineo        = reader.GetByte(5);
+                        data.dataAbertura       = reader.GetDateTime(6);
+                        data.comentario         = reader.GetString(7);
                         
                         recordsDonation.Insert(i, data);
                         i++;

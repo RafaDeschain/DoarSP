@@ -25,6 +25,7 @@ public class Solicitacoes
     public int tpSanguineo { get; set; }
     public String nomePaciente { get; set; }
     public String comentario { get; set; }
+    public DateTime dataAbertura { get; set; }
     #endregion
 
     public Boolean insertNewDonation()
