@@ -1,14 +1,20 @@
 package com.app.doarsp;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.app.adapter.ListaMuralAdapter;
-import com.app.model.Mural;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.app.adapter.ListaSolicitacoesAdapter;
+import com.app.model.Solicitacoes;
 import com.app.model.User;
+import com.app.webservice.WebService;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -27,29 +33,28 @@ public class Principal extends Fragment {
 	
 	/** Tela **/
 	private ImageView achivementPicture;
-	private TextView nameEdit, tpSanguineo, ultimaDoacao;
+	private TextView nameEdit, tpSanguineo, ultimaDoacao, solicitacoes;
 	private CheckBox aptoDoar;
 	private ActionBar actionBar;
 	
 	/** Modelo **/
 	public User user;
 	
+	/** Solicitacoes **/
+	public List<Solicitacoes> listaSol;
+	
 	public Principal(){}
-	
-	public Principal(int codUsuario){
-		
-	}
-	
-	public Principal(User user){
-		setUser(user);
-	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		MainActivity global = (MainActivity)getActivity();
+        user = global.getUser();
+		GetSolicitacao solicitacao = new GetSolicitacao(user.getCodUsuario());
+		solicitacao.execute();
 	}
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		menu.findItem(R.id.menuSair).setVisible(true);
@@ -72,9 +77,11 @@ public class Principal extends Fragment {
         tpSanguineo 	  = (TextView)rootView.findViewById(R.id.PrincipalTIpoSanguineo);
         ultimaDoacao	  = (TextView)rootView.findViewById(R.id.PrincipalUltimaDoacao);
         aptoDoar 	      = (CheckBox)rootView.findViewById(R.id.PrincipalAptoDoar);
+        solicitacoes	  = (TextView)rootView.findViewById(R.id.ultimasSolicitacoes);
+        
+        solicitacoes.setText("Carregando suas solicitações...");
                 
         // Seta os dados do usuário nos componentes
-        
         MainActivity global = (MainActivity)getActivity();
         user = global.getUser();
         
@@ -110,6 +117,8 @@ public class Principal extends Fragment {
         nameEdit.setText(user.getNome());
         tpSanguineo.setText("Tipo sanguineo: " + user.getTpSanguineoAsString());
         
+        
+        
         if(user.getDtdUltimaDoacao().equals("null")){
         	ultimaDoacao.setText("Ainda não efetuou nenhuma doação");
         }else{
@@ -118,12 +127,84 @@ public class Principal extends Fragment {
         
         aptoDoar.setChecked(user.getStatusApto());
         
-        //Solicitações
-        NovoMural mu = new NovoMural();
-        ListView listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
-		List<Mural> NovoMural = mu.gerarDoacaoMSG();
-		final ListaMuralAdapter NovoMuralAdapter = new ListaMuralAdapter(getActivity(), NovoMural);
-		listView.setAdapter(NovoMuralAdapter);
+        return rootView;
+    }
+    
+    /** AsycnTask solicitação **/
+    
+	private class GetSolicitacao extends AsyncTask<String, Void, String>{
+		
+		private String[][] wsparams;
+		private int userId;
+		private WebService webservice;
+		
+		public GetSolicitacao(int userId){
+			this.userId = userId;
+		}
+		
+		@Override
+		protected String doInBackground(String... params) {
+			
+			wsparams = new String[1][2];
+			
+			wsparams[0][0] = "userID";
+			wsparams[0][1] = String.valueOf(userId);
+			
+			webservice = new WebService("solicitacoes_GetSolicitacoes", wsparams);
+			return webservice.connectWS();
+		}
+		
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			if(result != ""){
+				preencherSolicitacao(result);
+			}
+		}
+	}
+	
+	/** Fim AsyncTask **/
+	
+	public void preencherSolicitacao(String solicitacoes){
+
+		try
+		{
+			
+			JSONArray jsonarray = new JSONArray(solicitacoes);
+			
+			for(int i = 0; i < jsonarray.length(); i++){
+				
+				JSONObject json = jsonarray.getJSONObject(i);
+				
+				listaSol = new ArrayList<Solicitacoes>();
+				
+				listaSol.add(criarSolicitacao(json.getInt("codDoacao"), 
+						 json.getInt("idUserSolicitante"), 
+						 json.getInt("qtnDoacoes"), 
+						 json.getInt("qtnRealizadas"), 
+						 json.getInt("hemoCentro"), 
+						 json.getInt("tpSanguineo"), 
+						 1, 
+						 json.getString("nomePaciente"), 
+						 json.getString("dataAbertura"),
+						 json.getString("comentario")));
+			}
+			
+			preencheTela(listaSol);
+		}
+		catch(Exception e){
+			e.getMessage();
+		}
+	}
+	
+	private void preencheTela(List<Solicitacoes> listaSol) {
+		solicitacoes.setText("Solicitações abertas");
+		
+		//Solicitações
+        
+        ListView listView = (ListView)getActivity().findViewById(R.id.lista_doacoes);
+        final ListaSolicitacoesAdapter hemoAdapter = new ListaSolicitacoesAdapter(getActivity(), listaSol);
+        listView.setAdapter(hemoAdapter);
+        listView.setSelector(R.drawable.list_selector_hemocentros);
 		
 		//Método para fazer funcionar o Scroll das solicitações
 		listView.setOnTouchListener(new ListView.OnTouchListener() {
@@ -147,9 +228,16 @@ public class Principal extends Fragment {
 		            return true;
 		        }
 		    });
-        
-        return rootView;
-    }
+	}
+
+	public Solicitacoes criarSolicitacao(int idSolicitacao, int idUsuario,
+			int quantidadeSolicitacoes, int quantidadesRealizadas,
+			int idHemocentro, int tipoSanguineo, int status, String nome,
+			String data, String comentario){
+		Solicitacoes sol = new Solicitacoes(idSolicitacao, idUsuario, quantidadeSolicitacoes, 
+				quantidadesRealizadas, idHemocentro, tipoSanguineo, status, nome, data, comentario);
+		return sol;
+	}
     
     /** Getters and Setters **/
     

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.app.adapter.ListaHemocentrosAdapter;
 import com.app.model.Hemocentros;
-import com.app.model.Solicitacoes;
 import com.app.webservice.InterfaceListener;
 import com.app.webservice.Thread;
 import com.app.webservice.WebService;
@@ -24,7 +23,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class NovaSolicitacao extends Fragment implements InterfaceListener{
 	
-	private Solicitacoes solicitacao;
+	
 	private EditText nomeEdit, comentarios;
 	private Spinner tpSanguineo, qtdDoacao;
 	private ListView pstDoacao;
@@ -44,7 +43,6 @@ public class NovaSolicitacao extends Fragment implements InterfaceListener{
 		
 			View rootView = inflater.inflate(R.layout.fragment_novasolicitacao, container, false);
 			
-			solicitacao 		= new Solicitacoes();
 			nomeEdit 			= (EditText)rootView.findViewById(R.id.SolicitacaoNome);
 			tpSanguineo 		= (Spinner)rootView.findViewById(R.id.SolicitacaoTipo);
 			pstDoacao 			= (ListView)rootView.findViewById(R.id.SolicitacaoHemocentro);
@@ -145,27 +143,20 @@ public class NovaSolicitacao extends Fragment implements InterfaceListener{
 	                	
 	                	MainActivity global = (MainActivity)getActivity();
 						
-						solicitacao.setCodUsuario(global.getUser().getCodUsuario());
-						solicitacao.setNomePaciente(nomeEdit.getText().toString());
-						solicitacao.setQtdDoacoes(Integer.parseInt(qtdDoacao.getSelectedItem().toString()));
-						solicitacao.setCodHemocentro(idHemo);
-						solicitacao.setTipoSanguineo(tpSanguineo.getSelectedItemPosition());
-						solicitacao.setComentarios(comentarios.getText().toString());
-						
 						params = new String[6][2];
 						
 						params[0][0] = "userId";
-						params[0][1] =  String.valueOf(solicitacao.getCodUsuario());
+						params[0][1] =  String.valueOf(global.getUser().getCodUsuario());
 						params[1][0] = "qtnNecessaria";
-						params[1][1] = String.valueOf(solicitacao.getQtdDoacoes());
+						params[1][1] = String.valueOf(Integer.parseInt(qtdDoacao.getSelectedItem().toString()));
 						params[2][0] = "idHemoCentro";
-						params[2][1] = String.valueOf(solicitacao.getCodHemocentro());
+						params[2][1] = String.valueOf(idHemo);
 						params[3][0] = "tpSanguineo";
-						params[3][1] = String.valueOf(solicitacao.getTipoSanguineo());
+						params[3][1] = String.valueOf(tpSanguineo.getSelectedItemPosition());
 						params[4][0] = "pacienteNome";
-						params[4][1] = solicitacao.getNomePaciente();
+						params[4][1] = nomeEdit.getText().toString();
 						params[5][0] = "comentario";
-						params[5][1] = solicitacao.getComentarios();
+						params[5][1] = comentarios.getText().toString();
 						
 						setWebservice(new WebService("solicitacao_InserirNovaSolicitacao", params));
 						

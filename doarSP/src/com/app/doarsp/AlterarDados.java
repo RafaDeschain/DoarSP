@@ -125,7 +125,7 @@ public class AlterarDados extends Fragment implements InterfaceListener{
 				params[5][0] = "dtdNascimento";
 				params[5][1] = dataNasString;
 				params[6][0] = "password";
-				params[6][1] = senhaString;
+				params[6][1] = Configuracao.encripta(senhaString);
 				params[7][0] = "CodUser";
 				params[7][1] = String.valueOf(user.getCodUsuario());
 				

@@ -1,19 +1,16 @@
 package com.app.model;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.database.Cursor;
 
 import com.app.DAO.AppDAO;
-import com.app.doarsp.ArrayPostos;
+import com.app.DAO.ArrayPostos;
 
 public class Hemocentros {
 	private int codPosto;
 	private String endPosto, telPosto, nomePosto;
 	private double latitude, longitude;
 	private AppDAO DAO;
-	private ArrayList<Solicitacoes> solicitacoes;
 	
 	public Hemocentros(Context context){
 		DAO = new AppDAO(context);		
@@ -82,31 +79,8 @@ public class Hemocentros {
 		return DAO.getAllPostos();
 	}
 	
-	// Metodos de Solicitacao
-	public void setSolicitacoes(ArrayList<Solicitacoes> solicitacoes)
+	public Hemocentros getPosto(int id)
 	{
-		this.solicitacoes = solicitacoes;
-	}
-	
-	public ArrayList<Solicitacoes> getSolicitacoes()
-	{
-		return this.solicitacoes;
-	}
-	
-	public void addSolicitacao(Solicitacoes solicitacao)
-	{
-		if(solicitacoesIsNull())
-			setSolicitacoes(new ArrayList<Solicitacoes>());
-		this.solicitacoes.add(solicitacao);
-	}
-	
-	public Solicitacoes getSolicitacao(int indice)
-	{
-		return this.solicitacoes.get(indice);
-	}
-	
-	public boolean solicitacoesIsNull()
-	{
-		return (this.solicitacoes == null);
+		return DAO.getPosto(id, this);
 	}
 }

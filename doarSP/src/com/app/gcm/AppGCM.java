@@ -23,12 +23,12 @@ public class AppGCM {
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     
+    private final String SENDER_ID = "595477754580";
+    
     GoogleCloudMessaging gcm;
     AtomicInteger msgId = new AtomicInteger();
     SharedPreferences prefs;
     String regid;
-    
-    String SENDER_ID = "595477754580";
     
     /**
      * Tag utilizada nas mensagens de log.
@@ -43,6 +43,10 @@ public class AppGCM {
 		context = activity.getApplicationContext();
 	}
 	
+	public AppGCM(Context context){
+		this.context = context;
+	}
+	
 	/** Método principal **/
 	
 	public String registrarGCM(){
@@ -50,11 +54,14 @@ public class AppGCM {
 		String msg = "";
 		
 		if (checkPlayServices()) {
-            gcm = GoogleCloudMessaging.getInstance(activity);
+            gcm = GoogleCloudMessaging.getInstance(context);
             regid = getRegistrationId(context);
             
             if (regid.isEmpty()) {
                 msg = registerInBackground();
+            }
+            else{
+            	msg = regid;
             }
         } else {
             Log.i(TAG, "No valid Google Play Services APK found.");
@@ -146,6 +153,22 @@ public class AppGCM {
 	        msg = "erro :" + ex.getMessage();
 	    }
 	    return msg;
+	}
+	
+	/**
+	 * Remove o registro ID do dispositivo no GCM
+	 */
+	public void unRegister(){
+		try {
+	        if (gcm == null) {
+	            gcm = GoogleCloudMessaging.getInstance(context);
+	        }
+	        
+	        gcm.unregister();
+	        
+	    } catch (IOException ex) {
+	        ex.getMessage();
+	    }
 	}
 	
 	/**

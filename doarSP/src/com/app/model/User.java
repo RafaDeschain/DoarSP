@@ -130,7 +130,7 @@ public class User {
 		DAO.updateUser(this);
 	}
 	
-	/*********** DAO ***********/
+	/*********** FIM DAO ***********/
 	
 	public String getLogin() {
 		return login;

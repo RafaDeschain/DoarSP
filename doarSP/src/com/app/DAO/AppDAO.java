@@ -1,6 +1,9 @@
 package com.app.DAO;
 
+import com.app.gcm.AppGCM;
+import com.app.model.Hemocentros;
 import com.app.model.User;
+import com.app.webservice.WebService;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,6 +11,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 
 public class AppDAO extends SQLiteOpenHelper{
 	
@@ -240,6 +244,24 @@ public class AppDAO extends SQLiteOpenHelper{
 			database.close();
 			return null;
 		}			
+	}
+	
+	public Hemocentros getPosto(int id, Hemocentros hemo)
+	{
+		SQLiteDatabase database = this.getReadableDatabase();
+		try
+		{						
+			Cursor query = database.query(AppDAO.TABLE_NAME_POSTO, allColumnsPosto, null,
+					null, null, null, null);
+			query.moveToFirst();
+			hemo.setEndPosto(query.getString(1));
+			hemo.setNomePosto(query.getString(2));
+		}
+		catch(Exception Ex)
+		{			
+			database.close();				
+		}
+		return hemo;
 	}
 	
 	/** Fim Postos **/

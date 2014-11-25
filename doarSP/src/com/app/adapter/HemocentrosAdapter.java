@@ -38,7 +38,7 @@ public class HemocentrosAdapter extends BaseAdapter{
 	    
 	    nomePosto.setText(hemocentro.getNomePosto());     
 	    enderecoPosto.setText(hemocentro.getEndPosto());
-	    
+	    /**
 	    TextView quantSolicitacoes = (TextView) view.findViewById(R.id.quantSolicitacoes);
 	    int qtdSolicitacao = hemocentro.getSolicitacoes().size();
 	    String txtQtdSolicitacao;
@@ -52,7 +52,7 @@ public class HemocentrosAdapter extends BaseAdapter{
 	    }
 	    
 	    quantSolicitacoes.setText(txtQtdSolicitacao);
-	    
+	    **/
 	    return view;		
 	}
 	@Override
