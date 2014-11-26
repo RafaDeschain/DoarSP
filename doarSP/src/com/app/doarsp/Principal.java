@@ -117,8 +117,6 @@ public class Principal extends Fragment {
         nameEdit.setText(user.getNome());
         tpSanguineo.setText("Tipo sanguineo: " + user.getTpSanguineoAsString());
         
-        
-        
         if(user.getDtdUltimaDoacao().equals("null")){
         	ultimaDoacao.setText("Ainda não efetuou nenhuma doação");
         }else{
@@ -170,12 +168,11 @@ public class Principal extends Fragment {
 		{
 			
 			JSONArray jsonarray = new JSONArray(solicitacoes);
+			listaSol = new ArrayList<Solicitacoes>();
 			
 			for(int i = 0; i < jsonarray.length(); i++){
 				
 				JSONObject json = jsonarray.getJSONObject(i);
-				
-				listaSol = new ArrayList<Solicitacoes>();
 				
 				listaSol.add(criarSolicitacao(json.getInt("codDoacao"), 
 						 json.getInt("idUserSolicitante"), 
@@ -183,7 +180,7 @@ public class Principal extends Fragment {
 						 json.getInt("qtnRealizadas"), 
 						 json.getInt("hemoCentro"), 
 						 json.getInt("tpSanguineo"), 
-						 1, 
+						 1,
 						 json.getString("nomePaciente"), 
 						 json.getString("dataAbertura"),
 						 json.getString("comentario")));
@@ -197,14 +194,21 @@ public class Principal extends Fragment {
 	}
 	
 	private void preencheTela(List<Solicitacoes> listaSol) {
-		solicitacoes.setText("Solicitações abertas");
 		
 		//Solicitações
         
         ListView listView = (ListView)getActivity().findViewById(R.id.lista_doacoes);
-        final ListaSolicitacoesAdapter hemoAdapter = new ListaSolicitacoesAdapter(getActivity(), listaSol);
-        listView.setAdapter(hemoAdapter);
-        listView.setSelector(R.drawable.list_selector_hemocentros);
+        
+        if(!listaSol.isEmpty()){
+        	solicitacoes.setText("Solicitações abertas");
+            final ListaSolicitacoesAdapter hemoAdapter = new ListaSolicitacoesAdapter(getActivity(), listaSol);
+            listView.setAdapter(hemoAdapter);
+            listView.setSelector(R.drawable.list_selector_hemocentros);
+        }
+        else{
+        	solicitacoes.setText("Sem solicitações");
+        	listView.setVisibility(View.INVISIBLE);
+        }
 		
 		//Método para fazer funcionar o Scroll das solicitações
 		listView.setOnTouchListener(new ListView.OnTouchListener() {
@@ -234,8 +238,10 @@ public class Principal extends Fragment {
 			int quantidadeSolicitacoes, int quantidadesRealizadas,
 			int idHemocentro, int tipoSanguineo, int status, String nome,
 			String data, String comentario){
+		
 		Solicitacoes sol = new Solicitacoes(idSolicitacao, idUsuario, quantidadeSolicitacoes, 
 				quantidadesRealizadas, idHemocentro, tipoSanguineo, status, nome, data, comentario);
+		
 		return sol;
 	}
     
