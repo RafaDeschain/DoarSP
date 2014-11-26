@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using System.Data.Common;
 
 /// <summary>
 /// Summary description for SolicitacoesDAO
@@ -85,30 +86,25 @@ public class SolicitacoesDAO
 
                 queryRecords.Parameters.AddWithValue("@idUser", userID);
 
-                SqlDataReader reader = queryRecords.ExecuteReader();                
+                SqlDataReader reader = queryRecords.ExecuteReader();
 
-                if (reader.HasRows)
+                int i = 0;
+                foreach (DbDataRecord recordDonation in reader)
                 {
-                    int i = 0;
-                    while (reader.Read())
-                    {
-                        Solicitacoes data = new Solicitacoes();
-                        
-                        data.codDoacao          = reader.GetInt32(0);
-                        data.idUserSolicitante  = reader.GetInt32(1);
-                        data.qtnRealizadas      = reader.GetInt32(2);
-                        data.hemoCentro         = reader.GetInt32(3);
-                        data.nomePaciente       = reader.GetString(4);
-                        data.tpSanguineo        = reader.GetByte(5);
-                        data.dataAbertura       = reader.GetDateTime(6);
-                        data.comentario         = reader.GetString(7);
-                        
-                        list.Insert(i, data);
-                        i++;
-                        reader.NextResult();
-                    }
-                    reader.Close();
-                }                
+                    Solicitacoes data = new Solicitacoes();
+
+                    data.codDoacao = reader.GetInt32(0);
+                    data.idUserSolicitante = reader.GetInt32(1);
+                    data.qtnRealizadas = reader.GetInt32(2);
+                    data.hemoCentro = reader.GetInt32(3);
+                    data.nomePaciente = reader.GetString(4);
+                    data.tpSanguineo = reader.GetByte(5);
+                    data.dataAbertura = reader.GetDateTime(6);
+                    data.comentario = reader.GetString(7);
+
+                    list.Insert(i, data);
+                    i++;
+                }
             }
             catch (Exception ex)
             {
@@ -197,6 +193,54 @@ public class SolicitacoesDAO
             }
         }
     }
+
+    public void getSolicitacaoHemocentro(int idHemoCentro, ref List<Solicitacoes> list)
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            try
+            {
+                String cmdDonationRecords = " Select SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, SOL_QuantidadeSolicitacoes " +
+                                            " SOL_QuantidadeRealizadas, SOL_IdHemocentroSolicitado, SOL_NomePaciente, SOL_TipoSanguineo, SOL_DtdAberturaSolicitacao, SOL_Comentario " +
+                                            " From TB_Solicitacoes " +
+                                            " where SOL_IdHemocentroSolicitado = @idHemoCentro and SOL_StatusSolicitacao = 1";
+
+                SqlCommand queryRecords = new SqlCommand(cmdDonationRecords, conn);
+
+                queryRecords.Parameters.AddWithValue("@idHemoCentro", idHemoCentro);
+
+                SqlDataReader reader = queryRecords.ExecuteReader();
+
+                int i = 0;
+                foreach (DbDataRecord recordDonation in reader)
+                {
+                    Solicitacoes data = new Solicitacoes();
+
+                    data.codDoacao = reader.GetInt32(0);
+                    data.idUserSolicitante = reader.GetInt32(1);
+                    data.qtnRealizadas = reader.GetInt32(2);
+                    data.hemoCentro = reader.GetInt32(3);
+                    data.nomePaciente = reader.GetString(4);
+                    data.tpSanguineo = reader.GetByte(5);
+                    data.dataAbertura = reader.GetDateTime(6);
+                    data.comentario = reader.GetString(7);
+
+                    list.Insert(i, data);
+                    i++;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+    }
+
 
     #endregion
     

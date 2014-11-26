@@ -296,9 +296,15 @@ namespace doarSP_Service
 
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
-        public String getSolicitacoesHemocentro(int idHemocentro)
+        public String hemocentros_getSolicitacoesHemocentro(int idHemocentro)
         {
-            return "Em implementação";
+            Solicitacoes sol = new Solicitacoes();
+            List<Solicitacoes> recordsDonation = new List<Solicitacoes>();
+
+            sol.getDonationHemocentroRecords(idHemocentro, ref recordsDonation);
+
+            JavaScriptSerializer jsonClient = new JavaScriptSerializer();
+            return jsonClient.Serialize(recordsDonation);            
         }
 
         #endregion

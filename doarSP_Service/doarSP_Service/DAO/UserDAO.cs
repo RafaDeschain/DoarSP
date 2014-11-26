@@ -317,22 +317,25 @@ public class UserDAO
 
             try
             {
-                String cmdInsert = "SELECT USU_IdUsuario, USU_Lat, USU_Long FROM TB_Usuarios WHERE USU_IdUsuario <> @userId and USU_StatusApto = 1";
+                String cmdInsert = "SELECT USU_IdUsuario, USU_Lat, USU_Long FROM TB_Usuarios WHERE USU_IdUsuario <> @userId and USU_StatusApto = 1 and USU_NotificacaoPush = 1";
                 String cmdHemo = "Select HEM_Lat, HEM_Long from TB_Hemocentros where HEM_IdHemocentro = @idHemo";
 
                 SqlCommand getHemoData = new SqlCommand(cmdHemo, conn);
-                getHemoData.Parameters.AddWithValue("@idHemo", idHemocentro);
-                getHemoData.ExecuteNonQuery();
+                getHemoData.Parameters.AddWithValue("@idHemo", idHemocentro);                
 
                 SqlDataReader hemoData = getHemoData.ExecuteReader();
 
-                double hemoLat = hemoData.GetDouble(0);
-                double hemoLog = hemoData.GetDouble(1);
+                double hemoLat = 0;
+                double hemoLog = 0;
+                if (hemoData.Read())
+                {
+                    hemoLat = hemoData.GetDouble(0);
+                    hemoLog = hemoData.GetDouble(1);
+                }
                 hemoData.Close();
 
                 SqlCommand checkusr = new SqlCommand(cmdInsert, conn);
-                checkusr.Parameters.AddWithValue("@userId", userId);
-                checkusr.ExecuteNonQuery();
+                checkusr.Parameters.AddWithValue("@userId", userId);                
 
                 SqlDataReader reader = checkusr.ExecuteReader();
 
@@ -341,7 +344,7 @@ public class UserDAO
 
                 foreach (DbDataRecord recordUser in reader)
                 {
-                    if (calc.calcDistances(hemoLat, hemoLog, recordUser.GetDouble(1), recordUser.GetDouble(2)) <= 10)
+                    if (calc.calcDistances(hemoLat, hemoLog, recordUser.GetDouble(1), recordUser.GetDouble(2)) <= 61)
                     {
                         push.pushNotificacao(recordUser.GetInt32(0), "A Solicitação de número " + idSolicitacao + " foi aberta próximo a você.");
                     }
