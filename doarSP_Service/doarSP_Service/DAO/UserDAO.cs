@@ -344,7 +344,7 @@ public class UserDAO
 
                 foreach (DbDataRecord recordUser in reader)
                 {
-                    if (calc.calcDistances(hemoLat, hemoLog, recordUser.GetDouble(1), recordUser.GetDouble(2)) <= 61)
+                    if (calc.calcDistances(hemoLat, hemoLog, recordUser.GetDouble(1), recordUser.GetDouble(2)) <= 10)
                     {
                         push.pushNotificacao(recordUser.GetInt32(0), "A Solicitação de número " + idSolicitacao + " foi aberta próximo a você.");
                     }
