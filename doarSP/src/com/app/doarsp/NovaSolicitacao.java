@@ -106,7 +106,7 @@ public class NovaSolicitacao extends Fragment implements InterfaceListener{
 		
 		for (int i = 0; i < query.getCount(); i ++)
 		{
-			lista.add(criarHemocentro(query.getInt(0) + 1, query.getString(2), query.getString(1)));
+			lista.add(criarHemocentro(query.getInt(0), query.getString(2), query.getString(1)));
 			query.moveToNext();
 		}
 		

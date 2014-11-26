@@ -206,7 +206,7 @@ public class Principal extends Fragment {
             listView.setSelector(R.drawable.list_selector_hemocentros);
         }
         else{
-        	solicitacoes.setText("Sem solicitações");
+        	solicitacoes.setText("Sem solicitações abertas");
         	listView.setVisibility(View.INVISIBLE);
         }
 		
