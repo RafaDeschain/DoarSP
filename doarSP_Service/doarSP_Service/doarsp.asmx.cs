@@ -136,7 +136,7 @@ namespace doarSP_Service
         public String solicitacao_InserirNovaSolicitacao(int userId, int qtnNecessaria, int idHemoCentro, int tpSanguineo, String pacienteNome, String comentario)
         {
             Solicitacoes novaDoacao = new Solicitacoes();
-            NotificacaoPush push = new NotificacaoPush();
+            User users = new User();
             novaDoacao.idUserSolicitante = userId;
             novaDoacao.qtnDoacoes = qtnNecessaria;
             novaDoacao.qtnRealizadas = 0;
@@ -144,10 +144,11 @@ namespace doarSP_Service
             novaDoacao.tpSanguineo = tpSanguineo;
             novaDoacao.nomePaciente = pacienteNome;
             novaDoacao.comentario = comentario;
+            users.codUsuario = userId;
 
             if (novaDoacao.insertNewDonation())
             {
-                push.pushNotificacao(userId, "Uma nova solicitação foi aberta");
+                users.sendNotPush(idHemoCentro, novaDoacao.codDoacao);
                 return "true";
             }
             else
@@ -196,19 +197,21 @@ namespace doarSP_Service
         public String doacao_CheckInDoacao(int userId, int idDoacao, int idSolicitacao, double latitude, double longitude, double latitudeHemo, double longitudeHemo)
         {
             Doacao doacao = new Doacao();
+            Solicitacoes sol = new Solicitacoes();
             doacao.idDoacao = idDoacao;
             doacao.usuarioDoador = userId;
             doacao.idSolicitacao = idSolicitacao;
+            sol.codDoacao = idSolicitacao;
             List<Boolean> json = new List<Boolean>();
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
-
+            NotificacaoPush push = new NotificacaoPush();
 
             calcDistance validateCheckIn = new calcDistance();
             if (validateCheckIn.calcDistances(latitude, longitude, latitudeHemo, longitudeHemo) == 0)
             {
                 if (doacao.insertDoacao())
-                {
-                    // rotina de push e email
+                {                    
+                    push.pushNotificacao(sol.getUsuarioSolicitador(), "Nova doação efetuada. Parabéns! <3");
                     json.Insert(0, true);
                 }
                 else
@@ -218,6 +221,7 @@ namespace doarSP_Service
             }
             else
             {
+                push.pushNotificacao(userId, "Check-In efetuado fora da área do hemocentro.");
                 json.Insert(0, false);
             }
             return jsonClient.Serialize(json);
@@ -231,8 +235,8 @@ namespace doarSP_Service
         {
             Solicitacoes sol = new Solicitacoes();
             List<Solicitacoes> recordsDonation = new List<Solicitacoes>();
-
-            recordsDonation = sol.getDonationRecords(userID);
+            
+            sol.getDonationRecords(userID, ref recordsDonation);
             
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
             return jsonClient.Serialize(recordsDonation);
@@ -286,6 +290,17 @@ namespace doarSP_Service
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
             return jsonClient.Serialize(jsonMural);            
         }
+        #endregion
+
+        #region Solicitação_Hemocentro
+
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        [WebMethod]
+        public String getSolicitacoesHemocentro(int idHemocentro)
+        {
+            return "Em implementação";
+        }
+
         #endregion
     }
 }

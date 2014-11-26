@@ -78,5 +78,10 @@ public class User
         return daoUser.getGcm(userId);
     }
 
+    public void sendNotPush(int idHemocentro, int idSolicitacao)
+    {
+        daoUser.sendNotPush(this.codUsuario, idHemocentro, idSolicitacao);
+    }
+
     #endregion
 }

@@ -69,7 +69,7 @@ public class SolicitacoesDAO
         }
     }
 
-    public List<Solicitacoes> getSolicitacao(int userID)
+    public void getSolicitacao(int userID, ref List<Solicitacoes> list)
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
@@ -85,8 +85,7 @@ public class SolicitacoesDAO
 
                 queryRecords.Parameters.AddWithValue("@idUser", userID);
 
-                SqlDataReader reader = queryRecords.ExecuteReader();
-                List<Solicitacoes> recordsDonation = new List<Solicitacoes>();
+                SqlDataReader reader = queryRecords.ExecuteReader();                
 
                 if (reader.HasRows)
                 {
@@ -104,14 +103,12 @@ public class SolicitacoesDAO
                         data.dataAbertura       = reader.GetDateTime(6);
                         data.comentario         = reader.GetString(7);
                         
-                        recordsDonation.Insert(i, data);
+                        list.Insert(i, data);
                         i++;
                         reader.NextResult();
                     }
                     reader.Close();
-                }
-
-                return recordsDonation;
+                }                
             }
             catch (Exception ex)
             {
@@ -153,6 +150,45 @@ public class SolicitacoesDAO
             catch (Exception ex)
             {
                 transaction.Rollback();
+                throw new Exception(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+    }
+
+    public int getUsuarioSolicitador(Solicitacoes donationData)
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+
+            try
+            {
+                String cmdInsert = "SELECT SOL_IdUsuarioSolicitador FROM TB_Solicitacoes WHERE SOL_IdSolicitacao = @solId";
+
+                SqlCommand checkusr = new SqlCommand(cmdInsert, conn);
+                checkusr.Parameters.AddWithValue("@solId", donationData.codDoacao);
+                checkusr.ExecuteNonQuery();
+
+                SqlDataReader reader = checkusr.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int ret = reader.GetInt32(0);
+                    reader.Close();
+                    return ret;
+                }
+                else
+                {
+                    reader.Close();
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.ToString());
             }
             finally

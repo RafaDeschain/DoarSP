@@ -33,13 +33,18 @@ public class Solicitacoes
         return dao.insertNewDonation(this);
     }
 
-    public List<Solicitacoes> getDonationRecords(int userID)
+    public void getDonationRecords(int userID, ref List<Solicitacoes> list)
     {
-        return dao.getSolicitacao(userID);
+        dao.getSolicitacao(userID, ref list);
     }
 
     public void getMural()
     {
         dao.getMural(this);
+    }
+
+    public int getUsuarioSolicitador()
+    {
+        return dao.getUsuarioSolicitador(this);
     }
 }

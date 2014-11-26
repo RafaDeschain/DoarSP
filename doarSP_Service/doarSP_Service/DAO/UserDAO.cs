@@ -5,6 +5,7 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
+using System.Data.Common;
 
 /// <summary>
 /// Summary description for UserDAO
@@ -307,6 +308,56 @@ public class UserDAO
             }
         }
     }
+
+    public void sendNotPush(int userId, int idHemocentro, int idSolicitacao)
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+
+            try
+            {
+                String cmdInsert = "SELECT USU_IdUsuario, USU_Lat, USU_Long FROM TB_Usuarios WHERE USU_IdUsuario <> @userId and USU_StatusApto = 1";
+                String cmdHemo = "Select HEM_Lat, HEM_Long from TB_Hemocentros where HEM_IdHemocentro = @idHemo";
+
+                SqlCommand getHemoData = new SqlCommand(cmdHemo, conn);
+                getHemoData.Parameters.AddWithValue("@idHemo", idHemocentro);
+                getHemoData.ExecuteNonQuery();
+
+                SqlDataReader hemoData = getHemoData.ExecuteReader();
+
+                double hemoLat = hemoData.GetDouble(0);
+                double hemoLog = hemoData.GetDouble(1);
+                hemoData.Close();
+
+                SqlCommand checkusr = new SqlCommand(cmdInsert, conn);
+                checkusr.Parameters.AddWithValue("@userId", userId);
+                checkusr.ExecuteNonQuery();
+
+                SqlDataReader reader = checkusr.ExecuteReader();
+
+                calcDistance calc = new calcDistance();
+                NotificacaoPush push = new NotificacaoPush();
+
+                foreach (DbDataRecord recordUser in reader)
+                {
+                    if (calc.calcDistances(hemoLat, hemoLog, recordUser.GetDouble(1), recordUser.GetDouble(2)) <= 10)
+                    {
+                        push.pushNotificacao(recordUser.GetInt32(0), "A Solicitação de número " + idSolicitacao + " foi aberta próximo a você.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+    }
+
     #endregion
 
 }
