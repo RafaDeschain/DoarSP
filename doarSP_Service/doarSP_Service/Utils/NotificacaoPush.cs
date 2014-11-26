@@ -16,7 +16,7 @@ public class NotificacaoPush
         //String regID = "APA91bE7xgAaSzXavlPXdrkLg5pCGSVDrV5KVIPD2GTubHk5YQ0y8h0IrKyLz07GxOimQ1kuYAjFyD5EoFrYB-EShuz3bgFMGjPOveSIoWGne8-FDvQLAIkT_Q9AAYNnQH4G2RGxrbjopVOE9ROpc0obqkBrbRF5KA";
 
         // id do goolgle api
-        string applicationID = "AIzaSyDU5RwfdGW8d1aFk18pXMW0rlZDUh-Z8EI";
+        string applicationID = "AIzaSyCTdTDbAIgsHtdovNPhWusVeyvVSHAJ6lE";
 
         // id do projeto no google
         string senderID = "595477754580";
