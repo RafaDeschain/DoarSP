@@ -317,7 +317,7 @@ public class UserDAO
 
             try
             {
-                String cmdInsert = "SELECT USU_IdUsuario, USU_Lat, USU_Long FROM TB_Usuarios WHERE USU_IdUsuario <> @userId and USU_StatusApto = 1 and USU_NotificacaoPush = 1";
+                String cmdInsert = "SELECT USU_IdUsuario, USU_Lat, USU_Long FROM TB_Usuarios WHERE USU_IdUsuario <> @userId and USU_StatusApto = 1 and USU_NotificacaoPush = 1 and USU_Long > 0 and USU_Lat > 0";
                 String cmdHemo = "Select HEM_Lat, HEM_Long from TB_Hemocentros where HEM_IdHemocentro = @idHemo";
 
                 SqlCommand getHemoData = new SqlCommand(cmdHemo, conn);
