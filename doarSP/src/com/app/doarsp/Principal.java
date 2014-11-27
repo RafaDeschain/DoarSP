@@ -36,6 +36,14 @@ public class Principal extends Fragment {
 	/** Modelo **/
 	public User user;
 	
+<<<<<<< Updated upstream
+=======
+	/** Solicitacoes **/
+	public List<Solicitacoes> listaSol;
+	Boolean erroLista;
+	GetSolicitacao solicitacao;
+	
+>>>>>>> Stashed changes
 	public Principal(){}
 	
 	@Override
@@ -44,7 +52,7 @@ public class Principal extends Fragment {
 		setHasOptionsMenu(true);
 		MainActivity global = (MainActivity)getActivity();
         user = global.getUser();
-		GetSolicitacao solicitacao = new GetSolicitacao(user.getCodUsuario());
+		solicitacao = new GetSolicitacao(user.getCodUsuario());
 		solicitacao.execute();
 	}
 
@@ -148,9 +156,17 @@ public class Principal extends Fragment {
         return rootView;
     }
     
+    @Override
+	public void onDestroy() {
+	    super.onDestroy();
+	    if (solicitacao != null) {
+	    	solicitacao.cancel(true);
+	    }
+	}
+    
     /** AsycnTask solicitação **/
     
-	private class GetSolicitacao extends AsyncTask<String, Void, String>{
+	public class GetSolicitacao extends AsyncTask<String, Void, String>{
 		
 		private String[][] wsparams;
 		private int userId;
@@ -181,6 +197,96 @@ public class Principal extends Fragment {
 	/** Fim AsyncTask **/
 	
 	public void preencherSolicitacao(String solicitacoes){
+<<<<<<< Updated upstream
+=======
+
+		try
+		{
+			
+			if(solicitacoes.length() > 2){
+				JSONArray jsonarray = new JSONArray(solicitacoes);
+				listaSol = new ArrayList<Solicitacoes>();
+				
+				for(int i = 0; i < jsonarray.length(); i++){
+					
+					JSONObject json = jsonarray.getJSONObject(i);
+					
+					listaSol.add(criarSolicitacao(json.getInt("codDoacao"), 
+							 json.getInt("idUserSolicitante"), 
+							 json.getInt("qtnDoacoes"), 
+							 json.getInt("qtnRealizadas"), 
+							 json.getInt("hemoCentro"), 
+							 json.getInt("tpSanguineo"), 
+							 1,
+							 json.getString("nomePaciente"), 
+							 json.getString("dataAbertura"),
+							 json.getString("comentario")));
+				}
+			}
+			else{
+				erroLista = true;
+			}
+			
+			preencheTela(listaSol);
+		}
+		catch(Exception e){
+			e.getMessage();
+		}
+	}
+	
+	private void preencheTela(List<Solicitacoes> listaSol) {
+		
+		//Solicitações
+        
+        ListView listView = (ListView)getActivity().findViewById(R.id.lista_doacoes);
+        
+        if(!listaSol.isEmpty()){
+        	solicitacoes.setText("Solicitações abertas");
+            final ListaSolicitacoesAdapter hemoAdapter = new ListaSolicitacoesAdapter(getActivity(), listaSol);
+            listView.setAdapter(hemoAdapter);
+            listView.setSelector(R.drawable.list_selector_hemocentros);
+        }
+        else if(erroLista == true){
+        	solicitacoes.setText("Ocorreu um erro ao carregar as solicitações");
+        	listView.setVisibility(View.INVISIBLE);
+        }
+        else{
+        	solicitacoes.setText("Sem solicitações abertas");
+        	listView.setVisibility(View.INVISIBLE);
+        }
+		
+		//Método para fazer funcionar o Scroll das solicitações
+		listView.setOnTouchListener(new ListView.OnTouchListener() {
+		        @Override
+		        public boolean onTouch(View v, MotionEvent event) {
+		            int action = event.getAction();
+		            switch (action) {
+		            case MotionEvent.ACTION_DOWN:
+		                // Disallow ScrollView to intercept touch events.
+		                v.getParent().requestDisallowInterceptTouchEvent(true);
+		                break;
+
+		            case MotionEvent.ACTION_UP:
+		                // Allow ScrollView to intercept touch events.
+		                v.getParent().requestDisallowInterceptTouchEvent(false);
+		                break;
+		            }
+
+		            // Handle ListView touch events.
+		            v.onTouchEvent(event);
+		            return true;
+		        }
+		    });
+	}
+
+	public Solicitacoes criarSolicitacao(int idSolicitacao, int idUsuario,
+			int quantidadeSolicitacoes, int quantidadesRealizadas,
+			int idHemocentro, int tipoSanguineo, int status, String nome,
+			String data, String comentario){
+		
+		Solicitacoes sol = new Solicitacoes(idSolicitacao, idUsuario, quantidadeSolicitacoes, 
+				quantidadesRealizadas, idHemocentro, tipoSanguineo, status, nome, data, comentario);
+>>>>>>> Stashed changes
 		
 	}
     

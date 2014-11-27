@@ -27,6 +27,8 @@ public class MapaHemocentros extends Fragment{
 	private Context context;
 	protected LocationManager locationManager;
 	
+	public static View rootView;
+	
 	// GPS status
     boolean isGPSEnabled = false;
  
@@ -46,8 +48,8 @@ public class MapaHemocentros extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		View rootView = inflater.inflate(R.layout.fragment_hemocentro, container, false);		
-		
+		rootView = inflater.inflate(R.layout.fragment_hemocentro, container, false);
+    	
 		//Pega a instanciação do mapa.
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();							    
 		context = rootView.getContext();			
@@ -105,7 +107,7 @@ public class MapaHemocentros extends Fragment{
 			Configuracao.trocarFragment(principal, getFragmentManager(), false);
 		}
 		
-		return rootView;
+	    return rootView;
 		
 		// TODO: Necessário montar uma classe que implemente uma locationclient para pegar as localizações para os mapas, 
 		// estou vendo como fazer de forma coerente para que fique global

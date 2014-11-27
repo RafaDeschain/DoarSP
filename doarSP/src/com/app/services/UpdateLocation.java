@@ -33,11 +33,13 @@ public class UpdateLocation extends Service{
 			location = new LocationService(getApplicationContext());
 			
 			if(location != null){
-				User user = new User(getApplicationContext());
-				user.getUserData();
-				
-				SendRequest send = new SendRequest(user.getCodUsuario(), location.getLatitude(),location.getLongitude());
-				send.execute();
+				if(location.getLatitude() != 0.0){
+					User user = new User(getApplicationContext());
+					user.getUserData();
+					
+					SendRequest send = new SendRequest(user.getCodUsuario(), location.getLatitude(),location.getLongitude());
+					send.execute();
+				}
 			}
 		}
 	}
