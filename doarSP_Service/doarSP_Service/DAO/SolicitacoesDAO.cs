@@ -77,7 +77,7 @@ public class SolicitacoesDAO
             conn.Open();
             try
             {
-                String cmdDonationRecords = " Select SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, SOL_QuantidadeSolicitacoes " +
+                String cmdDonationRecords = " Select SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, SOL_QuantidadeSolicitacoes, " +
                                             " SOL_QuantidadeRealizadas, SOL_IdHemocentroSolicitado, SOL_NomePaciente, SOL_TipoSanguineo, SOL_DtdAberturaSolicitacao, SOL_Comentario " +
                                             " From TB_Solicitacoes " +
                                             " where SOL_IdUsuarioSolicitador = @idUser";
@@ -95,12 +95,13 @@ public class SolicitacoesDAO
 
                     data.codDoacao = reader.GetInt32(0);
                     data.idUserSolicitante = reader.GetInt32(1);
-                    data.qtnRealizadas = reader.GetInt32(2);
-                    data.hemoCentro = reader.GetInt32(3);
-                    data.nomePaciente = reader.GetString(4);
-                    data.tpSanguineo = reader.GetByte(5);
-                    data.dataAbertura = reader.GetDateTime(6);
-                    data.comentario = reader.GetString(7);
+                    data.qtnDoacoes = reader.GetInt32(2);
+                    data.qtnRealizadas = reader.GetInt32(3);
+                    data.hemoCentro = reader.GetInt32(4);
+                    data.nomePaciente = reader.GetString(5);
+                    data.tpSanguineo = reader.GetByte(6);
+                    data.dataAbertura = reader.GetDateTime(7);
+                    data.comentario = reader.GetString(8);
 
                     list.Insert(i, data);
                     i++;
@@ -201,7 +202,7 @@ public class SolicitacoesDAO
             conn.Open();
             try
             {
-                String cmdDonationRecords = " Select SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, SOL_QuantidadeSolicitacoes " +
+                String cmdDonationRecords = " Select SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, SOL_QuantidadeSolicitacoes, " +
                                             " SOL_QuantidadeRealizadas, SOL_IdHemocentroSolicitado, SOL_NomePaciente, SOL_TipoSanguineo, SOL_DtdAberturaSolicitacao, SOL_Comentario " +
                                             " From TB_Solicitacoes " +
                                             " where SOL_IdHemocentroSolicitado = @idHemoCentro and SOL_StatusSolicitacao = 1";
@@ -219,12 +220,13 @@ public class SolicitacoesDAO
 
                     data.codDoacao = reader.GetInt32(0);
                     data.idUserSolicitante = reader.GetInt32(1);
-                    data.qtnRealizadas = reader.GetInt32(2);
-                    data.hemoCentro = reader.GetInt32(3);
-                    data.nomePaciente = reader.GetString(4);
-                    data.tpSanguineo = reader.GetByte(5);
-                    data.dataAbertura = reader.GetDateTime(6);
-                    data.comentario = reader.GetString(7);
+                    data.qtnDoacoes = reader.GetInt32(2);
+                    data.qtnRealizadas = reader.GetInt32(3);
+                    data.hemoCentro = reader.GetInt32(4);
+                    data.nomePaciente = reader.GetString(5);
+                    data.tpSanguineo = reader.GetByte(6);
+                    data.dataAbertura = reader.GetDateTime(7);
+                    data.comentario = reader.GetString(8);
 
                     list.Insert(i, data);
                     i++;

@@ -10,7 +10,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/doarSP_Service.dll">
-      <publishTime>11/25/2014 23:27:23</publishTime>
+      <publishTime>11/26/2014 23:01:54</publishTime>
     </File>
     <File Include="doarsp.asmx">
       <publishTime>10/28/2014 17:05:30</publishTime>
@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/28/2014 17:05:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/28/2014 22:04:36</publishTime>
+      <publishTime>11/26/2014 22:41:13</publishTime>
     </File>
     <File Include="WebForm1.aspx">
       <publishTime>11/25/2014 19:16:50</publishTime>
