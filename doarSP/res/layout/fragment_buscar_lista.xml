@@ -10,8 +10,8 @@
     android:gravity="bottom" >
 
     <TextView
-        android:id="@+id/BuscarListaHemocentrosTV"
-        android:text="@string/buscarlistahemocentrostv" 
+        android:id="@+id/BuscarListaSolicitacoesTV"
+        android:text="@string/buscarlistasolicitacoesstv" 
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
     </RelativeLayout>
     
        <ListView
-           android:id="@+id/BuscarListaHemocentros"
+           android:id="@+id/BuscarListaSolicitacoes"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:choiceMode="singleChoice" />

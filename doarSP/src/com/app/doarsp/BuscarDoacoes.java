@@ -2,7 +2,6 @@ package com.app.doarsp;
 
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +29,7 @@ public class BuscarDoacoes extends Fragment {
 		tabHost.setup();
 		
 		tabHost.addTab(criarTab("feed", R.string.bd_feed, R.id.feed));
-		tabHost.addTab(criarTab("mapa", R.string.bd_mapa, R.id.mapa));
+		tabHost.addTab(criarTab("mapa", R.string.bd_mapa, R.id.mapa2));
 		
 		carregarMapa();
 		
@@ -42,7 +41,7 @@ public class BuscarDoacoes extends Fragment {
 	private void carregarMapa()
 	{
 		hemocentro = new MapaHemocentros();
-		Configuracao.trocarFragment(hemocentro, getActivity().getFragmentManager(), R.id.mapa);
+		Configuracao.trocarFragment(hemocentro, getActivity().getFragmentManager(), R.id.mapa2);
 	}
 	
 	private void carregarFeed()
@@ -61,12 +60,12 @@ public class BuscarDoacoes extends Fragment {
 	
 	public void onDestroyView() {
 		// Necessario destruir o mapa se não dá vazamento de memória e erro ao dar inflate novamente.
-		Fragment fragment = (getFragmentManager().findFragmentById(R.id.mapa));
-		FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-		ft.remove(fragment);
-		ft.commit();
-		hemocentro.onDestroyView();
-		feed.onDestroyView();
+		//Fragment fragment = (getFragmentManager().findFragmentById(R.id.mapa2));
+		//FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+		//ft.remove(fragment);
+		//ft.commit();
+		//hemocentro.onDestroyView();
+		//feed.onDestroyView();
 		super.onDestroyView();
     }
 }

@@ -52,7 +52,7 @@ public class NovaSolicitacao extends Fragment implements InterfaceListener{
 			
 			List<Hemocentros> hemo = gerarHemocentros();
 	          
-	        final ListaHemocentrosAdapter hemoAdapter = new ListaHemocentrosAdapter(getActivity(),  hemo);
+	        final ListaHemocentrosAdapter hemoAdapter = new ListaHemocentrosAdapter(getActivity(), hemo);
 	        pstDoacao.setAdapter(hemoAdapter);
 	        pstDoacao.setSelector(R.drawable.list_selector_hemocentros);
 	        
@@ -85,6 +85,8 @@ public class NovaSolicitacao extends Fragment implements InterfaceListener{
 					TextView id = (TextView) view.findViewById(R.id.ListaIdHemocentro);
 					idHemo = Integer.parseInt((String) id.getText());
 					view.setSelected(true);
+					view.clearFocus();
+					view.refreshDrawableState();
 				}
 			});
 			
@@ -106,7 +108,7 @@ public class NovaSolicitacao extends Fragment implements InterfaceListener{
 		
 		for (int i = 0; i < query.getCount(); i ++)
 		{
-			lista.add(criarHemocentro(query.getInt(0) + 1, query.getString(2), query.getString(1)));
+			lista.add(criarHemocentro(query.getInt(0), query.getString(2), query.getString(1)));
 			query.moveToNext();
 		}
 		
@@ -197,7 +199,7 @@ public class NovaSolicitacao extends Fragment implements InterfaceListener{
 		}
 	}
 	
-/** Getters and Setters **/
+	/** Getters and Setters **/
 	
 	public WebService getWebservice() {
 		return webservice;

@@ -199,6 +199,7 @@ public class Configuracao{
 	public static void trocarFragment(Fragment fragment, FragmentManager fragmentManager, boolean backStack){
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(R.id.frame_container, fragment);
+		fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		if(backStack == true){
 			fragmentTransaction.addToBackStack(null);
 		}
@@ -214,7 +215,6 @@ public class Configuracao{
 	public static void trocarFragment(Fragment fragment, FragmentManager fragmentManager, int idView){
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(idView, fragment);
-		fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.commit();
 	}
 	

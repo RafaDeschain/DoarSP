@@ -9,4 +9,8 @@
     <color name="edit_text">#fff</color>
     <color name="pressed_color">#000000</color>
     <color name="default_color">#ffffff</color>
+    
+    <color name="buscar_list_press">#ADD8E6</color>
+	<color name="buscar_list_focused">#ffffff</color>
+	<color name="buscar_list_default">#ffffff</color>
 </resources>

@@ -1,12 +1,10 @@
 package com.app.model;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.database.Cursor;
 
 import com.app.DAO.AppDAO;
-import com.app.doarsp.ArrayPostos;
+import com.app.DAO.ArrayPostos;
 
 public class Hemocentros {
 	private int codPosto;
@@ -79,5 +77,10 @@ public class Hemocentros {
 	public Cursor getAllPostos()
 	{
 		return DAO.getAllPostos();
+	}
+	
+	public Hemocentros getPosto(int id)
+	{
+		return DAO.getPosto(id, this);
 	}
 }

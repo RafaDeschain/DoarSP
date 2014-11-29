@@ -1,5 +1,6 @@
 package com.app.DAO;
 
+import com.app.model.Hemocentros;
 import com.app.model.User;
 
 import android.content.ContentValues;
@@ -185,7 +186,7 @@ public class AppDAO extends SQLiteOpenHelper{
 			for (int i = 0; i <= postosValues.length; i++)
 			{
 				values.clear();
-				values.put(AppDAO.IDPOSTO, i);
+				values.put(AppDAO.IDPOSTO, postosValues[i][0]);
 				values.put(AppDAO.ENDPOSTO, postosValues[i][1]);
 				values.put(AppDAO.NOMEPOSTO, postosValues[i][2]);
 				values.put(AppDAO.LATITUDE, postosValues[i][3]);
@@ -240,6 +241,27 @@ public class AppDAO extends SQLiteOpenHelper{
 			database.close();
 			return null;
 		}			
+	}
+	
+	public Hemocentros getPosto(int id, Hemocentros hemo)
+	{
+		SQLiteDatabase db = this.getReadableDatabase();
+		 
+	    try{
+	    	Cursor cursor = db.query(AppDAO.TABLE_NAME_POSTO, allColumnsPosto, AppDAO.IDPOSTO + "=?",
+		            new String[] { String.valueOf(id) }, null, null, null, null);
+		    if (cursor != null){
+		        cursor.moveToFirst();
+		    	hemo.setEndPosto(cursor.getString(1));
+		    	hemo.setNomePosto(cursor.getString(2));
+		    }
+			db.close();
+	    }
+	    catch(Exception e){
+	    	e.getMessage();
+	    }
+		
+	    return hemo;
 	}
 	
 	/** Fim Postos **/

@@ -1,9 +1,13 @@
 package com.app.doarsp;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.app.adapter.ListaMuralAdapter;
-import com.app.model.Mural;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.app.adapter.ListaSolicitacoesAdapter;
+import com.app.model.Solicitacoes;
 import com.app.model.User;
 import com.app.webservice.WebService;
 
@@ -29,22 +33,16 @@ public class Principal extends Fragment {
 	
 	/** Tela **/
 	private ImageView achivementPicture;
-	private TextView nameEdit, tpSanguineo, ultimaDoacao;
+	private TextView nameEdit, tpSanguineo, ultimaDoacao, solicitacoes;
 	private CheckBox aptoDoar;
 	private ActionBar actionBar;
 	
 	/** Modelo **/
 	public User user;
 	
-<<<<<<< Updated upstream
-=======
 	/** Solicitacoes **/
 	public List<Solicitacoes> listaSol;
-	Boolean erroLista;
 	GetSolicitacao solicitacao;
-	
->>>>>>> Stashed changes
-	public Principal(){}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +76,9 @@ public class Principal extends Fragment {
         tpSanguineo 	  = (TextView)rootView.findViewById(R.id.PrincipalTIpoSanguineo);
         ultimaDoacao	  = (TextView)rootView.findViewById(R.id.PrincipalUltimaDoacao);
         aptoDoar 	      = (CheckBox)rootView.findViewById(R.id.PrincipalAptoDoar);
+        solicitacoes	  = (TextView)rootView.findViewById(R.id.ultimasSolicitacoes);
+        
+        solicitacoes.setText("Carregando suas solicitações...");
                 
         // Seta os dados do usuário nos componentes
         MainActivity global = (MainActivity)getActivity();
@@ -123,36 +124,6 @@ public class Principal extends Fragment {
         
         aptoDoar.setChecked(user.getStatusApto());
         
-        //Solicitações
-        NovoMural mu = new NovoMural();
-        ListView listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
-		List<Mural> NovoMural = mu.gerarDoacaoMSG();
-		final ListaMuralAdapter NovoMuralAdapter = new ListaMuralAdapter(getActivity(), NovoMural);
-		listView.setAdapter(NovoMuralAdapter);
-		
-		//Método para fazer funcionar o Scroll das solicitações
-		listView.setOnTouchListener(new ListView.OnTouchListener() {
-		        @Override
-		        public boolean onTouch(View v, MotionEvent event) {
-		            int action = event.getAction();
-		            switch (action) {
-		            case MotionEvent.ACTION_DOWN:
-		                // Disallow ScrollView to intercept touch events.
-		                v.getParent().requestDisallowInterceptTouchEvent(true);
-		                break;
-
-		            case MotionEvent.ACTION_UP:
-		                // Allow ScrollView to intercept touch events.
-		                v.getParent().requestDisallowInterceptTouchEvent(false);
-		                break;
-		            }
-
-		            // Handle ListView touch events.
-		            v.onTouchEvent(event);
-		            return true;
-		        }
-		    });
-        
         return rootView;
     }
     
@@ -190,22 +161,22 @@ public class Principal extends Fragment {
 		
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
-			preencherSolicitacao(result);
+			if(result != ""){
+				preencherSolicitacao(result);
+			}
 		}
 	}
 	
 	/** Fim AsyncTask **/
 	
 	public void preencherSolicitacao(String solicitacoes){
-<<<<<<< Updated upstream
-=======
 
 		try
 		{
+			listaSol = new ArrayList<Solicitacoes>();
 			
-			if(solicitacoes.length() > 2){
+			if(solicitacoes.length() > 3){
 				JSONArray jsonarray = new JSONArray(solicitacoes);
-				listaSol = new ArrayList<Solicitacoes>();
 				
 				for(int i = 0; i < jsonarray.length(); i++){
 					
@@ -222,9 +193,6 @@ public class Principal extends Fragment {
 							 json.getString("dataAbertura"),
 							 json.getString("comentario")));
 				}
-			}
-			else{
-				erroLista = true;
 			}
 			
 			preencheTela(listaSol);
@@ -245,10 +213,6 @@ public class Principal extends Fragment {
             final ListaSolicitacoesAdapter hemoAdapter = new ListaSolicitacoesAdapter(getActivity(), listaSol);
             listView.setAdapter(hemoAdapter);
             listView.setSelector(R.drawable.list_selector_hemocentros);
-        }
-        else if(erroLista == true){
-        	solicitacoes.setText("Ocorreu um erro ao carregar as solicitações");
-        	listView.setVisibility(View.INVISIBLE);
         }
         else{
         	solicitacoes.setText("Sem solicitações abertas");
@@ -286,8 +250,8 @@ public class Principal extends Fragment {
 		
 		Solicitacoes sol = new Solicitacoes(idSolicitacao, idUsuario, quantidadeSolicitacoes, 
 				quantidadesRealizadas, idHemocentro, tipoSanguineo, status, nome, data, comentario);
->>>>>>> Stashed changes
 		
+		return sol;
 	}
     
     /** Getters and Setters **/

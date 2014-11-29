@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.app.DAO.AppDAO;
-import com.app.doarsp.Configuracao;
 
 public class User {
 	
