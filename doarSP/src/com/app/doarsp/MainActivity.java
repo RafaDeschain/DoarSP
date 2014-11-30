@@ -55,6 +55,8 @@ public class MainActivity extends Activity {
 	//Serviço
 	private PendingIntent pendingIntent;
 	
+	public Activity activity;
+	
 	//Modelo
 	User user;
 
@@ -82,12 +84,10 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
 		// Mural
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-		// Buscar Hemocentro
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		// Informações
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		// Ranking
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(7, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		
 		navMenuIcons.recycle();
 		
@@ -144,6 +144,7 @@ public class MainActivity extends Activity {
 		//Vai para a tela de login, caso ele ja esteja logado, a propria classe ja faz o tratamento.
 		Fragment login = new Login();
 		Configuracao.trocarFragment(login, getFragmentManager(), false);
+		activity = this;
 	}
 
 	/**
@@ -234,12 +235,9 @@ public class MainActivity extends Activity {
 			fragment = new NovoMural();
 			break;
 		case 4:
-			fragment = new MapaHemocentros();
-			break;
-		case 5:
 			fragment = new AlterarDados();
 			break;			
-		case 6:
+		case 5:
 			fragment = new ConsultarRanking();
 			break;
 

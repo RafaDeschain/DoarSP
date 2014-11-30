@@ -25,52 +25,66 @@ public class ConsultarRanking extends Fragment implements InterfaceListener  {
 	private Thread thread;
 	public Ranking ranking;
 	public List<Ranking> rank;
+	ListView listView;
+	private String[][] wsparams;
 	
-	public ConsultarRanking(){
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		
+		wsparams = new String[1][2];
 		
-	}
+		wsparams[0][0] = "ok";
+		wsparams[0][1] = String.valueOf(1);
+		
+		setWebservice(new WebService("usuario_GetRanking", wsparams));
+		thread = new Thread(getActivity(), getWebservice(), getInterface());
+		thread.execute();
+	};
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
 		View rootView = inflater.inflate(R.layout.fragment_ranking, container, false);
-		ListView listView = (ListView)rootView.findViewById(R.id.lista_ranking);
-		setWebservice(new WebService("usuario_GetRanking"));
-		thread = new Thread(getActivity(), getWebservice(), getInterface());
-		thread.execute();
+		listView = (ListView)rootView.findViewById(R.id.lista_ranking);
 		
-		
-		
-		final ListaRankingAdapter rankingAdapter = new ListaRankingAdapter(getActivity(),rank);
-		listView.setAdapter(rankingAdapter);
-
 		return rootView;
 	}
-	
-	
 	
 	@Override
 	public void returningCall(String result) {
 		
-		
-	   
-	    try {
-	    	JSONArray json = new JSONArray(result);
-		    for(int i=0; i< json.length();  i++)
-	    		{
-		    		JSONObject userObject = json.getJSONObject(i);
-		    		ranking = new Ranking();
-	    			ranking.setNome(userObject.getString("nome"));
-	    			ranking.setQtdDoacao(userObject.getInt("numDoacoes"));
-	    			rank.add(ranking);
-	    		}
-	    } catch (JSONException e) {
-	        e.printStackTrace();
-	    }	
-		
+	    if(result.length() > 2){
+	    	try {
+	    		JSONArray jsonarray = new JSONArray(result);
+			    
+	    		for(int i = 0; i < jsonarray.length(); i++){
+	    			
+	    				JSONObject json = jsonarray.getJSONObject(i);
+			    		ranking = new Ranking();
+		    			ranking.setNome(json.getString("nome"));
+		    			ranking.setQtdDoacao(json.getInt("numDoacoes"));
+		    			rank.add(ranking);
+		    		}
+			    
+			    if (rank != null){
+			    	final ListaRankingAdapter rankingAdapter = new ListaRankingAdapter(getActivity(),rank);
+					listView.setAdapter(rankingAdapter);
+			    }
+			    else{
+			    	Configuracao.showDialog(getActivity(), "DoarSP", "Ainda não há nenhuma doação :(", true);
+			    	Principal p = new Principal();
+			    	Configuracao.trocarFragment(p, getFragmentManager(), false);
+			    }
+				
+		    } catch (JSONException e) {
+		    	Configuracao.showDialog(getActivity(), "DoarSP", "Ainda não há nenhuma doação :(", true);
+		    	Principal p = new Principal();
+		    	Configuracao.trocarFragment(p, getFragmentManager(), false);
+		        e.printStackTrace();
+		    }
+	    }
 	}
-	
-	
 	
 /** Getters and Setters **/
 	

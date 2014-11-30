@@ -41,7 +41,7 @@
         <item >Buscar Doação</item>
         <item >Abrir Solicitação</item>
         <item >Mural</item>
-        <item >Postos de Doação</item>
+        <!-- <item >Postos de Doação</item> -->
         <!-- <item >Informações</item> -->
         <item >Alterar Dados</item>     
         <item>Ranking</item>
@@ -55,8 +55,8 @@
         <item>@drawable/ic_buscar</item>
         <item>@drawable/ic_abrir</item>
         <item>@drawable/ic_mural</item>
-        <item>@drawable/ic_postos</item>
-        <item>@drawable/ic_info</item>
+        <!-- <item>@drawable/ic_postos</item> -->
+        <!-- <item>@drawable/ic_info</item> -->
         <item>@drawable/ic_alterar</item>
         <item>@drawable/ic_ranking</item>
         

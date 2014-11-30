@@ -51,11 +51,6 @@ public class WebService{
 		setMETHOD_NAME(method);
 		setParams(params);
 	}
-	
-	public WebService(String method){
-		setMETHOD_NAME(method);
-		
-	}
 
 	
 	public String connectWS(){

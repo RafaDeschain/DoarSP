@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -38,7 +39,6 @@ public class MapaHemocentros extends Fragment implements InterfaceListener{
 	
 	/** Mapa **/
 	private GoogleMap map;
-	private Context context;
 	protected LocationManager locationManager;
 	
 	public static View rootView;
@@ -53,25 +53,69 @@ public class MapaHemocentros extends Fragment implements InterfaceListener{
 	private WebService webservice;
 	private Thread thread;
 	private String[][] params;
+	private Activity act;
+	private android.app.FragmentManager frgm;
 	
 	/** Solicitacoes **/
 	public List<Solicitacoes> listaSol;
 	private int idHemo;
 	
 	public void onCreate(Bundle savedInstanceState) {
-	    setRetainInstance(true); 
+	    setRetainInstance(true);
 	    super.onCreate(savedInstanceState);     
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
+		if(getActivity() != null){
+			act = getActivity();
+		}
+		
+		if(getFragmentManager() != null){
+			frgm = getFragmentManager();
+		}
+		
+		//Cria o Location Manager
+		act.getApplicationContext();
+		locationManager = (LocationManager) act.getApplicationContext()
+				.getSystemService(Context.LOCATION_SERVICE);
+		
+		//Verifica o status do GPS
+        isGPSEnabled = locationManager
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        //Verifica o status do 3G
+        isNetworkEnabled = locationManager
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        
+        //Verifica o status do WIFI
+        ConnectivityManager cm = (ConnectivityManager) act.getApplicationContext()
+        		.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		
+	    //Verifica se a Internet e o GPS estão habilitados
+		if(!isGPSEnabled)
+		{
+			Configuracao.showDialog(act, "Ops..", "Ative o seu GPS para localizar os hemocentros", true);
+			Principal principal = new Principal();
+			Configuracao.trocarFragment(principal, frgm, false);
+			return null;
+		}
+		else if(!isNetworkEnabled || !wifiInfo.isAvailable()){
+			Configuracao.showDialog(act, "Ops..", "Ative sua internet para localizar os hemocentros", true);
+			Principal principal = new Principal();
+			Configuracao.trocarFragment(principal, frgm, false);
+			return null;
+		}
+		
 		if(rootView == null){
+			
 			rootView = inflater.inflate(R.layout.fragment_hemocentro, container, false);
 	    	
 			//Pega a instanciação do mapa.
-			map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();						    
-			context = rootView.getContext();
+			map = ((MapFragment) frgm.findFragmentById(R.id.map)).getMap();						    
+			map.setMyLocationEnabled(true);
 			
 			//Instancia o objeto que faz o retorno dos postos.
 			Hemocentros postos = new Hemocentros(rootView.getContext());
@@ -111,44 +155,11 @@ public class MapaHemocentros extends Fragment implements InterfaceListener{
 						params[0][1] = String.valueOf(idHemo);
 						
 						webservice = new WebService("hemocentros_getSolicitacoesHemocentro", params);
-						thread = new Thread(getActivity(), webservice, getInterface());
+						thread = new Thread(act, webservice, getInterface());
 						thread.execute();
 					}
 				}
 			});
-			
-			//Cria o Location Manager
-			getActivity().getApplicationContext();
-			locationManager = (LocationManager) getActivity().getApplicationContext()
-					.getSystemService(Context.LOCATION_SERVICE);
-			
-			//Verifica o status do GPS
-	        isGPSEnabled = locationManager
-	                .isProviderEnabled(LocationManager.GPS_PROVIDER);
-	
-	        //Verifica o status do 3G
-	        isNetworkEnabled = locationManager
-	                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-	        
-	        //Verifica o status do WIFI
-	        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		    NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-			
-		    //Verifica se a Internet e o GPS estão habilitados
-			if(isGPSEnabled && (isNetworkEnabled || wifiInfo.isAvailable())){
-				map.setMyLocationEnabled(true);
-			}
-			else if(!isGPSEnabled)
-			{
-				Configuracao.showDialog(getActivity(), "Ops..", "Ative o seu GPS para localizar os hemocentros", true);
-				Principal principal = new Principal();
-				Configuracao.trocarFragment(principal, getFragmentManager(), false);
-			}
-			else{
-				Configuracao.showDialog(getActivity(), "Ops..", "Ative sua internet para localizar os hemocentros", true);
-				Principal principal = new Principal();
-				Configuracao.trocarFragment(principal, getFragmentManager(), false);
-			}
 			
 			// TODO: Necessário montar uma classe que implemente uma locationclient para pegar as localizações para os mapas, 
 			// estou vendo como fazer de forma coerente para que fique global
@@ -195,10 +206,10 @@ public class MapaHemocentros extends Fragment implements InterfaceListener{
 				}
 				
 				ListaSolicitacoes sol = new ListaSolicitacoes(listaSol);
-				Configuracao.trocarFragment(sol, getFragmentManager(), true);
+				Configuracao.trocarFragment(sol, frgm, true);
 			}
 			else{
-				Configuracao.showDialog(getActivity(), "DoarSP", "Não há nenhuma solicitação aberta neste hemocentro", true);
+				Configuracao.showDialog(act, "DoarSP", "Não há nenhuma solicitação aberta neste hemocentro", true);
 			}
 			
 		}
