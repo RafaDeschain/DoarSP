@@ -244,11 +244,11 @@ public class UserDAO
                 List<Ranking> ranking = new List<Ranking>();
                 
                 SqlDataReader recordsRanking = queryRanking.ExecuteReader();
-                Ranking data = new Ranking();
                 int Count = 0;
                 
                 while (recordsRanking.Read())
                 {
+                    Ranking data = new Ranking();
                     data.nome = recordsRanking.GetString(0);
                     data.numDoacoes = recordsRanking.GetInt32(1);
                     ranking.Insert(Count, data);

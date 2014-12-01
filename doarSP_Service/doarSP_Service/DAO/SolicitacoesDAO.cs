@@ -128,7 +128,7 @@ public class SolicitacoesDAO
                 String cmdDonationRecords = "SELECT SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, " +
                                             "SOL_NomePaciente, SOL_TipoSanguineo, SOL_Comentario "+
                                             "FROM TB_Solicitacoes INNER JOIN TB_Doacoes ON SOL_IdSolicitacao = DOC_IdSolicitacao " +
-                                            "WHERE SOL_IdUsuarioSolicitador = @idUser AND DOC_StatusDoacao = 2";
+                                            "WHERE DOC_IdUsuarioDoador = @idUser AND DOC_StatusDoacao = 2";
 
                 SqlCommand queryRecords = new SqlCommand(cmdDonationRecords, conn);
 
@@ -145,7 +145,15 @@ public class SolicitacoesDAO
                     data.idUserSolicitante  = reader.GetInt32(1);
                     data.nomePaciente       = reader.GetString(2);
                     data.tpSanguineo        = reader.GetByte(3);
-                    data.comentario         = reader.GetString(4);
+
+                    if (reader.GetString(4).Length > 2)
+                    {
+                        data.comentario = reader.GetString(4);
+                    }
+                    else
+                    {
+                        data.comentario = "O solicitante não inseriu nenhuma mensagem de agradecimento, mas a equipe do DoarSP agradece imensamente sua contribuição.";
+                    }
 
                     list.Insert(i, data);
                     i++;
