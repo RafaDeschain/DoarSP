@@ -81,6 +81,9 @@ public class DoacoesPendentes extends Fragment implements InterfaceListener{
 		else if(result.equalsIgnoreCase("[false]")){
 			Configuracao.showDialog(getActivity(), "DoarSP", "Não foi possivel realizar o checkin pois sua localização não é proxima do hemocentro", true);
 		}
+		else if(result.equalsIgnoreCase("Erro")){
+			Configuracao.showDialog(getActivity(), "DoarSP", "Não foi possivel obter sua localização, por favor verifique se seu GPS encontra-se ligado", true);
+		}
 		else{
 			preencherDoacoes(result);
 		}

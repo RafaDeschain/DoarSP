@@ -98,7 +98,7 @@ public class ListaMural extends Fragment implements InterfaceListener{
         
         ListView listView = (ListView)getActivity().findViewById(R.id.lista_doacoes);
         
-        if(!listaMural.isEmpty()){
+        if(listaMural != null){
             
         	final ListaMuralAdapter muralAdapter = new ListaMuralAdapter(getActivity(), listaMural);
             listView.setAdapter(muralAdapter);
