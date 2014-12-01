@@ -1,6 +1,8 @@
 package com.app.doarsp;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -12,6 +14,7 @@ import com.app.webservice.InterfaceListener;
 import com.app.webservice.Thread;
 import com.app.webservice.WebService;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
@@ -25,6 +28,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+@SuppressLint("SimpleDateFormat")
 public class DoacoesPendentes extends Fragment implements InterfaceListener{
 	
 	private int idUser;
@@ -73,8 +77,13 @@ public class DoacoesPendentes extends Fragment implements InterfaceListener{
 		// TODO Auto-generated method stub
 		if(result.equalsIgnoreCase("[true]")){
 			Configuracao.showDialog(getActivity(), "Checkin efetuado", "Obrigado por fazer a diferença na vida das pessoas :)", true);
+			
 			MainActivity global = (MainActivity)getActivity();
 			global.getUser().setStatusApto(false);
+			
+			SimpleDateFormat format = new SimpleDateFormat( "dd/MM/yyyy" );
+			global.getUser().setDtdUltimaDoacao(format.format(new Date()));
+			
 			Principal p = new Principal();
 			Configuracao.trocarFragment(p, getFragmentManager(), false);
 		}

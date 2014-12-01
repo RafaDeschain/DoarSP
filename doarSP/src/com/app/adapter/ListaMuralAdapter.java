@@ -33,16 +33,46 @@ public class ListaMuralAdapter extends ArrayAdapter<Mural> {
 	    TextView nomepaciente = (TextView) view.findViewById(R.id.ListaMuralNome);
 	    nomepaciente.setText(muralmod.getNomePaciente());
 	    
+	    String tps = "";
+	    switch (muralmod.getTpSanguineo()) {
+        case 0:
+        	tps = "A";
+			break;
+        case 1:
+        	tps = "A-";
+			break;
+        case 2:
+        	tps = "B";
+			break;
+        case 3:
+        	tps = "B-";
+			break;
+        case 4:
+        	tps = "AB";
+			break;
+        case 5:
+        	tps = "AB-";
+			break;
+        case 6:
+        	tps = "O";
+			break;
+        case 7:
+        	tps = "O-";
+			break;
+		default:
+			break;
+		}
+	    
 	    TextView tiposanguineo = (TextView) view.findViewById(R.id.ListaMuralTipo);
-	    tiposanguineo.setText("Tipo sanguineo: " + muralmod.getTpSanguineo());
+	    tiposanguineo.setText("Tipo sanguineo: " + tps);
 	         
 	    TextView idDoacao = (TextView) view.findViewById(R.id.ListaIdDoacoesMural);
 	    idDoacao.setText(Integer.toString(muralmod.getCodDoacao()));
-	    idDoacao.setVisibility(View.INVISIBLE);
+	    idDoacao.setVisibility(View.GONE);
 	    
 	    TextView comentario = (TextView) view.findViewById(R.id.ListaMuralComentario);
 	    comentario.setText(muralmod.getComentario());
-	    comentario.setVisibility(View.INVISIBLE);
+	    comentario.setVisibility(View.GONE);
 	 
 	    return view;	
 	}
