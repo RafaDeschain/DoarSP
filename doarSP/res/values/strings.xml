@@ -61,7 +61,7 @@
         <item>@drawable/ic_principal</item>
         <item>@drawable/ic_buscar</item>
         <item>@drawable/ic_abrir</item>
-        <item>@drawable/ic_mural</item>
+        <item>@drawable/ic_info</item>
         <item>@drawable/ic_mural</item>
         <!-- <item>@drawable/ic_postos</item> -->
         <!-- <item>@drawable/ic_info</item> -->
@@ -106,7 +106,7 @@
     <string name="registrarsenha2">Confirme sua senha</string>
     <string name="loginerro">Login e/ou senha incorreta</string>
     <!--  Tela de BuscarDoacoes -->
-   	<string name="bd_feed">Solicitações</string>
+   	<string name="bd_feed">Hemocentros</string>
    	<string name="bd_mapa">Mapa</string>
    	<string name="filtro">Filtro</string>
    	<string name="quantSolicitacao0">Que ótimo! Não existe solicitações. :)</string>
