@@ -169,6 +169,7 @@ public class UserDAO
                 updateUser.ExecuteNonQuery();
 
                 transaction.Commit();
+
                 return true;
             }
             catch (Exception ex)
@@ -222,30 +223,43 @@ public class UserDAO
         }
     }
 
-    public SqlDataReader getRanking()
+    public List<Ranking> getRanking()
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
             conn.Open();
-            SqlTransaction transaction = conn.BeginTransaction("RankingTransaction");
+            //SqlTransaction transaction = conn.BeginTransaction("RankingTransaction");
 
             try
             {
                 String cmdRanking = " Select top 10 USU_Nome, COUNT(DOC_IdDoacao) as CountDoacao " +
                                     " from TB_Usuarios " +
                                     " inner join TB_Doacoes on (USU_IdUsuario = DOC_IdUsuarioDoador) " +
-                                    " where DOC_StatusDoacao = 1 " +
+                                    " where DOC_StatusDoacao = 2 " +
                                     " group by USU_Nome " +
                                     " order by CountDoacao desc ";
 
-                SqlCommand queryRanking = new SqlCommand(cmdRanking, conn, transaction);
+                SqlCommand queryRanking = new SqlCommand(cmdRanking, conn);
+                
+                List<Ranking> ranking = new List<Ranking>();
+                
                 SqlDataReader recordsRanking = queryRanking.ExecuteReader();
-                transaction.Commit();
-                return recordsRanking;
+                Ranking data = new Ranking();
+                int Count = 0;
+                
+                while (recordsRanking.Read())
+                {
+                    data.nome = recordsRanking.GetString(0);
+                    data.numDoacoes = recordsRanking.GetInt32(1);
+                    ranking.Insert(Count, data);
+                    Count++;
+                }
+                //transaction.Commit();
+                return ranking;
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
+                //transaction.Rollback();
                 throw new Exception(ex.ToString());
             }
             finally

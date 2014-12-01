@@ -43,9 +43,9 @@ public class Solicitacoes
         dao.getSolicitacaoHemocentro(idHemoCentro, ref list);
     }
 
-    public void getMural()
+    public void getMural(int userID, ref List<Solicitacoes> list)
     {
-        dao.getMural(this);
+        dao.getMural(userID, ref list);
     }
 
     public int getUsuarioSolicitador()

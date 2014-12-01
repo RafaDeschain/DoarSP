@@ -118,35 +118,41 @@ public class SolicitacoesDAO
         }
     }
 
-    public void getMural(Solicitacoes donationData)
+    public void getMural(int userID, ref List<Solicitacoes> list)
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
             conn.Open();
-            SqlTransaction transaction = conn.BeginTransaction("FindDonations");
             try
             {
-                String cmdMural = " Select SOL_Comentario " +
-                                            " From TB_Solicitacoes " +
-                                            " where SOL_IdSolicitacao = @idSolicitacao ";
-                SqlCommand queryComentarios = new SqlCommand(cmdMural, conn, transaction);
-                queryComentarios.Parameters.AddWithValue("@idSolicitacao", donationData.codDoacao);
+                String cmdDonationRecords = "SELECT SOL_IdSolicitacao, SOL_IdUsuarioSolicitador, " +
+                                            "SOL_NomePaciente, SOL_TipoSanguineo, SOL_Comentario "+
+                                            "FROM TB_Solicitacoes INNER JOIN TB_Doacoes ON SOL_IdSolicitacao = DOC_IdSolicitacao " +
+                                            "WHERE SOL_IdUsuarioSolicitador = @idUser AND DOC_StatusDoacao = 2";
 
-                SqlDataReader comentarioReader = queryComentarios.ExecuteReader();
+                SqlCommand queryRecords = new SqlCommand(cmdDonationRecords, conn);
 
-                if (comentarioReader.Read() && String.IsNullOrEmpty(comentarioReader.GetString(0)))
+                queryRecords.Parameters.AddWithValue("@idUser", userID);
+
+                SqlDataReader reader = queryRecords.ExecuteReader();
+                
+                int i = 0;
+                foreach (DbDataRecord recordDonation in reader)
                 {
-                  donationData.comentario = comentarioReader.GetString(0);
+                    Solicitacoes data = new Solicitacoes();
+
+                    data.codDoacao          = reader.GetInt32(0);
+                    data.idUserSolicitante  = reader.GetInt32(1);
+                    data.nomePaciente       = reader.GetString(2);
+                    data.tpSanguineo        = reader.GetByte(3);
+                    data.comentario         = reader.GetString(4);
+
+                    list.Insert(i, data);
+                    i++;
                 }
-                else
-                {
-                    donationData.comentario = "Nenhum comentário registrado para exibição";
-                }
-                transaction.Commit();                
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
                 throw new Exception(ex.ToString());
             }
             finally

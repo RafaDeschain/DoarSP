@@ -63,7 +63,7 @@ public class User
         return daoUser.updateLocation(this);
     }
 
-    public SqlDataReader getRanking()
+    public List<Ranking> getRanking()
     {
         return daoUser.getRanking();
     }

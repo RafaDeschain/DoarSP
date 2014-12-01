@@ -110,23 +110,12 @@ namespace doarSP_Service
         #region Informacoes_Ranking
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
-        public String usuario_GetRanking()
+        public String usuario_GetRanking(int ok)
         {
             User userData = new User();
 
-            List<Ranking> recordsRanking = new List<Ranking>();
-            SqlDataReader records = userData.getRanking();
-            Ranking data = new Ranking();
-            int Count = 0;
-            while (records.Read())
-            {
-                data.nome = records.GetString(0);
-                data.numDoacoes = records.GetInt32(1);
-                recordsRanking.Insert(Count, data);
-                Count++;
-            }
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
-            return jsonClient.Serialize(recordsRanking);
+            return jsonClient.Serialize(userData.getRanking());
         }
         #endregion
 
@@ -180,6 +169,7 @@ namespace doarSP_Service
             if(doacao.insertDoacao()){
                 json.Insert(0, true);
                 NotificacaoPush push = new NotificacaoPush();
+                push.pushNotificacao(userId, "Uma pretenção de doação foi aberta para sua solicitação");
             }
             else
             {
@@ -194,41 +184,37 @@ namespace doarSP_Service
         #region CheckInDoacao
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
-        public String doacao_CheckInDoacao(int userId, int idDoacao, int idSolicitacao, double latitude, double longitude, double latitudeHemo, double longitudeHemo)
+        public String doacao_CheckInDoacao(int userId, int idDoacao, int idSolicitacao, int idHemo)
         {
             Doacao doacao = new Doacao();
             Solicitacoes sol = new Solicitacoes();
-            doacao.idDoacao = idDoacao;
-            doacao.usuarioDoador = userId;
-            doacao.idSolicitacao = idSolicitacao;
-            sol.codDoacao = idSolicitacao;
+
+            doacao.idDoacao         = idDoacao;
+            doacao.usuarioDoador    = userId;
+            doacao.idSolicitacao    = idSolicitacao;
+            doacao.idHemocentro     = idHemo;
+            sol.codDoacao           = idDoacao;
+            
             List<Boolean> json = new List<Boolean>();
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
             NotificacaoPush push = new NotificacaoPush();
 
-            calcDistance validateCheckIn = new calcDistance();
-            if (validateCheckIn.calcDistances(latitude, longitude, latitudeHemo, longitudeHemo) == 0)
-            {
-                if (doacao.insertDoacao())
-                {                    
-                    push.pushNotificacao(sol.getUsuarioSolicitador(), "Nova doação efetuada. Parabéns! <3");
-                    json.Insert(0, true);
-                }
-                else
-                {
-                    json.Insert(0, false);
-                }
+            if (doacao.checkInDonation())
+            {                    
+                push.pushNotificacao(sol.getUsuarioSolicitador(), "Nova doação efetuada. Parabéns! <3");
+                json.Insert(0, true);
             }
             else
             {
                 push.pushNotificacao(userId, "Check-In efetuado fora da área do hemocentro.");
                 json.Insert(0, false);
             }
+            
             return jsonClient.Serialize(json);
         }
         #endregion
 
-        #region Informacoes_Doacao
+        #region Informacoes_Solicitacao
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
         public String solicitacoes_GetSolicitacoes(int userID)
@@ -238,6 +224,21 @@ namespace doarSP_Service
             
             sol.getDonationRecords(userID, ref recordsDonation);
             
+            JavaScriptSerializer jsonClient = new JavaScriptSerializer();
+            return jsonClient.Serialize(recordsDonation);
+        }
+        #endregion
+
+        #region Informacoes_Doacao
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        [WebMethod]
+        public String solicitacoes_GetDoacao(int userID)
+        {
+            Doacao doacao = new Doacao();
+            List<Doacao> recordsDonation = new List<Doacao>();
+
+            doacao.getDoacaoRecords(userID, ref recordsDonation);
+
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
             return jsonClient.Serialize(recordsDonation);
         }
@@ -278,17 +279,15 @@ namespace doarSP_Service
         #region Mural
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         [WebMethod]
-        public String mural_PegarComentario(int idSolicitacao)
+        public String mural_PegarComentario(int userID)
         {
-            Solicitacoes solicitacaoMural = new Solicitacoes();
-            solicitacaoMural.codDoacao = idSolicitacao;
-            solicitacaoMural.getMural();
-            
-            List<String> jsonMural = new List<String>();
-            jsonMural.Insert(0, solicitacaoMural.comentario);
+            Solicitacoes sol = new Solicitacoes();
+            List<Solicitacoes> recordsDonation = new List<Solicitacoes>();
+
+            sol.getMural(userID, ref recordsDonation);
 
             JavaScriptSerializer jsonClient = new JavaScriptSerializer();
-            return jsonClient.Serialize(jsonMural);            
+            return jsonClient.Serialize(recordsDonation);         
         }
         #endregion
 
