@@ -31,6 +31,7 @@
     <string name="solicitacaocomentario">Use o espaço abaixo para agradecer os doadores :)</string>   
     <string name="buscarlistahemocentrostv">Selecione um dos hemocentros abaixo</string>   
     <string name="buscarlistasolicitacoesstv">Ajude a salvar uma vida :)</string>   
+    <string name="buscardoacoespendentestv">Selecione uma doação para fazer o checkin</string>   
     
 <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
@@ -40,6 +41,7 @@
         <item >Principal</item>
         <item >Buscar Doação</item>
         <item >Abrir Solicitação</item>
+        <item >Doações Pendentes</item>
         <item >Mural</item>
         <!-- <item >Postos de Doação</item> -->
         <!-- <item >Informações</item> -->
@@ -54,6 +56,7 @@
         <item>@drawable/ic_principal</item>
         <item>@drawable/ic_buscar</item>
         <item>@drawable/ic_abrir</item>
+        <item>@drawable/ic_mural</item>
         <item>@drawable/ic_mural</item>
         <!-- <item>@drawable/ic_postos</item> -->
         <!-- <item>@drawable/ic_info</item> -->

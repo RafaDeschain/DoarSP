@@ -2,42 +2,40 @@ package com.app.model;
 
 public class Mural {
 	
-	private int codMural, codSolicitacao, imagem;
-	private String comentario ;
+	private int codDoacao, tpSanguineo;
+	private String nomePaciente, comentario;
 	
-	public Mural(int codMural, int codSolicitacao, String comentario, int imagem  ){
-		setCodMural(codMural);
-		setCodSolicitacao(codSolicitacao);
-		setComentario(comentario);
-		setImagem(imagem);
-	}
-	
-	public Mural(){
-		
+	public Mural(int codDoacao, int tpSanguineo, String nomePaciente,
+			String comentario) {
+		super();
+		this.codDoacao = codDoacao;
+		this.tpSanguineo = tpSanguineo;
+		this.nomePaciente = nomePaciente;
+		this.comentario = comentario;
 	}
 
-	public int getCodMural() {
-		return codMural;
+	public int getCodDoacao() {
+		return codDoacao;
 	}
 
-	public void setCodMural(int codMural) {
-		this.codMural = codMural;
+	public void setCodDoacao(int codDoacao) {
+		this.codDoacao = codDoacao;
 	}
 
-	public int getCodSolicitacao() {
-		return codSolicitacao;
+	public int getTpSanguineo() {
+		return tpSanguineo;
 	}
 
-	public void setCodSolicitacao(int codSolicitacao) {
-		this.codSolicitacao = codSolicitacao;
+	public void setTpSanguineo(int tpSanguineo) {
+		this.tpSanguineo = tpSanguineo;
 	}
 
-	public int getImagem() {
-		return imagem;
+	public String getNomePaciente() {
+		return nomePaciente;
 	}
 
-	public void setImagem(int imagem) {
-		this.imagem = imagem;
+	public void setNomePaciente(String nomePaciente) {
+		this.nomePaciente = nomePaciente;
 	}
 
 	public String getComentario() {

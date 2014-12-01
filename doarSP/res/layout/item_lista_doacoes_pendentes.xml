@@ -7,13 +7,13 @@
     android:padding="20dp" >
 	
     <LinearLayout
-        android:id="@+id/LLSolicitacoes"
+        android:id="@+id/LLDoacoesPendentes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/ListaSolicitacoesNome"
+            android:id="@+id/ListaDoacoesPendentesNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -23,24 +23,33 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/ListaSolicitacoesNomePosto"
+            android:id="@+id/ListaDoacoesPendentesNomePosto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Endereco do hemocentro" />
         
-        <TextView
-	        android:id="@+id/ListaSolicitacoesQuantidade"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/LLSolicitacoes"
-	        android:layout_below="@+id/LLSolicitacoes"
-	        android:text="Quantidade de solicitacoes" />
     </LinearLayout>
     <TextView
-        android:id="@+id/ListaIdSolicitacao"
+        android:id="@+id/ListaIdDoacoesPendentes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/LLSolicitacoes"
-        android:text="ID" />
+        android:layout_alignTop="@+id/LLDoacoesPendentes"
+        android:text="ID D" />
+    
+    <TextView
+        android:id="@+id/ListaIdHemocentroPendentes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/LLDoacoesPendentes"
+        android:text="ID H" />
+    
+    <TextView
+        android:id="@+id/ListaIdSolicitacaoPendentes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/LLDoacoesPendentes"
+        android:text="ID S" />
 </RelativeLayout>

@@ -32,14 +32,14 @@ public class ListaSolicitacoesAdapter extends ArrayAdapter<Solicitacoes> {
 	    if(view == null)
 	    	view = LayoutInflater.from(context).inflate(R.layout.item_lista_solicitacoes, null);
 	    
-	    TextView textViewID = (TextView) view.findViewById(R.id.ListaIdHemocentro);
-	    textViewID.setText(Integer.toString(solicitacoesmod.getIdHemocentro()));
+	    TextView textViewID = (TextView) view.findViewById(R.id.ListaIdSolicitacao);
+	    textViewID.setText(Integer.toString(solicitacoesmod.getIdSolicitacao()));
 	    textViewID.setVisibility(View.INVISIBLE);
 	    
 	    TextView textViewNome = (TextView) view.findViewById(R.id.ListaSolicitacoesNome);
 	    textViewNome.setText(solicitacoesmod.getNome());
 	    
-	    TextView textViewEnd = (TextView) view.findViewById(R.id.ListaSolicitacoesEndereco);
+	    TextView textViewEnd = (TextView) view.findViewById(R.id.ListaSolicitacoesNomePosto);
 	    textViewEnd.setText(hemo.getPosto(solicitacoesmod.getIdHemocentro()).getNomePosto());
 	    
 	    TextView textViewQtd = (TextView) view.findViewById(R.id.ListaSolicitacoesQuantidade);

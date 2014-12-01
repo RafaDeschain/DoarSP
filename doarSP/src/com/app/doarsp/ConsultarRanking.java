@@ -1,6 +1,7 @@
 package com.app.doarsp;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +48,7 @@ public class ConsultarRanking extends Fragment implements InterfaceListener  {
 		
 		View rootView = inflater.inflate(R.layout.fragment_ranking, container, false);
 		listView = (ListView)rootView.findViewById(R.id.lista_ranking);
+		listView.setSelector(R.drawable.list_selector_buscar);
 		
 		return rootView;
 	}
@@ -55,6 +57,9 @@ public class ConsultarRanking extends Fragment implements InterfaceListener  {
 	public void returningCall(String result) {
 		
 	    if(result.length() > 2){
+	    	
+	    	rank = new ArrayList<Ranking>();
+	    	
 	    	try {
 	    		JSONArray jsonarray = new JSONArray(result);
 			    

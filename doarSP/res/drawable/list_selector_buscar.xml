@@ -2,11 +2,4 @@
     <!-- pressed -->
     <item android:state_pressed="true"
           android:drawable="@color/buscar_list_press"/>
-
-    <!-- focused --> 
-    <item android:state_focused="true"
-          android:drawable="@color/buscar_list_focused"/>
-
-      <!-- default --> 
-    <item android:drawable="@color/buscar_list_default"/>
 </selector>

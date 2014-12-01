@@ -82,12 +82,14 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
 		// Abrir Solicitação
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		// Mural
+		// Solicitacoes Pendentes
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-		// Informações
+		// Mural
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		// Ranking
+		// Informações
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+		// Ranking
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 		
 		navMenuIcons.recycle();
 		
@@ -232,12 +234,15 @@ public class MainActivity extends Activity {
 			fragment = new NovaSolicitacao();
 			break;
 		case 3:
-			fragment = new NovoMural();
+			fragment = new DoacoesPendentes();
 			break;
 		case 4:
+			fragment = new ListaMural();
+			break;
+		case 5:
 			fragment = new AlterarDados();
 			break;			
-		case 5:
+		case 6:
 			fragment = new ConsultarRanking();
 			break;
 

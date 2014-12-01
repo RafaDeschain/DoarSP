@@ -212,7 +212,7 @@ public class Principal extends Fragment {
         	solicitacoes.setText("Solicitações abertas");
             final ListaSolicitacoesAdapter hemoAdapter = new ListaSolicitacoesAdapter(getActivity(), listaSol);
             listView.setAdapter(hemoAdapter);
-            listView.setSelector(R.drawable.list_selector_hemocentros);
+            listView.setSelector(R.drawable.list_selector_buscar);
         }
         else{
         	solicitacoes.setText("Sem solicitações abertas");

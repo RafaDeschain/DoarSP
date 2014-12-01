@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ListaMuralAdapter extends ArrayAdapter<Mural> {
@@ -18,9 +17,9 @@ public class ListaMuralAdapter extends ArrayAdapter<Mural> {
 	private Context context;
 	private List<Mural> mural = null;
 
-	public ListaMuralAdapter(Context context,  List<Mural> mural) {
-	        super(context,0, mural);
-	        this.mural = mural;
+	public ListaMuralAdapter(Context context,  List<Mural> mural2) {
+	        super(context,0, mural2);
+	        this.mural = mural2;
 	        this.context = context;
 	}
 	
@@ -30,16 +29,20 @@ public class ListaMuralAdapter extends ArrayAdapter<Mural> {
 	         
 	    if(view == null)
 	    	view = LayoutInflater.from(context).inflate(R.layout.item_layout_mural, null);
-	 
-	    ImageView imageViewMural = (ImageView) view.findViewById(R.id.image_view_mural);
-	    imageViewMural.setImageResource(muralmod.getImagem());
+	 	         
+	    TextView nomepaciente = (TextView) view.findViewById(R.id.ListaMuralNome);
+	    nomepaciente.setText(muralmod.getNomePaciente());
+	    
+	    TextView tiposanguineo = (TextView) view.findViewById(R.id.ListaMuralTipo);
+	    tiposanguineo.setText("Tipo sanguineo: " + muralmod.getTpSanguineo());
 	         
-	    TextView textViewNomeComentario = (TextView) view.findViewById(R.id.text_view_nome_Comentario);
-	    textViewNomeComentario.setText(muralmod.getComentario());
-	         
-	    TextView textViewId = (TextView)view.findViewById(R.id.text_view_id);
-	    String textoId = String.valueOf(muralmod.getCodSolicitacao());
-	    textViewId.setText(textoId);
+	    TextView idDoacao = (TextView) view.findViewById(R.id.ListaIdDoacoesMural);
+	    idDoacao.setText(Integer.toString(muralmod.getCodDoacao()));
+	    idDoacao.setVisibility(View.INVISIBLE);
+	    
+	    TextView comentario = (TextView) view.findViewById(R.id.ListaMuralComentario);
+	    comentario.setText(muralmod.getComentario());
+	    comentario.setVisibility(View.INVISIBLE);
 	 
 	    return view;	
 	}
