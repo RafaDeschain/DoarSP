@@ -1,24 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/PrincipalNome"
-            android:layout_below="@+id/PrincipalNome"
-            android:layout_marginTop="33dp"
-            android:text="@string/signature" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollViewPrincipal"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical" >
 
-        <TextView
-            android:id="@+id/PrincipalNome"
-            android:layout_width="206dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp"
-            android:text="@string/aboutMe" />
-
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+        
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:padding="20dp" >
+	
+		    <TextView
+		            android:id="@+id/InformacaoUSJT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentLeft="true"
+		            android:layout_alignParentRight="true"
+		            android:layout_alignParentTop="true"
+		            android:gravity="center"
+		            android:text="@string/informacoesUSJT"
+		            android:textSize="18sp"
+		            android:textStyle="bold" />
+		    	
+		        <TextView
+		            android:id="@+id/InformacaoTexto"
+		            android:layout_width="206dp"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentLeft="true"
+		            android:layout_alignParentRight="true"
+		            android:layout_below="@+id/InformacaoUSJT"
+		            android:text="@string/aboutMe" 
+		            android:layout_marginTop="25dp"/>
+		        
+		        <TextView
+		            android:id="@+id/InformacaoGrupo"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignLeft="@+id/InformacaoTexto"
+		            android:layout_below="@+id/InformacaoTexto"
+		            android:layout_marginTop="25dp"
+		            android:textStyle="bold"
+		            android:text="@string/signature1" />
+		
+		        <TextView
+		            android:id="@+id/InformacaoGrupo2"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignLeft="@+id/InformacaoGrupo"
+		            android:layout_below="@+id/InformacaoGrupo"
+		            android:layout_marginTop="10dp"
+		            android:text="@string/signature" />
+	
+		</RelativeLayout>
+	</LinearLayout>
+</ScrollView>
