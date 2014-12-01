@@ -31,7 +31,10 @@
     <string name="solicitacaocomentario">Use o espaço abaixo para agradecer os doadores :)</string>   
     <string name="buscarlistahemocentrostv">Selecione um dos hemocentros abaixo</string>   
     <string name="buscarlistasolicitacoesstv">Ajude a salvar uma vida :)</string>   
-    <string name="buscardoacoespendentestv">Selecione uma doação para fazer o checkin</string>   
+    <string name="buscardoacoespendentestv">Selecione uma doação para fazer o checkin</string> 
+    <string name="muraltv">Você ainda não efetuou nenhuma doação :(</string>
+    <string name="rankingtv">Ainda não há nenhum campeão :(</string>   
+    <string name="doacoespendentestv">Você ainda não criou nenhuma doação  :(</string>   
     
 <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>

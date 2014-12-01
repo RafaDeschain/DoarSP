@@ -102,7 +102,7 @@ public class MapaHemocentros extends Fragment implements InterfaceListener{
 			Configuracao.trocarFragment(principal, frgm, false);
 			return null;
 		}
-		else if(!isNetworkEnabled || !wifiInfo.isAvailable()){
+		else if(!isNetworkEnabled){
 			Configuracao.showDialog(act, "Ops..", "Ative sua internet para localizar os hemocentros", true);
 			Principal principal = new Principal();
 			Configuracao.trocarFragment(principal, frgm, false);

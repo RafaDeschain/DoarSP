@@ -46,6 +46,9 @@ public class DoacoesPendentes extends Fragment implements InterfaceListener{
 	/** Solicitacoes **/
 	public List<Doacao> listaSol;
 	
+	TextView doacoespendentestv;
+	TextView listadoacoes;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,6 +72,12 @@ public class DoacoesPendentes extends Fragment implements InterfaceListener{
 		
 		View rootView = inflater.inflate(R.layout.fragment_lista_doacoes_pendentes, container, false);
 		
+		doacoespendentestv = (TextView) rootView.findViewById(R.id.DoacoesPendentesTV);
+		doacoespendentestv.setVisibility(View.GONE);
+		
+		listadoacoes = (TextView) rootView.findViewById(R.id.BuscarListaDoacoesPendentesTV);
+		listadoacoes.setVisibility(View.VISIBLE);
+		
 		return rootView;
 	}
 
@@ -85,7 +94,7 @@ public class DoacoesPendentes extends Fragment implements InterfaceListener{
 			global.getUser().setDtdUltimaDoacao(format.format(new Date()));
 			
 			Principal p = new Principal();
-			Configuracao.trocarFragment(p, getFragmentManager(), false);
+			Configuracao.trocarFragment(p, getFragmentManager(), true);
 		}
 		else if(result.equalsIgnoreCase("[false]")){
 			Configuracao.showDialog(getActivity(), "DoarSP", "Não foi possivel realizar o checkin pois sua localização não é proxima do hemocentro", true);
@@ -130,9 +139,8 @@ public class DoacoesPendentes extends Fragment implements InterfaceListener{
 			}
 		}
 		else{
-			Configuracao.showDialog(getActivity(), "DoarSP", "Você ainda não criou nenhuma doação", true);
-			Principal p = new Principal();
-			Configuracao.trocarFragment(p, getFragmentManager(), false);
+			listadoacoes.setVisibility(View.GONE);
+			doacoespendentestv.setVisibility(View.VISIBLE);
 		}
 	}
 	

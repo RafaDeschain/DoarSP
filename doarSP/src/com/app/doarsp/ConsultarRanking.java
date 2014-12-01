@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ConsultarRanking extends Fragment implements InterfaceListener  {
 	
@@ -26,8 +27,10 @@ public class ConsultarRanking extends Fragment implements InterfaceListener  {
 	private Thread thread;
 	public Ranking ranking;
 	public List<Ranking> rank;
-	ListView listView;
 	private String[][] wsparams;
+	
+	ListView listView;
+	TextView rankingtv;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,6 +52,9 @@ public class ConsultarRanking extends Fragment implements InterfaceListener  {
 		View rootView = inflater.inflate(R.layout.fragment_ranking, container, false);
 		listView = (ListView)rootView.findViewById(R.id.lista_ranking);
 		listView.setSelector(R.drawable.list_selector_buscar);
+		
+		rankingtv = (TextView) rootView.findViewById(R.id.RankingTV);
+		rankingtv.setVisibility(View.GONE);
 		
 		return rootView;
 	}
@@ -77,17 +83,15 @@ public class ConsultarRanking extends Fragment implements InterfaceListener  {
 					listView.setAdapter(rankingAdapter);
 			    }
 			    else{
-			    	Configuracao.showDialog(getActivity(), "DoarSP", "Ainda não há nenhuma doação :(", true);
-			    	Principal p = new Principal();
-			    	Configuracao.trocarFragment(p, getFragmentManager(), false);
+			    	rankingtv.setVisibility(View.VISIBLE);
 			    }
 				
 		    } catch (JSONException e) {
-		    	Configuracao.showDialog(getActivity(), "DoarSP", "Ainda não há nenhuma doação :(", true);
-		    	Principal p = new Principal();
-		    	Configuracao.trocarFragment(p, getFragmentManager(), false);
-		        e.printStackTrace();
+		    	e.getMessage();
 		    }
+	    }
+	    else{
+	    	rankingtv.setVisibility(View.VISIBLE);
 	    }
 	}
 	

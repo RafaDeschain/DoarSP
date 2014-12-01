@@ -35,11 +35,20 @@ public class ListaMural extends Fragment implements InterfaceListener{
 	/** Solicitacoes **/
 	public List<Mural> listaMural;
 	
+	ListView listView;
+	TextView muraltv;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
 		View rootView = inflater.inflate(R.layout.fragment_mural, container, false);
+		
+		listView = (ListView)rootView.findViewById(R.id.lista_doacoes);
+		listView.setSelector(R.drawable.list_selector_buscar);
+		
+		muraltv = (TextView) rootView.findViewById(R.id.MuralTV);
+		muraltv.setVisibility(View.GONE);
 		
 		MainActivity global = (MainActivity)getActivity();
         
@@ -95,9 +104,7 @@ public class ListaMural extends Fragment implements InterfaceListener{
 	private void preencheTela(List<Mural> listaMural) {
 		
 		//Solicitações
-        
-        ListView listView = (ListView)getActivity().findViewById(R.id.lista_doacoes);
-        
+                
         if(listaMural != null){
             
         	final ListaMuralAdapter muralAdapter = new ListaMuralAdapter(getActivity(), listaMural);
@@ -122,10 +129,7 @@ public class ListaMural extends Fragment implements InterfaceListener{
         	});
         }
         else{
-        	listView.setVisibility(View.INVISIBLE);
-        	Configuracao.showDialog(getActivity(), "DoarSP", "Você ainda não efetuou nenhuma doação", true);
-        	Principal p = new Principal();
-        	Configuracao.trocarFragment(p, getFragmentManager(), false);
+        	muraltv.setVisibility(View.VISIBLE);
         }
 		
 		//Método para fazer funcionar o Scroll das solicitações
